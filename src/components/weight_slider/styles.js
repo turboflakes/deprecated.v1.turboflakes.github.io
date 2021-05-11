@@ -1,9 +1,7 @@
 const styles = (theme) => ({
 	root: {
-		
+		width: 300,
+		margin: `0 ${theme.spacing(2)}px`
 	},
-	listItemRoot: {
-    marginBottom: theme.spacing(1)
-  },
 })
 export default styles

@@ -54,7 +54,7 @@ export default createMuiTheme({
       300: "#EEEEEE",
       400: "#C8C9CC",
       500: "#6F7072",
-      600: "#1A051D",
+      600: "#040621",
     },
     divider: "rgba(0, 0, 0, 0.12)",
     dividerDark: "rgba(0, 0, 0, 0.04)",
@@ -71,7 +71,7 @@ export default createMuiTheme({
       secondary180: "linear-gradient(180deg,#86C8F8,#EECE74)",
     },
     text: {
-      primary: "#1A051D",
+      primary: "#040621",
       secondary: "#FFFFFF",
       disabled: "rgba(0, 0, 0, 0.38)",
       hint: "rgba(0, 0, 0, 0.38)"
@@ -84,7 +84,7 @@ export default createMuiTheme({
   typography: {
     useNextVariants: true,
     h1: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
       fontWeight: 600,
       fontStyle: "normal",
@@ -97,7 +97,7 @@ export default createMuiTheme({
       }
     },
     h2: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", \"sans-serif\"",
       fontWeight: 600,
       fontStyle: "normal",
@@ -111,7 +111,7 @@ export default createMuiTheme({
       }
     },
     h3: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
       fontWeight: 600,
       fontStyle: "normal",
@@ -120,7 +120,7 @@ export default createMuiTheme({
       letterSpacing: "normal",
     },
     h4: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", \"sans-serif\"",
       fontWeight: 400,
       fontStyle: "normal",
@@ -142,7 +142,7 @@ export default createMuiTheme({
       }
     },
     body2: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", \"sans-serif\"",
       fontWeight: 400,
       fontStyle: "normal",
@@ -151,7 +151,7 @@ export default createMuiTheme({
       letterSpacing: "normal",
     },
     button: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", \"sans-serif\"",
       fontWeight: 500,
       fontStyle: "normal",
@@ -169,7 +169,7 @@ export default createMuiTheme({
       letterSpacing: "normal",
     },
     caption: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", \"sans-serif\"",
       fontWeight: 500,
       fontStyle: "normal",
@@ -179,7 +179,7 @@ export default createMuiTheme({
       letterSpacing: "normal",
     },
     caption2: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", \"sans-serif\"",
       fontWeight: 400,
       fontStyle: "normal",
@@ -188,7 +188,7 @@ export default createMuiTheme({
       letterSpacing: "normal",
     },
     small: {
-      color: "#1A051D",
+      color: "#040621",
       fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", \"sans-serif\"",
       fontWeight: 400,
       fontStyle: "normal",

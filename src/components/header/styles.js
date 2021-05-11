@@ -6,7 +6,7 @@ const styles = (theme) => ({
 		backgroundColor: "inherit"
 	},
 	toolBar: {
-		padding: "20px 40px",
+		padding: theme.spacing(2),
 	},
 })
 export default styles

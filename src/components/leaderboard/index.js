@@ -3,21 +3,26 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { query } from '../../actions/validator'
 import { selectors } from '../../selectors'
+import serialize from '../../utils/serialize'
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import AccountItem from '../account_item'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-class Container extends Component {
+class Leaderboard extends Component {
 	
-	state = {
-    selectedIndex: -1,
+	componentDidMount(){
+		const {weights} = this.props
+    this.props.query({q: "Board", w: weights, n: "16"})
   }
 
-	componentDidMount(){
-    this.props.query({q: "All", n: "16"})
-  }
+	componentDidUpdate(prevProps) {
+		const {weights} = this.props
+		if (prevProps.weights !== weights) {
+			this.props.query({q: "Board", w: weights, n: "16"})
+		}
+	}
 
  	render() {
 		const { classes, ids } = this.props;
@@ -38,17 +43,21 @@ class Container extends Component {
 	}
 }
 
-Container.propTypes = {
+Leaderboard.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const ids = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'data')
-  return {
+  const weights = Object.values(state.leaderboard.weights).toString()
+	const query = serialize({q: "Board", w: weights, n: "16"})
+	const ids = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'data')
+	
+	return {
 		ids,
+		weights,
     isFetching: !!state.fetchers.async,
   }
 }
 
-export default connect(mapStateToProps, { query })(withStyles(styles)(Container));
+export default connect(mapStateToProps, { query })(withStyles(styles)(Leaderboard));
   
