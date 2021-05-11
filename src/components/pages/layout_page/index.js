@@ -1,43 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { get } from '../../../actions/validator'
-import { selectors } from '../../../selectors'
+import Grid from '@material-ui/core/Grid';
+import BoardAnimation from '../../board_animation'
+import Header from '../../header'
+import Container from '../../container'
+// import Footer from '../../footer'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-const stash = "5FsFiesijmmtB47QTxnr7Ps1n4s4MuGbsosGaGpyWJcL9aSt"
-
-class ContainerPage extends Component {
-
-  componentDidMount(){
-    this.props.get(stash)
-  }
+class LayoutPage extends Component {
 
   render() {
     const { classes, isFetching } = this.props;
+
     return (
       <div className={classes.root}>
         {isFetching ? "fetching.." : null}
-        {/* <Header /> */}
-        {this.props.children}
-        {/* <Footer /> */}
-        {/* <Alert /> */}
+        <Grid container spacing={0}>
+          <Grid item xs={6}>
+            <BoardAnimation n={16} width={window.innerWidth / 2} height={window.innerHeight} />
+          </Grid>
+          <Grid item xs={6} className={classes.rightContent}>
+            <Header />
+            {/* <ControlPanel /> */}
+            <Container />
+            {/* <Footer /> */}
+          </Grid>
+        </Grid>
       </div>
     )
   }
 }
 
-ContainerPage.propTypes = {
+LayoutPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const validator = selectors.getObjectByEntityAndId(state, 'validator', stash)
   return {
-    validator,
     isFetching: !!state.fetchers.async,
   }
 }
 
-export default connect(mapStateToProps, { get })(withStyles(styles)(ContainerPage));
+export default connect(mapStateToProps)(withStyles(styles)(LayoutPage));

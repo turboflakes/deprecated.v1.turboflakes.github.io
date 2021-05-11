@@ -1,4 +1,7 @@
-const theme = () => ({
-  root: {}
+const styles = (theme) => ({
+  root: {},
+  rightContent: {
+    background: theme.palette.gradients.default180
+  }
 })
-export default theme
+export default styles

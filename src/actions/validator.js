@@ -15,3 +15,8 @@ export const query = (queryParams) => {
 export const get = (id) => {
   return _get(id, ["all"], 'validator')
 }
+
+// GET /validator/:id/eras
+export const getValidatorEras = (id) => {
+  return _get(id, ["all"], 'validator', undefined, undefined, {endpoint: `validator/${id}/eras`})
+}

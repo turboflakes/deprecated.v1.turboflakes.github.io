@@ -1,14 +1,16 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
+import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from '../reducers'
 import apiMiddleware from '../middlewares/api'
 
 
 const configureStore = () => {
   const store = createStore(
-    reducer,
-    applyMiddleware(thunk, apiMiddleware, createLogger()),
+    reducer, /* preloadedState, */
+    composeWithDevTools(applyMiddleware(thunk, apiMiddleware, createLogger())
+    )
   )
 
   if (module.hot) {

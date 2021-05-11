@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from './components/pages/layout_page'
-import './App.css';
+import withTheme from './theme/withTheme'
 
 function App() {
   return (
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default withTheme(App);

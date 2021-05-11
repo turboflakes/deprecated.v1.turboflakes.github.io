@@ -1,6 +1,6 @@
 import merge from 'lodash/merge'
 import zipObject from 'lodash/zipObject'
-import serialize from '../serialize'
+import serialize from '../utils/serialize'
 
 export const collection = (entity) => {
   if (!entity) {
