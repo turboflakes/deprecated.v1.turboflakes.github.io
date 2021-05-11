@@ -60,7 +60,7 @@ class AccountItem extends Component {
 				<ListItemAvatar>
 				<Identicon
           value={stash}
-          size={50}
+          size={32}
           theme={'polkadot'} />
         </ListItemAvatar>
         <ListItemText primary={!!account.name ? nameDisplay(account.name) : stashDisplay(stash)} />

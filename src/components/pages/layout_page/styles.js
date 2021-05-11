@@ -1,7 +1,15 @@
 const styles = (theme) => ({
-  root: {},
-  left: {},
-  rightBoard: {
+  root: {
+    display: "flex"
+  },
+  leftBox: {
+    height: "100vh",
+    width: "50vw",
+  },
+  rightBox: {
+    height: "100vh",
+    width: "50vw",
+    overflow: "scroll",
     background: theme.palette.background.paper,
   },
   container: {

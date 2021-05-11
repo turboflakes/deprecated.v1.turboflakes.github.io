@@ -2,10 +2,19 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Divider from '@material-ui/core/Divider';
 import Link from '@material-ui/core/Link';
+import Identicon from '@polkadot/react-identicon';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
+
+const kusama = "FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX"
+const polkadot = "12gPFmRqnsDhc9C5DuXyXBFA23io5fSGtKTSAimQtAWgueD2"
 
 class Footer extends Component {
 	
@@ -14,13 +23,54 @@ class Footer extends Component {
 
 		return (
 			<div className={classes.root}>
-				<Grid container className={classes.container}>
+				<Container className={classes.container}>
+					<Typography color="textSecondary">
+					If you like this project - Support us 🖖 Nominate, Tip or Donate ✨💙
+					</Typography>
+					<List component="nav" className={classes.list}>
+						<ListItem key={kusama} >
+							<ListItemAvatar>
+								<Identicon
+									value={kusama}
+									size={32}
+									theme={'polkadot'} />
+							</ListItemAvatar>
+							<ListItemText primary={kusama} secondary="Kusama Account" 
+								classes={{
+									primary: classes.primary,
+									secondary: classes.secondary
+								}}/>
+						</ListItem>
+						<ListItem key={polkadot} >
+							<ListItemAvatar>
+								<Identicon
+									value={polkadot}
+									size={32}
+									theme={'polkadot'} />
+							</ListItemAvatar>
+							<ListItemText primary={polkadot} secondary="Polkadot Account" 
+								classes={{
+									primary: classes.primary,
+									secondary: classes.secondary
+								}} />
+						</ListItem>
+					</List>
+					
+				</Container>
+				<Divider light classes={{ light: classes.light }}/>
+				<Container className={classes.container}>
+					<Typography color="textSecondary">
+					Turboflakes © 2021 - Developed By Turboflakes Team
+					</Typography>
+				</Container>
+				
+				{/* <Grid container className={classes.container}>
 					<Grid item xs={1}></Grid>
 					<Grid item xs={10} sm={12}>
 						Footer
 					</Grid>
 					<Grid item xs={1}></Grid>
-				</Grid>
+				</Grid> */}
 			</div>
 		)
 	}
