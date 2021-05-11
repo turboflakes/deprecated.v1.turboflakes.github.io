@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { changeWeight } from '../../actions/leaderboard'
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 

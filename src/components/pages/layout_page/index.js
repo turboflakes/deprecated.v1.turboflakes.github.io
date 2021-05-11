@@ -15,7 +15,7 @@ import styles from './styles'
 class LayoutPage extends Component {
 
   render() {
-    const { classes, quantity, isFetching } = this.props;
+    const { classes, quantity } = this.props;
 
     return (
       <div className={classes.root}>

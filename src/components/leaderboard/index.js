@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { query } from '../../actions/validator'
 import { selectors } from '../../selectors'
 import serialize from '../../utils/serialize'
-import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import AccountItem from '../account_item'
 import { withStyles } from '@material-ui/core/styles';
@@ -29,15 +29,12 @@ class Leaderboard extends Component {
 
 		return (
 			<div className={classes.root}>
-				<Grid container className={classes.container}>
-					<Grid item xs={1}></Grid>
-					<Grid item xs={10} sm={12}>
-						<List component="nav" className={classes.list}>
-              {ids.map((id, index) => <AccountItem id={id} key={index} />)}
-            </List>
-					</Grid>
-					<Grid item xs={1}></Grid>
-				</Grid>
+				<Typography variant="subtitle1" color="textPrimary">
+					Leaderboard
+				</Typography>
+				<List component="nav" className={classes.list}>
+					{ids.map((id, index) => <AccountItem id={id} key={index} />)}
+				</List>
 			</div>
 		)
 	}
