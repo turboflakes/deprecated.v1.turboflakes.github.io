@@ -27,10 +27,10 @@ class LayoutPage extends Component {
             <Container className={classes.container}>
               <Grid container spacing={0}>
                 <Grid item xs={6}>
-                  <Leaderboard />
+                  <ControlPanel />
                 </Grid>
                 <Grid item xs={6}>
-                  <ControlPanel />
+                  <Leaderboard />
                 </Grid>
               </Grid>              
             </Container>

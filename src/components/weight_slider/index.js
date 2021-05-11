@@ -52,7 +52,7 @@ WeightSlider.propTypes = {
 	classes: PropTypes.object.isRequired,
 	title: PropTypes.string,
 	subTitle: PropTypes.string,
-	type: PropTypes.oneOf(['inclusion', 'commission', 'points']).isRequired,
+	type: PropTypes.oneOf(['inclusion', 'commission', 'reward_points', 'reward_staked', 'active', 'own_stake', 'judgements', 'sub_accounts']).isRequired,
 	defaultValue: PropTypes.number,
 	minValue: PropTypes.number,
 	maxValue: PropTypes.number,

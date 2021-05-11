@@ -58,7 +58,7 @@ export default createMuiTheme({
     },
     divider: "rgba(0, 0, 0, 0.12)",
     dividerDark: "rgba(0, 0, 0, 0.04)",
-    dividerLight: "rgba(255, 255, 255, 0.12)",
+    dividerLight: "rgb(255, 255, 255)",
     gradients: {
       dark0: "linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.4))",
       dark90: "linear-gradient(90deg,rgba(0,0,0,0.6),rgba(0,0,0,0.4))",

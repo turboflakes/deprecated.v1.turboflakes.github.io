@@ -27,17 +27,17 @@ class ControlPanel extends Component {
 				<WeightSlider title="Commission" subTitle="Lower commission is preferrable" 
 					type="commission" defaultValue={2} />
 				<WeightSlider title="Reward Points" subTitle="Higher reward points is preferrable"
-					type="points" defaultValue={10} />
+					type="reward_points" defaultValue={10} />
 				<WeightSlider title="Reward Staked" subTitle="If reward is staked is preferrable"
-					type="staked" defaultValue={8} />
+					type="reward_staked" defaultValue={8} />
 				<WeightSlider title="Currently Active" subTitle="If in active set is preferrable"
-					type="points" defaultValue={6} />
+					type="active" defaultValue={6} />
 				<WeightSlider title="Own Stake" subTitle="Higher own stake is preferrable"
-					type="points" defaultValue={6} />
+					type="own_stake" defaultValue={6} />
 				<WeightSlider title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is preferrable"
-					type="points" defaultValue={8} />
+					type="judgements" defaultValue={8} />
 				<WeightSlider title="Sub-accounts" subTitle="Lower number of sub-accounts is preferrable"
-					type="points" defaultValue={1} />
+					type="sub_accounts" defaultValue={1} />
 			</div>
 		)
 	}

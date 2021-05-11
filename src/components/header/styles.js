@@ -3,7 +3,8 @@ const styles = (theme) => ({
 		flexGrow: 1,
 	},
 	appBar: {
-		backgroundColor: "inherit"
+		backgroundColor: "inherit",
+		borderBottom: `solid 1px ${theme.palette.dividerLight}`,
 	},
 	toolBar: {
 		padding: theme.spacing(2),

@@ -17,7 +17,7 @@ class Header extends Component {
         <AppBar position="static" elevation={0} className={classes.appBar}>
           <Toolbar variant="dense" className={classes.toolBar}>
             {/* Logo */}
-            <Typography variant="h1" className={classes.title}>
+            <Typography variant="h2" className={classes.title}>
               TURBOFLAKES
             </Typography>
             <div className={classes.grow} />
