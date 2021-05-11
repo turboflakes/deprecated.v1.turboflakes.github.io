@@ -13,14 +13,14 @@ import styles from './styles'
 class Leaderboard extends Component {
 	
 	componentDidMount(){
-		const {weights} = this.props
-    this.props.query({q: "Board", w: weights, n: "16"})
+		const {weights, quantity} = this.props
+    this.props.query({q: "Board", w: weights, n: quantity})
   }
 
 	componentDidUpdate(prevProps) {
-		const {weights} = this.props
-		if (prevProps.weights !== weights) {
-			this.props.query({q: "Board", w: weights, n: "16"})
+		const {weights, quantity} = this.props
+		if ((prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
+			this.props.query({q: "Board", w: weights, n: quantity})
 		}
 	}
 
@@ -49,12 +49,13 @@ Leaderboard.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const weights = Object.values(state.leaderboard.weights).toString()
-	const query = serialize({q: "Board", w: weights, n: "16"})
+	const quantity = state.leaderboard.quantity
+	const query = serialize({q: "Board", w: weights, n: quantity})
 	const ids = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'data')
-	
 	return {
 		ids,
 		weights,
+		quantity,
     isFetching: !!state.fetchers.async,
   }
 }

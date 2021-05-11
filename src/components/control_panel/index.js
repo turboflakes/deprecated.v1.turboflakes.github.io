@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-// import { change } from '../../actions/weight'
-// import { selectors } from '../../selectors'
-// import Typography from '@material-ui/core/Typography';
+import QuantitySlider from '../quantity_slider';
 import WeightSlider from '../weight_slider';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -23,9 +21,23 @@ class ControlPanel extends Component {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>
-				<WeightSlider title="Inclusion" type="inclusion" defaultValue={6} />
-				<WeightSlider title="Commision" type="commission" defaultValue={2} />
-				<WeightSlider title="Reward Points" type="points" defaultValue={10} />
+				<QuantitySlider defaultValue={16} />
+				<WeightSlider title="Inclusion" subTitle="Higher inclusion rate is preferrable" 
+					type="inclusion" defaultValue={6} />
+				<WeightSlider title="Commission" subTitle="Lower commission is preferrable" 
+					type="commission" defaultValue={2} />
+				<WeightSlider title="Reward Points" subTitle="Higher reward points is preferrable"
+					type="points" defaultValue={10} />
+				<WeightSlider title="Reward Staked" subTitle="If reward is staked is preferrable"
+					type="staked" defaultValue={8} />
+				<WeightSlider title="Currently Active" subTitle="If in active set is preferrable"
+					type="points" defaultValue={6} />
+				<WeightSlider title="Own Stake" subTitle="Higher own stake is preferrable"
+					type="points" defaultValue={6} />
+				<WeightSlider title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is preferrable"
+					type="points" defaultValue={8} />
+				<WeightSlider title="Sub-accounts" subTitle="Lower number of sub-accounts is preferrable"
+					type="points" defaultValue={1} />
 			</div>
 		)
 	}

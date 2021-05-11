@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { weight } from '../../actions/leaderboard'
+import { changeWeight } from '../../actions/leaderboard'
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -12,21 +13,24 @@ class WeightSlider extends Component {
 	componentDidMount() {
 		const {type, defaultValue} = this.props
 		if (defaultValue) {
-			this.props.weight(type, defaultValue)
+			this.props.changeWeight(type, defaultValue)
 		}
 	}
 	
 	handleOnChangeCommitted = (_event, value) => {
 		const {type} = this.props
-		this.props.weight(type, value)
+		this.props.changeWeight(type, value)
 	}
 
  	render() {
-		const { classes, title, value, defaultValue } = this.props;
+		const { classes, title, subTitle, value, defaultValue, minValue, maxValue} = this.props;
 		return (
 			<div className={classes.root}>
-				<Typography id="discrete-slider" gutterBottom>
-        {title}
+				<Typography variant="subtitle1" id="discrete-slider">
+				{title}
+				</Typography>
+				<Typography variant="caption" id="discrete-slider-sub" gutterBottom>
+        {subTitle}
 				</Typography>
 				<Slider
 					defaultValue={defaultValue}
@@ -35,8 +39,8 @@ class WeightSlider extends Component {
 					valueLabelDisplay="auto"
 					step={1}
 					marks
-					min={0}
-					max={10}
+					min={!!minValue ? minValue : 0}
+					max={!!maxValue ? maxValue : 10}
 					onChangeCommitted={this.handleOnChangeCommitted}
 				/>
 			</div>
@@ -47,8 +51,11 @@ class WeightSlider extends Component {
 WeightSlider.propTypes = {
 	classes: PropTypes.object.isRequired,
 	title: PropTypes.string,
+	subTitle: PropTypes.string,
 	type: PropTypes.oneOf(['inclusion', 'commission', 'points']).isRequired,
 	defaultValue: PropTypes.number,
+	minValue: PropTypes.number,
+	maxValue: PropTypes.number,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -58,5 +65,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { weight })(withStyles(styles)(WeightSlider));
+export default connect(mapStateToProps, { changeWeight })(withStyles(styles)(WeightSlider));
   

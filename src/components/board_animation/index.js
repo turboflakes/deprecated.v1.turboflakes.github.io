@@ -25,6 +25,12 @@ function rgb(i) {
   getRandomInt(127, 255) + ')';
 }
 
+let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+let cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+    
+
 class BoardAnimation extends Component {
 
   state = {
@@ -35,12 +41,23 @@ class BoardAnimation extends Component {
     this.init();
   }
 
+  componentDidUpdate(prevProps) {
+    const {n} = this.props
+    if (prevProps.n !== n) {
+      this.init()
+    }
+  }
+
   init = () => {
     const {
       n,
       width,
       height
     } = this.props
+
+    if (!!this.req) {
+      cancelAnimationFrame(this.req);
+    }
     
     const canvas = document.getElementById('board')
     if (canvas.getContext) {
@@ -74,7 +91,7 @@ class BoardAnimation extends Component {
         balls
       })
 
-      window.requestAnimationFrame(this.update)
+      this.req = requestAnimationFrame(this.update)
     }
   }
 
@@ -103,7 +120,7 @@ class BoardAnimation extends Component {
       balls
     } = this.state
 
-    window.requestAnimationFrame(this.update)
+    this.req = requestAnimationFrame(this.update)
 
     // clear the canvas and redraw everything
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -140,7 +157,6 @@ class BoardAnimation extends Component {
 
       this.draw(ball)
     })
-    
   }
 
 
