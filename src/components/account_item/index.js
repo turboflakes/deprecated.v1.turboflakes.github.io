@@ -14,10 +14,6 @@ import styles from './styles'
 
 class AccountItem extends Component {
 	
-	state = {
-    selectedIndex: -1,
-  }
-
 	componentDidMount(){
 		const {id, queryParams} = this.props
 		if (id) {

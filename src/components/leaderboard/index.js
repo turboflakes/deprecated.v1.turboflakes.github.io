@@ -4,13 +4,21 @@ import PropTypes from 'prop-types';
 import { query } from '../../actions/validator'
 import { selectors } from '../../selectors'
 import serialize from '../../utils/serialize'
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 import AccountItem from '../account_item'
+import AccountSearchDialog from '../account_search_dialog'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 class Leaderboard extends Component {
+
+	state = {
+		open: false
+	}
 
 	componentDidMount(){
 		const {weights, quantity} = this.props
@@ -24,20 +32,32 @@ class Leaderboard extends Component {
 		}
 	}
 
- 	render() {
+	render() {
 		const { classes, ids, weights } = this.props;
 
 		return (
 			<div className={classes.root}>
-				<Typography variant="h4" color="textPrimary">
-					Leaderboard
-				</Typography>
-				<Typography variant="caption" gutterBottom>
-					The highest-ranked Validators
-				</Typography>
+				<Box className={classes.header}>
+					<Box>
+						<Typography variant="h4" color="textPrimary">
+							Leaderboard
+						</Typography>
+						<Typography variant="caption" gutterBottom>
+							The highest-ranked Validators
+						</Typography>
+					</Box>
+					<Box>
+					<IconButton color="primary" aria-label="search for a validator" onClick={() => this.setState({open: true})}>
+						<SearchIcon />
+					</IconButton>
+					</Box>
+				</Box>
 				<List component="nav" className={classes.list}>
 					{ids.map((id, index) => <AccountItem id={id} key={index} queryParams={{q: "Board", w: weights}} />)}
 				</List>
+				<AccountSearchDialog open={this.state.open} 
+					onClose={() => this.setState({open: false})}>
+        </AccountSearchDialog>
 			</div>
 		)
 	}

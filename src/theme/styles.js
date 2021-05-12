@@ -129,4 +129,28 @@ export default createMuiTheme({
   button: {
     padding: "18px 26px"
   },
+  overrides: {
+    MuiInputBase: {
+      input: {
+        borderRadius: 5,
+      },
+      root: {
+        borderRadius: 5,
+        color: "#FFFFFF"
+      }
+    },
+    MuiOutlinedInput: {
+      input: {
+        color: "#FFFFFF"
+      }, 
+      root: {
+        '& $notchedOutline' : {
+          borderColor: "#FFFFFF",
+        },
+        '&:hover:not($disabled):not($focused):not($error) $notchedOutline' : {
+          borderColor: "#86C8F8", // primary
+        }
+      },
+    },
+  }
 });
