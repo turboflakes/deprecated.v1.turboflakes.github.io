@@ -81,6 +81,17 @@ export const quantity = (state = 16, action) => {
   }
 }
 
+export const selected = (state = 0, action) => {
+  switch (action.type) {
+    case "SELECT_ACCOUNT":
+      return action.id
+    case "CLEAR_ACCOUNT":
+      return 0
+    default:
+      return state
+  }
+}
+
 const weights = combineReducers({
   inclusion: inclusion,
   commission: commission,
@@ -94,5 +105,6 @@ const weights = combineReducers({
 
 export const leaderboard = combineReducers({
   weights: weights,
-  quantity: quantity
+  quantity: quantity,
+  selected: selected
 })

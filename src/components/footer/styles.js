@@ -1,7 +1,6 @@
 const styles = (theme) => ({
 	root: {
 		background: theme.palette.text.primary,
-		width: "50vw",
 	},
 	container: {
     padding: theme.spacing(2)

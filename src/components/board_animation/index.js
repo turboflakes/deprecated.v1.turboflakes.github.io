@@ -42,10 +42,15 @@ class BoardAnimation extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {n} = this.props
+    const {n, width} = this.props
     if (prevProps.n !== n) {
       this.init()
     }
+    if (prevProps.width !== width) {
+      const canvas = document.getElementById('board')
+      canvas.width = width
+    }
+
   }
 
   init = () => {

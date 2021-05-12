@@ -17,10 +17,10 @@ const polkadot = "12gPFmRqnsDhc9C5DuXyXBFA23io5fSGtKTSAimQtAWgueD2"
 class Footer extends Component {
 	
  	render() {
-		const { classes } = this.props;
+		const { classes, style } = this.props;
 
 		return (
-			<div className={classes.root}>
+			<div className={classes.root} style={style}>
 				<Container className={classes.container}>
 					<Typography color="textSecondary">
 					If you like this project - Support us 🖖 Nominate, Tip or Donate ✨💙
@@ -58,17 +58,9 @@ class Footer extends Component {
 				<Divider light classes={{ light: classes.light }}/>
 				<Container className={classes.container}>
 					<Typography color="textSecondary">
-					Turboflakes © 2021 - Developed By Turboflakes Team
+					Turboflakes © 2021
 					</Typography>
 				</Container>
-				
-				{/* <Grid container className={classes.container}>
-					<Grid item xs={1}></Grid>
-					<Grid item xs={10} sm={12}>
-						Footer
-					</Grid>
-					<Grid item xs={1}></Grid>
-				</Grid> */}
 			</div>
 		)
 	}

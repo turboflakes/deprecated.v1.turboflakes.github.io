@@ -7,3 +7,12 @@ export const changeQuantity = (value) => ({
   type: `CHANGE_QUANTITY`,
   value
 })
+
+export const selectAccount = (id) => ({
+  type: `SELECT_ACCOUNT`,
+  id
+})
+
+export const clearAccount = () => ({
+  type: `CLEAR_ACCOUNT`
+})
