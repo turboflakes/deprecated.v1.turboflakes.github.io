@@ -6,7 +6,8 @@ const styles = (theme) => ({
     padding: theme.spacing(2)
   },
 	primary: {
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+		wordWrap: "break-word"
   },
 	secondary: {
     fontWeight: "bold",

@@ -29,8 +29,11 @@ class Leaderboard extends Component {
 
 		return (
 			<div className={classes.root}>
-				<Typography variant="subtitle1" color="textPrimary">
+				<Typography variant="h4" color="textPrimary">
 					Leaderboard
+				</Typography>
+				<Typography variant="caption" gutterBottom>
+					The highest-ranked Validators
 				</Typography>
 				<List component="nav" className={classes.list}>
 					{ids.map((id, index) => <AccountItem id={id} key={index} />)}

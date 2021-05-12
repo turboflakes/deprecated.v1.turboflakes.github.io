@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import QuantitySlider from '../quantity_slider';
 import WeightSlider from '../weight_slider';
 import { withStyles } from '@material-ui/core/styles';
@@ -22,22 +24,30 @@ class ControlPanel extends Component {
 		return (
 			<div className={classes.root}>
 				<QuantitySlider defaultValue={16} />
-				<WeightSlider title="Inclusion" subTitle="Higher inclusion rate is preferrable" 
-					type="inclusion" defaultValue={6} />
-				<WeightSlider title="Commission" subTitle="Lower commission is preferrable" 
-					type="commission" defaultValue={2} />
-				<WeightSlider title="Reward Points" subTitle="Higher reward points is preferrable"
-					type="reward_points" defaultValue={10} />
-				<WeightSlider title="Reward Staked" subTitle="If reward is staked is preferrable"
-					type="reward_staked" defaultValue={8} />
-				<WeightSlider title="Currently Active" subTitle="If in active set is preferrable"
-					type="active" defaultValue={6} />
-				<WeightSlider title="Own Stake" subTitle="Higher own stake is preferrable"
-					type="own_stake" defaultValue={6} />
-				<WeightSlider title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is preferrable"
-					type="judgements" defaultValue={8} />
-				<WeightSlider title="Sub-accounts" subTitle="Lower number of sub-accounts is preferrable"
-					type="sub_accounts" defaultValue={1} />
+				<Box className={classes.weigths}>
+					{/* <Typography variant="h5" color="textPrimary">
+						Weights
+					</Typography> */}
+					<Typography variant="h6" gutterBottom>
+					Assign your own weights based on your Validator preferences
+					</Typography>
+					<WeightSlider title="Inclusion" subTitle="Higher inclusion rate is preferrable" 
+						type="inclusion" defaultValue={6} />
+					<WeightSlider title="Commission" subTitle="Lower commission is preferrable" 
+						type="commission" defaultValue={2} />
+					<WeightSlider title="Reward Points" subTitle="Higher reward points is preferrable"
+						type="reward_points" defaultValue={10} />
+					<WeightSlider title="Reward Staked" subTitle="If reward is staked is preferrable"
+						type="reward_staked" defaultValue={8} />
+					<WeightSlider title="Currently Active" subTitle="If in active set is preferrable"
+						type="active" defaultValue={6} />
+					<WeightSlider title="Own Stake" subTitle="Higher own stake is preferrable"
+						type="own_stake" defaultValue={6} />
+					<WeightSlider title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is preferrable"
+						type="judgements" defaultValue={8} />
+					<WeightSlider title="Sub-accounts or Sibling-accounts" subTitle="Lower number of sub-accounts is preferrable"
+						type="sub_accounts" defaultValue={1} />
+				</Box>
 			</div>
 		)
 	}

@@ -1,6 +1,4 @@
 const styles = (theme) => ({
-	root: {
-		margin: `0 ${theme.spacing(1)}px`
-	},
+	root: {},
 })
 export default styles

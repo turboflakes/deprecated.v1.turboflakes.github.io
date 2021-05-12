@@ -23,7 +23,7 @@ class Footer extends Component {
 			<div className={classes.root} style={style}>
 				<Container className={classes.container}>
 					<Typography color="textSecondary">
-					If you like this project - Support us 🖖 Nominate, Tip or Donate ✨💙
+					If you like this project - Share our work 🖖 Support us by Nominate, Tip or Donate ✨💙
 					</Typography>
 					<List component="nav" className={classes.list}>
 						<ListItem key={kusama} >

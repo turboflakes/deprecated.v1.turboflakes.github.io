@@ -11,7 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import LaunchIcon from '@material-ui/icons/Launch';
 import Typography from '@material-ui/core/Typography';
 import Identicon from '@polkadot/react-identicon';
 import { withStyles } from '@material-ui/core/styles';
@@ -114,7 +114,7 @@ class AccountInfo extends Component {
         </List>
         <Box className={classes.footer}>
           <IconButton aria-label="back" className={classes.graphIcon} onClick={() => this.handleClickExternalGraph(stash)}>
-            <TrendingUpIcon />
+            <LaunchIcon />
           </IconButton>
         </Box>
       </div>

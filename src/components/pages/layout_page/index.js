@@ -11,40 +11,42 @@ import ControlPanel from '../../control_panel'
 import AccountInfo from '../../account_info'
 import Footer from '../../footer'
 import { withStyles } from '@material-ui/core/styles';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import styles from './styles'
 
 class LayoutPage extends Component {
 
   render() {
-    const { classes, quantity, selected } = this.props;
+    const { classes, width, quantity, selected } = this.props;
     
     return (
       <div className={classes.root}>
-        <Box className={classes.leftBox} 
-          style={!!selected ? {width: `${100/3}vw`} : {width: "50vw"}}>
-          <BoardAnimation 
-            n={quantity} 
-            width={!!selected ? window.innerWidth / 3 : window.innerWidth / 2} 
-            height={window.innerHeight} />
-        </Box>
+        {isWidthUp('sm', width) ?
+          <Box className={classes.leftBox} 
+            style={!!selected ? {width: `${100/3}vw`} : {width: "50vw"}}>
+            <BoardAnimation 
+              n={quantity} 
+              width={!!selected ? window.innerWidth / 3 : window.innerWidth / 2} 
+              height={window.innerHeight} />
+          </Box> : null}
         <Box className={classes.rightBox}
-          style={!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}}>
+          style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})}>
           <Header />
           <Container classes={{ root: classes.rootContainer}}>  
             <Grid container spacing={0}>
-              <Grid item xs={!!selected ? 4 : 6}>
-                <ControlPanel />
-              </Grid>
-              <Grid item xs={!!selected ? 4 : 6}>
+              <Grid item xs={12} sm={!!selected ? 4 : 6}>
                 <Leaderboard />
               </Grid>
               {!!selected ? 
-                <Grid item xs={4}>
+                <Grid item xs={12} sm={4}>
                   <AccountInfo />
                 </Grid> : null}
+              <Grid item xs={12} sm={!!selected ? 4 : 6}>
+                <ControlPanel />
+              </Grid>
             </Grid>
           </Container>
-          <Footer style={!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}} />
+          <Footer style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})} />
         </Box>
       </div>
     )
@@ -65,4 +67,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(LayoutPage));
+export default connect(mapStateToProps)(withWidth()(withStyles(styles)(LayoutPage)));

@@ -63,11 +63,8 @@ class QuantitySlider extends Component {
 		const { classes, value, defaultValue } = this.props;
 		return (
 			<div className={classes.root}>
-				<Typography variant="subtitle1" id="discrete-slider">
-				Validators
-				</Typography>
-				<Typography variant="caption" id="discrete-slider-sub" gutterBottom>
-        Number of validators displayed in the leaderboard
+				<Typography variant="h6" id="discrete-slider" gutterBottom>
+				Select the maximum amount of Validators to be displayed
 				</Typography>
 				<Slider
 					defaultValue={defaultValue}
