@@ -12,8 +12,9 @@ export const query = (queryParams) => {
 }
 
 // GET /validator/:id
-export const get = (id) => {
-  return _get(id, ["all"], 'validator')
+export const get = (id, queryParams) => {
+  console.log("__", id, queryParams);
+  return _get(id, ["all"], 'validator', undefined, queryParams)
 }
 
 // GET /validator/:id/eras
