@@ -7,7 +7,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from '@material-ui/core/Divider';
+import Box from '@material-ui/core/Box';
 import Identicon from '@polkadot/react-identicon';
+import IconButton from '@material-ui/core/IconButton';
+import { ReactComponent as TwitterSVG } from '../../assets/twitter.svg';
+import { ReactComponent as GithubSVG } from '../../assets/github.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -16,6 +20,14 @@ const polkadot = "12gPFmRqnsDhc9C5DuXyXBFA23io5fSGtKTSAimQtAWgueD2"
 
 class Footer extends Component {
 	
+	handleTwitter = () => {
+		window.open('https://twitter.com/turboflakes', '_blank')
+	}
+	
+	handleGithub = () => {
+		window.open('https://github.com/turboflakes', '_blank')
+	}
+
  	render() {
 		const { classes, style } = this.props;
 
@@ -53,13 +65,20 @@ class Footer extends Component {
 								}} />
 						</ListItem>
 					</List>
-					
 				</Container>
 				<Divider light classes={{ light: classes.light }}/>
-				<Container className={classes.container}>
+				<Container className={classes.bottom}>
 					<Typography color="textSecondary">
 					Turboflakes © 2021
 					</Typography>
+					<Box>
+						<IconButton color="primary" size="small" className={classes.icon} onClick={this.handleTwitter}>
+							<TwitterSVG />
+						</IconButton>
+						<IconButton color="primary" size="small" className={classes.icon} onClick={this.handleGithub}>
+							<GithubSVG />
+						</IconButton>
+					</Box>
 				</Container>
 			</div>
 		)

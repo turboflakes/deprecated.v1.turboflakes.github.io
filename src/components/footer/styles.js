@@ -15,6 +15,15 @@ const styles = (theme) => ({
   },
 	light:{
 		background: theme.palette.text.secondary,
+	},
+	bottom: {
+		padding: theme.spacing(2),
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "space-between"
+	},
+	icon: {
+		margin: `0 ${theme.spacing(1)}px`,
 	}
 })
 export default styles
