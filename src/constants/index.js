@@ -17,3 +17,9 @@ export const networkWSS = {
   "westend": "wss://westend-rpc.polkadot.io"
 }
 
+export const networkDecimals = {
+  "polkadot": 10000000000,
+  "kusama": 1000000000000,
+  "westend": 1000000000000,
+}
+

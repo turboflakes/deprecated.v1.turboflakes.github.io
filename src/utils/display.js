@@ -1,4 +1,4 @@
-import { NETWORK, networkPrefixes } from '../constants'
+import { NETWORK, networkPrefixes, networkDecimals, networkCodes } from '../constants'
 import { encodeAddress } from '@polkadot/util-crypto'
 
 export const stashDisplay = (stash) => {
@@ -14,4 +14,19 @@ export const networkDisplay = (stash) => {
       return encodeAddress(stash, networkPrefixes[NETWORK])
     }
     return stash
+}
+
+export const stakeDisplay = (stake) => {
+    if (NETWORK in networkDecimals && NETWORK in networkCodes) {
+      return `${(stake/networkDecimals[NETWORK]).toFixed(4)} ${networkCodes[NETWORK]}`
+    }
+    return stake
+}
+
+export const commissionDisplay = (commission) => {
+    return `${(commission/10000000).toFixed(2)}%`
+}
+
+export const rateDisplay = (rate) => {
+    return `${(rate*100).toFixed(2)}%`
 }

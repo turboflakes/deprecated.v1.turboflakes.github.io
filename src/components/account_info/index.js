@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { clearAccount } from '../../actions/leaderboard'
-import { networkDisplay, stashDisplay, nameDisplay } from '../../utils/display'
+import { networkDisplay, stashDisplay, nameDisplay, stakeDisplay, commissionDisplay, rateDisplay } from '../../utils/display'
 import { NETWORK, networkWSS } from '../../constants'
 import { selectors } from '../../selectors'
 import Box from '@material-ui/core/Box';
@@ -64,22 +64,22 @@ class AccountInfo extends Component {
           <ListItem>
             <ListItemText primary="Inclusion Rate" 
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
-            <ListItemText primary={account.inclusion_rate} classes={{ secondary: classes.secondaryItemText }} />
+            <ListItemText primary={rateDisplay(account.inclusion_rate)} classes={{ secondary: classes.secondaryItemText }} />
           </ListItem>
           <ListItem>
             <ListItemText primary="Commission" 
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
-            <ListItemText primary={account.commission} classes={{ secondary: classes.secondaryItemText }} />
+            <ListItemText primary={commissionDisplay(account.commission)} classes={{ secondary: classes.secondaryItemText }} />
           </ListItem>
           <ListItem>
             <ListItemText primary="Own Stake" 
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
-            <ListItemText primary={account.own_stake} classes={{ secondary: classes.secondaryItemText }} />
+            <ListItemText primary={stakeDisplay(account.own_stake)} classes={{ secondary: classes.secondaryItemText }} />
           </ListItem>
           <ListItem>
             <ListItemText primary="Others Stake" 
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
-            <ListItemText primary={account.nominators_stake} classes={{ secondary: classes.secondaryItemText }} />
+            <ListItemText primary={stakeDisplay(account.nominators_stake)} classes={{ secondary: classes.secondaryItemText }} />
           </ListItem>
           <ListItem>
             <ListItemText primary="Nominators" 
