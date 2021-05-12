@@ -19,9 +19,9 @@ class AccountItem extends Component {
   }
 
 	componentDidMount(){
-		const {id} = this.props
+		const {id, queryParams} = this.props
 		if (id) {
-			this.props.get(id)
+			this.props.get(id, queryParams)
 		}
   }
 
@@ -55,6 +55,7 @@ class AccountItem extends Component {
 
 AccountItem.propTypes = {
 	classes: PropTypes.object.isRequired,
+  queryParams: PropTypes.object,
 };
 
 const mapStateToProps = (state, ownProps) => {

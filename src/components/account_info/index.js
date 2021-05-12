@@ -52,6 +52,11 @@ class AccountInfo extends Component {
         </Box>
         <List dense>
           <ListItem>
+            <ListItemText primary="Rank" 
+              classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
+            <ListItemText primary={account.rank} classes={{ secondary: classes.secondaryItemText }} />
+          </ListItem>
+          <ListItem>
             <ListItemText primary="Controller" 
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
             <ListItemText

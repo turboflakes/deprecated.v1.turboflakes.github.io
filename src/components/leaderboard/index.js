@@ -25,7 +25,7 @@ class Leaderboard extends Component {
 	}
 
  	render() {
-		const { classes, ids } = this.props;
+		const { classes, ids, weights } = this.props;
 
 		return (
 			<div className={classes.root}>
@@ -36,7 +36,7 @@ class Leaderboard extends Component {
 					The highest-ranked Validators
 				</Typography>
 				<List component="nav" className={classes.list}>
-					{ids.map((id, index) => <AccountItem id={id} key={index} />)}
+					{ids.map((id, index) => <AccountItem id={id} key={index} queryParams={{q: "Board", w: weights}} />)}
 				</List>
 			</div>
 		)
