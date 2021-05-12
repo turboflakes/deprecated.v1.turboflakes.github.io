@@ -12,7 +12,6 @@ import Identicon from '@polkadot/react-identicon';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-
 class AccountItem extends Component {
 	
 	state = {
@@ -31,19 +30,24 @@ class AccountItem extends Component {
   }
 
  	render() {
-		const { id, account } = this.props;
+		const { classes, id, account, selected } = this.props;
 
     const stash = networkDisplay(id)
-		
+		const isSelected = account.id === selected
 		return (
-      <ListItem button onClick={() => this.handleOnClick(id)}>
+      <ListItem button onClick={() => this.handleOnClick(id)} 
+        classes={{
+          root: classes.rootItem,
+          selected: classes.selectedItem
+        }}>
 				<ListItemAvatar>
 				<Identicon
           value={stash}
           size={32}
           theme={'polkadot'} />
         </ListItemAvatar>
-        <ListItemText primary={!!account.name ? nameDisplay(account.name) : stashDisplay(stash)} />
+        <ListItemText primary={!!account.name ? nameDisplay(account.name) : stashDisplay(stash)} 
+          classes={isSelected ? { primary: classes.primaryItemText } : null}/>
       </ListItem>
     )
 	}
@@ -55,8 +59,10 @@ AccountItem.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const account = selectors.getObjectByEntityAndId(state, 'validator', ownProps.id)
+  const selected = state.leaderboard.selected
   return {
 		account,
+    selected,
     isFetching: !!state.fetchers.async,
   }
 }

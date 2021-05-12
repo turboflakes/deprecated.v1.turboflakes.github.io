@@ -8,10 +8,10 @@ const styles = (theme) => ({
   rightBox: {
     height: "100vh",
     overflow: "scroll",
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.neutrals[120],
   },
-  container: {
-    padding: theme.spacing(2)
+  rootContainer: {
+    padding: 0
   }
 })
 export default styles

@@ -30,7 +30,7 @@ class LayoutPage extends Component {
         <Box className={classes.rightBox}
           style={!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}}>
           <Header />
-          <Container className={classes.container}>  
+          <Container classes={{ root: classes.rootContainer}}>  
             <Grid container spacing={0}>
               <Grid item xs={!!selected ? 4 : 6}>
                 <ControlPanel />

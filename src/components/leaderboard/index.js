@@ -7,16 +7,11 @@ import serialize from '../../utils/serialize'
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import AccountItem from '../account_item'
-import AccountDialog from '../account_dialog'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 class Leaderboard extends Component {
 
-	state = {
-		open: false
-	}
-	
 	componentDidMount(){
 		const {weights, quantity} = this.props
     this.props.query({q: "Board", w: weights, n: quantity})
@@ -40,9 +35,6 @@ class Leaderboard extends Component {
 				<List component="nav" className={classes.list}>
 					{ids.map((id, index) => <AccountItem id={id} key={index} />)}
 				</List>
-				<AccountDialog 
-          open={this.state.open}
-          onClose={()=>this.setState({open: false})}/>
 			</div>
 		)
 	}

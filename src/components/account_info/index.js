@@ -34,7 +34,7 @@ class AccountInfo extends Component {
     const stash = networkDisplay(account.id)
 		
 		return (
-      <React.Fragment>
+      <div className={classes.root}>
         <Box className={classes.header}>
           <IconButton aria-label="back" className={classes.backIcon} onClick={this.handleClear}>
             <ClearIcon />
@@ -117,7 +117,7 @@ class AccountInfo extends Component {
             <TrendingUpIcon />
           </IconButton>
         </Box>
-      </React.Fragment>
+      </div>
     )
 	}
 }

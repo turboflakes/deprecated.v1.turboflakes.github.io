@@ -50,6 +50,8 @@ export default createMuiTheme({
     },
     neutrals: {
       100: "#FFFFFF",
+      110: "#FCFCFD",
+      120: "#FAFAF9",
       200: "#F7F7FA",
       300: "#EEEEEE",
       400: "#C8C9CC",
