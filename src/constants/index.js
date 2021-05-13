@@ -23,3 +23,4 @@ export const networkDecimals = {
   "westend": 1000000000000,
 }
 
+export const WEIGHTS = [7,8,9,6,4,3,7,9]

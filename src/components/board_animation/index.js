@@ -53,6 +53,12 @@ class BoardAnimation extends Component {
 
   }
 
+  componentWillUnmount() {
+    if (this.req) {
+      cancelAnimationFrame(this.req);
+    }
+  }
+
   init = () => {
     const {
       n,
@@ -60,7 +66,7 @@ class BoardAnimation extends Component {
       height
     } = this.props
 
-    if (!!this.req) {
+    if (this.req) {
       cancelAnimationFrame(this.req);
     }
     
@@ -127,41 +133,43 @@ class BoardAnimation extends Component {
 
     this.req = requestAnimationFrame(this.update)
 
-    // clear the canvas and redraw everything
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    if (!!ctx) {
+      // clear the canvas and redraw everything
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    balls.forEach((ball) => {
-      if (ball.y + ball.radius >= canvas.height) {
-        ball.velY *= -ball.bounce
-        ball.y = canvas.height - ball.radius
-        ball.velX *= friction
-      }
-      if (ball.y - ball.radius <= 0) {
-        ball.velY *= -ball.bounce
-        ball.y = ball.radius
-        ball.velX *= friction
-      }
-      if (ball.x - ball.radius <= 0) {
-        ball.velX *= -ball.bounce
-        ball.x = ball.radius
-      }
-      if (ball.x + ball.radius >= canvas.width) {
-        ball.velX *= -ball.bounce
-        ball.x = canvas.width - ball.radius
-      }
+      balls.forEach((ball) => {
+        if (ball.y + ball.radius >= canvas.height) {
+          ball.velY *= -ball.bounce
+          ball.y = canvas.height - ball.radius
+          ball.velX *= friction
+        }
+        if (ball.y - ball.radius <= 0) {
+          ball.velY *= -ball.bounce
+          ball.y = ball.radius
+          ball.velX *= friction
+        }
+        if (ball.x - ball.radius <= 0) {
+          ball.velX *= -ball.bounce
+          ball.x = ball.radius
+        }
+        if (ball.x + ball.radius >= canvas.width) {
+          ball.velX *= -ball.bounce
+          ball.x = canvas.width - ball.radius
+        }
 
-      if (ball.velX < 0.01 && ball.velX > -0.01) {
-        ball.velX = 0
-      }
-      if (ball.velY < 0.01 && ball.velY > -0.01) {
-        ball.velY = 0
-      }
+        if (ball.velX < 0.01 && ball.velX > -0.01) {
+          ball.velX = 0
+        }
+        if (ball.velY < 0.01 && ball.velY > -0.01) {
+          ball.velY = 0
+        }
 
-      ball.x += ball.velX
-      ball.y += ball.velY
+        ball.x += ball.velX
+        ball.y += ball.velY
 
-      this.draw(ball)
-    })
+        this.draw(ball)
+      })
+    }
   }
 
 

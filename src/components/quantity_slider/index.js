@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { changeQuantity } from '../../actions/leaderboard'
+import { parseInt } from '../../utils/math'
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
@@ -46,28 +48,52 @@ const marks = [
   },
 ];
 
+const MAX_QUANTITY = 1024;
+
 class QuantitySlider extends Component {
 
+	constructor(props) {
+		super(props);
+
+		const query = new URLSearchParams(props.location.search)
+		let quantity = parseInt(query.get("n"))
+		quantity = quantity > 0 && quantity < MAX_QUANTITY ? quantity : 16
+		this.changeParams(query, quantity)
+		this.state = { value: quantity }
+	}
+
+	changeParams = (query, value) => {
+		const {history} = this.props
+		query.set("n", value)
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+
 	componentDidMount() {
-		const {defaultValue} = this.props
-		if (defaultValue) {
-			this.props.changeQuantity(defaultValue)
+		const {value} = this.props
+		if (this.state.value !== value) {
+			this.props.changeQuantity(this.state.value)
 		}
 	}
 	
 	handleOnChangeCommitted = (_event, value) => {
+		const {location} = this.props
+		const query = new URLSearchParams(location.search)
+		this.changeParams(query, value)
 		this.props.changeQuantity(value)
 	}
 
  	render() {
-		const { classes, value, defaultValue } = this.props;
+		const { classes, value } = this.props;
 		return (
 			<div className={classes.root}>
 				<Typography variant="h6" id="discrete-slider" gutterBottom>
 				Select the maximum amount of Validators to be displayed
 				</Typography>
 				<Slider
-					defaultValue={defaultValue}
+					defaultValue={this.state.value}
 					getAriaValueText={() => value}
 					aria-labelledby="discrete-slider"
 					valueLabelDisplay="auto"
@@ -88,8 +114,7 @@ class QuantitySlider extends Component {
 }
 
 QuantitySlider.propTypes = {
-	classes: PropTypes.object.isRequired,
-	defaultValue: PropTypes.number,
+	classes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -99,5 +124,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { changeQuantity })(withStyles(styles)(QuantitySlider));
+export default connect(mapStateToProps, { changeQuantity })(withStyles(styles)(withRouter(QuantitySlider)));
   

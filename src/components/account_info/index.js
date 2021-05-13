@@ -157,7 +157,7 @@ AccountInfo.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   const address = state.leaderboard.selected
   const account = selectors.getObjectByEntityAndId(state, 'validator', address)
-  const weights = Object.values(state.leaderboard.weights).toString()
+  const weights = state.leaderboard.weights
   const quantity = state.leaderboard.quantity
   const query = serialize({q: "Board", w: weights, n: quantity})
   const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')

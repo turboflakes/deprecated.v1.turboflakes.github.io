@@ -20,10 +20,12 @@ class Leaderboard extends Component {
 		open: false
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		const {weights, quantity} = this.props
-    this.props.query({q: "Board", w: weights, n: quantity})
-  }
+		if (!!weights && !!quantity) {
+			this.props.query({q: "Board", w: weights, n: quantity})
+		}
+	}
 
 	componentDidUpdate(prevProps) {
 		const {weights, quantity} = this.props
@@ -68,7 +70,7 @@ Leaderboard.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const weights = Object.values(state.leaderboard.weights).toString()
+  const weights = state.leaderboard.weights
 	const quantity = state.leaderboard.quantity
 	const query = serialize({q: "Board", w: weights, n: quantity})
 	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')

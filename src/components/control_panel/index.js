@@ -17,13 +17,14 @@ import styles from './styles'
 /// Position 6 - Higher number of Reasonable or KnownGood judgements is preferrable
 /// Position 7 - Lower number of sub-accounts is preferrable
 
+
 class ControlPanel extends Component {
-	
- 	render() {
+
+	render() {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>
-				<QuantitySlider defaultValue={16} />
+				<QuantitySlider />
 				<Box className={classes.weigths}>
 					{/* <Typography variant="h5" color="textPrimary">
 						Weights
@@ -31,22 +32,14 @@ class ControlPanel extends Component {
 					<Typography variant="h6" gutterBottom>
 					Assign your own weights based on your Validator preferences
 					</Typography>
-					<WeightSlider title="Inclusion" subTitle="Higher inclusion rate is preferrable" 
-						type="inclusion" defaultValue={6} />
-					<WeightSlider title="Commission" subTitle="Lower commission is preferrable" 
-						type="commission" defaultValue={2} />
-					<WeightSlider title="Reward Points" subTitle="Higher reward points is preferrable"
-						type="reward_points" defaultValue={10} />
-					<WeightSlider title="Reward Staked" subTitle="If reward is staked is preferrable"
-						type="reward_staked" defaultValue={8} />
-					<WeightSlider title="Currently Active" subTitle="If in active set is preferrable"
-						type="active" defaultValue={6} />
-					<WeightSlider title="Own Stake" subTitle="Higher own stake is preferrable"
-						type="own_stake" defaultValue={6} />
-					<WeightSlider title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is preferrable"
-						type="judgements" defaultValue={8} />
-					<WeightSlider title="Sub-accounts or Sibling-accounts" subTitle="Lower number of sub-accounts is preferrable"
-						type="sub_accounts" defaultValue={1} />
+					<WeightSlider index={0} title="Inclusion" subTitle="Higher inclusion rate is preferrable" />
+					<WeightSlider index={1} title="Commission" subTitle="Lower commission is preferrable" />
+					<WeightSlider index={2} title="Reward Points" subTitle="Higher reward points is preferrable"/>
+					<WeightSlider index={3} title="Reward Staked" subTitle="If reward is staked is preferrable" />
+					<WeightSlider index={4} title="Currently Active" subTitle="If in active set is preferrable" />
+					<WeightSlider index={5} title="Own Stake" subTitle="Higher own stake is preferrable" />
+					<WeightSlider index={6} title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is preferrable" />
+					<WeightSlider index={7} title="Sub-accounts or Sibling-accounts" subTitle="Lower number of sub-accounts is preferrable" />
 				</Box>
 			</div>
 		)

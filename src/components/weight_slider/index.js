@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { changeWeight } from '../../actions/leaderboard'
+import { parseArray } from '../../utils/math'
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,20 +11,43 @@ import styles from './styles'
 
 class WeightSlider extends Component {
 
+	constructor(props) {
+		super(props);
+
+		const query = new URLSearchParams(props.location.search)
+		let weightValues = parseArray(query.get("w"))
+		this.changeParams(query, weightValues)
+		this.state = { value: weightValues[props.index] }
+	}
+
+	changeParams = (query, weightValues) => {
+		const {history} = this.props
+		query.set("w", weightValues)
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+
 	componentDidMount() {
-		const {type, defaultValue} = this.props
-		if (defaultValue) {
-			this.props.changeWeight(type, defaultValue)
+		const {index, value} = this.props
+		console.log("__componentDidMount", index, typeof this.state.value, typeof value);
+		if (this.state.value !== value) {
+			this.props.changeWeight(index, this.state.value)
 		}
 	}
 	
 	handleOnChangeCommitted = (_event, value) => {
-		const {type} = this.props
-		this.props.changeWeight(type, value)
+		const {index, location} = this.props
+		const query = new URLSearchParams(location.search)
+		let weightValues = parseArray(query.get("w"))
+		weightValues[index] = value
+		this.changeParams(query, weightValues)
+		this.props.changeWeight(index, value)
 	}
 
  	render() {
-		const { classes, title, subTitle, value, defaultValue, minValue, maxValue} = this.props;
+		const { classes, title, subTitle, value, minValue, maxValue} = this.props;
 		return (
 			<div className={classes.root}>
 				<Typography variant="subtitle1" id="discrete-slider">
@@ -32,7 +57,7 @@ class WeightSlider extends Component {
         {subTitle}
 				</Typography>
 				<Slider
-					defaultValue={defaultValue}
+					defaultValue={this.state.value}
 					getAriaValueText={() => value}
 					aria-labelledby="discrete-slider"
 					valueLabelDisplay="auto"
@@ -49,20 +74,19 @@ class WeightSlider extends Component {
 
 WeightSlider.propTypes = {
 	classes: PropTypes.object.isRequired,
+	index: PropTypes.number.isRequired,
 	title: PropTypes.string,
 	subTitle: PropTypes.string,
-	type: PropTypes.oneOf(['inclusion', 'commission', 'reward_points', 'reward_staked', 'active', 'own_stake', 'judgements', 'sub_accounts']).isRequired,
-	defaultValue: PropTypes.number,
 	minValue: PropTypes.number,
 	maxValue: PropTypes.number,
 };
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		value: state.leaderboard.weights[ownProps.type],
+		value: parseArray(state.leaderboard.weights)[ownProps.index],
 		isFetching: !!state.fetchers.async,
   }
 }
 
-export default connect(mapStateToProps, { changeWeight })(withStyles(styles)(WeightSlider));
+export default connect(mapStateToProps, { changeWeight })(withStyles(styles)(withRouter(WeightSlider)));
   

@@ -72,7 +72,7 @@ class Footer extends Component {
 				<Container className={classes.bottom}>
 					<Box>
 						<Typography color="textSecondary">
-						Turboflakes © 2021
+						© 2021 Turboflakes
 						</Typography>
 						<Typography color="caption">
 						api v{info.version}

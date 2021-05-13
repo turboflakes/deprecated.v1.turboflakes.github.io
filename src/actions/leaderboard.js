@@ -1,6 +1,6 @@
-export const changeWeight = (type, weight) => ({
-  type: `CHANGE_${type.toUpperCase()}_WEIGHT`,
-  weight
+export const changeWeight = (index, weight) => ({
+  type: `CHANGE_WEIGHT`,
+  data: {index, weight}
 })
 
 export const changeQuantity = (value) => ({
