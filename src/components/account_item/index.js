@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { get } from '../../actions/validator'
-import { selectAccount } from '../../actions/leaderboard'
+import { selectAddress } from '../../actions/leaderboard'
 import { networkDisplay, stashDisplay, nameDisplay } from '../../utils/display'
 import { selectors } from '../../selectors'
 import ListItem from '@material-ui/core/ListItem';
@@ -21,8 +21,8 @@ class AccountItem extends Component {
 		}
   }
 
-  handleOnClick = (id) => {
-    this.props.selectAccount(id)
+  handleOnClick = (address) => {
+    this.props.selectAddress(address)
   }
 
  	render() {
@@ -64,5 +64,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { get, selectAccount })(withStyles(styles)(AccountItem));
+export default connect(mapStateToProps, { get, selectAddress })(withStyles(styles)(AccountItem));
   

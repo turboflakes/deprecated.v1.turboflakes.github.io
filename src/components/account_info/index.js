@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { clearAccount } from '../../actions/leaderboard'
+import { clearAddress } from '../../actions/leaderboard'
 import { networkDisplay, stashDisplay, nameDisplay, stakeDisplay, commissionDisplay, rateDisplay } from '../../utils/display'
 import { NETWORK, networkWSS } from '../../constants'
 import { selectors } from '../../selectors'
@@ -20,7 +20,7 @@ import styles from './styles'
 class AccountInfo extends Component {
 	
 	handleClear = () => {
-    this.props.clearAccount()
+    this.props.clearAddress()
   }
 
   handleClickExternalGraph = (stash) => {
@@ -139,5 +139,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { clearAccount })(withStyles(styles)(AccountInfo));
+export default connect(mapStateToProps, { clearAddress })(withStyles(styles)(AccountInfo));
   

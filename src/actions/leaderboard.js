@@ -8,11 +8,11 @@ export const changeQuantity = (value) => ({
   value
 })
 
-export const selectAccount = (id) => ({
-  type: `SELECT_ACCOUNT`,
-  id
+export const selectAddress = (address) => ({
+  type: `SELECT_ADDRESS`,
+  address
 })
 
-export const clearAccount = () => ({
-  type: `CLEAR_ACCOUNT`
+export const clearAddress = () => ({
+  type: `CLEAR_ADDRESS`
 })
