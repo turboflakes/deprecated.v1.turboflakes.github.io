@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { get } from '../../actions/validator'
+import { selectAddress } from '../../actions/leaderboard'
 import { selectors } from '../../selectors'
 import { encodeAddress, decodeAddress } from '@polkadot/util-crypto'
 import { hexToU8a, isHex } from '@polkadot/util';
@@ -55,19 +55,28 @@ class AccountSearchDialog extends Component {
     e.preventDefault()
     const {address} = this.state
     if (isValidAddress(address)) {
-      this.props.get(address)
+      // convert address to the network selected
+      // address
+      console.log("__", address);
+      this.props.selectAddress(address)
+      this.handleClose()
+      // const {address, rank, weights, isFetching} = this.props
+      // if (!isFetching && (prevProps.weights !== weights || rank === 0)) {
+      //   this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
+      // }
+      // this.props.get(address)
     }
   };
 
   render() {
-    const { classes, isFetching, ...other } = this.props;
+    const { classes, isFetching, open } = this.props;
 
     return (
       <div className={classes.root}>
         <Dialog
           fullScreen
+          open={open}
           onClose={this.handleClose}
-          {...other}
           TransitionComponent={Transition}
           classes={{
             paperFullScreen: classes.paperFullScreen
@@ -81,11 +90,12 @@ class AccountSearchDialog extends Component {
               <form className={classes.form} noValidate autoComplete="off"
                 onSubmit={this.handleSubmit}>
                 <Typography variant="h6" color="textSecondary" align="left" gutterBottom>
-                Search for a Validator address
+                Search for a Validator address in the current Leaderboard
                 </Typography>
                 <TextField
                   variant="outlined"
                   fullWidth
+                  autoFocus
                   value={this.state.address}
                   onChange={this.handleChange}
                   error={!isValidAddress(this.state.address) && !!this.state.address}
@@ -125,4 +135,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {get})(withWidth()(withStyles(styles)(AccountSearchDialog)));
+export default connect(mapStateToProps, {selectAddress})(withWidth()(withStyles(styles)(AccountSearchDialog)));

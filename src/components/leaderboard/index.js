@@ -33,7 +33,7 @@ class Leaderboard extends Component {
 	}
 
 	render() {
-		const { classes, ids, weights } = this.props;
+		const { classes, addresses } = this.props;
 
 		return (
 			<div className={classes.root}>
@@ -53,7 +53,7 @@ class Leaderboard extends Component {
 					</Box>
 				</Box>
 				<List component="nav" className={classes.list}>
-					{ids.map((id, index) => <AccountItem id={id} key={index} queryParams={{q: "Board", w: weights}} />)}
+					{addresses.map((address, index) => <AccountItem address={address} key={index} />)}
 				</List>
 				<AccountSearchDialog open={this.state.open} 
 					onClose={() => this.setState({open: false})}>
@@ -71,9 +71,9 @@ const mapStateToProps = (state, ownProps) => {
   const weights = Object.values(state.leaderboard.weights).toString()
 	const quantity = state.leaderboard.quantity
 	const query = serialize({q: "Board", w: weights, n: quantity})
-	const ids = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'data')
+	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
 	return {
-		ids,
+		addresses,
 		weights,
 		quantity,
     isFetching: !!state.fetchers.async,

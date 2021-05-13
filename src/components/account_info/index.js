@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { getValidatorRank } from '../../actions/validator'
 import { clearAddress } from '../../actions/leaderboard'
 import { networkDisplay, stashDisplay, nameDisplay, stakeDisplay, commissionDisplay, rateDisplay } from '../../utils/display'
 import { NETWORK, networkWSS } from '../../constants'
 import { selectors } from '../../selectors'
+import serialize from '../../utils/serialize'
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,6 +20,13 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 class AccountInfo extends Component {
+
+  componentDidUpdate(prevProps) {
+    const {address, rank, weights, isFetching} = this.props
+    if (!isFetching && (prevProps.weights !== weights || rank === 0)) {
+      this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
+    }
+  }
 	
 	handleClear = () => {
     this.props.clearAddress()
@@ -54,7 +63,7 @@ class AccountInfo extends Component {
           <ListItem>
             <ListItemText primary="Rank" 
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
-            <ListItemText primary={account.rank} classes={{ secondary: classes.secondaryItemText }} />
+            <ListItemText primary={!!account.rank ? account.rank : '-'} classes={{ secondary: classes.secondaryItemText }} />
           </ListItem>
           <ListItem>
             <ListItemText primary="Controller" 
@@ -132,12 +141,29 @@ AccountInfo.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const account = selectors.getObjectByEntityAndId(state, 'validator', state.leaderboard.selected)
+  const address = state.leaderboard.selected
+  const account = selectors.getObjectByEntityAndId(state, 'validator', address)
+  const weights = Object.values(state.leaderboard.weights).toString()
+  const quantity = state.leaderboard.quantity
+  const query = serialize({q: "Board", w: weights, n: quantity})
+  const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
+  // Rank is defined by the index of the address in the list of addresses of the respective
+  // leaderboard. 
+  // If the current address is not available in the leaderboard, a fetch is triggered 
+  // to request the rank from the backend
+  const localIndex = addresses.indexOf(state.leaderboard.selected)
+  const rank = localIndex !== -1 ? addresses.indexOf(state.leaderboard.selected) + 1 : account.rank
   return {
-		account,
+    address,
+    rank,
+    weights,
+		account: {
+      ...account,
+      rank
+    },
     isFetching: !!state.fetchers.async,
   }
 }
 
-export default connect(mapStateToProps, { clearAddress })(withStyles(styles)(AccountInfo));
+export default connect(mapStateToProps, { getValidatorRank, clearAddress })(withStyles(styles)(AccountInfo));
   

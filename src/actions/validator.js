@@ -12,9 +12,13 @@ export const query = (queryParams) => {
 }
 
 // GET /validator/:id
-export const get = (id, queryParams) => {
-  console.log("__", id, queryParams);
-  return _get(id, ["all"], 'validator', undefined, queryParams)
+export const get = (id) => {
+  return _get(id, ["all"], 'validator')
+}
+
+// GET /validator/:id/rank
+export const getValidatorRank = (id, queryParams) => {
+  return _get(id, ["all"], 'validator', undefined, queryParams, {endpoint: `validator/${id}/rank`, expire: 0})
 }
 
 // GET /validator/:id/eras

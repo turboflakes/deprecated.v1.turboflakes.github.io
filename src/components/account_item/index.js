@@ -15,9 +15,9 @@ import styles from './styles'
 class AccountItem extends Component {
 	
 	componentDidMount(){
-		const {id, queryParams} = this.props
-		if (id) {
-			this.props.get(id, queryParams)
+		const {address} = this.props
+		if (address) {
+			this.props.get(address)
 		}
   }
 
@@ -26,12 +26,12 @@ class AccountItem extends Component {
   }
 
  	render() {
-		const { classes, id, account, selected } = this.props;
+		const { classes, address, account, selected } = this.props;
 
-    const stash = networkDisplay(id)
+    const stash = networkDisplay(address)
 		const isSelected = account.id === selected
 		return (
-      <ListItem button onClick={() => this.handleOnClick(id)} 
+      <ListItem button onClick={() => this.handleOnClick(address)} 
         classes={{
           root: classes.rootItem,
           selected: classes.selectedItem
@@ -50,12 +50,11 @@ class AccountItem extends Component {
 }
 
 AccountItem.propTypes = {
-	classes: PropTypes.object.isRequired,
-  queryParams: PropTypes.object,
+	classes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const account = selectors.getObjectByEntityAndId(state, 'validator', ownProps.id)
+  const account = selectors.getObjectByEntityAndId(state, 'validator', ownProps.address)
   const selected = state.leaderboard.selected
   return {
 		account,
