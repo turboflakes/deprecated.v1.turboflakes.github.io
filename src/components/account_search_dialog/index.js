@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { selectAddress } from '../../actions/leaderboard'
 import { selectors } from '../../selectors'
-import { encodeAddress, decodeAddress } from '@polkadot/util-crypto'
-import { hexToU8a, isHex } from '@polkadot/util';
+import { isValidAddress, addressSS58 } from '../../utils/crypto'
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog from '@material-ui/core/Dialog';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,19 +20,6 @@ import styles from './styles'
 
 function Transition(props) {
   return <Slide direction="left" {...props} />;
-}
-
-const isValidAddress = (address) => {
-  try {
-    encodeAddress(
-      isHex(address) ?
-      hexToU8a(address) :
-      decodeAddress(address)
-    );
-    return true;
-  } catch (error) {
-    return false;
-  }
 }
 
 class AccountSearchDialog extends Component {
@@ -55,16 +41,8 @@ class AccountSearchDialog extends Component {
     e.preventDefault()
     const {address} = this.state
     if (isValidAddress(address)) {
-      // convert address to the network selected
-      // address
-      console.log("__", address);
-      this.props.selectAddress(address)
+      this.props.selectAddress(addressSS58(address))
       this.handleClose()
-      // const {address, rank, weights, isFetching} = this.props
-      // if (!isFetching && (prevProps.weights !== weights || rank === 0)) {
-      //   this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
-      // }
-      // this.props.get(address)
     }
   };
 

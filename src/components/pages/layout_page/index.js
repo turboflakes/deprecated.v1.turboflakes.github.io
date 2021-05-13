@@ -10,6 +10,7 @@ import Leaderboard from '../../leaderboard'
 import ControlPanel from '../../control_panel'
 import AccountInfo from '../../account_info'
 import Footer from '../../footer'
+import Alert from '../../alert'
 import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import styles from './styles'
@@ -32,6 +33,7 @@ class LayoutPage extends Component {
         <Box className={classes.rightBox}
           style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})}>
           <Header />
+          <Alert />
           <Container classes={{ root: classes.rootContainer}}>  
             <Grid container spacing={0}>
               <Grid item xs={12} sm={!!selected ? 4 : 6}>

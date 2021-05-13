@@ -82,6 +82,9 @@ export const quantity = (state = 16, action) => {
 }
 
 export const selected = (state = 0, action) => {
+  if (action.error) {
+    return 0
+  }
   switch (action.type) {
     case "SELECT_ADDRESS":
       return action.address

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { getValidatorRank } from '../../actions/validator'
+import { get, getValidatorRank } from '../../actions/validator'
 import { clearAddress } from '../../actions/leaderboard'
 import { networkDisplay, stashDisplay, nameDisplay, stakeDisplay, commissionDisplay, rateDisplay } from '../../utils/display'
 import { NETWORK, networkWSS } from '../../constants'
@@ -21,10 +21,20 @@ import styles from './styles'
 
 class AccountInfo extends Component {
 
+  componentDidMount() {
+    const {address} = this.props
+    if (address) {
+      this.props.get(address)
+    }
+  }
+
   componentDidUpdate(prevProps) {
-    const {address, rank, weights, isFetching} = this.props
+    const {address, rank, weights, isFetching, account} = this.props
     if (!isFetching && (prevProps.weights !== weights || rank === 0)) {
       this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
+    }
+    if (!isFetching && prevProps.address !== address && !account.id) {
+      this.props.get(address)
     }
   }
 	
@@ -39,6 +49,10 @@ class AccountInfo extends Component {
 
  	render() {
 		const { classes, account } = this.props;
+
+    if (!account.id) {
+      return null
+    }
 
     const stash = networkDisplay(account.id)
 		
@@ -165,5 +179,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { getValidatorRank, clearAddress })(withStyles(styles)(AccountInfo));
+export default connect(mapStateToProps, { get, getValidatorRank, clearAddress })(withStyles(styles)(AccountInfo));
   
