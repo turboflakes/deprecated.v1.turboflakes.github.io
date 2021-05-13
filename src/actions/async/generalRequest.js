@@ -9,16 +9,16 @@ const defineEndpoint = (method, schema, id) => {
   switch (method) {
     case "DELETE":
     case "PUT":
-      return `${schema}/${id}`
+      return `/${schema}/${id}`
     case "POST":
-      return `${schema}`
+      return `/${schema}`
     case "GET":
       if (id) {
-        return `${schema}/${id}`
+        return `/${schema}/${id}`
       }
-      return `${schema}`
+      return `/${schema}`
     default:
-      return `${schema}`
+      return `/${schema}`
   }
 }
 

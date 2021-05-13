@@ -3,7 +3,7 @@ import {
 } from 'normalizr'
 import serialize from '../utils/serialize'
 
-const API_ROOT = process.env.REACT_APP_API_ENDPOINT ? `//${process.env.REACT_APP_API_ENDPOINT}/api/v1/` : 'http://localhost:5000/api/v1/'
+const API_ROOT = process.env.REACT_APP_API_ENDPOINT ? `//${process.env.REACT_APP_API_ENDPOINT}` : 'http://localhost:5000'
 
 const isContentTypeJson = (value) => {
   value = value ? value : ''
@@ -14,7 +14,7 @@ const isContentTypeJson = (value) => {
 // This makes every API response have the same shape, regardless of how nested it was.
 const fetchApi = async (method, headers, endpoint, queryParams, body, schema, id) => {
 
-  let url = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
+  let url = (endpoint.indexOf(API_ROOT) === -1) ? `${API_ROOT}/api/v1${endpoint}` : endpoint
 
   if (queryParams !== undefined) {
     url = url + `?` + serialize(queryParams)

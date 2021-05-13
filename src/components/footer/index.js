@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { selectors } from '../../selectors'
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
@@ -29,7 +31,7 @@ class Footer extends Component {
 	}
 
  	render() {
-		const { classes, style } = this.props;
+		const { classes, info, style } = this.props;
 
 		return (
 			<div className={classes.root} style={style}>
@@ -68,9 +70,14 @@ class Footer extends Component {
 				</Container>
 				<Divider light classes={{ light: classes.light }}/>
 				<Container className={classes.bottom}>
-					<Typography color="textSecondary">
-					Turboflakes © 2021
-					</Typography>
+					<Box>
+						<Typography color="textSecondary">
+						Turboflakes © 2021
+						</Typography>
+						<Typography color="caption">
+						api v{info.version}
+						</Typography>
+					</Box>
 					<Box>
 						<IconButton color="primary" size="small" className={classes.icon} onClick={this.handleTwitter}>
 							<TwitterSVG />
@@ -89,5 +96,9 @@ Footer.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Footer);
+const mapStateToProps = (state, ownProps) => ({
+	info: selectors.getObjectByEntityAndId(state, 'api', '_')
+})
+
+export default connect(mapStateToProps)(withStyles(styles)(Footer));
   

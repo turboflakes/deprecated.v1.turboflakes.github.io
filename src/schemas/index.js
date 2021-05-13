@@ -6,10 +6,12 @@
 
 // Read more about Normalizr: https://github.com/paularmstrong/normalizr
 // import { schema } from 'normalizr'
+import { apiSchema } from './api'
 import { validatorSchema, validatorsSchema } from './validator'
 
 // schemas for API responses.
 export const schemas = {
+  API: apiSchema,
   VALIDATOR: validatorSchema,
   VALIDATORS: validatorsSchema,
 }
