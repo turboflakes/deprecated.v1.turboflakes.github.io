@@ -9,9 +9,15 @@ const styles = (theme) => ({
 	},
 	toolBar: {
 		padding: theme.spacing(2),
+		display: "flex",
+		justifyContent: "space-between"
 	},
-	logo: {
-		margin: theme.spacing(1),
+	moto: {
+		fontWeight: 300
+	},
+	networkLogo: {
+		margin: `0 ${theme.spacing(1)}px 0 0`,
+		// maxWidth: 200
 	}
 })
 export default styles

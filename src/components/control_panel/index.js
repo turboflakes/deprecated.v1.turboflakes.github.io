@@ -30,16 +30,16 @@ class ControlPanel extends Component {
 						Weights
 					</Typography> */}
 					<Typography variant="h6" gutterBottom>
-					Assign your own weights based on your Validator preferences
+					Set your Validator preferences
 					</Typography>
-					<WeightSlider index={0} title="Inclusion" subTitle="Higher inclusion rate is preferrable" />
-					<WeightSlider index={1} title="Commission" subTitle="Lower commission is preferrable" />
-					<WeightSlider index={2} title="Reward Points" subTitle="Higher reward points is preferrable"/>
-					<WeightSlider index={3} title="Reward Staked" subTitle="If reward is staked is preferrable" />
-					<WeightSlider index={4} title="Currently Active" subTitle="If in active set is preferrable" />
-					<WeightSlider index={5} title="Own Stake" subTitle="Higher own stake is preferrable" />
-					<WeightSlider index={6} title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is preferrable" />
-					<WeightSlider index={7} title="Sub-accounts or Sibling-accounts" subTitle="Lower number of sub-accounts is preferrable" />
+					<WeightSlider index={0} title="Inclusion" subTitle="Higher inclusion rate is scored higher" />
+					<WeightSlider index={1} title="Commission" subTitle="Lower commission is scored higher" />
+					<WeightSlider index={2} title="Reward Points" subTitle="Higher reward points is scored higher"/>
+					<WeightSlider index={3} title="Reward Staked" subTitle="If reward is staked is scored higher" />
+					<WeightSlider index={4} title="Currently Active" subTitle="If in active set is scored higher" />
+					<WeightSlider index={5} title="Own Stake" subTitle="Higher own stake is scored higher" />
+					<WeightSlider index={6} title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is scored higher" />
+					<WeightSlider index={7} title="Sub-accounts or Sibling-accounts" subTitle="Lower number of sub-accounts is scored higher" />
 				</Box>
 			</div>
 		)
