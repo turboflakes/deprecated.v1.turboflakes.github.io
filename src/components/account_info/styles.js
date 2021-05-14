@@ -1,6 +1,8 @@
 const styles = (theme) => ({
 	root: {
 		padding: theme.spacing(2),
+		backgroundColor: theme.palette.neutrals[300],
+		height: "100%"
 	},
 	header:{
 		position: "relative",
@@ -17,7 +19,7 @@ const styles = (theme) => ({
 		flex: "0 1 auto"
 	},
 	primaryItemText: {
-    color: theme.palette.neutrals[500],
+    color: "#6F7072",
 		paddingRight: theme.spacing(1)
   },
 	secondaryItemText: {

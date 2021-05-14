@@ -1,7 +1,7 @@
 const styles = (theme) => ({
 	root: {
 		padding: theme.spacing(2),
-		backgroundColor: theme.palette.neutrals[120],
+		backgroundColor: theme.palette.neutrals[200],
 	},
 	top: {
 		display: "flex",

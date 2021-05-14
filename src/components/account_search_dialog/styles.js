@@ -1,6 +1,5 @@
 const styles = (theme) => ({
-  root: {
-  },
+  root: { },
   paperFullScreen: {
     backgroundColor: "transparent"
   },

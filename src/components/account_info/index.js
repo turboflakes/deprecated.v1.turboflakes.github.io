@@ -59,7 +59,7 @@ class AccountInfo extends Component {
 		return (
       <div className={classes.root}>
         <Box className={classes.header}>
-          <IconButton aria-label="back" className={classes.backIcon} onClick={this.handleClear}>
+          <IconButton aria-label="back" color="primary" className={classes.backIcon} onClick={this.handleClear}>
             <ClearIcon />
           </IconButton>
           <Identicon

@@ -1,7 +1,7 @@
 const styles = (theme) => ({
 	root: {
 		flexGrow: 1,
-		backgroundColor: theme.palette.background.paper,
+		backgroundColor: theme.palette.neutrals[500],
 	},
 	appBar: {
 		backgroundColor: "inherit",
@@ -10,5 +10,8 @@ const styles = (theme) => ({
 	toolBar: {
 		padding: theme.spacing(2),
 	},
+	logo: {
+		margin: theme.spacing(1),
+	}
 })
 export default styles

@@ -44,8 +44,8 @@ class Leaderboard extends Component {
 			<div className={classes.root}>
 				<Box className={classes.top}>
 					<Box>
-						<Typography variant="h4" color="textPrimary">
-							Leaderboard
+						<Typography variant="h4" color="textPrimary" >
+							LEADERBOARD
 						</Typography>
 						<Typography variant="caption" gutterBottom>
 							The highest-ranked Validators
@@ -61,7 +61,8 @@ class Leaderboard extends Component {
 									>
 								<CircularProgress size={24} />
 							</Fade> : null}
-						<IconButton color="primary" aria-label="search for a validator" onClick={() => this.setState({open: true})}>
+						<IconButton color="primary" aria-label="search for a validator" 
+							onClick={() => this.setState({open: true})}>
 							<SearchIcon />
 						</IconButton>
 					</Box>

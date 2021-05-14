@@ -18,12 +18,12 @@ export default createMuiTheme({
   palette: {
     primary: {
       // dark automatic calculated
-      main: "#86C8F8",
+      main: "#85BCE4",
       contrastText: '#FFFFFF',
     },
     secondary: {
       // dark automatic calculated
-      main: "#EECE74",
+      main: "#E86866",
       contrastText: '#FFFFFF',
     },
     semantics: {
@@ -50,14 +50,23 @@ export default createMuiTheme({
     },
     neutrals: {
       100: "#FFFFFF",
-      110: "#FCFCFD",
-      120: "#FAFAF9",
-      200: "#F7F7FA",
-      300: "#EEEEEE",
-      400: "#C8C9CC",
-      500: "#6F7072",
-      600: "#040621",
+      200: "#F9FDFF",
+      300: "#F1F9FD",
+      400: "#DFF1FA",
+      500: "#BBDFF3",
+      600: "#6F7072",
+      700: "#021220",
     },
+    // neutrals: {
+    //   100: "#FFFFFF",
+    //   110: "#FCFCFD",
+    //   120: "#FAFAF9",
+    //   200: "#F7F7FA",
+    //   300: "#EEEEEE",
+    //   400: "#C8C9CC",
+    //   500: "#6F7072",
+    //   600: "#021220",
+    // },
     divider: "rgba(0, 0, 0, 0.12)",
     dividerDark: "rgba(0, 0, 0, 0.04)",
     dividerLight: "rgb(255, 255, 255)",
@@ -65,15 +74,15 @@ export default createMuiTheme({
       dark0: "linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.4))",
       dark90: "linear-gradient(90deg,rgba(0,0,0,0.6),rgba(0,0,0,0.4))",
       dark180: "linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.4))",
-      default0: "linear-gradient(0deg,#86C8F8,#F7F7FA)",
-      default90: "linear-gradient(90deg,#86C8F8,#F7F7FA)",
-      default180: "linear-gradient(180deg,#86C8F8,#F7F7FA)",
-      secondary0: "linear-gradient(0deg,#86C8F8,#EECE74)",
-      secondary90: "linear-gradient(90deg,#86C8F8,#EECE74)",
-      secondary180: "linear-gradient(180deg,#86C8F8,#EECE74)",
+      default0: "linear-gradient(0deg,#85BCE4,#F9FDFF)",
+      default90: "linear-gradient(90deg,#85BCE4,#F9FDFF)",
+      default180: "linear-gradient(180deg,#85BCE4,#F9FDFF)",
+      secondary0: "linear-gradient(0deg,#85BCE4,#E86866)",
+      secondary90: "linear-gradient(90deg,#85BCE4,#E86866)",
+      secondary180: "linear-gradient(180deg,#85BCE4,#E86866)",
     },
     text: {
-      primary: "#040621",
+      primary: "#021220",
       secondary: "#FFFFFF",
       disabled: "rgba(0, 0, 0, 0.38)",
       hint: "rgba(0, 0, 0, 0.38)"
@@ -86,28 +95,28 @@ export default createMuiTheme({
   typography: {
     useNextVariants: true,
     h1: {
-      color: "#040621",
+      color: "#021220",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h2: {
-      color: "#040621",
+      color: "#021220",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h3: {
-      color: "#040621",
+      color: "#021220",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h4: {
-      color: "#040621",
+      color: "#021220",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
-      fontWeight: 700
+      textTransform: "uppercase"
     },
     h5: {
-      color: "#040621",
+      color: "#021220",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h6: {
-      color: "#040621",
+      color: "#021220",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
       fontWeight: 400
     },
@@ -151,7 +160,7 @@ export default createMuiTheme({
           borderColor: "#FFFFFF",
         },
         '&:hover:not($disabled):not($focused):not($error) $notchedOutline' : {
-          borderColor: "#86C8F8", // primary
+          borderColor: "#85BCE4", // primary
         }
       },
     },

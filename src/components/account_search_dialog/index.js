@@ -62,7 +62,7 @@ class AccountSearchDialog extends Component {
           >
           <DialogContent classes={{ root: classes.contentRoot }}>
             <Container >
-              <IconButton aria-label="Close" className={classes.closeButton} onClick={this.handleClose}>
+              <IconButton aria-label="Close" color="secondary" className={classes.closeButton} onClick={this.handleClose}>
                 <CloseIcon />
               </IconButton>
               <form className={classes.form} noValidate autoComplete="off"
