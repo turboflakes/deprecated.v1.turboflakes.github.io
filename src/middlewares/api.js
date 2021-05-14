@@ -98,11 +98,7 @@ const fetchApi = async (method, headers, endpoint, queryParams, body, schema, id
       // NOTE: fail silenty request deliberately cancelled
       return
     }
-    console.error(e)
-    return Promise.reject({
-      detail: "We apologize, something went wrong. Please try again.",
-      type: "error"
-    })
+    return Promise.reject("Ups! It seems that something went wrong. just wait a few seconds and try again!")
   }
 }
 
@@ -183,7 +179,7 @@ const apiMiddleware = store => next => action => {
       error => {
         return next(actionWith({
           type: failureType,
-          error: error || 'Something bad happened',
+          error: {errors: [error]},
           request
         }))
       })
