@@ -3,9 +3,14 @@ const styles = (theme) => ({
 		padding: theme.spacing(2),
 		backgroundColor: theme.palette.neutrals[120],
 	},
-	header: {
+	top: {
 		display: "flex",
-		justifyContent: "space-between"
+		justifyContent: "space-between",
+		alignItems: "center"
+	},
+	icons: {
+		display: "flex", 
+		alignItems: "center"
 	},
 	list: {
 		overflow: "auto",

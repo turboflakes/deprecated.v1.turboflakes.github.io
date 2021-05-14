@@ -31,25 +31,7 @@ class AccountItem extends Component {
 		const { classes, address, account, selected, isFetching } = this.props;
     const stash = networkDisplay(address)
 		const isSelected = account.id === selected
-    if (isFetching) {
-      return (
-        <ListItem button onClick={() => this.handleOnClick(address)} 
-          classes={{
-            root: classes.rootItem,
-            selected: classes.selectedItem
-          }}>
-          <Fade in={isFetching} 
-              style={{
-                  transitionDelay: !isFetching ? '10ms' : '0ms',
-                }}
-                unmountOnExit
-              >
-            <CircularProgress size={24} />
-          </Fade>
-        </ListItem>
-      )
-    }
-    
+
 		return (
       <ListItem button onClick={() => this.handleOnClick(address)} 
         classes={{
@@ -57,12 +39,21 @@ class AccountItem extends Component {
           selected: classes.selectedItem
         }}>
 				<ListItemAvatar>
-          <Identicon
-            value={stash}
-            size={32}
-            theme={'polkadot'} />
+          {isFetching ? 
+            <Fade in={isFetching} 
+                style={{
+                    transitionDelay: !isFetching ? '10ms' : '0ms',
+                  }}
+                  unmountOnExit
+                >
+              <CircularProgress size={24} />
+            </Fade> :
+            <Identicon
+              value={stash}
+              size={32}
+              theme={'polkadot'} />}
         </ListItemAvatar>
-        <ListItemText primary={!!account.name ? nameDisplay(account.name) : stashDisplay(stash)} 
+        <ListItemText primary={isFetching ? `` : (!!account.name ? nameDisplay(account.name) : stashDisplay(stash))} 
           classes={isSelected ? { primary: classes.primaryItemText } : null}/>
       </ListItem>
     )

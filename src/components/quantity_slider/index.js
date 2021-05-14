@@ -12,7 +12,7 @@ import styles from './styles'
 const marks = [
   {
     value: 8,
-    label: '',
+    label: '8',
   },
   {
     value: 16,
@@ -24,31 +24,19 @@ const marks = [
   },
   {
     value: 32,
-    label: '',
+    label: '32',
   },
 	{
     value: 64,
-    label: '',
+    label: '64',
   },
 	{
     value: 128,
-    label: '',
-  },
-	{
-    value: 256,
-    label: '256',
-  },
-	{
-    value: 512,
-    label: '512',
-  },
-	{
-    value: 1024,
-    label: '1024',
-  },
+    label: '128',
+  }
 ];
 
-const MAX_QUANTITY = 1024;
+const MAX_QUANTITY = 128;
 
 class QuantitySlider extends Component {
 
@@ -57,7 +45,7 @@ class QuantitySlider extends Component {
 
 		const query = new URLSearchParams(props.location.search)
 		let quantity = parseInt(query.get("n"))
-		quantity = quantity > 0 && quantity < MAX_QUANTITY ? quantity : 16
+		quantity = quantity > 0 && quantity <= MAX_QUANTITY ? quantity : 16
 		this.changeParams(query, quantity)
 		this.state = { value: quantity }
 	}
@@ -104,7 +92,7 @@ class QuantitySlider extends Component {
 					}}
 					step={null}
 					min={8}
-					max={1024}
+					max={128}
 					marks={marks}
 					onChangeCommitted={this.handleOnChangeCommitted}
 				/>

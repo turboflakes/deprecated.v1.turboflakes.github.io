@@ -41,7 +41,7 @@ class Leaderboard extends Component {
 
 		return (
 			<div className={classes.root}>
-				<Box className={classes.header}>
+				<Box className={classes.top}>
 					<Box>
 						<Typography variant="h4" color="textPrimary">
 							Leaderboard
@@ -50,7 +50,7 @@ class Leaderboard extends Component {
 							The highest-ranked Validators
 						</Typography>
 					</Box>
-					<Box>
+					<Box className={classes.icons}>
 						{isFetching ? 
 							<Fade in={isFetching} 
 									style={{
@@ -89,7 +89,7 @@ const mapStateToProps = (state, ownProps) => {
 		addresses,
 		weights,
 		quantity,
-    isFetching: !!state.fetchers.queries[`validator?${query}`],
+    isFetching: !!state.fetchers.async,
   }
 }
 

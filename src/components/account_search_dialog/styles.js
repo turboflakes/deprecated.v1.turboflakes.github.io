@@ -18,8 +18,8 @@ const styles = (theme) => ({
   closeButton: {
     backgroundColor: theme.palette.text.secondary,
     position: "absolute",
-    top: theme.spacing(1),
-    right: theme.spacing(1),
+    top: theme.spacing(2),
+    right: theme.spacing(2),
   },
   rootTextField:{
     borderRadius: 0
