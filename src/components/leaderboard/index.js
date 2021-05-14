@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Fade from '@material-ui/core/Fade';
 import AccountItem from '../account_item'
 import AccountSearchDialog from '../account_search_dialog'
 import { withStyles } from '@material-ui/core/styles';
@@ -35,7 +37,7 @@ class Leaderboard extends Component {
 	}
 
 	render() {
-		const { classes, addresses } = this.props;
+		const { classes, addresses, isFetching } = this.props;
 
 		return (
 			<div className={classes.root}>
@@ -49,9 +51,18 @@ class Leaderboard extends Component {
 						</Typography>
 					</Box>
 					<Box>
-					<IconButton color="primary" aria-label="search for a validator" onClick={() => this.setState({open: true})}>
-						<SearchIcon />
-					</IconButton>
+						{isFetching ? 
+							<Fade in={isFetching} 
+									style={{
+											transitionDelay: !isFetching ? '10ms' : '0ms',
+										}}
+										unmountOnExit
+									>
+								<CircularProgress size={24} />
+							</Fade> : null}
+						<IconButton color="primary" aria-label="search for a validator" onClick={() => this.setState({open: true})}>
+							<SearchIcon />
+						</IconButton>
 					</Box>
 				</Box>
 				<List component="nav" className={classes.list}>
@@ -78,7 +89,7 @@ const mapStateToProps = (state, ownProps) => {
 		addresses,
 		weights,
 		quantity,
-    isFetching: !!state.fetchers.async,
+    isFetching: !!state.fetchers.queries[`validator?${query}`],
   }
 }
 

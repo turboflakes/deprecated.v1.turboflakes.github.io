@@ -8,6 +8,8 @@ import { selectors } from '../../selectors'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Fade from '@material-ui/core/Fade';
 import Identicon from '@polkadot/react-identicon';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -26,10 +28,28 @@ class AccountItem extends Component {
   }
 
  	render() {
-		const { classes, address, account, selected } = this.props;
-
+		const { classes, address, account, selected, isFetching } = this.props;
     const stash = networkDisplay(address)
 		const isSelected = account.id === selected
+    if (isFetching) {
+      return (
+        <ListItem button onClick={() => this.handleOnClick(address)} 
+          classes={{
+            root: classes.rootItem,
+            selected: classes.selectedItem
+          }}>
+          <Fade in={isFetching} 
+              style={{
+                  transitionDelay: !isFetching ? '10ms' : '0ms',
+                }}
+                unmountOnExit
+              >
+            <CircularProgress size={24} />
+          </Fade>
+        </ListItem>
+      )
+    }
+    
 		return (
       <ListItem button onClick={() => this.handleOnClick(address)} 
         classes={{
@@ -37,10 +57,10 @@ class AccountItem extends Component {
           selected: classes.selectedItem
         }}>
 				<ListItemAvatar>
-				<Identicon
-          value={stash}
-          size={32}
-          theme={'polkadot'} />
+          <Identicon
+            value={stash}
+            size={32}
+            theme={'polkadot'} />
         </ListItemAvatar>
         <ListItemText primary={!!account.name ? nameDisplay(account.name) : stashDisplay(stash)} 
           classes={isSelected ? { primary: classes.primaryItemText } : null}/>
@@ -59,7 +79,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
 		account,
     selected,
-    isFetching: !!state.fetchers.async,
+    isFetching: !!state.fetchers.ids[`get//validator/${ownProps.address}`],
   }
 }
 
