@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import AccountItem from '../account_item'
@@ -65,6 +66,7 @@ class Leaderboard extends Component {
 						</IconButton>
 					</Box>
 				</Box>
+				<Divider light classes={{ light: classes.light }}/>
 				<List component="nav" className={classes.list}>
 					{addresses.map((address, index) => <AccountItem address={address} key={index} />)}
 				</List>

@@ -10,8 +10,8 @@ const styles = (theme) => ({
 		wordWrap: "break-word"
   },
 	secondary: {
-    fontWeight: "bold",
-		color: theme.palette.neutrals[500]
+    color: theme.palette.neutrals[500],
+		fontWeight: 500,
   },
 	light:{
 		background: theme.palette.text.secondary,

@@ -6,7 +6,8 @@ const styles = (theme) => ({
 	top: {
 		display: "flex",
 		justifyContent: "space-between",
-		alignItems: "center"
+		alignItems: "center",
+		marginBottom: theme.spacing(1)
 	},
 	icons: {
 		display: "flex", 
@@ -15,6 +16,9 @@ const styles = (theme) => ({
 	list: {
 		overflow: "auto",
     height: "80vh"
+	},
+	light:{
+		background: theme.palette.text.secondary,
 	},
 })
 export default styles

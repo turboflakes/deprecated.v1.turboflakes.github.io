@@ -100,6 +100,7 @@ export default createMuiTheme({
     h4: {
       color: "#040621",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontWeight: 700
     },
     h5: {
       color: "#040621",
@@ -108,6 +109,7 @@ export default createMuiTheme({
     h6: {
       color: "#040621",
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontWeight: 400
     },
     body1: {
       color: "#6F7072",
@@ -115,8 +117,9 @@ export default createMuiTheme({
     caption: {
       color: "#6F7072",
     },
-    subtitle1:{
+    subtitle1: {
       fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontWeight: 500
     },
     subtitle2: {
       color: "#6F7072",

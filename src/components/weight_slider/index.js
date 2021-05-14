@@ -31,7 +31,6 @@ class WeightSlider extends Component {
 
 	componentDidMount() {
 		const {index, value} = this.props
-		console.log("__componentDidMount", index, typeof this.state.value, typeof value);
 		if (this.state.value !== value) {
 			this.props.changeWeight(index, this.state.value)
 		}

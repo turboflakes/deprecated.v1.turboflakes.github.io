@@ -66,7 +66,7 @@ class AccountInfo extends Component {
             value={stash}
             size={64}
             theme={'polkadot'} />
-          <Typography variant="h4" color="textPrimary" >
+          <Typography variant="h5" color="textPrimary" >
 					  {stashDisplay(stash)}
 					</Typography>
           <Typography variant="subtitle1" color="textPrimary" >
