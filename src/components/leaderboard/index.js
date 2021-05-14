@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { query } from '../../actions/validator'
+import { add } from '../../actions/error'
 import { selectors } from '../../selectors'
 import serialize from '../../utils/serialize'
 import Box from '@material-ui/core/Box';
@@ -33,6 +34,9 @@ class Leaderboard extends Component {
 	componentDidUpdate(prevProps) {
 		const {weights, quantity} = this.props
 		if ((prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
+			if (weights === "0,0,0,0,0,0,0,0") {
+				return this.props.add("Hey! Set at least one of the weights higher than 0, so that scores can be calculated.")
+			}
 			this.props.query({q: "Board", w: weights, n: quantity})
 		}
 	}
@@ -96,5 +100,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { query })(withStyles(styles)(Leaderboard));
+export default connect(mapStateToProps, { query, add })(withStyles(styles)(Leaderboard));
   
