@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { selectors } from '../../selectors'
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -74,9 +75,15 @@ class Footer extends Component {
 						<Typography color="textSecondary">
 						© 2021 Turboflakes
 						</Typography>
-						<Typography color="caption">
-						api v{info.version}
-						</Typography>
+						{!!info.cache ? 
+							<Box>
+								<Typography color="caption">
+								api v{info.version}
+								</Typography>
+								<Typography color="caption">
+									last sync at {moment.unix(info.cache.syncing_finished_at).format('lll')}
+								</Typography>
+							</Box> : null}
 					</Box>
 					<Box>
 						<IconButton color="primary" size="small" className={classes.icon} onClick={this.handleTwitter}>
