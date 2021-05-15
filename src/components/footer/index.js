@@ -81,7 +81,7 @@ class Footer extends Component {
 								api v{info.version}
 								</Typography>
 								<Typography color="caption">
-									last sync at {moment.unix(info.cache.syncing_finished_at).format('lll')}
+									last sync at {moment.unix(info.cache.syncing_finished_at).format('lll')} ({info.cache.syncing ? `syncing` : moment.unix(info.cache.syncing_finished_at).diff(moment.unix(info.cache.syncing_started_at), 'minutes')})
 								</Typography>
 							</Box> : null}
 					</Box>
