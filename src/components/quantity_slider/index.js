@@ -20,7 +20,7 @@ const marks = [
   },
   {
     value: 24,
-    label: '',
+    label: '24',
   },
   {
     value: 32,

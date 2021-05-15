@@ -9,6 +9,53 @@ import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
+const marks = [
+  {
+		value: 0,
+    label: 'NA',
+	},
+	{
+		value: 1,
+    label: '1',
+	},
+	{
+		value: 2,
+    label: '2',
+	},
+	{
+		value: 3,
+    label: '3',
+	},
+	{
+		value: 4,
+    label: '4',
+	},
+	{
+		value: 5,
+    label: '5',
+	},
+	{
+		value: 6,
+    label: '6',
+	},
+	{
+		value: 7,
+    label: '7',
+	},
+	{
+		value: 8,
+    label: '8',
+	},
+	{
+		value: 9,
+    label: '9',
+	},
+	{
+		value: 10,
+    label: '10',
+	},
+]
+
 class WeightSlider extends Component {
 
 	constructor(props) {
@@ -61,7 +108,7 @@ class WeightSlider extends Component {
 					aria-labelledby="discrete-slider"
 					valueLabelDisplay="auto"
 					step={1}
-					marks
+					marks={marks}
 					min={!!minValue ? minValue : 0}
 					max={!!maxValue ? maxValue : 10}
 					onChangeCommitted={this.handleOnChangeCommitted}
