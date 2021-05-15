@@ -78,7 +78,7 @@ class QuantitySlider extends Component {
 		return (
 			<div className={classes.root}>
 				<Typography variant="h6" id="discrete-slider" gutterBottom>
-					How many Validators would you like displayed?
+					Display the Top {value} Validators..
 				</Typography>
 				<Slider
 					defaultValue={this.state.value}

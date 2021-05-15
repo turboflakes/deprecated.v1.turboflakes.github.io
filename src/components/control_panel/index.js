@@ -30,16 +30,16 @@ class ControlPanel extends Component {
 						Weights
 					</Typography> */}
 					<Typography variant="h6" gutterBottom>
-					Set your Validator preferences
+					..based on the preferences below ⬇
 					</Typography>
-					<WeightSlider index={0} title="Inclusion" subTitle="Higher inclusion rate is scored higher" />
-					<WeightSlider index={1} title="Commission" subTitle="Lower commission is scored higher" />
-					<WeightSlider index={2} title="Reward Points" subTitle="Higher reward points is scored higher"/>
-					<WeightSlider index={3} title="Reward Staked" subTitle="If reward is staked is scored higher" />
-					<WeightSlider index={4} title="Currently Active" subTitle="If in active set is scored higher" />
-					<WeightSlider index={5} title="Own Stake" subTitle="Higher own stake is scored higher" />
-					<WeightSlider index={6} title="Identity Judgement" subTitle="Higher number of Reasonable or KnownGood judgements is scored higher" />
-					<WeightSlider index={7} title="Sub-accounts or Sibling-accounts" subTitle="Lower number of sub-accounts is scored higher" />
+					<WeightSlider index={0} title="Inclusion" subTitle="Higher inclusion rate results on higher score" />
+					<WeightSlider index={1} title="Commission" subTitle="Lower commission results on higher score" />
+					<WeightSlider index={2} title="Reward Points" subTitle="Higher reward points results on higher score"/>
+					<WeightSlider index={3} title="Staked Reward" subTitle="Staked reward results on higher score" />
+					<WeightSlider index={4} title="Currently Active" subTitle="Currently active results on higher score" />
+					<WeightSlider index={5} title="Own Stake" subTitle="Higher self stake results on higher score" />
+					<WeightSlider index={6} title="Identity Judgement" subTitle="More Reasonable or KnownGood judgements results on higher score" />
+					<WeightSlider index={7} title="Sub-accounts or Sibling-accounts" subTitle="Lower number of sub-accounts results on higher score" />
 				</Box>
 			</div>
 		)

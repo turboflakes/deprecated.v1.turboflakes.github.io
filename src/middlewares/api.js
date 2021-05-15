@@ -3,7 +3,7 @@ import {
 } from 'normalizr'
 import serialize from '../utils/serialize'
 
-const API_ROOT = process.env.REACT_APP_API_ENDPOINT ? `//${process.env.REACT_APP_API_ENDPOINT}` : 'http://localhost:5000'
+const API_ROOT = process.env.REACT_APP_API_ENDPOINT ? `https://${process.env.REACT_APP_API_ENDPOINT}` : 'http://localhost:5000'
 
 const isContentTypeJson = (value) => {
   value = value ? value : ''
@@ -48,10 +48,7 @@ const fetchApi = async (method, headers, endpoint, queryParams, body, schema, id
 
     if (!isContentTypeJson(response.headers.get("content-type"))) {
       console.error(`Failed to fetch: Content-Type ${response.headers.get("content-type")} not supported.`);
-      return Promise.reject({
-        detail: "We apologize, something went wrong. Please try again.",
-        type: "error"
-      })
+      return Promise.reject("It seems that something went wrong. Please just wait a few seconds and try again!")
     }
 
     // NOTE: Resolve Json response
@@ -98,7 +95,7 @@ const fetchApi = async (method, headers, endpoint, queryParams, body, schema, id
       // NOTE: fail silenty request deliberately cancelled
       return
     }
-    return Promise.reject("Ups! It seems that something went wrong. just wait a few seconds and try again!")
+    return Promise.reject("It seems that something went wrong. Please just wait a few seconds and try again!")
   }
 }
 

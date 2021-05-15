@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {NETWORK} from '../../constants'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import TextField from '@material-ui/core/TextField';
@@ -31,7 +32,7 @@ class Header extends Component {
             <Box className={classes.logo}>
               <TurboflakesSVG />
               <Typography variant="h5" className={classes.moto}>
-              Discover the best Validators on Turboflakes
+              Discover the best Validators in the {NETWORK.toUpperCase()} network
               </Typography>
             </Box>
               <div className={classes.grow} />
