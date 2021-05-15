@@ -15,6 +15,8 @@ import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import LaunchIcon from '@material-ui/icons/Launch';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Fade from '@material-ui/core/Fade';
 import Identicon from '@polkadot/react-identicon';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -48,7 +50,7 @@ class AccountInfo extends Component {
   }
 
  	render() {
-		const { classes, account } = this.props;
+		const { classes, account, isFetchingRank } = this.props;
 
     if (!account.id) {
       return null
@@ -77,7 +79,16 @@ class AccountInfo extends Component {
           <ListItem>
             <ListItemText primary="Rank" 
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
-            <ListItemText primary={!!account.rank ? account.rank : '-'} classes={{ secondary: classes.secondaryItemText }} />
+              {isFetchingRank ? 
+                <Fade in={isFetchingRank} 
+                    style={{
+                        transitionDelay: !isFetchingRank ? '10ms' : '0ms',
+                      }}
+                      unmountOnExit
+                    >
+                  <CircularProgress size={24} />
+                </Fade> : 
+              <ListItemText primary={!!account.rank ? account.rank : '-'} classes={{ secondary: classes.secondaryItemText }} />}
           </ListItem>
           <ListItem>
             <ListItemText primary="Controller" 
@@ -167,6 +178,7 @@ const mapStateToProps = (state, ownProps) => {
   // to request the rank from the backend
   const localIndex = addresses.indexOf(state.leaderboard.selected)
   const rank = localIndex !== -1 ? addresses.indexOf(state.leaderboard.selected) + 1 : account.rank
+
   return {
     address,
     rank,
@@ -176,6 +188,7 @@ const mapStateToProps = (state, ownProps) => {
       rank
     },
     isFetching: !!state.fetchers.async,
+    isFetchingRank: !!state.fetchers.ids[`/validator/${address}/rank`],
   }
 }
 

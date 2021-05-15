@@ -70,7 +70,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
 		account,
     selected,
-    isFetching: !!state.fetchers.ids[`get//validator/${ownProps.address}`],
+    isFetching: !!state.fetchers.ids[`/validator/${ownProps.address}`],
   }
 }
 

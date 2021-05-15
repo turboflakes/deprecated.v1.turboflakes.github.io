@@ -2,7 +2,7 @@ import { NETWORK, networkPrefixes, networkDecimals, networkCodes } from '../cons
 import { encodeAddress } from '@polkadot/util-crypto'
 
 export const stashDisplay = (stash) => {
-    return `${stash.slice(0, 6)}...${stash.slice(stash.length-6, stash.length)}`
+    return !!stash ? `${stash.slice(0, 6)}...${stash.slice(stash.length-6, stash.length)}` : `-`
 }
   
 export const nameDisplay = (name) => {
