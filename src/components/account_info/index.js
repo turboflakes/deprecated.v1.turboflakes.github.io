@@ -30,7 +30,7 @@ class AccountInfo extends Component {
 
   componentDidUpdate(prevProps) {
     const {address, rank, weights, isFetching, account} = this.props
-    if (!isFetching && (prevProps.weights !== weights || rank === 0)) {
+    if (!isFetching && (prevProps.weights !== weights || !rank)) {
       this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
     }
     if (!isFetching && prevProps.address !== address && !account.id) {

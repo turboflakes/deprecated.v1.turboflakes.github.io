@@ -18,10 +18,10 @@ export const get = (id) => {
 
 // GET /validator/:id/rank
 export const getValidatorRank = (id, queryParams) => {
-  return _get(id, ["all"], 'validator', undefined, queryParams, {endpoint: `validator/${id}/rank`, expire: 0})
+  return _get(id, ["all"], 'validator', undefined, queryParams, {endpoint: `/validator/${id}/rank`, expire: 0})
 }
 
 // GET /validator/:id/eras
 export const getValidatorEras = (id) => {
-  return _get(id, ["all"], 'validator', undefined, undefined, {endpoint: `validator/${id}/eras`})
+  return _get(id, ["all"], 'validator', undefined, undefined, {endpoint: `/validator/${id}/eras`})
 }

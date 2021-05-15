@@ -176,7 +176,7 @@ const apiMiddleware = store => next => action => {
       error => {
         return next(actionWith({
           type: failureType,
-          error: {errors: [error]},
+          error,
           request
         }))
       })
