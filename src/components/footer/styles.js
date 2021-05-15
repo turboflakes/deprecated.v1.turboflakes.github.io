@@ -24,6 +24,9 @@ const styles = (theme) => ({
 	},
 	icon: {
 		margin: `0 ${theme.spacing(1)}px`,
+	},
+	info: {
+		display: "block"
 	}
 })
 export default styles

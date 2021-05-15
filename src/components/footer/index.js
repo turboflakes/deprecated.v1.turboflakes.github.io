@@ -77,11 +77,14 @@ class Footer extends Component {
 						</Typography>
 						{!!info.cache ? 
 							<Box>
-								<Typography color="caption">
+								<Typography variant="caption" className={classes.info}>
+								app v{process.env.REACT_APP_VERSION}
+								</Typography>
+								<Typography variant="caption" className={classes.info}>
 								api v{info.version}
 								</Typography>
-								<Typography color="caption">
-									last sync at {moment.unix(info.cache.syncing_finished_at).format('lll')} ({info.cache.syncing ? `syncing` : moment.unix(info.cache.syncing_finished_at).diff(moment.unix(info.cache.syncing_started_at), 'minutes')})
+								<Typography variant="caption" className={classes.info}>
+								cache	last synced at {moment.unix(info.cache.syncing_finished_at).format('lll')} ({info.cache.syncing ? `syncing` : `${moment.unix(info.cache.syncing_finished_at).diff(moment.unix(info.cache.syncing_started_at), 'minutes')}min`})
 								</Typography>
 							</Box> : null}
 					</Box>
