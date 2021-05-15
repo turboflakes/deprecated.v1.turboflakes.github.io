@@ -29,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-kusama": "GENERATE_SOURCEMAP=false REACT_APP_ENV=production REACT_APP_API_ENDPOINT=kusama-api.turboflakes.com REACT_APP_NETWORK=kusama yarn build"
   },
   "eslintConfig": {
     "extends": [
