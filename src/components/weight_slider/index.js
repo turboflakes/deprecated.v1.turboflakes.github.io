@@ -5,16 +5,18 @@ import { withRouter } from 'react-router-dom';
 import { changeWeight } from '../../actions/leaderboard'
 import { parseArray } from '../../utils/math'
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
+import PopoverInfo from '../popover_info'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 const marks = [
-  {
-		value: 0,
-    label: 'NA',
-	},
 	{
+		value: 0,
+    label: '0',
+	},
+  {
 		value: 1,
     label: '1',
 	},
@@ -93,20 +95,38 @@ class WeightSlider extends Component {
 	}
 
  	render() {
-		const { classes, title, subTitle, value, minValue, maxValue} = this.props;
+		const { classes, title, description, scaleDescription, value, minValue, maxValue} = this.props;
 		return (
 			<div className={classes.root}>
-				<Typography variant="subtitle1" id="discrete-slider">
-				{title}
-				</Typography>
-				<Typography variant="caption" id="discrete-slider-sub" gutterBottom>
-        {subTitle}
+				<Box className={classes.titleBox}>
+					<PopoverInfo >
+						<Typography variant="h6">
+						{title} rate
+						</Typography>
+						<Typography variant="body1" gutterBottom>
+						{description}
+						</Typography>
+						<Typography variant="body1" gutterBottom>
+						{scaleDescription}
+						</Typography>
+					</PopoverInfo>
+					<Typography variant="subtitle1" className={classes.title}>
+					{title} rate
+					</Typography>
+				</Box>
+				<Typography id={title} variant="caption">
+					{title} weight
 				</Typography>
 				<Slider
+					aria-labelledby={title}
+					className={classes.slider}
 					defaultValue={this.state.value}
 					getAriaValueText={() => value}
-					aria-labelledby="discrete-slider"
-					valueLabelDisplay="auto"
+					valueLabelDisplay="off"
+					classes={{
+						markLabel: classes.markLabel,
+						markLabelActive: classes.markLabelActive
+					}}
 					step={1}
 					marks={marks}
 					min={!!minValue ? minValue : 0}
@@ -122,7 +142,8 @@ WeightSlider.propTypes = {
 	classes: PropTypes.object.isRequired,
 	index: PropTypes.number.isRequired,
 	title: PropTypes.string,
-	subTitle: PropTypes.string,
+	description: PropTypes.string,
+	scaleDescription: PropTypes.string,
 	minValue: PropTypes.number,
 	maxValue: PropTypes.number,
 };

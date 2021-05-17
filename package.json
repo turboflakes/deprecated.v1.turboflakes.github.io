@@ -28,9 +28,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:production": "sh -ac '. .env.production.${REACT_APP_NETWORK}; react-scripts build'",
+    "build:kusama": "REACT_APP_NETWORK=kusama npm run build:production",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build-kusama": "GENERATE_SOURCEMAP=false REACT_APP_ENV=production REACT_APP_API_ENDPOINT=kusama-api.turboflakes.com REACT_APP_NETWORK=kusama yarn build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

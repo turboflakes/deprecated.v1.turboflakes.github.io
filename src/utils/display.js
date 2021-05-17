@@ -24,9 +24,9 @@ export const stakeDisplay = (stake) => {
 }
 
 export const commissionDisplay = (commission) => {
-    return `${(commission/10000000).toFixed(2)}%`
+    return `${Math.round((commission/10000000)*100)/100}%`
 }
 
 export const rateDisplay = (rate) => {
-    return `${(rate*100).toFixed(2)}%`
+    return `${Math.round(rate*100)}%`
 }
