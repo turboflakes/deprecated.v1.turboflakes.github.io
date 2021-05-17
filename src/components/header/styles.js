@@ -1,7 +1,7 @@
 const styles = (theme) => ({
 	root: {
 		flexGrow: 1,
-		backgroundColor: theme.palette.neutrals[500],
+		background: theme.palette.gradients.default270
 	},
 	appBar: {
 		backgroundColor: "inherit",
@@ -15,9 +15,5 @@ const styles = (theme) => ({
 	moto: {
 		fontWeight: 300
 	},
-	networkLogo: {
-		margin: `0 ${theme.spacing(1)}px 0 0`,
-		// maxWidth: 200
-	}
 })
 export default styles

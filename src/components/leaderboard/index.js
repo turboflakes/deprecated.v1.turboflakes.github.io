@@ -15,6 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import AccountItem from '../account_item'
 import AccountSearchDialog from '../account_search_dialog'
+import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -46,11 +47,17 @@ class Leaderboard extends Component {
 
 		return (
 			<div className={classes.root}>
+				<Box className={classes.network}>
+					<KusamaSVG className={classes.networkLogo} />
+					<Typography variant="h6" color="textPrimary" className={classes.networkLabel} >
+						Kusama
+					</Typography>
+				</Box>
 				<Box className={classes.top}>
 					<Box>
 						<Typography variant="h4" color="textPrimary" >
 							LEADERBOARD
-						</Typography>
+						</Typography>						
 						<Typography variant="caption" gutterBottom>
 							The highest-ranked Validators
 						</Typography>

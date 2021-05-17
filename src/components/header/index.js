@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {NETWORK} from '../../constants'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { ReactComponent as TurboflakesSVG } from '../../assets/turboflakes_default.svg';
-import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
+// import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
 import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -31,17 +31,22 @@ class Header extends Component {
           <Toolbar variant="dense" className={classes.toolBar}>
             <Box className={classes.logo}>
               <TurboflakesSVG />
+            </Box>
+            <Box>
               <Typography variant="h5" className={classes.moto}>
-              Discover the best Validators in the {NETWORK.toUpperCase()} network
+              Helps you discover Validators for your Nominator
+              </Typography>
+              <Typography variant="h6" className={classes.moto}>
+              Available now in the <b>{NETWORK.toUpperCase()}</b> network
               </Typography>
             </Box>
-              <div className={classes.grow} />
-              <TextField
+            <div className={classes.grow} />
+              {/* <TextField
                 select
                 value={this.state.network}
                 onChange={this.handleChange}
                 variant="outlined"
-                disabled
+                // disabled
                 InputProps={{
                   startAdornment: (
                     <KusamaSVG className={classes.networkLogo} />
@@ -53,8 +58,7 @@ class Header extends Component {
                     {option.label}
                   </option>
                 ))}
-              </TextField>
-            
+              </TextField> */}
           </Toolbar>
         </AppBar>
       </div>

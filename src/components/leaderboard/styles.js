@@ -20,5 +20,16 @@ const styles = (theme) => ({
 	light:{
 		background: theme.palette.text.secondary,
 	},
+	network: {
+		display: "flex",
+		alignItems: "center",
+	},
+	networkLabel: {
+		margin: `0 ${theme.spacing(1)}px`,
+	},
+	networkLogo: {
+		width: 32,
+		height: 32
+	}
 })
 export default styles
