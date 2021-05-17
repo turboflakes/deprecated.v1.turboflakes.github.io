@@ -54,7 +54,7 @@ class PopoverWeightInfo extends Component {
           Weight Scale
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Weights are personal preferences. Weights define the level of importance an Individual's have towards a specific trait. Everyone can assign his/her own weights to each trait. An individual's weighting preferences are kept intact, they are not averaged or blended with other individual's weights.
+            Weights are personal preferences. Weights define the level of importance an Individual's have towards a specific trait. Everyone can assign his/her own weights to each feature. An individual's weighting preferences are kept intact, they are not averaged or blended with other individual's weights.
           </Typography>
           <Typography variant="subtitle1">
             Weight scale is defined in a 10-point ordinal scale. e.g:
