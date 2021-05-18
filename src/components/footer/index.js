@@ -38,6 +38,9 @@ class Footer extends Component {
 			<div className={classes.root} style={style}>
 				<Container className={classes.container}>
 					<Typography color="textSecondary">
+					<b>TURBOFLAKES</b> is an independent validator in the Kusama Network.
+					</Typography>
+					<Typography color="textSecondary">
 					If you like this project - Share our work 🖖 Support us by Nominate, Tip or Donate ✨💙
 					</Typography>
 					<List component="nav" className={classes.list}>
@@ -68,6 +71,9 @@ class Footer extends Component {
 								}} />
 						</ListItem>
 					</List>
+					<Typography color="textSecondary">
+					Support your nominations using <b>TURBOFLAKES</b> decision tool ✌
+					</Typography>
 				</Container>
 				<Divider light classes={{ light: classes.light }}/>
 				<Container className={classes.bottom}>
@@ -84,7 +90,7 @@ class Footer extends Component {
 								api v{info.version}
 								</Typography>
 								<Typography variant="caption" className={classes.info}>
-								cache	last synced at {moment.unix(info.cache.syncing_finished_at).format('lll')} ({info.cache.syncing ? `syncing` : `${moment.unix(info.cache.syncing_finished_at).diff(moment.unix(info.cache.syncing_started_at), 'minutes')}min`})
+								last sync time: {moment.unix(info.cache.syncing_finished_at).format('lll')} ({info.cache.syncing ? `syncing` : `duration ${moment.unix(info.cache.syncing_finished_at).diff(moment.unix(info.cache.syncing_started_at), 'minutes')} min`})
 								</Typography>
 							</Box> : null}
 					</Box>

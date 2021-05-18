@@ -50,14 +50,11 @@ class PopoverWeightInfo extends Component {
           }}
           disableRestoreFocus
         >
-          <Typography variant="h6">
-          Weight Scale
-          </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" paragraph>
             Weights are personal preferences. Weights define the level of importance an Individual's have towards a specific trait. Everyone can assign his/her own weights to each feature. An individual's weighting preferences are kept intact, they are not averaged or blended with other individual's weights.
           </Typography>
-          <Typography variant="subtitle1">
-            Weight scale is defined in a 10-point ordinal scale. e.g:
+          <Typography variant="body1" >
+            The weight scale is defined in a 10-point ordinal scale. e.g:
           </Typography>
           <Typography variant="body1" className={classes.list}>
           0 = Not Applicable
@@ -66,7 +63,7 @@ class PopoverWeightInfo extends Component {
           1 = Less Important
           </Typography>
           <Typography variant="body1" className={classes.list}>
-          5 = Moderately Importatnt
+          5 = Moderately Important
           </Typography>
           <Typography variant="body1" className={classes.list}>
           10 = Very Important

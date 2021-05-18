@@ -95,13 +95,13 @@ class WeightSlider extends Component {
 	}
 
  	render() {
-		const { classes, title, description, scaleDescription, value, minValue, maxValue} = this.props;
+		const { classes, title, description, scaleDescription, resultDescription, value, minValue, maxValue} = this.props;
 		return (
 			<div className={classes.root}>
 				<Box className={classes.titleBox}>
 					<PopoverInfo >
 						<Typography variant="h6">
-						{title} rate
+						{title}
 						</Typography>
 						<Typography variant="body1" gutterBottom>
 						{description}
@@ -109,13 +109,16 @@ class WeightSlider extends Component {
 						<Typography variant="body1" gutterBottom>
 						{scaleDescription}
 						</Typography>
+						<Typography variant="body1" gutterBottom>
+						{resultDescription}
+						</Typography>
 					</PopoverInfo>
 					<Typography variant="subtitle1" className={classes.title}>
-					{title} rate
+					{title}
 					</Typography>
 				</Box>
 				<Typography id={title} variant="caption">
-					{title} weight
+					Weight given to {title} 
 				</Typography>
 				<Slider
 					aria-labelledby={title}
@@ -144,6 +147,7 @@ WeightSlider.propTypes = {
 	title: PropTypes.string,
 	description: PropTypes.string,
 	scaleDescription: PropTypes.string,
+	resultDescription: PropTypes.string,
 	minValue: PropTypes.number,
 	maxValue: PropTypes.number,
 };

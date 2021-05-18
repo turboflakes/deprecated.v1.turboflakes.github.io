@@ -10,7 +10,14 @@ const styles = (theme) => ({
 	toolBar: {
 		padding: theme.spacing(2),
 		display: "flex",
-		justifyContent: "space-between"
+		justifyContent: "space-between",
+		alignItems: "center"
+	},
+	motoBox: {
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		alignItems: "center"
 	},
 	moto: {
 		fontWeight: 300

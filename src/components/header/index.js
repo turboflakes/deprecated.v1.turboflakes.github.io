@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {NETWORK} from '../../constants'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
 // import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import { ReactComponent as TurboflakesSVG } from '../../assets/turboflakes_default.svg';
 // import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
 import withWidth from '@material-ui/core/withWidth';
@@ -29,17 +29,20 @@ class Header extends Component {
       <div className={classes.root}>
         <AppBar position="static" elevation={0} className={classes.appBar}>
           <Toolbar variant="dense" className={classes.toolBar}>
-            <Box className={classes.logo}>
-              <TurboflakesSVG />
-            </Box>
-            <Box>
-              <Typography variant="h5" className={classes.moto}>
-              Helps you discover Validators for your Nominator
-              </Typography>
-              <Typography variant="h6" className={classes.moto}>
-              Available now in the <b>{NETWORK.toUpperCase()}</b> network
-              </Typography>
-            </Box>
+            <Grid container spacing={0}>
+              <Grid item xs={12} sm={4} className={classes.logo}>
+                <TurboflakesSVG />
+              </Grid>
+              <Grid item xs={12} sm={8} className={classes.motoBox}>
+                <Typography variant="h5" className={classes.moto} align="center">
+                Helps you discover Validators for your Nominator
+                </Typography>
+                <Typography variant="h6" className={classes.moto} align="center">
+                Available now in the <b>{NETWORK.toUpperCase()}</b> network
+                </Typography>
+              </Grid>
+            </Grid>
+
             <div className={classes.grow} />
               {/* <TextField
                 select
