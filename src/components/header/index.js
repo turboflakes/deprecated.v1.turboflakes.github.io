@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 // import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { ReactComponent as TurboflakesSVG } from '../../assets/turboflakes_default.svg';
+import { ReactComponent as TurboflakesSVG } from '../../assets/turboflakes_default_blue.svg';
 // import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
 import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
@@ -38,7 +38,7 @@ class Header extends Component {
                 Helps you discover Validators for your Nominator
                 </Typography>
                 <Typography variant="h6" className={classes.moto} align="center">
-                Available now in the <b>{NETWORK.toUpperCase()}</b> network
+                Supporting Now <b>{NETWORK.toUpperCase()}</b> network
                 </Typography>
               </Grid>
             </Grid>

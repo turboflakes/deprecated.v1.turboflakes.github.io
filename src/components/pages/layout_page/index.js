@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { info } from '../../../actions/api'
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import BoardAnimation from '../../board_animation'
 import Header from '../../header'
 import Leaderboard from '../../leaderboard'
@@ -39,7 +38,7 @@ class LayoutPage extends Component {
           style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})}>
           <Header />
           <Alert />
-          <Container classes={{ root: classes.rootContainer}}>  
+          <Box classes={{ root: classes.rootContainer}}>  
             <Grid container spacing={0}>
               <Grid item xs={12} sm={!!selected ? 4 : 6}>
                 <Leaderboard />
@@ -52,7 +51,7 @@ class LayoutPage extends Component {
                 <ControlPanel />
               </Grid>
             </Grid>
-          </Container>
+          </Box>
           <Footer style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})} />
         </Box>
       </div>

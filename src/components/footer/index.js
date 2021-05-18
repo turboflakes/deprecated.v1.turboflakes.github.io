@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { selectors } from '../../selectors'
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -36,7 +35,7 @@ class Footer extends Component {
 
 		return (
 			<div className={classes.root} style={style}>
-				<Container className={classes.container}>
+				<Box className={classes.container}>
 					<Typography color="textSecondary">
 					<b>TURBOFLAKES</b> is an independent validator in the Kusama Network.
 					</Typography>
@@ -71,12 +70,12 @@ class Footer extends Component {
 								}} />
 						</ListItem>
 					</List>
-					<Typography color="textSecondary">
+					{/* <Typography color="textSecondary">
 					Support your nominations using <b>TURBOFLAKES</b> decision tool ✌
-					</Typography>
-				</Container>
+					</Typography> */}
+				</Box>
 				<Divider light classes={{ light: classes.light }}/>
-				<Container className={classes.bottom}>
+				<Box className={classes.bottom}>
 					<Box>
 						<Typography color="textSecondary">
 						© 2021 Turboflakes
@@ -102,7 +101,7 @@ class Footer extends Component {
 							<GithubSVG />
 						</IconButton>
 					</Box>
-				</Container>
+				</Box>
 			</div>
 		)
 	}

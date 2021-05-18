@@ -128,7 +128,7 @@ class AccountInfo extends Component {
           <ListItem>
             <ListItemText primary="Average Reward Points" 
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText }} />
-            <ListItemText primary={account.avg_reward_points} classes={{ secondary: classes.secondaryItemText }} />
+            <ListItemText primary={Math.round(account.avg_reward_points * 100)/100} classes={{ secondary: classes.secondaryItemText }} />
           </ListItem>
           <ListItem>
             <ListItemText primary="Reward Staked" 

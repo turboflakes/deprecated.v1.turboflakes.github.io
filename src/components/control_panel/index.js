@@ -34,7 +34,7 @@ class ControlPanel extends Component {
 					</Typography>
 					<WeightSlider index={0} 
 						title="Inclusion rate"
-						description="The inclusion rate is calculated by counting the number of times a Validator was active in the last 84 eras divided by 84." 
+						description="The inclusion rate is the percentage of eras out of the past 84 that the validator was in the active set." 
 						scaleDescription="The inclusion rate is normalized to a 100-point scale." 
 						resultDescription="A higher inclusion rate results on a higher score." />
 					<WeightSlider index={1}
