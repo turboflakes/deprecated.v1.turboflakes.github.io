@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { selectors } from '../../selectors'
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -12,6 +13,7 @@ import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import Identicon from '@polkadot/react-identicon';
 import IconButton from '@material-ui/core/IconButton';
+import EmailIcon from '@material-ui/icons/EmailRounded';
 import { ReactComponent as TwitterSVG } from '../../assets/twitter.svg';
 import { ReactComponent as GithubSVG } from '../../assets/github.svg';
 import { withStyles } from '@material-ui/core/styles';
@@ -30,6 +32,10 @@ class Footer extends Component {
 		window.open('https://github.com/turboflakes', '_blank')
 	}
 
+	handleEmail = () => {
+		window.location.href = "mailto:support@turboflakes.com"
+	}
+
  	render() {
 		const { classes, info, style } = this.props;
 
@@ -40,7 +46,7 @@ class Footer extends Component {
 					<b>TURBOFLAKES</b> is an independent validator in the Kusama Network.
 					</Typography>
 					<Typography color="textSecondary">
-					If you like this project - Share our work 🖖 Support us by Nominate, Tip or Donate ✨💙
+					If you like this project ✌️ Share our work and support us with your nomination ✨💙
 					</Typography>
 					<List component="nav" className={classes.list}>
 						<ListItem key={kusama} >
@@ -75,10 +81,19 @@ class Footer extends Component {
 					</Typography> */}
 				</Box>
 				<Divider light classes={{ light: classes.light }}/>
+					<Box className={classes.about}>
+						<Typography color="textSecondary">
+							<Link href="https://kusama.network/" target="_blank" rel="noreferrer" color="inherit">About Kusama Network</Link>
+						</Typography>
+						<Typography color="textSecondary">
+							<Link href="https://guide.kusama.network/docs/en/mirror-maintain-guides-how-to-nominate-kusama" target="_blank" rel="noreferrer" color="inherit">How to Nominate</Link>
+						</Typography>
+					</Box>
+				<Divider light classes={{ light: classes.light }}/>
 				<Box className={classes.bottom}>
 					<Box>
 						<Typography color="textSecondary">
-						© 2021 Turboflakes
+						© 2021 Turboflakes - email us - 
 						</Typography>
 						{!!info.cache ? 
 							<Box>
@@ -94,6 +109,9 @@ class Footer extends Component {
 							</Box> : null}
 					</Box>
 					<Box>
+						<IconButton size="small" className={classes.iconEmail} onClick={this.handleEmail}>
+							<EmailIcon />
+						</IconButton>
 						<IconButton color="primary" size="small" className={classes.icon} onClick={this.handleTwitter}>
 							<TwitterSVG />
 						</IconButton>

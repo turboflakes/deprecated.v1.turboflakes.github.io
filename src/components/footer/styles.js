@@ -16,11 +16,25 @@ const styles = (theme) => ({
 	light:{
 		background: theme.palette.text.secondary,
 	},
+	about: {
+		padding: theme.spacing(2),
+		// display: "flex",
+		// alignItems: "center",
+		// justifyContent: "space-between"
+	},
 	bottom: {
 		padding: theme.spacing(2),
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-between"
+	},
+	iconEmail: {
+		margin: `0 ${theme.spacing(1)}px`,
+		color: theme.palette.text.primary,
+		backgroundColor: theme.palette.text.secondary,
+		'&:hover': {
+			backgroundColor: theme.palette.text.secondary,
+		},
 	},
 	icon: {
 		margin: `0 ${theme.spacing(1)}px`,

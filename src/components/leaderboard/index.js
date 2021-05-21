@@ -42,13 +42,19 @@ class Leaderboard extends Component {
 		}
 	}
 
+	handleKusama = () => {
+		window.open('https://kusama.network/', '_blank')
+	}
+
 	render() {
 		const { classes, addresses, isFetching } = this.props;
 
 		return (
 			<div className={classes.root}>
 				<Box className={classes.network}>
-					<KusamaSVG className={classes.networkLogo} />
+					<IconButton color="primary" size="small" onClick={this.handleKusama}>
+						<KusamaSVG className={classes.networkLogo} />
+					</IconButton>
 					<Typography variant="h6" color="textPrimary" className={classes.networkLabel} >
 						Kusama
 					</Typography>
