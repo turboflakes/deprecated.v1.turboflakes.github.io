@@ -30,8 +30,8 @@ class Header extends Component {
         <AppBar position="static" elevation={0} className={classes.appBar}>
           <Toolbar variant="dense" className={classes.toolBar}>
             <Grid container spacing={0}>
-              <Grid item xs={12} sm={4} className={classes.logo}>
-                <TurboflakesSVG />
+              <Grid item xs={12} sm={4}>
+                <TurboflakesSVG className={classes.logo} />
               </Grid>
               <Grid item xs={12} sm={8} className={classes.motoBox}>
                 <Typography variant="h5" className={classes.moto} align="center">

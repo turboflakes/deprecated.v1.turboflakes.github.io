@@ -13,6 +13,7 @@ const styles = (theme) => ({
 		justifyContent: "space-between",
 		alignItems: "center"
 	},
+	logo: {},
 	motoBox: {
 		display: "flex",
 		flexDirection: "column",

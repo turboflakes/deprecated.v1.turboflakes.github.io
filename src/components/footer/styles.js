@@ -3,8 +3,17 @@ const styles = (theme) => ({
 		background: theme.palette.text.primary,
 	},
 	container: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(4)
   },
+	trademark: {
+		display: "flex",
+		alignItems: "center"
+	},
+	logo:{
+		margin: theme.spacing(3),
+		maxWidth: 100,
+		height: "100%"
+	},
 	primary: {
     color: theme.palette.text.secondary,
 		wordWrap: "break-word"
@@ -22,6 +31,18 @@ const styles = (theme) => ({
 	},
 	aboutNetwork: {
 		padding: theme.spacing(2),
+		marginBottom: theme.spacing(2),
+	},
+	networkLink: {
+		padding: `0 ${theme.spacing(3)}px`
+	},
+	kusamaLogo:{
+		height: '80px',
+		maxWidth: '120px',
+		padding: `${theme.spacing(3)}px 0 ${theme.spacing(3)}px ${theme.spacing(3)}px`
+	},
+	polkadotLogo:{
+		height: '80px',
 	},
 	bottom: {
 		padding: theme.spacing(2),
