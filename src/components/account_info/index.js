@@ -168,7 +168,7 @@ class AccountInfo extends Component {
               }
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
           </ListItem>
-          <ListItem>
+          <ListItem className={classes.listItem}>
             <ListItemText 
               primary={
                 <React.Fragment>

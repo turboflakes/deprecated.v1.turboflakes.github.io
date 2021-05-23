@@ -45,7 +45,8 @@ const styles = (theme) => ({
 	listItem:{
 		display: "flex",
 		alignItems: "center",
-		justifyContent: ""
+		paddingLeft: 0,
+		paddingRight: 0,
 	},
 	inline: {
     display: 'inline',

@@ -22,9 +22,9 @@ const styles = (theme) => ({
 		display: "flex",
 		alignItems: "center",
 	},
-	// networkLabel: {
-	// 	margin: `0 ${theme.spacing(1)}px`,
-	// },
+	networkLabel: {
+		margin: `0 ${theme.spacing(1)}px`,
+	},
 	networkLogo: {
 		width: 49,
 		height: 49
