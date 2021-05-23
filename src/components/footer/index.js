@@ -76,18 +76,34 @@ class Footer extends Component {
 								}} />
 						</ListItem>
 					</List>
-					{/* <Typography color="textSecondary">
-					Support your nominations using <b>TURBOFLAKES</b> decision tool ✌
-					</Typography> */}
+					<Typography color="textSecondary" gutterBottom>
+						Support your nominations using <b>TURBOFLAKES</b> decision tool ✌
+					</Typography>
+				</Box>
+				<Divider light classes={{ light: classes.light }}/>
+				<Box className={classes.container}>
+					<Typography variant="body2" color="textSecondary">
+						DISCLAIMER<br />It is very important to do your own research before nominating a validator as there is a risk of slashing if the validator you choose misbehave in the network (e.g. go offline, attack the network, or run modified software). <b>TURBOFLAKES</b> is not liable or responsible for any misbehaviour of the validators displayed in this website. It is only a decision support tool that can help you choose among a set of validators based on their traits and your personal preferences.
+					</Typography>
 				</Box>
 				<Divider light classes={{ light: classes.light }}/>
 					<Box className={classes.about}>
-						<Typography color="textSecondary">
-							<Link href="https://kusama.network/" target="_blank" rel="noreferrer" color="inherit">About Kusama Network</Link>
-						</Typography>
-						<Typography color="textSecondary">
-							<Link href="https://guide.kusama.network/docs/en/mirror-maintain-guides-how-to-nominate-kusama" target="_blank" rel="noreferrer" color="inherit">How to Nominate</Link>
-						</Typography>
+						<Box className={classes.aboutNetwork}>
+							<Typography color="textSecondary">
+								<Link href="https://polkadot.network/" target="_blank" rel="noreferrer" color="inherit">About Polkadot Network</Link>
+							</Typography>
+							<Typography color="textSecondary">
+								<Link href="https://wiki.polkadot.network/docs/en/maintain-guides-how-to-nominate-polkadot" target="_blank" rel="noreferrer" color="inherit">How to Nominate on Polkadot</Link>
+							</Typography>
+						</Box>
+						<Box className={classes.aboutNetwork}>
+							<Typography color="textSecondary">
+								<Link href="https://kusama.network/" target="_blank" rel="noreferrer" color="inherit">About Kusama Network</Link>
+							</Typography>
+							<Typography color="textSecondary">
+								<Link href="https://guide.kusama.network/docs/en/mirror-maintain-guides-how-to-nominate-kusama" target="_blank" rel="noreferrer" color="inherit">How to Nominate on Kusama</Link>
+							</Typography>
+						</Box>
 					</Box>
 				<Divider light classes={{ light: classes.light }}/>
 				<Box className={classes.bottom}>

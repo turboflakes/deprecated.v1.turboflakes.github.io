@@ -51,7 +51,7 @@ class PopoverWeightInfo extends Component {
           disableRestoreFocus
         >
           <Typography variant="body1" paragraph>
-            Weights are personal preferences. Weights define the level of importance an Individual's have towards a specific trait. Everyone can assign his/her own weights to each feature. An individual's weighting preferences are kept intact, they are not averaged or blended with other individual's weights.
+            Weights are personal preferences and define the level of importance towards a specific trait.
           </Typography>
           <Typography variant="body1" >
             The weight scale is defined in a 10-point ordinal scale. e.g:

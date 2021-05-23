@@ -17,10 +17,11 @@ const styles = (theme) => ({
 		background: theme.palette.text.secondary,
 	},
 	about: {
+		display: "flex",
+		alignItems: "center",
+	},
+	aboutNetwork: {
 		padding: theme.spacing(2),
-		// display: "flex",
-		// alignItems: "center",
-		// justifyContent: "space-between"
 	},
 	bottom: {
 		padding: theme.spacing(2),
