@@ -10,9 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import Divider from '@material-ui/core/Divider';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Fade from '@material-ui/core/Fade';
 import AccountItem from '../account_item'
 import AccountSearchDialog from '../account_search_dialog'
 import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
@@ -47,7 +44,7 @@ class Leaderboard extends Component {
 	}
 
 	render() {
-		const { classes, addresses, isFetching } = this.props;
+		const { classes, addresses } = this.props;
 
 		return (
 			<div className={classes.root}>
@@ -55,36 +52,22 @@ class Leaderboard extends Component {
 					<IconButton color="primary" size="small" onClick={this.handleKusama}>
 						<KusamaSVG className={classes.networkLogo} />
 					</IconButton>
-					<Typography variant="h6" color="textPrimary" className={classes.networkLabel} >
+					<Typography variant="h5" color="textPrimary" className={classes.networkLabel} >
 						Kusama
 					</Typography>
+					<IconButton color="primary" aria-label="search for a validator" className={classes.searchIcon}
+						onClick={() => this.setState({open: true})}>
+						<SearchIcon />
+					</IconButton>
 				</Box>
-				<Box className={classes.top}>
-					<Box>
-						<Typography variant="h4" color="textPrimary" >
-							LEADERBOARD
-						</Typography>						
-						<Typography variant="caption" gutterBottom>
-							The highest-ranked Validators
-						</Typography>
-					</Box>
-					<Box className={classes.icons}>
-						{isFetching ? 
-							<Fade in={isFetching} 
-									style={{
-											transitionDelay: !isFetching ? '10ms' : '0ms',
-										}}
-										unmountOnExit
-									>
-								<CircularProgress size={24} />
-							</Fade> : null}
-						<IconButton color="primary" aria-label="search for a validator" 
-							onClick={() => this.setState({open: true})}>
-							<SearchIcon />
-						</IconButton>
-					</Box>
+				<Box className={classes.title}>
+					<Typography variant="h4" color="textPrimary" >
+						LEADERBOARD
+					</Typography>						
+					<Typography variant="caption" gutterBottom>
+						The highest-ranked Validators
+					</Typography>
 				</Box>
-				<Divider light classes={{ light: classes.light }}/>
 				<List component="nav" className={classes.list}>
 					{addresses.map((address, index) => <AccountItem address={address} key={index} />)}
 				</List>

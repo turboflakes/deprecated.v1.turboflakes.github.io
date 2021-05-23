@@ -33,11 +33,11 @@ class AccountItem extends Component {
 		const isSelected = account.id === selected
 
 		return (
-      <ListItem button onClick={() => this.handleOnClick(address)} 
+      <ListItem classeName={classes.root} button onClick={() => this.handleOnClick(address)} 
         classes={{
           root: classes.rootItem,
           selected: classes.selectedItem
-        }}>
+        }} selected={isSelected} >
 				<ListItemAvatar>
           {isFetching ? 
             <Fade in={isFetching} 
@@ -53,8 +53,8 @@ class AccountItem extends Component {
               size={32}
               theme={'polkadot'} />}
         </ListItemAvatar>
-        <ListItemText primary={isFetching ? `` : (!!account.name ? nameDisplay(account.name) : stashDisplay(stash))} 
-          classes={isSelected ? { primary: classes.primaryItemText } : null}/>
+        <ListItemText primary={isFetching ? `` : (!!account.name ? nameDisplay(account.name) : stashDisplay(stash))}
+          classes={isSelected ? {primary: classes.selectedItemText} : null} />
       </ListItem>
     )
 	}

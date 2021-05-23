@@ -93,7 +93,7 @@ class Footer extends Component {
 				<Box className={classes.bottom}>
 					<Box>
 						<Typography color="textSecondary">
-						© 2021 Turboflakes - email us - 
+						© 2021 Turboflakes
 						</Typography>
 						{!!info.cache ? 
 							<Box>

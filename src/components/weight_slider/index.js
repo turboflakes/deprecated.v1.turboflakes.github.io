@@ -11,53 +11,6 @@ import PopoverInfo from '../popover_info'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-const marks = [
-	{
-		value: 0,
-    label: '0',
-	},
-  {
-		value: 1,
-    label: '1',
-	},
-	{
-		value: 2,
-    label: '2',
-	},
-	{
-		value: 3,
-    label: '3',
-	},
-	{
-		value: 4,
-    label: '4',
-	},
-	{
-		value: 5,
-    label: '5',
-	},
-	{
-		value: 6,
-    label: '6',
-	},
-	{
-		value: 7,
-    label: '7',
-	},
-	{
-		value: 8,
-    label: '8',
-	},
-	{
-		value: 9,
-    label: '9',
-	},
-	{
-		value: 10,
-    label: '10',
-	},
-]
-
 class WeightSlider extends Component {
 
 	constructor(props) {
@@ -99,6 +52,9 @@ class WeightSlider extends Component {
 		return (
 			<div className={classes.root}>
 				<Box className={classes.titleBox}>
+					<Typography variant="h6" className={classes.title}>
+					{title}
+					</Typography>
 					<PopoverInfo >
 						<Typography variant="h6">
 						{title}
@@ -113,25 +69,16 @@ class WeightSlider extends Component {
 						{resultDescription}
 						</Typography>
 					</PopoverInfo>
-					<Typography variant="subtitle1" className={classes.title}>
-					{title}
-					</Typography>
 				</Box>
 				<Typography id={title} variant="caption">
 					Weight given to {title} 
 				</Typography>
 				<Slider
-					aria-labelledby={title}
 					className={classes.slider}
 					defaultValue={this.state.value}
 					getAriaValueText={() => value}
-					valueLabelDisplay="off"
-					classes={{
-						markLabel: classes.markLabel,
-						markLabelActive: classes.markLabelActive
-					}}
+					valueLabelDisplay="on"
 					step={1}
-					marks={marks}
 					min={!!minValue ? minValue : 0}
 					max={!!maxValue ? maxValue : 10}
 					onChangeCommitted={this.handleOnChangeCommitted}

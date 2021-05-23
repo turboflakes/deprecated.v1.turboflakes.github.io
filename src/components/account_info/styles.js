@@ -4,6 +4,14 @@ const styles = (theme) => ({
 		backgroundColor: theme.palette.neutrals[300],
 		height: "100%"
 	},
+	fetching: {
+		height: "100%",
+		width: "100%",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: theme.palette.neutrals[300],
+	},
 	header:{
 		position: "relative",
 		width: "100%",
@@ -20,10 +28,11 @@ const styles = (theme) => ({
 	},
 	primaryItemText: {
     color: "#6F7072",
-		paddingRight: theme.spacing(1)
+		fontSize: "1rem"
   },
 	secondaryItemText: {
-    color: theme.palette.text.primary,
+    ...theme.typography.caption,
+		fontSize: "0.75rem",
   },
 	backIcon: {
 		position: "absolute",
@@ -32,6 +41,21 @@ const styles = (theme) => ({
 	graphIcon: {
 		position: "absolute",
 		marginRight: theme.spacing(1)
+	},
+	listItem:{
+		display: "flex",
+		alignItems: "center",
+		justifyContent: ""
+	},
+	inline: {
+    display: 'inline',
+  },
+	block: {
+    display: 'block',
+  },
+	polkadotJsLogo: {
+		width: 32,
+		height: 32
 	}
 })
 export default styles

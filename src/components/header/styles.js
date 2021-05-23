@@ -20,7 +20,10 @@ const styles = (theme) => ({
 		alignItems: "center"
 	},
 	moto: {
-		fontWeight: 300
+		fontWeight: 300,
 	},
+	motoSubtitle: {
+		textTransform: "uppercase"
+	}
 })
 export default styles

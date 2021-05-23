@@ -30,48 +30,46 @@ class ControlPanel extends Component {
 						Weights
 					</Typography> */}
 					<Typography variant="h6" gutterBottom>
-					..based on the <PopoverWeight /> assigned to the traits below ⬇
+					..based on the <PopoverWeight /> assigned to the traits below:
 					</Typography>
 					<WeightSlider index={0} 
 						title="Inclusion rate"
 						description="The inclusion rate is the percentage of eras out of the past 84 that the validator was in the active set." 
-						scaleDescription="The inclusion rate is normalized to a 100-point scale." 
 						resultDescription="A higher inclusion rate results on a higher score." />
 					<WeightSlider index={1}
 						title="Commission" 
 						description="The commission fee is a fee charged by a Validator for their service."
-						scaleDescription="The commission is normalized to a 100-point scale." 
 						resultDescription="A lower commission results on a higher score." />
 					<WeightSlider index={2} 
 						title="Average reward points"
 						description="The average reward points is calculated by the mean of reward points a Validator has collected in the last 84 eras. For every era, validators are paid proportionally to the amount of era points they have collected. Era points are reward points earned for payable actions while the Validator is in the active set."
-						scaleDescription="The average reward points is normalized to a 100-point scale. In the normalization the maximum value is the maximum of era points collected from a Validator in one of the last 84 eras. And the minimum value is the minimum of era points collected from a Validator in one of the last 84 eras."
+						scaleDescription="The average reward points is rescaled using the method min-max normalization. The maximum value is the maximum of era points collected from a Validator in one of the last 84 eras. And the minimum value is the minimum of era points collected from a Validator in one of the last 84 eras."
 						resultDescription="A higher average value results on a higher score." />
 					<WeightSlider index={3} 
 						title="Reward destination as 'Staked'"
 						description="The reward destination as 'Staked' is the stash account where the rewards from validating are sent, increasing the amount at stake."
-						scaleDescription="The expression reward destination as 'Staked' is normalized to a 100-point scale where 0 = Not 'Staked' and 100 = 'Staked'."
-						resultDescription="If the reward destination is 'Staked' results on a higher score." />
+						scaleDescription="The expression reward destination has a value of 0 if NOT 'Staked' or 1 if 'Staked'."
+						resultDescription="A reward destination as 'Staked' results on a higher score." />
 					<WeightSlider index={4} 
 						title="Currently Elected" 
 						description="The Validators that are currently elected are in the active set."
-						scaleDescription="The expression currently elected is normalized to a 100-point scale where 0 = Not Active and 100 = Active."
-						resultDescription="If active results on a higher score." />
+						scaleDescription="The expression currently elected has a value of 0 if NOT Active or 1 if Active."
+						resultDescription="A currently elected validator results on a higher score." />
 					<WeightSlider index={5} 
 						title="Own self-stake" 
 						description="The own self-stake are the amount of funds a Validator has bonded to their stash account. These funds are put at stake for the security of the network and can be slashed." 
-						scaleDescription="The own self-stake amount is normalized to a 100-point scale. In the normalization the maximum value is the maximum self-stake bonded from all Validators currently available. And the minimum value is the minimum self-stake currently bonded from all Validators currently available."
+						scaleDescription="The own self-stake amount is rescaled using the method min-max normalization. The maximum value is the maximum self-stake bonded from all Validators currently available. And the minimum value is the minimum self-stake currently bonded from all Validators currently available."
 						resultDescription="A higher own self-stake amount results on a higher score." />
 					<WeightSlider index={6} 
 						title="Identity judgements" 
 						description="Identity is a naming system that allows participants to add personal information to their on-chain account and subsequently ask for verification of this information by registrars. When a registrar provides judgement, it can be one of the following [Unknown, Reasonable, Known Good, Out of Date, Low Quality, Erroneous]. The identity rate is based in the amount of judgements a Validator has with acceptable values e.g. 'Reasonable' or 'Known Good'." 
-						scaleDescription="The number of acceptable judgements is normalized to a 100-point scale. In the normalization the maximum value is the maximum number of acceptable judgements from all Validators currently available. And the minimum value is the minimum number of acceptable judgements from all Validators currently available." 
+						scaleDescription="The number of acceptable judgements is rescaled using the method min-max normalization. The maximum value is the maximum number of acceptable judgements from all Validators currently available. And the minimum value is the minimum number of acceptable judgements from all Validators currently available." 
 						resultDescription="A higher number of acceptable judgements results on a higher score." />
 					<WeightSlider index={7} 
 						title="Sub-accounts" 
 						description="Validators can link accounts by creating sub-accounts, each with its own identity, under a primary account. The number of sub-accounts is the total number of the Validator sub-accounts. Or in case of a child Validator, the sub-accounts is the parent total sub-accounts." 
-						scaleDescription="The number of sub-accounts is normalized to a 100-point scale. In the normalization the maximum value is the maximum number of sub-accounts from all Validators currently available. And the minimum value is the minimum number of sub-accounts from all Validators currently available."
-						resultDescription="Lower number of sub-accounts results on a higher score." />
+						scaleDescription="The number of sub-accounts is rescaled using the method min-max normalization. The maximum value is the maximum number of sub-accounts from all Validators currently available. And the minimum value is the minimum number of sub-accounts from all Validators currently available."
+						resultDescription="A lower number of sub-accounts results on a higher score." />
 				</Box>
 			</div>
 		)

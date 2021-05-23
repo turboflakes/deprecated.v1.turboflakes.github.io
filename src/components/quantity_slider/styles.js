@@ -1,12 +1,10 @@
 const styles = (theme) => ({
 	root: {
-		margin: `0 ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px`
+		marginBottom: theme.spacing(2)
 	},
-	markLabel: {
-		color: theme.palette.neutrals[400]
-	},
-	markLabelActive: {
-		color: theme.palette.text.primary
+	slider: {
+		maxWidth: "96%",
+		marginLeft: theme.spacing(1)
 	}
 })
 export default styles

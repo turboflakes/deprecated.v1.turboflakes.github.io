@@ -37,8 +37,8 @@ class Header extends Component {
                 <Typography variant="h5" className={classes.moto} align="center">
                 Helps you discover Validators for your Nominator
                 </Typography>
-                <Typography variant="h6" className={classes.moto} align="center">
-                Supporting Now <b>{NETWORK.toUpperCase()}</b> network
+                <Typography variant="subtitle1" className={classes.motoSubtitle} align="center">
+                Supporting now <b>{NETWORK}</b> network
                 </Typography>
               </Grid>
             </Grid>

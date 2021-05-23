@@ -12,27 +12,27 @@ import styles from './styles'
 const marks = [
   {
     value: 8,
-    label: '8',
+    label: '',
   },
   {
     value: 16,
-    label: '16',
+    label: '',
   },
   {
     value: 24,
-    label: '24',
+    label: '',
   },
   {
     value: 32,
-    label: '32',
+    label: '',
   },
 	{
     value: 64,
-    label: '64',
+    label: '',
   },
 	{
     value: 128,
-    label: '128',
+    label: '',
   }
 ];
 
@@ -78,18 +78,14 @@ class QuantitySlider extends Component {
 		return (
 			<div className={classes.root}>
 				<Typography variant="h6" id="discrete-slider" gutterBottom>
-					Display the Top {value} Validators..
+				Display the Top {value} Validators..
 				</Typography>
 				<Slider
+					className={classes.slider}
 					defaultValue={this.state.value}
 					getAriaValueText={() => value}
-					aria-labelledby="discrete-slider"
-					valueLabelDisplay="auto"
 					color="secondary"
-					classes={{
-						markLabelActive: classes.markLabelActive,
-						markLabel: classes.markLabel
-					}}
+					valueLabelDisplay="on"
 					step={null}
 					min={8}
 					max={128}

@@ -35,6 +35,8 @@ const styles = (theme) => ({
 		'&:hover': {
 			backgroundColor: theme.palette.text.secondary,
 		},
+		width: 32,
+		height: 32
 	},
 	icon: {
 		margin: `0 ${theme.spacing(1)}px`,

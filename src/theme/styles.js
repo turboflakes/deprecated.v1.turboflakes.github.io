@@ -165,5 +165,50 @@ export default createMuiTheme({
         }
       },
     },
+    MuiSlider: {
+      root: {
+        height: 8,
+      },
+      mark: {
+        display: "none"
+      },
+      markActive: {
+        backgroundColor: "inherit"
+      },
+      markLabel: {
+        color: "#DFF1FA"
+      },
+      markLabelActive: {
+        color: "#021220"
+      },
+      thumb: {
+        height: 24,
+        width: 24,
+        backgroundColor: '#fff',
+        border: '2px solid currentColor',
+        marginTop: -8,
+        marginLeft: -12,
+        // '&:focus, &:hover, &$active': {
+        //   boxShadow: 'inherit',
+        // },
+      },
+      track: {
+        height: 8,
+        borderRadius: 4,
+      },
+      rail: {
+        height: 8,
+        borderRadius: 4,
+      },
+      valueLabel: {
+        left: 'calc(-50% + 4px)',
+        top: 30,
+        fontSize: "1rem",
+        '& *': {
+          background: 'transparent',
+          color: '#000',
+        },
+      },
+    }
   }
 });
