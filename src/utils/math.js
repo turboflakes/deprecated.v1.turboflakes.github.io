@@ -11,7 +11,7 @@ export const parseInt = (x) => {
 export const parseArray = (w) => {
     try {
         const a = w.split(",")
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < WEIGHTS.length; i++) {
             if (!!a[i]) {
                 const x = parseInt(a[i])
                 a[i] = x > 10 ? 10 : x
@@ -19,7 +19,7 @@ export const parseArray = (w) => {
                 a.push(0)
             }
         }
-        return a.slice(0, 8)
+        return a.slice(0, WEIGHTS.length)
     } catch (e) {
         return WEIGHTS
     }
