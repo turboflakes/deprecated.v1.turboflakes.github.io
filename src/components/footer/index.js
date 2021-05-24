@@ -124,7 +124,7 @@ class Footer extends Component {
 							</Typography>
 						</Box>
 						{!!info.cache ? 
-							<Box>
+							<Box className={classes.infoBox}>
 								<Typography variant="caption" className={classes.info}>
 								app v{process.env.REACT_APP_VERSION}
 								</Typography>

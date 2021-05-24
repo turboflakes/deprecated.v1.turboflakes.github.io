@@ -63,8 +63,12 @@ const styles = (theme) => ({
 	icon: {
 		margin: `0 ${theme.spacing(1)}px`,
 	},
+	infoBox: {
+		marginLeft: theme.spacing(3)
+	},
 	info: {
-		display: "block"
+		display: "block",
+		color: theme.palette.text.secondary,
 	}
 })
 export default styles
