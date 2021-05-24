@@ -72,9 +72,9 @@ class AccountInfo extends Component {
   }
 
  	render() {
-		const { classes, account, weights, isFetchingRank } = this.props;
+		const { classes, account, weights, info, isFetchingRank } = this.props;
 
-    if (!account.id || !account.scores || !account.rank || !account.limits) {
+    if (!account.id || !account.scores || !account.rank || !account.limits || !info.cache ) {
       return (
         <div className={classes.fetching}>
           <Fade in={isFetchingRank} 
@@ -136,6 +136,7 @@ class AccountInfo extends Component {
                   >
                     {`total score: ${displayScore(account.scores)} / ${displayMaxScore(weights)}`}
                   </Typography>
+                  {`total validators: ${info.cache.validators}`}
                 </React.Fragment>
               }
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
@@ -431,10 +432,12 @@ const mapStateToProps = (state, ownProps) => {
   const address = state.leaderboard.selected
   const account = selectors.getObjectByEntityAndId(state, 'validator', address)
   const weights = state.leaderboard.weights
+  const info = selectors.getObjectByEntityAndId(state, 'api', '_')
   return {
     address,
     weights,
 		account,
+    info,
     isFetching: !!state.fetchers.async,
     isFetchingRank: !!state.fetchers.ids[`/validator/${address}/rank`],
   }
