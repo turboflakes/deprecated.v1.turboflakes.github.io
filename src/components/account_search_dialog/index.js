@@ -11,8 +11,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Fade from '@material-ui/core/Fade';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import ArrowForward from '@material-ui/icons/ArrowForward';
 import Container from '@material-ui/core/Container';
 import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
@@ -74,20 +74,19 @@ class AccountSearchDialog extends Component {
                   variant="outlined"
                   fullWidth
                   autoFocus
+                  disabled={isFetching}
                   value={this.state.address}
                   onChange={this.handleChange}
                   error={!isValidAddress(this.state.address) && !!this.state.address}
                   InputProps={{
                     endAdornment: (
-                      isFetching ? <Fade
-                          in={isFetching}
-                          style={{
-                            transitionDelay: !isFetching ? '10ms' : '0ms',
-                          }}
-                          unmountOnExit
-                        >
-                          <CircularProgress size={24} />
-                        </Fade> : null
+                      <InputAdornment position="end">
+                        <IconButton onClick={this.handleSubmit} classes={{
+                          root: classes.iconRoot
+                          }}>
+                          <ArrowForward />
+                        </IconButton>
+                      </InputAdornment>
                     ),
                   }}
               />

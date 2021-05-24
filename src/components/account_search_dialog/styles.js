@@ -25,6 +25,9 @@ const styles = (theme) => ({
   },
   notchedOutline: {
     borderColor: "#FFF", // neutrals[300]
+  },
+  iconRoot: {
+    color: theme.palette.text.secondary,
   }
 })
 export default styles
