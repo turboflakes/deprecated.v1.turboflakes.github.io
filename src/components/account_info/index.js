@@ -72,9 +72,9 @@ class AccountInfo extends Component {
   }
 
  	render() {
-		const { classes, account, weights, info, isFetchingRank } = this.props;
+		const { classes, account, weights, isFetchingRank } = this.props;
 
-    if (!account.id || !account.scores || !account.rank || !account.limits || !info.cache ) {
+    if (!account.id || !account.scores || !account.rank || !account.limits) {
       return (
         <div className={classes.fetching}>
           <Fade in={isFetchingRank} 
@@ -136,7 +136,6 @@ class AccountInfo extends Component {
                   >
                     {`total score: ${displayScore(account.scores)} / ${displayMaxScore(weights)}`}
                   </Typography>
-                  {`total validators: ${info.cache.validators}`}
                 </React.Fragment>
               }
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
@@ -201,6 +200,34 @@ class AccountInfo extends Component {
             <ListItemText 
               primary={
                 <React.Fragment>
+                  Nominators: 
+                  <Typography
+                    component="span"
+                    variant="body1"
+                    className={classes.inline}
+                    color="textPrimary"
+                  >
+                    {` ${account.nominators}`}
+                  </Typography>
+                </React.Fragment>} 
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    variant="caption"
+                    className={classes.block}
+                    color="textPrimary"
+                  >
+                    {`score: ${scoreFn(2)} / ${weightsFn(2)}`}
+                  </Typography>
+                  {`min: 0 max: 256`}
+                </React.Fragment>
+              }
+              classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <ListItemText 
+              primary={
+                <React.Fragment>
                   Average reward points:
                   <Typography
                     component="span"
@@ -218,7 +245,7 @@ class AccountInfo extends Component {
                     className={classes.block}
                     color="textPrimary"
                   >
-                    {`score: ${scoreFn(2)} / ${weightsFn(2)}`}
+                    {`score: ${scoreFn(3)} / ${weightsFn(3)}`}
                   </Typography>
                   {`min: ${round4(account.limits.min_avg_points_limit)} max: ${round4(account.limits.max_avg_points_limit)}`}
                 </React.Fragment>}
@@ -245,7 +272,7 @@ class AccountInfo extends Component {
                     className={classes.block}
                     color="textPrimary"
                   >
-                    {`score: ${scoreFn(3)} / ${weightsFn(3)}`}
+                    {`score: ${scoreFn(4)} / ${weightsFn(4)}`}
                   </Typography>
                   {`min: 0 max: 1`}
                 </React.Fragment>
@@ -273,7 +300,7 @@ class AccountInfo extends Component {
                     className={classes.block}
                     color="textPrimary"
                   >
-                    {`score: ${scoreFn(4)} / ${weightsFn(4)}`}
+                    {`score: ${scoreFn(5)} / ${weightsFn(5)}`}
                   </Typography>
                   {`min: 0 max: 1`}
                 </React.Fragment>
@@ -301,9 +328,37 @@ class AccountInfo extends Component {
                     className={classes.block}
                     color="textPrimary"
                   >
-                    {`score: ${scoreFn(5)} / ${weightsFn(5)}`}
+                    {`score: ${scoreFn(6)} / ${weightsFn(6)}`}
                   </Typography>
                   {`min: ${stakeDisplay(account.limits.min_own_stake_limit)} max: ${stakeDisplay(account.limits.max_own_stake_limit)}`}
+                </React.Fragment>
+              }
+              classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <ListItemText 
+              primary={
+                <React.Fragment>
+                  Total stake:
+                  <Typography
+                    component="span"
+                    variant="body1"
+                    className={classes.inline}
+                    color="textPrimary"
+                  >
+                    {` ${stakeDisplay(account.own_stake + account.nominators_stake)}`}
+                  </Typography>
+                </React.Fragment>} 
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    variant="caption"
+                    className={classes.block}
+                    color="textPrimary"
+                  >
+                    {`score: ${scoreFn(7)} / ${weightsFn(7)}`}
+                  </Typography>
+                  {`min: ${stakeDisplay(account.limits.min_total_stake_limit)} max: ${stakeDisplay(account.limits.max_total_stake_limit)}`}
                 </React.Fragment>
               }
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
@@ -329,7 +384,7 @@ class AccountInfo extends Component {
                     className={classes.block}
                     color="textPrimary"
                   >
-                    {`score: ${scoreFn(6)} / ${weightsFn(6)}`}
+                    {`score: ${scoreFn(8)} / ${weightsFn(8)}`}
                   </Typography>
                   {`min: ${account.limits.min_judgements_limit} max: ${account.limits.max_judgements_limit}`}
                 </React.Fragment>
@@ -357,7 +412,7 @@ class AccountInfo extends Component {
                     className={classes.block}
                     color="textPrimary"
                   >
-                    {`score: ${scoreFn(7)} / ${weightsFn(7)}`}
+                    {`score: ${scoreFn(9)} / ${weightsFn(9)}`}
                   </Typography>
                   {`min: ${account.limits.min_sub_accounts_limit} max: ${account.limits.max_sub_accounts_limit}`}
                 </React.Fragment>
@@ -366,53 +421,6 @@ class AccountInfo extends Component {
           </ListItem>
         </List>
         <Divider light classes={{ light: classes.light }}/>
-        <List dense>
-          <ListItem className={classes.listItem}>
-            <ListItemText primary={
-              <React.Fragment>
-                Controller:
-                <Typography
-                  component="span"
-                  variant="body1"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                  {` ${stashDisplay(networkDisplay(account.controller))}`}
-                </Typography>
-              </React.Fragment>}
-              classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
-          </ListItem>
-          <ListItem className={classes.listItem}>
-            <ListItemText primary={
-              <React.Fragment>
-                Others stake:
-                <Typography
-                  component="span"
-                  variant="body1"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                  {` ${stakeDisplay(account.nominators_stake)}`}
-                </Typography>
-              </React.Fragment>}
-              classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
-          </ListItem>
-          <ListItem className={classes.listItem}>
-            <ListItemText primary={
-              <React.Fragment>
-                Nominators:
-                <Typography
-                  component="span"
-                  variant="body1"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                  {` ${account.nominators}`}
-                </Typography>
-              </React.Fragment>}
-              classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
-          </ListItem>
-        </List>
         <Box className={classes.footer}>
           <IconButton aria-label="polkadot{.js}" className={classes.graphIcon} 
             onClick={() => this.handleClickExternalGraph(stash)}>
@@ -432,12 +440,10 @@ const mapStateToProps = (state, ownProps) => {
   const address = state.leaderboard.selected
   const account = selectors.getObjectByEntityAndId(state, 'validator', address)
   const weights = state.leaderboard.weights
-  const info = selectors.getObjectByEntityAndId(state, 'api', '_')
   return {
     address,
     weights,
 		account,
-    info,
     isFetching: !!state.fetchers.async,
     isFetchingRank: !!state.fetchers.ids[`/validator/${address}/rank`],
   }

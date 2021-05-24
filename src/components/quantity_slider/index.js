@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { selectors } from '../../selectors'
 import { changeQuantity } from '../../actions/leaderboard'
 import { parseInt } from '../../utils/math'
 import Typography from '@material-ui/core/Typography';
@@ -74,11 +75,11 @@ class QuantitySlider extends Component {
 	}
 
  	render() {
-		const { classes, value } = this.props;
+		const { classes, value, info } = this.props;
 		return (
 			<div className={classes.root}>
 				<Typography variant="h6" id="discrete-slider" gutterBottom>
-				Display the Top {value} Validators..
+				Display the Top {value} {!!info.cache ? `out of ${info.cache.validators} ` : ``}Validators..
 				</Typography>
 				<Slider
 					className={classes.slider}
@@ -103,6 +104,7 @@ QuantitySlider.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
+		info: selectors.getObjectByEntityAndId(state, 'api', '_'),
 		value: state.leaderboard.quantity,
 		isFetching: !!state.fetchers.async,
   }
