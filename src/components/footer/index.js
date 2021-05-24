@@ -86,7 +86,7 @@ class Footer extends Component {
 				<Divider light classes={{ light: classes.light }}/>
 				<Box className={classes.container}>
 					<Typography variant="body2" color="textSecondary">
-						DISCLAIMER<br />It is very important to do your own research before nominating a validator since there is a risk of <Link href="https://wiki.polkadot.network/docs/en/learn-staking#slashing" target="_blank" rel="noreferrer" color="inherit"><u>slashing</u></Link>. TURBOFLAKES does not control, take responsibility for, or assume liability for any validator misbehaviour displayed on Our Website. TURBOFLAKES only provides a decision support tool that can help you choose among a set of validators based on their traits and your personal preferences.
+						DISCLAIMER<br />It is very important to do your own research before nominating a validator since there is a risk of <Link href="https://wiki.polkadot.network/docs/en/learn-staking#slashing" target="_blank" rel="noreferrer" color="inherit"><u>slashing</u></Link>. TURBOFLAKES does not control, take responsibility for, or assume liability for any validator misbehaviour displayed on this Website. TURBOFLAKES only provides a decision support tool that can help you choose among a set of validators based on their traits and your personal preferences.
 					</Typography>
 				</Box>
 				<Divider light classes={{ light: classes.light }}/>
