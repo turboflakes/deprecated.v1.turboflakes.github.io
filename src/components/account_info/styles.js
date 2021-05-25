@@ -8,9 +8,9 @@ const styles = (theme) => ({
 		height: "100%",
 		width: "100%",
 		display: "flex",
-		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: theme.palette.neutrals[300],
+		padding: theme.spacing(4)
 	},
 	header:{
 		position: "relative",
