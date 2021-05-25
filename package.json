@@ -1,6 +1,6 @@
 {
   "name": "turboflakes-frontend",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
