@@ -16,7 +16,7 @@ class WeightSlider extends Component {
 	constructor(props) {
 		super(props);
 
-		const query = new URLSearchParams(props.location.search)
+		let query = new URLSearchParams(props.location.search)
 		let weightValues = parseArray(query.get("w"))
 		this.changeParams(query, weightValues)
 		this.state = { value: weightValues[props.index] }
@@ -40,7 +40,7 @@ class WeightSlider extends Component {
 	
 	handleOnChangeCommitted = (_event, value) => {
 		const {index, location} = this.props
-		const query = new URLSearchParams(location.search)
+		let query = new URLSearchParams(location.search)
 		let weightValues = parseArray(query.get("w"))
 		weightValues[index] = value
 		this.changeParams(query, weightValues)
@@ -106,5 +106,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { changeWeight })(withStyles(styles)(withRouter(WeightSlider)));
+export default connect(mapStateToProps, { changeWeight })(withRouter(withStyles(styles)(WeightSlider)));
   

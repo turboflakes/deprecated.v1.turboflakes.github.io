@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { get } from '../../actions/validator'
 import { selectAddress } from '../../actions/leaderboard'
 import { networkDisplay, stashDisplay, nameDisplay } from '../../utils/display'
@@ -15,17 +16,29 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 class AccountItem extends Component {
-	
-	componentDidMount(){
-		const {address} = this.props
+
+  componentDidMount(){
+    const {address} = this.props
 		if (address) {
 			this.props.get(address)
 		}
   }
 
+  changeParams = (query, value) => {
+		const {history} = this.props
+		query.set("a", value)
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+
   handleOnClick = (address) => {
+    const {location} = this.props
+		let query = new URLSearchParams(location.search)
+		this.changeParams(query, address)
     this.props.selectAddress(address)
-  }
+}
 
  	render() {
 		const { classes, address, account, selected, isFetching } = this.props;
@@ -74,5 +87,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { get, selectAddress })(withStyles(styles)(AccountItem));
+export default connect(mapStateToProps, { get, selectAddress })(withRouter(withStyles(styles)(AccountItem)));
   

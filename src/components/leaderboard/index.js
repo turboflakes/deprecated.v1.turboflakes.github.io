@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { query } from '../../actions/validator'
+import { selectAddress } from '../../actions/leaderboard'
 import { add } from '../../actions/error'
 import { selectors } from '../../selectors'
 import serialize from '../../utils/serialize'
+import { isValidAddress } from '../../utils/crypto'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -18,14 +21,31 @@ import styles from './styles'
 
 class Leaderboard extends Component {
 
-	state = {
-		open: false
+	constructor(props) {
+		super(props);
+
+		let query = new URLSearchParams(props.location.search)
+		let address = query.get("a")
+		if (isValidAddress(address)) {
+			this.state = {
+				address,
+				open: false
+			}
+		} else {
+			query.delete("a")
+			this.state = {
+				open: false
+			}
+		}
 	}
 
 	componentDidMount() {
 		const {weights, quantity} = this.props
 		if (!!weights && !!quantity) {
 			this.props.query({q: "Board", w: weights, n: quantity})
+		}
+		if (this.state.address) {
+			this.props.selectAddress(this.state.address)
 		}
 	}
 
@@ -96,5 +116,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { query, add })(withStyles(styles)(Leaderboard));
+export default connect(mapStateToProps, { query, add, selectAddress })(withRouter(withStyles(styles)(Leaderboard)));
   

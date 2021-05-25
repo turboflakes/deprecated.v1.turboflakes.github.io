@@ -44,7 +44,7 @@ class QuantitySlider extends Component {
 	constructor(props) {
 		super(props);
 
-		const query = new URLSearchParams(props.location.search)
+		let query = new URLSearchParams(props.location.search)
 		let quantity = parseInt(query.get("n"))
 		quantity = quantity > 0 && quantity <= MAX_QUANTITY ? quantity : 16
 		this.changeParams(query, quantity)
@@ -69,7 +69,7 @@ class QuantitySlider extends Component {
 	
 	handleOnChangeCommitted = (_event, value) => {
 		const {location} = this.props
-		const query = new URLSearchParams(location.search)
+		let query = new URLSearchParams(location.search)
 		this.changeParams(query, value)
 		this.props.changeQuantity(value)
 	}
@@ -110,5 +110,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { changeQuantity })(withStyles(styles)(withRouter(QuantitySlider)));
+export default connect(mapStateToProps, { changeQuantity })(withRouter(withStyles(styles)(QuantitySlider)));
   

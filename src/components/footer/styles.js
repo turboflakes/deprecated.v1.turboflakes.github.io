@@ -5,6 +5,9 @@ const styles = (theme) => ({
 	container: {
     padding: theme.spacing(4)
   },
+	list: {
+		maxWidth: 600
+	},
 	trademark: {
 		display: "flex",
 		alignItems: "center"
@@ -25,6 +28,9 @@ const styles = (theme) => ({
 	light:{
 		background: theme.palette.text.secondary,
 	},
+	iconRoot: {
+    color: theme.palette.text.secondary,
+  },
 	about: {
 		display: "flex",
 		alignItems: "center",

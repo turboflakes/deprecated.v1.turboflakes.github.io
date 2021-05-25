@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { selectAddress } from '../../actions/leaderboard'
 import { selectors } from '../../selectors'
 import { isValidAddress, addressSS58 } from '../../utils/crypto'
@@ -37,10 +38,22 @@ class AccountSearchDialog extends Component {
     this.setState({ address: event.target.value });
   };
 
+  changeParams = (query, value) => {
+		const {history} = this.props
+		query.set("a", value)
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+
   handleSubmit = (e) => {
     e.preventDefault()
     const {address} = this.state
     if (isValidAddress(address)) {
+      const {location} = this.props
+		  let query = new URLSearchParams(location.search)
+		  this.changeParams(query, address)
       this.props.selectAddress(addressSS58(address))
       this.handleClose()
     }
@@ -81,9 +94,8 @@ class AccountSearchDialog extends Component {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <IconButton onClick={this.handleSubmit} classes={{
-                          root: classes.iconRoot
-                          }}>
+                        <IconButton onClick={this.handleSubmit} color="primary" 
+                          disabled={!isValidAddress(this.state.address) && !!this.state.address}>
                           <ArrowForward />
                         </IconButton>
                       </InputAdornment>
@@ -112,4 +124,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {selectAddress})(withWidth()(withStyles(styles)(AccountSearchDialog)));
+export default connect(mapStateToProps, {selectAddress})(withWidth()(withRouter(withStyles(styles)(AccountSearchDialog))));

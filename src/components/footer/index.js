@@ -1,19 +1,24 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { selectors } from '../../selectors'
+import { addressSS58 } from '../../utils/crypto'
+import { selectAddress } from '../../actions/leaderboard'
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import Identicon from '@polkadot/react-identicon';
 import IconButton from '@material-ui/core/IconButton';
 import EmailIcon from '@material-ui/icons/EmailRounded';
+import SearchIcon from '@material-ui/icons/Search';
 import { ReactComponent as TurboflakesSVG } from '../../assets/turboflakes_white.svg';
 import { ReactComponent as TwitterSVG } from '../../assets/twitter.svg';
 import { ReactComponent as GithubSVG } from '../../assets/github.svg';
@@ -38,6 +43,22 @@ class Footer extends Component {
 	handleEmail = () => {
 		window.location.href = "mailto:support@turboflakes.com"
 	}
+
+	changeParams = (query, value) => {
+		const {history} = this.props
+		query.set("a", value)
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+
+	handleSearch = () => {
+    const {location} = this.props
+		let query = new URLSearchParams(location.search)
+		this.changeParams(query, kusama)
+		this.props.selectAddress(addressSS58(kusama))
+  }
 
  	render() {
 		const { classes, info, style } = this.props;
@@ -64,6 +85,12 @@ class Footer extends Component {
 									primary: classes.primary,
 									secondary: classes.secondary
 								}}/>
+							<ListItemSecondaryAction>
+								<IconButton edge="end" aria-label="search" onClick={this.handleSearch} 
+									classes={{root: classes.iconRoot}}>
+									<SearchIcon />
+								</IconButton>
+							</ListItemSecondaryAction>
 						</ListItem>
 						<ListItem key={polkadot} >
 							<ListItemAvatar>
@@ -161,5 +188,5 @@ const mapStateToProps = (state, ownProps) => ({
 	info: selectors.getObjectByEntityAndId(state, 'api', '_')
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(Footer));
+export default connect(mapStateToProps, {selectAddress})(withRouter(withStyles(styles)(Footer)));
   
