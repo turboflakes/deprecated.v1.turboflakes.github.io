@@ -33,5 +33,13 @@ const styles = (theme) => ({
 		padding: `0 ${theme.spacing(2)}px`,
 		marginBottom: theme.spacing(1)
 	},
+	subTitle: {
+		display: "flex",
+		justifyContent: "space-between"
+	},
+	rootIconClasses: {
+		color: theme.palette.text.primary,
+		width: 10
+	}
 })
 export default styles

@@ -33,7 +33,8 @@ class PopoverInfo extends Component {
           aria-describedby={open ? 'popover-info-pep' : undefined} 
           onClick={this.handleClick}
           classes={{
-            root: classes.iconRoot
+            root: classes.iconRoot,
+            ...this.props.iconClasses
           }}>
           <InfoIcon />
         </IconButton>
@@ -42,6 +43,7 @@ class PopoverInfo extends Component {
           className={classes.popover}
           classes={{
             paper: classes.paper,
+            ...this.props.popoverClasses
           }}
           open={open}
           anchorEl={anchorEl}
@@ -64,7 +66,8 @@ class PopoverInfo extends Component {
 }
 
 PopoverInfo.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  popoverClasses: PropTypes.object
 };
 
 export default withWidth()(withStyles(styles)(PopoverInfo));

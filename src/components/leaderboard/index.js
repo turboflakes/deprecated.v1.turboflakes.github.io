@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 import { query } from '../../actions/validator'
 import { selectAddress } from '../../actions/leaderboard'
 import { add } from '../../actions/error'
@@ -64,7 +65,7 @@ class Leaderboard extends Component {
 	}
 
 	render() {
-		const { classes, addresses } = this.props;
+		const { classes, addresses, info } = this.props;
 
 		return (
 			<div className={classes.root}>
@@ -83,10 +84,16 @@ class Leaderboard extends Component {
 				<Box className={classes.title}>
 					<Typography variant="h4" color="textPrimary" >
 						LEADERBOARD
-					</Typography>						
-					<Typography variant="caption" gutterBottom>
-						The highest-ranked Validators
 					</Typography>
+					<Box className={classes.subTitle}>
+						<Typography variant="caption" gutterBottom>
+							The highest-ranked Validators
+						</Typography>
+						{!!info.cache ? 
+							<Typography variant="caption" align="right">
+							last sync: {moment.unix(info.cache.syncing_finished_at).format('lll')}
+							</Typography> : null}
+					</Box>						
 				</Box>
 				<List component="nav" className={classes.list}>
 					{addresses.map((address, index) => <AccountItem address={address} key={index} />)}
@@ -108,10 +115,12 @@ const mapStateToProps = (state, ownProps) => {
 	const quantity = state.leaderboard.quantity
 	const query = serialize({q: "Board", w: weights, n: quantity})
 	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
+	const info = selectors.getObjectByEntityAndId(state, 'api', '_')
 	return {
 		addresses,
 		weights,
 		quantity,
+		info,
     isFetching: !!state.fetchers.async,
   }
 }

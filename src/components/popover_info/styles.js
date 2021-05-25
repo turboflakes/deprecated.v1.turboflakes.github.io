@@ -10,7 +10,8 @@ const styles = theme => ({
     padding: theme.spacing(1),
   },
   iconRoot: {
-    color: theme.palette.primary.light
+    color: theme.palette.primary.light,
+    padding: theme.spacing(1)
   }
 })
 export default styles
