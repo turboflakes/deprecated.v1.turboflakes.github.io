@@ -35,7 +35,8 @@ const styles = (theme) => ({
 	},
 	subTitle: {
 		display: "flex",
-		justifyContent: "space-between"
+		justifyContent: "space-between",
+		flexWrap: "wrap"
 	},
 	rootIconClasses: {
 		color: theme.palette.text.primary,

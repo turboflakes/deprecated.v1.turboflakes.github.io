@@ -91,7 +91,7 @@ class Leaderboard extends Component {
 						</Typography>
 						{!!info.cache ? 
 							<Typography variant="caption" align="right">
-							last sync: {moment.unix(info.cache.syncing_finished_at).format('lll')}
+							Last sync: {moment.unix(info.cache.syncing_finished_at).format('lll')}
 							</Typography> : null}
 					</Box>						
 				</Box>
