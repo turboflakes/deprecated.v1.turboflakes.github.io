@@ -247,7 +247,7 @@ class AccountInfo extends Component {
                   >
                     {`score: ${scoreFn(3)} / ${weightsFn(3)}`}
                   </Typography>
-                  {`min: ${round4(account.limits.min_avg_points_limit)} max: ${round4(account.limits.max_avg_points_limit)}`}
+                  {`avg min: ${round4(account.limits.min_avg_points_limit)} avg max: ${round4(account.limits.max_avg_points_limit)}`}
                 </React.Fragment>}
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
           </ListItem>
@@ -386,7 +386,7 @@ class AccountInfo extends Component {
                   >
                     {`score: ${scoreFn(8)} / ${weightsFn(8)}`}
                   </Typography>
-                  {`min: ${account.limits.min_judgements_limit} max: ${account.limits.max_judgements_limit}`}
+                  {`min: ${Math.abs(round4(account.limits.min_judgements_limit))} max: ${round4(account.limits.max_judgements_limit)}`}
                 </React.Fragment>
               }
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
@@ -414,7 +414,7 @@ class AccountInfo extends Component {
                   >
                     {`score: ${scoreFn(9)} / ${weightsFn(9)}`}
                   </Typography>
-                  {`min: ${account.limits.min_sub_accounts_limit} max: ${account.limits.max_sub_accounts_limit}`}
+                  {`min: ${Math.abs(round4(account.limits.min_sub_accounts_limit))} max: ${round4(account.limits.max_sub_accounts_limit)}`}
                 </React.Fragment>
               }
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
