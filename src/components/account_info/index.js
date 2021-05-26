@@ -72,14 +72,14 @@ class AccountInfo extends Component {
   }
 
  	render() {
-		const { classes, account, weights, isFetching, isFetchingRank } = this.props;
+		const { classes, account, weights, isFetching } = this.props;
 
-    if (isFetching || isFetchingRank || !account.id || !account.scores || !account.rank || !account.limits) {
+    if (isFetching || !account.id || !account.scores || !account.rank || !account.limits) {
       return (
         <div className={classes.fetching}>
-          <Fade in={isFetchingRank} 
+          <Fade in={isFetching} 
             style={{
-                transitionDelay: !isFetchingRank ? '10ms' : '0ms',
+                transitionDelay: !isFetching ? '10ms' : '0ms',
               }}
               unmountOnExit
             >
@@ -443,9 +443,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     address,
     weights,
-		account,
-    isFetching: !!state.fetchers.async,
-    isFetchingRank: !!state.fetchers.ids[`/validator/${address}/rank`] || account.status === "NotReady",
+    account,
+    isFetching: !!state.fetchers.ids[`/validator/${address}`] || !!state.fetchers.ids[`/validator/${address}/rank`] || account.status === "NotReady",
   }
 }
 
