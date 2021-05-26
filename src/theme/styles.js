@@ -209,6 +209,13 @@ export default createMuiTheme({
           color: '#000',
         },
       },
+    },
+    MuiPopover: {
+      paper: {
+        padding: 16,
+        backgroundColor: "#021220",
+        color: "#FFFFFF"
+      }
     }
   }
 });

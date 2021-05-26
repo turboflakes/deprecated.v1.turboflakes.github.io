@@ -41,6 +41,7 @@ class PopoverInfo extends Component {
         <Popover
           id={"popover-info-pep"}
           className={classes.popover}
+          elevation={0}
           classes={{
             paper: classes.paper,
             ...this.props.popoverClasses

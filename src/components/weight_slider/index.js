@@ -56,16 +56,16 @@ class WeightSlider extends Component {
 					{title}
 					</Typography>
 					<PopoverInfo >
-						<Typography variant="h6">
+						{/* <Typography variant="h6">
 						{title}
-						</Typography>
-						<Typography variant="body1" gutterBottom>
+						</Typography> */}
+						<Typography variant="body2" color="inherit" gutterBottom>
 						{description}
 						</Typography>
-						<Typography variant="body1" gutterBottom>
+						<Typography variant="body2" color="inherit" gutterBottom>
 						{scaleDescription}
 						</Typography>
-						<Typography variant="body1" gutterBottom>
+						<Typography variant="body2" color="inherit">
 						{resultDescription}
 						</Typography>
 					</PopoverInfo>

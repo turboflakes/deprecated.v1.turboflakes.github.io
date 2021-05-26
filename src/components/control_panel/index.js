@@ -9,16 +9,16 @@ import PopoverWeight from '../popover_weight';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-/// Position 0 - Higher Inclusion rate is preferrable
-/// Position 1 - Lower Commission is preferrable
-/// Position 2 - Lower Nominators is preferrable (limit to 256 -> oversubscribed)
-/// Position 3 - Higher Reward Points is preferrable
-/// Position 4 - If reward is staked is preferrable
-/// Position 5 - If in active set is preferrable
-/// Position 6 - Higher own stake is preferrable
-/// Position 7 - Lower total stake is preferrable
-/// Position 8 - Higher number of Reasonable or KnownGood judgements is preferrable
-/// Position 9 - Lower number of sub-accounts is preferrable
+/// Position 0 - Higher Inclusion rate is preferable
+/// Position 1 - Lower Commission is preferable
+/// Position 2 - Lower Nominators is preferable (limit to 256 -> oversubscribed)
+/// Position 3 - Higher Reward Points is preferable
+/// Position 4 - If reward is staked is preferable
+/// Position 5 - If in active set is preferable
+/// Position 6 - Higher own stake is preferable
+/// Position 7 - Lower total stake is preferable
+/// Position 8 - Higher number of Reasonable or KnownGood judgements is preferable
+/// Position 9 - Lower number of sub-accounts is preferable
 
 class ControlPanel extends Component {
 
@@ -79,7 +79,7 @@ class ControlPanel extends Component {
 						resultDescription="A higher number of acceptable judgements results on a higher score." />
 					<WeightSlider index={9} 
 						title="Sub-accounts" 
-						description="Validators can link accounts by creating sub-accounts, each with its own identity, under a primary account. The number of sub-accounts is the total number of the Validator sub-accounts. Or in case of a child Validator, the sub-accounts is the parent total sub-accounts." 
+						description="Validators can link accounts by creating sub-accounts, each with its own identity, under a primary account. The number of sub-accounts is the total number of the Validator sub-accounts. Or in case of a child Validator, the number of sub-accounts is the total number of sub-accounts from the parent validator." 
 						scaleDescription="The number of sub-accounts is rescaled using the method min-max normalization. The maximum value is the maximum number of sub-accounts from all Validators currently available. And the minimum value is the minimum number of sub-accounts from all Validators currently available."
 						resultDescription="A lower number of sub-accounts results on a higher score." />
 				</Box>
