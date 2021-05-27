@@ -77,7 +77,7 @@ export default createMuiTheme({
       default0: "linear-gradient(0deg,#85BCE4,#F9FDFF)",
       default90: "linear-gradient(90deg,#85BCE4,#F9FDFF)",
       default180: "linear-gradient(180deg,#85BCE4,#F9FDFF)",
-      default270: "linear-gradient(270deg,#85BCE4,#F9FDFF)",
+      default270: "linear-gradient(270deg,#DFF1FA,#FFF)",
       secondary0: "linear-gradient(0deg,#85BCE4,#E86866)",
       secondary90: "linear-gradient(90deg,#85BCE4,#E86866)",
       secondary180: "linear-gradient(180deg,#85BCE4,#E86866)",

@@ -10,11 +10,10 @@ const styles = (theme) => ({
 	list: {
 		overflow: "auto",
     height: "80vh",
-		borderTop: `1px solid ${theme.palette.neutrals[500]}`
+		borderTop: `1px solid ${theme.palette.neutrals[400]}`
 	},
 	light:{
 		background: theme.palette.text.secondary,
-		
 	},
 	network: {
 		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
@@ -41,6 +40,10 @@ const styles = (theme) => ({
 	rootIconClasses: {
 		color: theme.palette.text.primary,
 		width: 10
-	}
+	},
+	info: {
+		textTransform: "uppercase",
+		margin: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 0`,
+	},
 })
 export default styles

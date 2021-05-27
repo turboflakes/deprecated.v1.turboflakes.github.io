@@ -3,7 +3,10 @@ const styles = (theme) => ({
 		background: theme.palette.text.primary,
 	},
 	container: {
-    padding: theme.spacing(4)
+    padding: theme.spacing(6),
+		[theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(2),
+    }
   },
 	list: {
 		maxWidth: 600
@@ -13,9 +16,9 @@ const styles = (theme) => ({
 		alignItems: "center"
 	},
 	logo:{
-		margin: theme.spacing(3),
-		maxWidth: 100,
-		height: "100%"
+		width: 80,
+		height: "100%",
+		marginBottom: theme.spacing(3)
 	},
 	primary: {
     color: theme.palette.text.secondary,
@@ -30,31 +33,35 @@ const styles = (theme) => ({
 	},
 	iconRoot: {
     color: theme.palette.text.secondary,
+		marginTop: -theme.spacing(2)
   },
-	about: {
+	networksContainer: {
 		display: "flex",
 		alignItems: "center",
+		padding: `${theme.spacing(2)}px ${theme.spacing(6)}px ${theme.spacing(6)}px ${theme.spacing(6)}px`,
+		[theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(2),
+    }
 	},
 	aboutNetwork: {
-		padding: theme.spacing(2),
-		marginBottom: theme.spacing(2),
-	},
-	networkLink: {
-		padding: `0 ${theme.spacing(3)}px`
+		marginLeft: theme.spacing(4),
 	},
 	kusamaLogo:{
 		height: '80px',
 		maxWidth: '120px',
-		padding: `${theme.spacing(3)}px 0 ${theme.spacing(3)}px ${theme.spacing(3)}px`
 	},
 	polkadotLogo:{
 		height: '80px',
+		marginLeft: -20
 	},
 	bottom: {
-		padding: theme.spacing(2),
+		padding: theme.spacing(6),
+		[theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(2),
+    },
 		display: "flex",
 		alignItems: "center",
-		justifyContent: "space-between"
+		justifyContent: "space-between",
 	},
 	iconEmail: {
 		margin: `0 ${theme.spacing(1)}px`,
@@ -70,11 +77,17 @@ const styles = (theme) => ({
 		margin: `0 ${theme.spacing(1)}px`,
 	},
 	infoBox: {
-		marginLeft: theme.spacing(3)
+		marginBottom: theme.spacing(2),
 	},
 	info: {
 		display: "block",
 		color: theme.palette.text.secondary,
+	},
+	pages: {
+		display: "flex",
+	},
+	page: {
+		marginLeft: theme.spacing(2),
 	}
 })
 export default styles

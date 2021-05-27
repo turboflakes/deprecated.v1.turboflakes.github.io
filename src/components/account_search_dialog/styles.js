@@ -14,7 +14,7 @@ const styles = (theme) => ({
   form: {
     width: "100%"
   },
-  closeButton: {
+  closeIcon: {
     backgroundColor: theme.palette.text.secondary,
     position: "absolute",
     top: theme.spacing(2),

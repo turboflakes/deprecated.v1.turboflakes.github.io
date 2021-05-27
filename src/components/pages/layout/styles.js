@@ -9,9 +9,6 @@ const styles = (theme) => ({
     height: "100vh",
     overflow: "scroll",
     backgroundColor: theme.palette.neutrals[200],
-  },
-  rootContainer: {
-    padding: 0
   }
 })
 export default styles

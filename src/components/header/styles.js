@@ -1,19 +1,23 @@
 const styles = (theme) => ({
 	root: {
 		flexGrow: 1,
-		background: theme.palette.gradients.default270
+		backgroundColor: theme.palette.text.secondary,
+		// background: theme.palette.gradients.default270
 	},
 	appBar: {
 		backgroundColor: "inherit",
 		borderBottom: `solid 1px ${theme.palette.dividerLight}`,
 	},
 	toolBar: {
-		padding: theme.spacing(2),
+		margin: theme.spacing(2),
 		display: "flex",
 		justifyContent: "space-between",
 		alignItems: "center"
 	},
-	logo: {},
+	logo: {
+		width: 140,
+		height: 80
+	},
 	motoBox: {
 		display: "flex",
 		flexDirection: "column",
@@ -23,8 +27,5 @@ const styles = (theme) => ({
 	moto: {
 		fontWeight: 300,
 	},
-	motoSubtitle: {
-		textTransform: "uppercase"
-	}
 })
 export default styles

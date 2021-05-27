@@ -48,6 +48,7 @@ class Footer extends Component {
 		const {history} = this.props
 		query.set("a", value)
 		const location = {
+			pathname: "/",
 			search: `?${query.toString()}`
 		}
 		history.replace(location)
@@ -65,12 +66,19 @@ class Footer extends Component {
 
 		return (
 			<div className={classes.root} style={style}>
+				<Divider light classes={{ light: classes.light }}/>
 				<Box className={classes.container}>
-					<Typography color="textSecondary">
-					TURBOFLAKES is also an independent validator in the Kusama Network.
+					<Link href="/"  color="inherit" >
+						<TurboflakesSVG className={classes.logo} />
+					</Link>
+					<Typography color="textSecondary" paragraph>
+						Want know more about Turboflakes read <Link href="/about"  color="inherit" underline="always" >here</Link>.
 					</Typography>
-					<Typography color="textSecondary">
-					If you like this project ✌️ Share our work and support us with your nomination ✨💙
+					<Typography color="textSecondary" paragraph>
+						Turboflakes is also an independent validator in the Kusama Network and eligible in the Kusama's Thousand Validators Programme, aka <Link href="https://thousand-validators.kusama.network/#/leaderboard/FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX" target="_blank" rel="noreferrer" color="inherit" underline="always">1KV</Link>.
+					</Typography>
+					<Typography color="textSecondary" gutterBottom>
+						If you like this project ✌️ Share our work and support us with your nomination ✨💙
 					</Typography>
 					<List component="nav" className={classes.list}>
 						<ListItem key={kusama} >
@@ -106,26 +114,40 @@ class Footer extends Component {
 								}} />
 						</ListItem>
 					</List>
-					<Typography color="textSecondary" gutterBottom>
-						Support your nominations with TURBOFLAKES decision tool ✌
+					<Typography color="textSecondary" paragraph>
+						Support your nominations with Turboflakes decision tool ✌
 					</Typography>
+					{!!info.cache ? 
+						<Box className={classes.infoBox}>
+							<Typography variant="caption" className={classes.info}>
+							app v{process.env.REACT_APP_VERSION}
+							</Typography>
+							<Typography variant="caption" className={classes.info}>
+							api v{info.version}
+							</Typography>
+							<Typography variant="caption" className={classes.info}>
+							last sync time: {moment.unix(info.cache.syncing_finished_at).format('lll')} ({info.cache.syncing ? `syncing` : `duration ${moment.unix(info.cache.syncing_finished_at).diff(moment.unix(info.cache.syncing_started_at), 'minutes')} min`})
+							</Typography>
+						</Box> : null}
+					<Box className={classes.pages}>
+						<Typography variant="body2" color="textSecondary">
+							<Link href="/about"  color="inherit" >About</Link>
+						</Typography>
+						<Typography variant="body2" color="textSecondary" className={classes.page}>
+							<Link href="/disclaimer"  color="inherit" >Disclaimer</Link>
+						</Typography>
+					</Box>
 				</Box>
 				<Divider light classes={{ light: classes.light }}/>
-				<Box className={classes.container}>
-					<Typography variant="body2" color="textSecondary">
-						DISCLAIMER<br />It is very important to do your own research before nominating a validator since there is a risk of <Link href="https://wiki.polkadot.network/docs/en/learn-staking#slashing" target="_blank" rel="noreferrer" color="inherit"><u>slashing</u></Link>. TURBOFLAKES does not control, take responsibility for, or assume liability for any validator misbehaviour displayed on this Website. TURBOFLAKES only provides a decision support tool that can help you choose among a set of validators based on their traits and your personal preferences.
-					</Typography>
-				</Box>
-				<Divider light classes={{ light: classes.light }}/>
-					<Box className={classes.about}>
-						<Box className={classes.aboutNetwork}>
+					<Box className={classes.networksContainer}>
+						<Box>
 							<Link href="https://polkadot.network/" target="_blank" rel="noreferrer" color="inherit">
 								<PolkadotSVG className={classes.polkadotLogo} />
 							</Link>
-							<Typography color="textSecondary" className={classes.networkLink} >
+							<Typography color="textSecondary" >
 								<Link href="https://polkadot.network/technology/" target="_blank" rel="noreferrer" color="inherit">About Polkadot Network</Link>
 							</Typography>
-							<Typography color="textSecondary" className={classes.networkLink} >
+							<Typography color="textSecondary" >
 								<Link href="https://wiki.polkadot.network/docs/en/maintain-guides-how-to-nominate-polkadot" target="_blank" rel="noreferrer" color="inherit">How to Nominate on Polkadot</Link>
 							</Typography>
 						</Box>
@@ -133,10 +155,10 @@ class Footer extends Component {
 							<Link href="https://kusama.network/" target="_blank" rel="noreferrer" color="inherit">
 								<KusamaSVG className={classes.kusamaLogo} />
 							</Link>
-							<Typography color="textSecondary" className={classes.networkLink}>
+							<Typography color="textSecondary" >
 								<Link href="https://kusama.network/" target="_blank" rel="noreferrer" color="inherit">About Kusama Network</Link>
 							</Typography>
-							<Typography color="textSecondary" className={classes.networkLink}>
+							<Typography color="textSecondary" >
 								<Link href="https://guide.kusama.network/docs/en/mirror-maintain-guides-how-to-nominate-kusama" target="_blank" rel="noreferrer" color="inherit">How to Nominate on Kusama</Link>
 							</Typography>
 						</Box>
@@ -145,23 +167,10 @@ class Footer extends Component {
 				<Box className={classes.bottom}>
 					<Box>
 						<Box className={classes.trademark}>
-							<TurboflakesSVG className={classes.logo} />
 							<Typography color="textSecondary">
 							© 2021 Turboflakes
 							</Typography>
 						</Box>
-						{!!info.cache ? 
-							<Box className={classes.infoBox}>
-								<Typography variant="caption" className={classes.info}>
-								app v{process.env.REACT_APP_VERSION}
-								</Typography>
-								<Typography variant="caption" className={classes.info}>
-								api v{info.version}
-								</Typography>
-								<Typography variant="caption" className={classes.info}>
-								last sync time: {moment.unix(info.cache.syncing_finished_at).format('lll')} ({info.cache.syncing ? `syncing` : `duration ${moment.unix(info.cache.syncing_finished_at).diff(moment.unix(info.cache.syncing_started_at), 'minutes')} min`})
-								</Typography>
-							</Box> : null}
 					</Box>
 					<Box>
 						<IconButton size="small" className={classes.iconEmail} onClick={this.handleEmail}>

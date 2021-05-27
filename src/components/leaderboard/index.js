@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
+import {NETWORK} from '../../constants'
 import { query } from '../../actions/validator'
 import { selectAddress } from '../../actions/leaderboard'
 import { add } from '../../actions/error'
@@ -69,6 +70,9 @@ class Leaderboard extends Component {
 
 		return (
 			<div className={classes.root}>
+				<Typography variant="subtitle2" className={classes.info} color="secondary" align="right">
+					Supporting now <b>{NETWORK}</b> network
+				</Typography>
 				<Box className={classes.network}>
 					<IconButton color="primary" size="small" onClick={this.handleKusama}>
 						<KusamaSVG className={classes.networkLogo} />

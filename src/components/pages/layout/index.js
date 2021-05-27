@@ -2,25 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { info } from '../../../actions/api'
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import BoardAnimation from '../../board_animation'
-import Header from '../../header'
-import Leaderboard from '../../leaderboard'
-import ControlPanel from '../../control_panel'
-import AccountInfo from '../../account_info'
 import Footer from '../../footer'
-import Alert from '../../alert'
 import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import styles from './styles'
 
-class LayoutPage extends Component {
+class Layout extends Component {
 
   componentDidMount() {
     this.props.info()
   }
-
+  
   render() {
     const { classes, width, quantity, selected } = this.props;
     
@@ -36,22 +30,7 @@ class LayoutPage extends Component {
           </Box> : null}
         <Box className={classes.rightBox}
           style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})}>
-          <Header />
-          <Alert />
-          <Box classes={{ root: classes.rootContainer}}>  
-            <Grid container spacing={0}>
-              <Grid item xs={12} sm={!!selected ? 4 : 6}>
-                <Leaderboard />
-              </Grid>
-              {!!selected ? 
-                <Grid item xs={12} sm={4}>
-                  <AccountInfo />
-                </Grid> : null}
-              <Grid item xs={12} sm={!!selected ? 4 : 6}>
-                <ControlPanel />
-              </Grid>
-            </Grid>
-          </Box>
+          {this.props.children}
           <Footer style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})} />
         </Box>
       </div>
@@ -59,7 +38,7 @@ class LayoutPage extends Component {
   }
 }
 
-LayoutPage.propTypes = {
+Layout.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -73,4 +52,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {info})(withWidth()(withStyles(styles)(LayoutPage)));
+export default connect(mapStateToProps, {info})(withWidth()(withStyles(styles)(Layout)));
