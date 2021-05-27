@@ -36,29 +36,29 @@ class AboutPage extends Component {
         Background
        </Typography>
        <Typography color="inherit" align="justify" paragraph>
-       Turboflakes was born from a research side-project and my interest to always learn a bit more about a topic - this time the topic end up being the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Polkadot</Link> network. <br/>
-       All these collective dots based on brilliant ideas, put together into practise from Polkadot, the incredible and extensive source of knowledge publicly available about a network protocol ready for the next web, just gives you the boost to do one thing, dive in and learn a bit more :)
+       Turboflakes was born out of interest and research about the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Polkadot</Link> network.
        </Typography>
        <Typography variant="subtitle1" color="inherit" paragraph >
         NPoS networks
        </Typography>
        <Typography color="inherit" align="justify" paragraph>
-       Currently Turboflakes is focus around the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Staking</Link> system and its Nominated Proof of Stake mechanism. In <Link href="https://wiki.polkadot.network/docs/en/glossary#nominated-proof-of-stake-npos" target="_blank" rel="noreferrer" color="inherit" underline="always">NPoS</Link> networks, nominators back validators with their own stake to help them get into the active validator set, so that validators can proactively secure the network. In return for backing validators, the nominators receive part of the validators rewards. To get the most out of the Staking mechanism and get the best reward returns, implies proactive work and research from the nominator in the network. <br/>In this process nominators face several questions, one of the most important, if not the most important - <Link href="https://support.polkadot.network/support/solutions/articles/65000150130-how-do-i-know-which-validators-to-choose-" target="_blank" rel="noreferrer" color="inherit" underline="always">“How do I know which validators to choose?”</Link>
+       Turboflakes is focused around the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Staking</Link> system and its Nominated Proof of Stake mechanism. In <Link href="https://wiki.polkadot.network/docs/en/glossary#nominated-proof-of-stake-npos" target="_blank" rel="noreferrer" color="inherit" underline="always">NPoS</Link> networks, nominators back validators with their own stake to help them get into the active validator set. In this way validators proactively secure the network. In return for backing validators, the nominators receive part of the validators rewards. 
+       To get the most out of the Staking mechanism and the best reward returns, nominators need to gather information on the validators - <Link href="https://support.polkadot.network/support/solutions/articles/65000150130-how-do-i-know-which-validators-to-choose-" target="_blank" rel="noreferrer" color="inherit" underline="always">“How do I know which validators to choose?”</Link>
        </Typography>
        <Typography variant="subtitle1" color="inherit" paragraph >
        Multi-Criteria Decision Analysis
        </Typography>
        <Typography color="inherit" align="justify" paragraph>
-       Since the genesis block of the network, there is a steady growing number of new validators waiting to take their chance into the active set. To be a proactive nominator it is a necessity, but also difficult. <br/> Each nominator interests are different and with such a large set of validators around - each with their own set of specific traits and different historical network performance data - to get to know which one is trustworthy to pick for a strict list (up to 16) of nominations, results on a complex decision to make. So, having a tool that helps to support this decision would be of great value for the network.  
+       Since the genesis block there has been a growing number of new validators waiting for their chance to get into the active set - each with its own set of traits and historical network performance data - becoming more challenging for nominators to make an informed decision about which validators to pick. Therefore, having a decision support tool that helps nominators with the selection of validators would be of great value to the network.
        </Typography>
        <Typography color="inherit" align="justify" paragraph>
-       And that is when Turboflakes with its support decision tool based on Multi-Criteria Decision Analysis - <Link href="https://en.wikipedia.org/wiki/Multiple-criteria_decision_analysis" target="_blank" rel="noreferrer" color="inherit" underline="always">MCDA</Link>, come to rescue. MCDA is a valuable tool that usually leads to a more informed and a better decision-making process.
+       Turboflakes is a decision support tool based on Multi-Criteria Decision Analysis - <Link href="https://en.wikipedia.org/wiki/Multiple-criteria_decision_analysis" target="_blank" rel="noreferrer" color="inherit" underline="always">MCDA</Link> - that will support nominators to choose which validators to back up by taking into account each validator specific traits and the level of importance assigned to each trait by the nominator.
        </Typography>
        <Typography variant="subtitle1" color="inherit" paragraph >
         Leaderboard
        </Typography>
        <Typography color="inherit" align="justify" paragraph>
-       To generate the Leaderboard with the highest-ranked Validators on top, there are currently 10 key traits being analysed for each validator:
+       To generate the Leaderboard with the highest-ranked validators at the top, there are currently 10 key traits being considered for each validator:
        </Typography>
        <ul>
          <li><Typography color="inherit">Inclusion rate</Typography></li>
@@ -73,19 +73,16 @@ class AboutPage extends Component {
          <li><Typography color="inherit">Number of sub-accounts or sibling accounts</Typography></li>
        </ul>
        <Typography color="inherit" align="justify" paragraph>
-       Each of these traits are respectively weighted based on the Nominator personal preference. In a scale of 1 to 10 - being 1 the less important and 10 very important - the Nominator can define what their level of importance towards a specific trait is. And at this point each validator gets a score by summing all traits partial scores. Each trait score results from multiplying the respective weight by its corresponding rating value.
+       Each nominator can define the level of importance of each trait in a scale of 1 to 10 - with 1 as the least important and 10 the most important. For each validator the value of each trait is weighted by the level of importance assigned by the nominator.  The overall score for a validator is obtained by summing all the (weighted) values associated with their traits.
        </Typography>
        <Typography color="inherit" align="justify" paragraph>
-       With all validators scored, the Leaderboard is created, by ordering the highest ranked validator on top.
+       After all validators are scored The Leaderboard is created by displaying the highest ranked validators at the top.
        </Typography>
        <Typography color="inherit" align="justify" paragraph>
-       In summary, TURBOFLAKES helps you discover Validators based on their traits and historical performance data, in a way that allows each Nominator to set the level of importance related to a specific trait.
+       In summary, TURBOFLAKES helps you discover validators based on their traits and historical performance data, in a way that allows each nominator to assign their personal level of importance related to a specific trait.
        </Typography>
        <Typography color="inherit" align="justify" paragraph>
-       Hope you find it helpful ✌️
-       </Typography>
-       <Typography color="inherit" align="justify" paragraph>
-       Paulo
+       Hope you find this tool helpful ✌️
        </Typography>
       </Container>
     )
