@@ -72,7 +72,7 @@ class Footer extends Component {
 						<TurboflakesSVG className={classes.logo} />
 					</Link>
 					<Typography color="textSecondary" paragraph>
-						Want know more about Turboflakes read <Link href="/about"  color="inherit" underline="always" >here</Link>.
+						Want to know more about Turboflakes read <Link href="/about"  color="inherit" underline="always" >here</Link>.
 					</Typography>
 					<Typography color="textSecondary" paragraph>
 						Turboflakes is also an independent validator in the Kusama Network and eligible in the Kusama's Thousand Validators Programme, aka <Link href="https://thousand-validators.kusama.network/#/leaderboard/FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX" target="_blank" rel="noreferrer" color="inherit" underline="always">1KV</Link>.
