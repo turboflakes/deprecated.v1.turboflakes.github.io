@@ -46,7 +46,7 @@ class AccountItem extends Component {
 		const isSelected = account.id === selected
 
 		return (
-      <ListItem classeName={classes.root} button onClick={() => this.handleOnClick(address)} 
+      <ListItem className={classes.root} button onClick={() => this.handleOnClick(address)} 
         classes={{
           root: classes.rootItem,
           selected: classes.selectedItem

@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 
-class PopoverWeightInfo extends Component {
+class PopoverWeight extends Component {
   
   state = {
     anchorEl: null,
@@ -65,10 +65,10 @@ class PopoverWeightInfo extends Component {
           <Typography variant="body2" color="inherit" className={classes.list}>
           5 = Moderately Important
           </Typography>
-          <Typography variant="body2" color="inherit" className={classes.list}>
+          <Typography variant="body2" color="inherit" className={classes.list} gutterBottom>
           10 = Very Important
           </Typography>
-          <Typography variant="body2" color="inherit" className={classes.list} gutterBottom>
+          <Typography variant="body2" color="inherit" gutterBottom>
             Note: If you do not want a specific trait to interfer in the final score, you have the option to select <b className={classes.bold}>0 - Not Applicable</b>. 
           </Typography>
         </Popover>
@@ -77,10 +77,8 @@ class PopoverWeightInfo extends Component {
   }
 }
 
-PopoverWeightInfo.propTypes = {
-  classes: PropTypes.object.isRequired,
-  link: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+PopoverWeight.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
-export default withWidth()(withStyles(styles)(PopoverWeightInfo));
+export default withWidth()(withStyles(styles)(PopoverWeight));
