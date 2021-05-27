@@ -68,7 +68,7 @@ class Footer extends Component {
 			<div className={classes.root} style={style}>
 				<Divider light classes={{ light: classes.light }}/>
 				<Box className={classes.container}>
-					<Link href="/#/"  color="inherit" >
+					<Link href="/" color="inherit" >
 						<TurboflakesSVG className={classes.logo} />
 					</Link>
 					<Typography color="textSecondary" paragraph>

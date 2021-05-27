@@ -10,7 +10,8 @@ const styles = theme => ({
     },
   },
   iconRoot: {
-    color: theme.palette.primary.light
+    color: theme.palette.primary.light,
+    padding: theme.spacing(1)
   },
   list: {
     marginLeft: theme.spacing(1)

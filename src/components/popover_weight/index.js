@@ -50,25 +50,25 @@ class PopoverWeightInfo extends Component {
           }}
           disableRestoreFocus
         >
-          <Typography variant="body1" paragraph>
+          <Typography variant="body2" color="inherit" paragraph>
             Weights are personal preferences and define the level of importance towards a specific trait.
           </Typography>
-          <Typography variant="body1" >
+          <Typography variant="body2" color="inherit" >
             The weight scale is defined in a 10-point ordinal scale. e.g:
           </Typography>
-          <Typography variant="body1" className={classes.list}>
+          <Typography variant="body2" color="inherit" className={classes.list}>
           0 = Not Applicable
           </Typography>
-          <Typography variant="body1" className={classes.list}>
+          <Typography variant="body2" color="inherit" className={classes.list}>
           1 = Less Important
           </Typography>
-          <Typography variant="body1" className={classes.list}>
+          <Typography variant="body2" color="inherit" className={classes.list}>
           5 = Moderately Important
           </Typography>
-          <Typography variant="body1" className={classes.list}>
+          <Typography variant="body2" color="inherit" className={classes.list}>
           10 = Very Important
           </Typography>
-          <Typography variant="body1" className={classes.list} gutterBottom>
+          <Typography variant="body2" color="inherit" className={classes.list} gutterBottom>
             Note: If you do not want a specific trait to interfer in the final score, you have the option to select <b className={classes.bold}>0 - Not Applicable</b>. 
           </Typography>
         </Popover>
