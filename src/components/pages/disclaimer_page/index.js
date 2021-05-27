@@ -15,7 +15,7 @@ class AboutPage extends Component {
     
     return (
       <Container className={classes.root}>
-        <IconButton aria-label="Back" color="primary" href="/" className={classes.backIcon}>
+        <IconButton aria-label="Back" color="primary" href="/#/" className={classes.backIcon}>
           <ArrowBackIcon />
        </IconButton>
        <Typography variant="h5" color="inherit" align="center" className={classes.header} paragraph>

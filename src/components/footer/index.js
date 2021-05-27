@@ -68,11 +68,11 @@ class Footer extends Component {
 			<div className={classes.root} style={style}>
 				<Divider light classes={{ light: classes.light }}/>
 				<Box className={classes.container}>
-					<Link href="/"  color="inherit" >
+					<Link href="/#/"  color="inherit" >
 						<TurboflakesSVG className={classes.logo} />
 					</Link>
 					<Typography color="textSecondary" paragraph>
-						Want to know more about Turboflakes read <Link href="/about"  color="inherit" underline="always" >here</Link>.
+						Want to know more about Turboflakes read <Link href="/#/about"  color="inherit" underline="always" >here</Link>.
 					</Typography>
 					<Typography color="textSecondary" paragraph>
 						Turboflakes is also an independent validator in the Kusama Network and eligible in the Kusama's Thousand Validators Programme, aka <Link href="https://thousand-validators.kusama.network/#/leaderboard/FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX" target="_blank" rel="noreferrer" color="inherit" underline="always">1KV</Link>.
@@ -131,10 +131,10 @@ class Footer extends Component {
 						</Box> : null}
 					<Box className={classes.pages}>
 						<Typography variant="body2" color="textSecondary">
-							<Link href="/about"  color="inherit" >About</Link>
+							<Link href="/#/about"  color="inherit" >About</Link>
 						</Typography>
 						<Typography variant="body2" color="textSecondary" className={classes.page}>
-							<Link href="/disclaimer"  color="inherit" >Disclaimer</Link>
+							<Link href="/#/disclaimer"  color="inherit" >Disclaimer</Link>
 						</Typography>
 					</Box>
 				</Box>
