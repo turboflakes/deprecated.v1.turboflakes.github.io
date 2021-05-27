@@ -42,8 +42,9 @@ const styles = (theme) => ({
 		width: 10
 	},
 	info: {
+		display: "block",
 		textTransform: "uppercase",
-		margin: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 0`,
+		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 0`,
 	},
 })
 export default styles
