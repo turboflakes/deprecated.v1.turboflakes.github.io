@@ -9,7 +9,7 @@ const styles = (theme) => ({
 		borderBottom: `solid 1px ${theme.palette.dividerLight}`,
 	},
 	toolBar: {
-		margin: theme.spacing(2),
+		margin: `${theme.spacing(2)}px 0`,
 		display: "flex",
 		justifyContent: "space-between",
 		alignItems: "center"
