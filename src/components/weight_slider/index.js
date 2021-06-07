@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { changeWeight } from '../../actions/leaderboard'
-import { parseArray } from '../../utils/math'
+import { changeWeight, changeRange } from '../../actions/leaderboard'
+import { parseArray, parseArrayRanges } from '../../utils/math'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
@@ -19,12 +19,24 @@ class WeightSlider extends Component {
 		let query = new URLSearchParams(props.location.search)
 		let weightValues = parseArray(query.get("w"))
 		this.changeParams(query, weightValues)
-		this.state = { value: weightValues[props.index] }
+		this.state = { 
+			value: weightValues[props.index],
+			limitRange: [0, 100]
+		 }
 	}
 
 	changeParams = (query, weightValues) => {
 		const {history} = this.props
-		query.set("w", weightValues)
+		query.set("w", weightValues.join())
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+
+	changeParamsRanges = (query, ranges) => {
+		const {history} = this.props
+		query.set("r", ranges.join())
 		const location = {
 			search: `?${query.toString()}`
 		}
@@ -38,13 +50,22 @@ class WeightSlider extends Component {
 		}
 	}
 	
-	handleOnChangeCommitted = (_event, value) => {
+	handleOnChangeCommittedWeight = (_event, value) => {
 		const {index, location} = this.props
 		let query = new URLSearchParams(location.search)
 		let weightValues = parseArray(query.get("w"))
 		weightValues[index] = value
 		this.changeParams(query, weightValues)
 		this.props.changeWeight(index, value)
+	}
+
+	handleOnChangeCommittedRange = (_event, value) => {
+		const {index, location} = this.props
+		let query = new URLSearchParams(location.search)
+		let ranges = parseArrayRanges(query.get("r"))
+		ranges[index] = value.join().replace(',', ':')
+		this.changeParamsRanges(query, ranges)
+		this.props.changeRange(index, ranges[index])
 	}
 
  	render() {
@@ -81,8 +102,22 @@ class WeightSlider extends Component {
 					step={1}
 					min={!!minValue ? minValue : 0}
 					max={!!maxValue ? maxValue : 10}
-					onChangeCommitted={this.handleOnChangeCommitted}
+					onChangeCommitted={this.handleOnChangeCommittedWeight}
 				/>
+				<Typography id={title} variant="caption">
+					Limits range to {title} 
+				</Typography>
+				<Slider
+					className={classes.slider}
+					defaultValue={this.state.limitRange}
+					getAriaValueText={() => value}
+					valueLabelDisplay="on"
+					step={1}
+					min={!!minValue ? minValue : 0}
+					max={!!maxValue ? maxValue : 100}
+					onChangeCommitted={this.handleOnChangeCommittedRange}
+				/>
+				Inclusion rate
 			</div>
 		)
 	}
@@ -106,5 +141,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { changeWeight })(withRouter(withStyles(styles)(WeightSlider)));
+export default connect(mapStateToProps, { changeWeight, changeRange })(withRouter(withStyles(styles)(WeightSlider)));
   

@@ -24,3 +24,4 @@ export const networkDecimals = {
 }
 
 export const WEIGHTS = [7,8,6,10,6,4,3,7,5,9]
+export const RANGES = ["0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100"]

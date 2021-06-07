@@ -1,11 +1,23 @@
 import {combineReducers} from 'redux'
-import {WEIGHTS} from '../constants'
+import {WEIGHTS, RANGES} from '../constants'
 
 export const weights = (state = WEIGHTS.toString(), action) => {
   switch (action.type) {
     case "CHANGE_WEIGHT": {
       let t = state.split(",")
       t[action.data.index] = action.data.weight
+      return t.toString()
+    }
+    default:
+      return state
+  }
+}
+
+export const ranges = (state = RANGES.toString(), action) => {
+  switch (action.type) {
+    case "CHANGE_RANGE": {
+      let t = state.split(",")
+      t[action.data.index] = action.data.range
       return t.toString()
     }
     default:
@@ -38,6 +50,7 @@ export const selected = (state = 0, action) => {
 
 export const leaderboard = combineReducers({
   weights: weights,
+  ranges: ranges,
   quantity: quantity,
   selected: selected
 })
