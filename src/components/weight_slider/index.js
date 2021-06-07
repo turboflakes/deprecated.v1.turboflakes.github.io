@@ -91,32 +91,49 @@ class WeightSlider extends Component {
 						</Typography>
 					</PopoverInfo>
 				</Box>
-				<Typography id={title} variant="caption">
-					Weight given to {title} 
-				</Typography>
-				<Slider
-					className={classes.slider}
-					defaultValue={this.state.value}
-					getAriaValueText={() => value}
-					valueLabelDisplay="on"
-					step={1}
-					min={!!minValue ? minValue : 0}
-					max={!!maxValue ? maxValue : 10}
-					onChangeCommitted={this.handleOnChangeCommittedWeight}
-				/>
-				<Typography id={title} variant="caption">
-					{title} limit range
-				</Typography>
-				<Slider
-					className={classes.slider}
-					defaultValue={this.state.limitRange}
-					getAriaValueText={() => value}
-					valueLabelDisplay="on"
-					step={1}
-					min={!!minValue ? minValue : 0}
-					max={!!maxValue ? maxValue : 100}
-					onChangeCommitted={this.handleOnChangeCommittedRange}
-				/>
+				<Box className={classes.sliderBox}>
+					<Typography variant="caption">
+						Weight given to {title} 
+					</Typography>
+					<Slider
+						className={classes.slider}
+						defaultValue={this.state.value}
+						getAriaValueText={() => value}
+						valueLabelDisplay="on"
+						step={1}
+						min={!!minValue ? minValue : 0}
+						max={!!maxValue ? maxValue : 10}
+						onChangeCommitted={this.handleOnChangeCommittedWeight}
+					/>
+				</Box>
+				<Box className={classes.sliderBox}>
+					<Typography variant="caption" className={classes.caption}>
+						{title} limit range
+					</Typography>
+					<Slider
+						className={classes.slider}
+						classes={{
+							root: classes.sliderRangeRoot,
+							track: classes.sliderRangeTrack,
+							rail: classes.sliderRangeRail,
+							thumb: classes.sliderRangeThumb,
+							valueLabel: classes.sliderRangeValueLabel
+						}}
+						color="secondary"
+						defaultValue={this.state.limitRange}
+						valueLabelFormat={(v, i) => {
+							if (i === 1) {
+								return `${v} max`	
+							}
+							return `${v} min`
+						}}
+						valueLabelDisplay="on"
+						step={1}
+						min={!!minValue ? minValue : 0}
+						max={!!maxValue ? maxValue : 100}
+						onChangeCommitted={this.handleOnChangeCommittedRange}
+					/>
+				</Box>
 			</div>
 		)
 	}
