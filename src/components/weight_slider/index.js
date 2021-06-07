@@ -105,7 +105,7 @@ class WeightSlider extends Component {
 					onChangeCommitted={this.handleOnChangeCommittedWeight}
 				/>
 				<Typography id={title} variant="caption">
-					Limits range to {title} 
+					{title} limit range
 				</Typography>
 				<Slider
 					className={classes.slider}
@@ -117,7 +117,6 @@ class WeightSlider extends Component {
 					max={!!maxValue ? maxValue : 100}
 					onChangeCommitted={this.handleOnChangeCommittedRange}
 				/>
-				Inclusion rate
 			</div>
 		)
 	}
