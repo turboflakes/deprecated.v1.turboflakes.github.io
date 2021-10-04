@@ -20,17 +20,30 @@ function getRandomVel() {
   return Math.random() * 2 - 1;
 }
 
-function rgb(i) {
-  return 'rgb(' + getRandomInt(0, 255) + ', ' + Math.floor(255 - i) + ', ' +
-  getRandomInt(127, 255) + ')';
-  
+// function rgb(i) {
+//   return 'rgb(' + getRandomInt(0, 255) + ', ' + Math.floor(255 - i) + ', ' +
+//   getRandomInt(127, 255) + ')';
+// }
+
+function contrast(hue) {
+  let h = hue + getRandomInt(90, 180)
+  if (h > 360) {
+    return h - 360
+  }
+  return h
 }
 
-function gradient(ctx, i) {
-  const g = ctx.createLinearGradient(0, 0, 0, 170);
-  g.addColorStop(0, "black");
-  g.addColorStop(1, "white");
-  return g
+function gradient() {
+  const hue = getRandomInt(0, 360);
+  return {
+    start: hsla(hue),
+    end: hsla(contrast(hue))
+  }
+}
+
+function hsla(hue) {
+  return 'hsla(' + hue + ', ' + getRandomInt(50, 100) + '%, ' +
+  getRandomInt(50, 80) + '%, 1)'; 
 }
 
 let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -89,17 +102,19 @@ class BoardAnimation extends Component {
       const friction = 0.98
 
       let balls = []
-      const color_base = 255 / n;
-      for (let i = 0; i < n; i++) {
+      
+      for (let i = n; i >= 0; i--) {
+        let g = gradient();
         const ball = {
+          index: i,
           bounce: 1,
-          radius: 50,
+          radius: 30 * (1+3*i/n),
           x: canvas.width / 2,
           y: canvas.height / 2,
           velX: getRandomVel(),
           velY: getRandomVel(),
-          color: rgb(color_base * i),
-          gradient: gradient(ctx, color_base * i)
+          colorStart: g.start,
+          colorEnd: g.end
         }
         balls.push(ball);
       }
@@ -119,17 +134,20 @@ class BoardAnimation extends Component {
     const {
       ctx,
     } = this.state
-    
+
     ctx.beginPath()
-    // ctx.fillStyle = ball.color
-    ctx.fillStyle = ball.gradient
+    let g = ctx.createLinearGradient(ball.x-ball.radius, ball.y-ball.radius, ball.x+ball.radius, ball.y+ball.radius);
+    g.addColorStop(0, ball.colorStart);
+    g.addColorStop(1, ball.colorEnd);
+    ctx.fillStyle = g
+    
     ctx.arc(
       ball.x, ball.y,
       ball.radius,
       0, Math.PI * 2
     )
 
-    ctx.globalAlpha = 0.6;
+    // ctx.globalAlpha = 0.8;
 
     ctx.fill()
   }
@@ -196,6 +214,7 @@ class BoardAnimation extends Component {
 
 BoardAnimation.propTypes = {
   classes: PropTypes.object.isRequired,
+  n: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(BoardAnimation);

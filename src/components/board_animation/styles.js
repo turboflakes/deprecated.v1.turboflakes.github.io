@@ -1,5 +1,8 @@
 const styles = (theme) => ({
   root: {
+    position: "relative",
+    height: "100vh",
+    backgroundColor: theme.palette.neutrals[100]
   },
   canvas: {
     padding: 0,
