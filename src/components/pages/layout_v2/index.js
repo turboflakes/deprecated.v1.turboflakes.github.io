@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import { info } from '../../../actions/api'
 import Box from '@material-ui/core/Box';
 import BoardAnimation from '../../board_animation'
+import Header from '../../header'
+import Alert from '../../alert'
 import Footer from '../../footer'
 import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import styles from './styles'
 
-class NewLayout extends Component {
+class Layout extends Component {
 
   componentDidMount() {
     this.props.info()
@@ -20,25 +22,16 @@ class NewLayout extends Component {
     
     return (
       <div className={classes.root}>
-        {isWidthUp('sm', width) ?
-          <Box className={classes.leftBox} 
-            style={!!selected ? {width: `${100/3}vw`} : {width: "50vw"}}>
-            <BoardAnimation 
-              n={quantity} 
-              width={!!selected ? window.innerWidth / 3 : window.innerWidth / 2} 
-              height={window.innerHeight} />
-          </Box> : null}
-        <Box className={classes.rightBox}
-          style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})}>
-          {this.props.children}
-          <Footer style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})} />
-        </Box>
+        <Header />
+        <Alert />
+        {this.props.children}
+        <Footer />
       </div>
     )
   }
 }
 
-NewLayout.propTypes = {
+Layout.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -52,4 +45,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {info})(withWidth()(withStyles(styles)(NewLayout)));
+export default connect(mapStateToProps, {info})(withWidth()(withStyles(styles)(Layout)));

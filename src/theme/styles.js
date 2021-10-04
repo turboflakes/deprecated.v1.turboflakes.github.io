@@ -18,7 +18,7 @@ export default createMuiTheme({
   palette: {
     primary: {
       // dark automatic calculated
-      main: "#85BCE4",
+      main: "#ED1C24",
       contrastText: '#FFFFFF',
     },
     secondary: {
@@ -96,29 +96,23 @@ export default createMuiTheme({
   typography: {
     useNextVariants: true,
     h1: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h2: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h3: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h4: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
       textTransform: "uppercase"
     },
     h5: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h6: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
       fontWeight: 400
     },
     body1: {

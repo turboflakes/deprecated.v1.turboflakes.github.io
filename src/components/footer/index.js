@@ -72,10 +72,10 @@ class Footer extends Component {
 						<TurboflakesSVG className={classes.logo} />
 					</Link>
 					<Typography color="textSecondary" paragraph>
-						Want to know more about Turboflakes read <Link href="/#/about"  color="inherit" underline="always" >here</Link>.
+						Want to know more about TurboFlakes read <Link href="/#/about"  color="inherit" underline="always" >here</Link>.
 					</Typography>
 					<Typography color="textSecondary" paragraph>
-						Turboflakes is also an independent validator in the Kusama Network and eligible in the Kusama's Thousand Validators Programme, aka <Link href="https://thousand-validators.kusama.network/#/leaderboard/FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX" target="_blank" rel="noreferrer" color="inherit" underline="always">1KV</Link>.
+						TurboFlakes is also an independent validator in the Kusama Network and eligible in the Kusama's Thousand Validators Programme, aka <Link href="https://thousand-validators.kusama.network/#/leaderboard/FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX" target="_blank" rel="noreferrer" color="inherit" underline="always">1KV</Link>.
 					</Typography>
 					<Typography color="textSecondary" gutterBottom>
 						If you like this project ✌️ Share our work and support us with your nomination ✨💙
@@ -115,7 +115,7 @@ class Footer extends Component {
 						</ListItem>
 					</List>
 					<Typography color="textSecondary" paragraph>
-						Support your nominations with Turboflakes decision tool ✌
+						Support your nominations with TurboFlakes decision tool ✌
 					</Typography>
 					{!!info.cache ? 
 						<Box className={classes.infoBox}>
@@ -168,7 +168,7 @@ class Footer extends Component {
 					<Box>
 						<Box className={classes.trademark}>
 							<Typography color="textSecondary">
-							© 2021 Turboflakes
+							© 2021 TurboFlakes
 							</Typography>
 						</Box>
 					</Box>

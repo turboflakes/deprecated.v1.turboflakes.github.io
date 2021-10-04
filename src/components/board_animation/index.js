@@ -23,6 +23,14 @@ function getRandomVel() {
 function rgb(i) {
   return 'rgb(' + getRandomInt(0, 255) + ', ' + Math.floor(255 - i) + ', ' +
   getRandomInt(127, 255) + ')';
+  
+}
+
+function gradient(ctx, i) {
+  const g = ctx.createLinearGradient(0, 0, 0, 170);
+  g.addColorStop(0, "black");
+  g.addColorStop(1, "white");
+  return g
 }
 
 let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -90,7 +98,8 @@ class BoardAnimation extends Component {
           y: canvas.height / 2,
           velX: getRandomVel(),
           velY: getRandomVel(),
-          color: rgb(color_base * i)
+          color: rgb(color_base * i),
+          gradient: gradient(ctx, color_base * i)
         }
         balls.push(ball);
       }
@@ -110,8 +119,10 @@ class BoardAnimation extends Component {
     const {
       ctx,
     } = this.state
+    
     ctx.beginPath()
-    ctx.fillStyle = ball.color
+    // ctx.fillStyle = ball.color
+    ctx.fillStyle = ball.gradient
     ctx.arc(
       ball.x, ball.y,
       ball.radius,
