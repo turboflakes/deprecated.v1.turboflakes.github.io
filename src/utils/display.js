@@ -5,8 +5,11 @@ export const stashDisplay = (stash) => {
     return !!stash ? `${stash.slice(0, 6)}...${stash.slice(stash.length-6, stash.length)}` : `-`
 }
   
-export const nameDisplay = (name) => {
-    return name.length > 24 ? `${name.slice(0, 24)}...` : name
+export const nameDisplay = (name, len) => {
+    if (!len) {
+        len = 24
+    }
+    return name.length > len ? `${name.slice(0, len)}...` : name
 }
   
 export const networkDisplay = (stash) => {

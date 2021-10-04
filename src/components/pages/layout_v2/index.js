@@ -23,9 +23,9 @@ class Layout extends Component {
     return (
       <div className={classes.root}>
         <Header />
-        <Alert />
+        {/* <Alert /> */}
         {this.props.children}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }

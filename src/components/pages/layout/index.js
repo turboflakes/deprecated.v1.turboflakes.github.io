@@ -13,7 +13,7 @@ class NewLayout extends Component {
 
   componentDidMount() {
     this.props.info()
-  }
+  }21
   
   render() {
     const { classes, width, quantity, selected } = this.props;

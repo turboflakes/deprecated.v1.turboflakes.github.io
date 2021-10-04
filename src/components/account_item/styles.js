@@ -1,19 +1,18 @@
 const styles = (theme) => ({
 	root: {},
 	rootItem: {
+		textAlign: "center",
 		'&:hover': {
-			backgroundColor: theme.palette.primary.main,
+			backgroundColor: theme.palette.neutrals[300],
 		},
 	},
 	selectedItem: {
-		backgroundColor: `${theme.palette.neutrals[300]} !important`,
-		left: theme.spacing(4),
-		borderTopLeftRadius: theme.spacing(3),
-		borderBottomLeftRadius: theme.spacing(3),
-		overflow: "visible"
+		backgroundColor: `${theme.palette.primary.main} !important`,
+		overflow: "visible",
 	},
-	selectedItemText: {
-		color: theme.palette.text.primary
-	}
+	itemText: {
+		color: theme.palette.text.secondary,
+		padding: `0 ${theme.spacing()}px`
+	},
 })
 export default styles

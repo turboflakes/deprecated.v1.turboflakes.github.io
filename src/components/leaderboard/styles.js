@@ -1,22 +1,18 @@
 const styles = (theme) => ({
 	root: {
-		backgroundColor: theme.palette.neutrals[200],
-		height: "100%"
-	},
-	searchIcon: {
 		position: "absolute",
-		right: theme.spacing(2)
+		right: theme.spacing(2),
+		top: "50vh",
+		// backgroundColor: theme.palette.neutrals[300],
+		borderRadius: theme.spacing(2),
+		minWidth: 400,
+		// minHeight: 210
 	},
-	list: {
-		overflow: "auto",
-    height: "80vh",
-		borderTop: `1px solid ${theme.palette.neutrals[400]}`
-	},
-	light:{
-		background: theme.palette.text.secondary,
-	},
-	network: {
+	networkBox: {
+		backgroundColor: theme.palette.neutrals[300],
 		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
+		borderTopLeftRadius: theme.spacing(2),
+		borderTopRightRadius: theme.spacing(2),
 		position: "relative",
 		display: "flex",
 		alignItems: "center",
@@ -28,23 +24,49 @@ const styles = (theme) => ({
 		width: 49,
 		height: 49
 	},
-	title: {
-		padding: `0 ${theme.spacing(2)}px`,
-		marginBottom: theme.spacing(1)
-	},
-	subTitle: {
-		display: "flex",
-		justifyContent: "space-between",
-		flexWrap: "wrap"
+	titleBox: {
+		backgroundColor: theme.palette.neutrals[300],
+		padding: `0 ${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px`,
+		borderBottomLeftRadius: theme.spacing(2),
+		borderBottomRightRadius: theme.spacing(2),
 	},
 	rootIconClasses: {
 		color: theme.palette.text.primary,
 		width: 10
 	},
-	info: {
-		display: "block",
-		textTransform: "uppercase",
-		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 0`,
+	iconSettings: {
+		position: "absolute",
+		right: theme.spacing(2),
+		bottom: theme.spacing(2),
+		color: theme.palette.text.secondary
+	},
+	settingsBox: {
+		display: "flex",
+	},
+	listBox:{
+		position: "relative",
+		backgroundColor: theme.palette.neutrals[300],
+	},
+	iconExpand: {
+		position: "absolute",
+		top: -theme.spacing(6),
+		left: -60,
+		overflow: "auto",
+		maxWidth: 200
+		// color: theme.palette.text.secondary
+	},
+	list: {
+		position: "absolute",
+		backgroundColor: "rgba(77,77,77,0.9)",
+		borderRadius: theme.spacing(2),
+		margin: `${theme.spacing()}px 0`,
+		overflow: "auto",
+		maxHeight: "85vh"
+	},
+	listRootItemExpand: {
+		display: "flex",
+		justifyContent: "end",
+		textAlign: "center",
 	},
 })
 export default styles

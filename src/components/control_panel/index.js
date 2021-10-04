@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import moment from 'moment';
+import { selectors } from '../../selectors'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import QuantitySlider from '../quantity_slider';
@@ -23,9 +25,12 @@ import styles from './styles'
 class ControlPanel extends Component {
 
 	render() {
-		const { classes } = this.props;
+		const { classes, info } = this.props;
 		return (
 			<div className={classes.root}>
+				<Typography variant="caption" color="textSecondary">
+					Synced at {!!info.cache ? moment.unix(info.cache.syncing_finished_at).format('lll') : '...'}
+				</Typography>
 				<QuantitySlider />
 				<Box className={classes.weigths}>
 					{/* <Typography variant="h5" color="textPrimary">
@@ -94,6 +99,7 @@ ControlPanel.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
+		info: selectors.getObjectByEntityAndId(state, 'api', '_'),
 		isFetching: !!state.fetchers.async,
   }
 }

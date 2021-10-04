@@ -49,13 +49,13 @@ export default createMuiTheme({
       }
     },
     neutrals: {
-      100: "#FFFFFF",
-      200: "#F9FDFF",
-      300: "#F1F9FD",
-      400: "#DFF1FA",
-      500: "#BBDFF3",
-      600: "#6F7072",
-      700: "#021220",
+      100: "#F1F1F0",
+      200: "#4D4D4D",
+      300: "#343434",
+      // 400: "#DFF1FA",
+      // 500: "#BBDFF3",
+      // 600: "#6F7072",
+      // 700: "#021220",
     },
     // neutrals: {
     //   100: "#FFFFFF",
@@ -83,7 +83,7 @@ export default createMuiTheme({
       secondary180: "linear-gradient(180deg,#85BCE4,#E86866)",
     },
     text: {
-      primary: "#021220",
+      primary: "#0B1317",
       secondary: "#FFFFFF",
       disabled: "rgba(0, 0, 0, 0.38)",
       hint: "rgba(0, 0, 0, 0.38)"
@@ -119,14 +119,14 @@ export default createMuiTheme({
       color: "#6F7072",
     },
     caption: {
-      color: "#6F7072",
     },
     subtitle1: {
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
-      fontWeight: 500
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "2rem"
     },
     subtitle2: {
-      color: "#6F7072",
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "1rem"
     },    
   },
   shape: {

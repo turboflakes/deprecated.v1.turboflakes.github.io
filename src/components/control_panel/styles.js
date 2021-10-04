@@ -1,8 +1,10 @@
 const styles = (theme) => ({
 	root: {
+		position: "absolute",
+		margin: `${theme.spacing()}px 0`,
 		padding: theme.spacing(2),
-		backgroundColor: theme.palette.neutrals[400],
-		height: "100%"
+		backgroundColor: "rgba(77,77,77,0.9)",
+		borderRadius: theme.spacing(2),
 	},
 })
 export default styles

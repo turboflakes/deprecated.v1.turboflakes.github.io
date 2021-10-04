@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import moment from 'moment';
 import {NETWORK} from '../../constants'
 import { query } from '../../actions/validator'
 import { selectAddress } from '../../actions/leaderboard'
@@ -13,8 +12,13 @@ import { isValidAddress } from '../../utils/crypto'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
+import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
+import DownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
+import UpIcon from '@material-ui/icons/KeyboardArrowUpRounded';
+import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
+import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
+import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
 import AccountSearchDialog from '../account_search_dialog'
 import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
@@ -41,6 +45,10 @@ class Leaderboard extends Component {
 		}
 	}
 
+	state = {
+    expand: false,
+  }
+
 	componentDidMount() {
 		const {weights, quantity} = this.props
 		if (!!weights && !!quantity) {
@@ -66,45 +74,60 @@ class Leaderboard extends Component {
 	}
 
 	render() {
-		const { classes, addresses, info } = this.props;
+		const { classes, addresses, isFetching } = this.props;
 
 		return (
-			<div className={classes.root}>
-				<Typography variant="subtitle2" className={classes.info} color="secondary" align="right">
-					Supporting now <b>{NETWORK}</b> network
-				</Typography>
-				<Box className={classes.network}>
+			<div className={classes.root} >
+				<Box className={classes.networkBox}>
 					<IconButton color="primary" size="small" onClick={this.handleKusama}>
 						<KusamaSVG className={classes.networkLogo} />
 					</IconButton>
-					<Typography variant="h5" color="textPrimary" className={classes.networkLabel} >
+					<Typography variant="subtitle1" color="textSecondary" className={classes.networkLabel} >
 						Kusama
 					</Typography>
-					<IconButton color="primary" aria-label="search for a validator" className={classes.searchIcon}
+					{/* <IconButton color="primary" aria-label="search for a validator" className={classes.searchIcon}
 						onClick={() => this.setState({open: true})}>
 						<SearchIcon />
-					</IconButton>
+					</IconButton> */}
 				</Box>
-				<Box className={classes.title}>
-					<Typography variant="h4" color="textPrimary" >
+				<Box className={classes.titleBox}>
+					<Typography variant="h4" color="textSecondary">
 						LEADERBOARD
 					</Typography>
-					<Box className={classes.subTitle}>
-						<Typography variant="caption" gutterBottom>
-							The highest-ranked Validators
-						</Typography>
-						{!!info.cache ? 
-							<Typography variant="caption" align="right">
-							Last sync: {moment.unix(info.cache.syncing_finished_at).format('lll')}
-							</Typography> : null}
-					</Box>						
+					<Typography variant="subtitle2" color="textSecondary" gutterBottom>
+						The highest-ranked Validators
+					</Typography>
+					<IconButton aria-label="Open / Close leaderboard settings" align="right"
+						className={classes.iconSettings} onClick={() => this.setState({open: !this.state.open})}>
+						{!this.state.open ? <DownIcon /> : <UpIcon />}
+					</IconButton>
 				</Box>
-				<List component="nav" className={classes.list}>
-					{addresses.map((address, index) => <AccountItem address={address} key={index} />)}
-				</List>
-				<AccountSearchDialog open={this.state.open} 
+				<Fade
+					in={this.state.open}
+					style={{
+						transitionDelay: !this.state.open ? '800ms' : '0ms',
+					}}
+					unmountOnExit
+				>
+					<Box className={classes.settingsBox}>
+						<Box className={classes.listBox}>
+							<IconButton aria-label="expand/collapse validator name"
+								className={classes.iconExpand} 
+								onClick={() => this.setState({expand: !this.state.expand})}>
+								{!this.state.expand ? <RightIcon /> : <LeftIcon />}
+							</IconButton>
+							<List className={classes.list} style={{
+								left: !this.state.expand ? -64 : -219
+							}}>
+								{addresses.map((address, index) => <AccountItem address={address} key={index} expanded={this.state.expand}/>)}
+							</List>
+						</Box>
+						<ControlPanel />
+					</Box>
+				</Fade>
+				{/* <AccountSearchDialog open={this.state.open} 
 					onClose={() => this.setState({open: false})}>
-        </AccountSearchDialog>
+        </AccountSearchDialog> */}
 			</div>
 		)
 	}
@@ -119,13 +142,11 @@ const mapStateToProps = (state, ownProps) => {
 	const quantity = state.leaderboard.quantity
 	const query = serialize({q: "Board", w: weights, n: quantity})
 	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
-	const info = selectors.getObjectByEntityAndId(state, 'api', '_')
 	return {
 		addresses,
 		weights,
 		quantity,
-		info,
-    isFetching: !!state.fetchers.async,
+		isFetching: !!state.fetchers.async,
   }
 }
 

@@ -41,12 +41,12 @@ class AccountItem extends Component {
 }
 
  	render() {
-		const { classes, address, account, selected, isFetching } = this.props;
+		const { classes, address, account, selected, expanded, isFetching } = this.props;
     const stash = networkDisplay(address)
 		const isSelected = account.id === selected
 
 		return (
-      <ListItem className={classes.root} button onClick={() => this.handleOnClick(address)} 
+      <ListItem className={classes.root} button disableGutters onClick={() => this.handleOnClick(address)} 
         classes={{
           root: classes.rootItem,
           selected: classes.selectedItem
@@ -64,10 +64,12 @@ class AccountItem extends Component {
             <Identicon
               value={stash}
               size={32}
-              theme={'polkadot'} />}
+              theme={'polkadot'} />
+              }
         </ListItemAvatar>
-        <ListItemText primary={isFetching ? `` : (!!account.name ? nameDisplay(account.name) : stashDisplay(stash))}
-          classes={isSelected ? {primary: classes.selectedItemText} : null} />
+        {expanded ? 
+          <ListItemText primary={isFetching ? `` : (!!account.name ? nameDisplay(account.name, 15) : stashDisplay(stash))}
+            align="left" classes={{primary: classes.itemText}} /> : null}
       </ListItem>
     )
 	}
