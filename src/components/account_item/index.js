@@ -19,7 +19,7 @@ class AccountItem extends Component {
 
   componentDidMount(){
     const {address} = this.props
-		if (address) {
+		if (!!address) {
 			this.props.get(address)
 		}
   }
@@ -46,7 +46,7 @@ class AccountItem extends Component {
 		const { classes, address, account, selected, expanded, isFetching } = this.props;
     const stash = networkDisplay(address)
 		const isSelected = account.id === selected
-    // const isFetching = true
+
 		return (
       <ListItem className={classes.root} button disableGutters 
         onClick={() => this.handleOnClick(address)} 

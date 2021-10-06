@@ -34,15 +34,15 @@ export const quantity = (state = 16, action) => {
   }
 }
 
-export const selected = (state = 0, action) => {
+export const selected = (state = "", action) => {
   if (action.error) {
-    return 0
+    return ""
   }
   switch (action.type) {
     case "SELECT_ADDRESS":
       return action.address
     case "CLEAR_ADDRESS":
-      return 0
+      return ""
     default:
       return state
   }

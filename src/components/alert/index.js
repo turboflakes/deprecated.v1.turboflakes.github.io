@@ -15,7 +15,7 @@ class Alert extends Component {
   renderError = (msg, index) => {
     const { classes } = this.props;
     return (
-      <AlertBase className={classes.alert}
+      <AlertBase key={index} className={classes.alert}
         severity="error"
         onClose={() => this.props.remove(index)}
       >

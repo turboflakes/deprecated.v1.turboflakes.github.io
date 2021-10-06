@@ -140,23 +140,23 @@ export default createMuiTheme({
   overrides: {
     MuiInputBase: {
       input: {
-        borderRadius: 5,
       },
       root: {
-        borderRadius: 5,
-        color: "#FFFFFF"
+        color: "#0B1317"
       }
     },
     MuiOutlinedInput: {
       input: {
-        color: "#FFFFFF"
+        color: "#0B1317"
       }, 
       root: {
         '& $notchedOutline' : {
-          borderColor: "#FFFFFF",
+          borderColor: "#ED1C24",
+          borderRadius: 30,
         },
         '&:hover:not($disabled):not($focused):not($error) $notchedOutline' : {
-          borderColor: "#85BCE4", // primary
+          borderColor: "#ED1C24", // primary
+          borderRadius: 30,
         }
       },
     },

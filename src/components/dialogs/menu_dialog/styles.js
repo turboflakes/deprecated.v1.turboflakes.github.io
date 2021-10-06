@@ -8,17 +8,17 @@ const styles = (theme) => ({
     margin: `0 auto`,
   },
   logo: {
-    margin: `${8*theme.spacing.unit}px 0`
+    margin: `${theme.spacing(8)}px 0`
   },
   contentRoot:{
-    padding: `${2*theme.spacing.unit}px ${8*theme.spacing.unit}px`,
+    padding: `${theme.spacing(2)}px ${theme.spacing(8)}px`,
     margin: `0 auto`,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     [theme.breakpoints.down('sm')]: {
-      padding: `${theme.spacing.unit}px ${2*theme.spacing.unit}px`,
+      padding: `${theme.spacing()}px ${theme.spacing(2)}px`,
     }
   },
   closeButton: {
@@ -28,12 +28,12 @@ const styles = (theme) => ({
 		}
   },
   gutterBottom: {
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing(),
   },
   closeButtonBox:{
     position: "absolute",
-    right: 3*theme.spacing.unit,
-    top: 2*theme.spacing.unit
+    right: theme.spacing(3),
+    top: theme.spacing(2)
   },
   closeButtonRoot:{
     color: "#fff"

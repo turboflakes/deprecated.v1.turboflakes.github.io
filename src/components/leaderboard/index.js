@@ -20,7 +20,6 @@ import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
-// import AccountSearchDialog from '../account_search_dialog'
 import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -84,10 +83,6 @@ class Leaderboard extends Component {
 					<Typography variant="subtitle1" color="textSecondary" className={classes.networkLabel} >
 						Kusama
 					</Typography>
-					{/* <IconButton color="primary" aria-label="search for a validator" className={classes.searchIcon}
-						onClick={() => this.setState({open: true})}>
-						<SearchIcon />
-					</IconButton> */}
 				</Box>
 				<Box className={classes.titleBox}>
 					<Typography variant="h4" color="textSecondary">
@@ -130,9 +125,6 @@ class Leaderboard extends Component {
 						<ControlPanel />
 					</Box>
 				</Fade>
-				{/* <AccountSearchDialog open={this.state.open} 
-					onClose={() => this.setState({open: false})}>
-        </AccountSearchDialog> */}
 			</div>
 		)
 	}

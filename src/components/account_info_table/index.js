@@ -64,10 +64,10 @@ class AccountInfoTable extends Component {
 
   componentDidUpdate(prevProps) {
     const {address, weights, isFetching, account} = this.props
-    if (!isFetching && prevProps.address !== address && !account.id) {
+    if (!isFetching && !!address && prevProps.address !== address && !account.id) {
       this.props.get(address)
     }
-    if (!isFetching && (prevProps.weights !== weights || prevProps.address !== address)) {
+    if (!isFetching && (prevProps.weights !== weights || (!!address && prevProps.address !== address))) {
       this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
     }
   }
