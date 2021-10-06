@@ -16,8 +16,7 @@ const styles = (theme) => ({
 		alignItems: "center"
 	},
 	logo:{
-		width: 80,
-		height: "100%",
+		height: 60,
 		marginBottom: theme.spacing(3)
 	},
 	primary: {

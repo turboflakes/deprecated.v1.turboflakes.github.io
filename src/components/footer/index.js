@@ -20,6 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import EmailIcon from '@material-ui/icons/EmailRounded';
 import SearchIcon from '@material-ui/icons/Search';
 import { ReactComponent as TurboflakesSVG } from '../../assets/turboflakes_white.svg';
+import logo from '../../assets/logo/logo_1_inverted_subtract_turboflakes_.svg';
 import { ReactComponent as TwitterSVG } from '../../assets/twitter.svg';
 import { ReactComponent as GithubSVG } from '../../assets/github.svg';
 import { ReactComponent as PolkadotSVG } from '../../assets/polkadot_logotype_white.svg';
@@ -69,7 +70,7 @@ class Footer extends Component {
 				<Divider light classes={{ light: classes.light }}/>
 				<Box className={classes.container}>
 					<Link href="/" color="inherit" >
-						<TurboflakesSVG className={classes.logo} />
+						<img src={logo} className={classes.logo} alt={"logo"}/>
 					</Link>
 					<Typography color="textSecondary" paragraph>
 						Want to know more about TurboFlakes read <Link href="/#/about"  color="inherit" underline="always" >here</Link>.
