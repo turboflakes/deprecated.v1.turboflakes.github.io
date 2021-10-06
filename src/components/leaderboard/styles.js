@@ -11,8 +11,8 @@ const styles = (theme) => ({
 	networkBox: {
 		backgroundColor: theme.palette.neutrals[300],
 		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
-		borderTopLeftRadius: theme.spacing(2),
-		borderTopRightRadius: theme.spacing(2),
+		borderTopLeftRadius: theme.spacing(3),
+		borderTopRightRadius: theme.spacing(3),
 		position: "relative",
 		display: "flex",
 		alignItems: "center",
@@ -28,8 +28,8 @@ const styles = (theme) => ({
 		position: "relative",
 		backgroundColor: theme.palette.neutrals[300],
 		padding: `0 ${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px`,
-		borderBottomLeftRadius: theme.spacing(2),
-		borderBottomRightRadius: theme.spacing(2),
+		borderBottomLeftRadius: theme.spacing(3),
+		borderBottomRightRadius: theme.spacing(3),
 	},
 	rootIconClasses: {
 		color: theme.palette.text.primary,
@@ -46,8 +46,8 @@ const styles = (theme) => ({
 		height: 695,
 		margin: `${theme.spacing()}px 0`,
 		backgroundColor: "rgba(77,77,77,0.9)",
-		borderTopRightRadius: theme.spacing(2),
-		borderBottomRightRadius: theme.spacing(2)
+		borderTopRightRadius: theme.spacing(3),
+		borderBottomRightRadius: theme.spacing(3)
 	},
 	leaderboardBox:{
 		position: "relative",
@@ -57,16 +57,15 @@ const styles = (theme) => ({
 	},
 	iconExpandBox: {
 		backgroundColor: "rgba(77,77,77,0.9)",
-		padding: theme.spacing(1),
-		borderTopLeftRadius: theme.spacing(2),
-		borderBottomLeftRadius: theme.spacing(2)
+		borderTopLeftRadius: theme.spacing(3),
+		borderBottomLeftRadius: theme.spacing(3)
 	},
 	iconExpand: {
 		color: theme.palette.text.secondary
 	},
 	listBox: {
 		backgroundColor: "rgba(77,77,77,0.9)",
-		borderBottomLeftRadius: theme.spacing(2),
+		borderBottomLeftRadius: theme.spacing(3),
 		overflow: "auto",
 		height: 695,
 	},

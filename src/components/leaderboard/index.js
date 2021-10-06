@@ -105,7 +105,7 @@ class Leaderboard extends Component {
 				>
 					<Box className={classes.settingsBox}>
 						<Box className={classes.leaderboardBox} style={{
-									left: !this.state.expand ? -121 : -276
+									left: !this.state.expand ? -104 : -260
 								}}>
 							<Box className={classes.iconExpandBox}>
 								<IconButton aria-label="expand/collapse validator name"
