@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import {NETWORK} from '../../constants'
+// import {NETWORK} from '../../constants'
 import { query } from '../../actions/validator'
 import { selectAddress } from '../../actions/leaderboard'
 import { add } from '../../actions/error'
@@ -20,7 +20,7 @@ import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
-import AccountSearchDialog from '../account_search_dialog'
+// import AccountSearchDialog from '../account_search_dialog'
 import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -74,7 +74,7 @@ class Leaderboard extends Component {
 	}
 
 	render() {
-		const { classes, addresses, isFetching } = this.props;
+		const { classes, addresses } = this.props;
 
 		return (
 			<div className={classes.root} >

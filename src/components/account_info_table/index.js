@@ -3,14 +3,11 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { get, getValidatorRank } from '../../actions/validator'
 import { clearAddress } from '../../actions/leaderboard'
-import { networkDisplay, stashDisplay, nameDisplay, stakeDisplay, stakeDisplayNoSymbol, commissionDisplay, rateDisplay } from '../../utils/display'
+import { networkDisplay, stashDisplay, nameDisplay, stakeDisplayNoSymbol, commissionDisplay, rateDisplay } from '../../utils/display'
 import { NETWORK, networkCodes, networkWSS } from '../../constants'
 import { selectors } from '../../selectors'
-import Divider from '@material-ui/core/Divider';
+
 import Box from '@material-ui/core/Box';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';

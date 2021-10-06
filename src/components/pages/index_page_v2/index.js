@@ -5,13 +5,9 @@ import { selectors } from '../../../selectors'
 import serialize from '../../../utils/serialize'
 import { selectAddress, clearAddress } from '../../../actions/leaderboard'
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import BoardAnimation from '../../board_animation'
-import Header from '../../header'
-import Alert from '../../alert'
 import Leaderboard from '../../leaderboard'
-// import ControlPanel from '../../control_panel'
 import AccountInfoTable from '../../account_info_table'
 import logo from '../../../assets/logo/logo_1_color_subtract_turboflakes_.svg';
 import { withStyles } from '@material-ui/core/styles';

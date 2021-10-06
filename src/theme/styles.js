@@ -1,5 +1,4 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { LineWeight } from '@material-ui/icons';
 
 // https://material-ui.com/customization/default-theme/?expend-path=$.palette
 export default createMuiTheme({
