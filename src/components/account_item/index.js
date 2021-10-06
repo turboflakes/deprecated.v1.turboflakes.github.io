@@ -40,11 +40,13 @@ class AccountItem extends Component {
     this.props.selectAddress(address)
   }
 
+  
+
  	render() {
 		const { classes, address, account, selected, expanded, isFetching } = this.props;
     const stash = networkDisplay(address)
 		const isSelected = account.id === selected
-
+    // const isFetching = true
 		return (
       <ListItem className={classes.root} button disableGutters 
         onClick={() => this.handleOnClick(address)} 
@@ -60,8 +62,9 @@ class AccountItem extends Component {
                   }}
                   unmountOnExit
                 >
-              <CircularProgress size={24} />
-            </Fade> :
+              <CircularProgress size={24} className={classes.progress} />
+            </Fade>
+             :
             <Identicon
               value={stash}
               size={32}

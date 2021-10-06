@@ -23,7 +23,7 @@ export default createMuiTheme({
     },
     secondary: {
       // dark automatic calculated
-      main: "#E86866",
+      main: "#343434",
       contrastText: '#FFFFFF',
     },
     semantics: {
@@ -190,6 +190,7 @@ export default createMuiTheme({
       track: {
         height: 8,
         borderRadius: 4,
+        // backgroundColor: "#FFF"
       },
       rail: {
         height: 8,

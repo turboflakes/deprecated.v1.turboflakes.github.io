@@ -5,6 +5,6 @@ const styles = (theme) => ({
 	slider: {
 		maxWidth: "96%",
 		marginLeft: theme.spacing(1)
-	}
+	},
 })
 export default styles

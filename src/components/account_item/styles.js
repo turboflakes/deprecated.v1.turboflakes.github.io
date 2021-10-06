@@ -14,5 +14,8 @@ const styles = (theme) => ({
 		color: theme.palette.text.secondary,
 		padding: `0 ${theme.spacing()}px`
 	},
+	progress: {
+		color: theme.palette.text.secondary
+	}
 })
 export default styles

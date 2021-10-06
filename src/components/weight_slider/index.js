@@ -95,6 +95,7 @@ class WeightSlider extends Component {
 					</Box>
 					<Slider
 						className={classes.slider}
+						color="secondary"
 						defaultValue={this.state.value}
 						getAriaValueText={() => value}
 						valueLabelDisplay="on"

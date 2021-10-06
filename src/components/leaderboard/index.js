@@ -32,22 +32,21 @@ class Leaderboard extends Component {
 
 		let query = new URLSearchParams(props.location.search)
 		let address = query.get("a")
+		let state = {}
 		if (isValidAddress(address)) {
-			this.state = {
+			state = {
 				address,
-				open: false
 			}
 		} else {
 			query.delete("a")
-			this.state = {
-				open: false
-			}
+		}
+
+		this.state = {
+			...state,
+			open: true,
+			expand: false,
 		}
 	}
-
-	state = {
-    expand: false,
-  }
 
 	componentDidMount() {
 		const {weights, quantity} = this.props
@@ -110,17 +109,23 @@ class Leaderboard extends Component {
 					unmountOnExit
 				>
 					<Box className={classes.settingsBox}>
-						<Box className={classes.listBox}>
-							<IconButton aria-label="expand/collapse validator name"
-								className={classes.iconExpand} 
-								onClick={() => this.setState({expand: !this.state.expand})}>
-								{!this.state.expand ? <RightIcon /> : <LeftIcon />}
-							</IconButton>
-							<List className={classes.list} style={{
-								left: !this.state.expand ? -64 : -219
-							}}>
-								{addresses.map((address, index) => <AccountItem address={address} key={index} expanded={this.state.expand}/>)}
-							</List>
+						<Box className={classes.leaderboardBox} style={{
+									left: !this.state.expand ? -121 : -276
+								}}>
+							<Box className={classes.iconExpandBox}>
+								<IconButton aria-label="expand/collapse validator name"
+									className={classes.iconExpand} 
+									onClick={() => this.setState({expand: !this.state.expand})}>
+									{!this.state.expand ? <RightIcon /> : <LeftIcon />}
+								</IconButton>
+							</Box>
+							<Box className={classes.listBox} style={{
+									minWidth: !this.state.expand ? 55 : 211
+								}}>
+								<List className={classes.list}>
+									{addresses.map((address, index) => <AccountItem address={address} key={index} expanded={this.state.expand}/>)}
+								</List>
+							</Box>
 						</Box>
 						<ControlPanel />
 					</Box>

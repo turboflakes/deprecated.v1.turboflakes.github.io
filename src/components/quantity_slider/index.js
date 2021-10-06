@@ -85,7 +85,7 @@ class QuantitySlider extends Component {
 					className={classes.slider}
 					defaultValue={this.state.value}
 					getAriaValueText={() => value}
-					color="secondary"
+					color="primary"
 					valueLabelDisplay="on"
 					step={null}
 					min={8}

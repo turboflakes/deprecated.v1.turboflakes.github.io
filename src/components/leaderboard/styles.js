@@ -25,6 +25,7 @@ const styles = (theme) => ({
 		height: 49
 	},
 	titleBox: {
+		position: "relative",
 		backgroundColor: theme.palette.neutrals[300],
 		padding: `0 ${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px`,
 		borderBottomLeftRadius: theme.spacing(2),
@@ -36,37 +37,38 @@ const styles = (theme) => ({
 	},
 	iconSettings: {
 		position: "absolute",
-		right: theme.spacing(2),
-		bottom: theme.spacing(2),
+		right: theme.spacing(),
+		bottom: theme.spacing(),
 		color: theme.palette.text.secondary
 	},
 	settingsBox: {
 		display: "flex",
+		height: 695,
+		margin: `${theme.spacing()}px 0`,
+		backgroundColor: "rgba(77,77,77,0.9)",
+		borderTopRightRadius: theme.spacing(2),
+		borderBottomRightRadius: theme.spacing(2)
 	},
-	listBox:{
+	leaderboardBox:{
 		position: "relative",
-		backgroundColor: theme.palette.neutrals[300],
+		display: "flex",
+		alignItems: "start",
+		borderRight: `1px solid ${theme.palette.neutrals[100]}`,		
+	},
+	iconExpandBox: {
+		backgroundColor: "rgba(77,77,77,0.9)",
+		padding: theme.spacing(1),
+		borderTopLeftRadius: theme.spacing(2),
+		borderBottomLeftRadius: theme.spacing(2)
 	},
 	iconExpand: {
-		position: "absolute",
-		top: -theme.spacing(6),
-		left: -60,
-		overflow: "auto",
-		maxWidth: 200
-		// color: theme.palette.text.secondary
+		color: theme.palette.text.secondary
 	},
-	list: {
-		position: "absolute",
+	listBox: {
 		backgroundColor: "rgba(77,77,77,0.9)",
-		borderRadius: theme.spacing(2),
-		margin: `${theme.spacing()}px 0`,
+		borderBottomLeftRadius: theme.spacing(2),
 		overflow: "auto",
-		maxHeight: "85vh"
-	},
-	listRootItemExpand: {
-		display: "flex",
-		justifyContent: "end",
-		textAlign: "center",
+		height: 695,
 	},
 })
 export default styles

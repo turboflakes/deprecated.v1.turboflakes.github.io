@@ -19,7 +19,6 @@ import Identicon from '@polkadot/react-identicon';
 import IconButton from '@material-ui/core/IconButton';
 import EmailIcon from '@material-ui/icons/EmailRounded';
 import SearchIcon from '@material-ui/icons/Search';
-import { ReactComponent as TurboflakesSVG } from '../../assets/turboflakes_white.svg';
 import logo from '../../assets/logo/logo_1_inverted_subtract_turboflakes_.svg';
 import { ReactComponent as TwitterSVG } from '../../assets/twitter.svg';
 import { ReactComponent as GithubSVG } from '../../assets/github.svg';
