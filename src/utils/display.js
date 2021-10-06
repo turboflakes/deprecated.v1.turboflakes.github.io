@@ -21,7 +21,13 @@ export const networkDisplay = (stash) => {
 
 export const stakeDisplay = (stake) => {
     if (NETWORK in networkDecimals && NETWORK in networkCodes) {
-      return `${(stake/networkDecimals[NETWORK]).toFixed(4)} ${networkCodes[NETWORK]}`
+      return `${(stake/networkDecimals[NETWORK]).toFixed(2)} ${networkCodes[NETWORK]}`
+    }
+    return stake
+}
+export const stakeDisplayNoSymbol = (stake) => {
+    if (NETWORK in networkDecimals && NETWORK in networkCodes) {
+      return `${(stake/networkDecimals[NETWORK]).toFixed(2)}`
     }
     return stake
 }

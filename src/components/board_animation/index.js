@@ -63,13 +63,23 @@ class BoardAnimation extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {n, width} = this.props
-    if (prevProps.n !== n) {
+    const {addresses, width, selected} = this.props
+    if (prevProps.addresses.length !== addresses.length) {
       this.init()
     }
     if (prevProps.width !== width) {
       const canvas = document.getElementById('board')
       canvas.width = width
+    }
+    if (prevProps.selected !== selected) {
+      const {balls} = this.state
+      // Reset previous ball selected
+      this.clearSelected()
+      // Identify which ball was clicked
+      const ball = balls.find(ball => ball.address === selected)
+      if (!!ball) {
+        ball.clicked = true
+      }
     }
 
   }
@@ -82,7 +92,7 @@ class BoardAnimation extends Component {
 
   init = () => {
     const {
-      n,
+      addresses,
       width,
       height
     } = this.props
@@ -103,12 +113,14 @@ class BoardAnimation extends Component {
 
       let balls = []
       
-      for (let i = n; i >= 0; i--) {
-        let g = gradient();
+      for (let i = 0; i < addresses.length; i++) {
+        const g = gradient(),
+        radius = 30 * (1+3*(addresses.length-i)/addresses.length);
         const ball = {
-          index: i,
+          address: addresses[i],
           bounce: 1,
-          radius: 30 * (1+3*i/n),
+          radius: radius,
+          originalRadius: radius,
           x: canvas.width / 2,
           y: canvas.height / 2,
           velX: getRandomVel(),
@@ -118,6 +130,23 @@ class BoardAnimation extends Component {
         }
         balls.push(ball);
       }
+
+      // Add event listener for `click` events.
+      canvas.addEventListener('click', (e) => {
+        var headerHeight = 80,
+        x = e.pageX - canvas.getBoundingClientRect().left,
+        y = e.pageY - (window.innerHeight / 2) - headerHeight
+
+        // Identify which ball was clicked
+        let ball = balls.find(ball => Math.sqrt((x-ball.x)*(x-ball.x) + (y-ball.y)*(y-ball.y)) < ball.radius)
+        if (!!ball) {
+          // Reset previous ball selected
+          this.clearSelected()
+          
+          ball.clicked = true
+          this.props.onBallClick(ball.address)
+        }
+      }, false);
 
       this.setState({
         canvas,
@@ -130,23 +159,46 @@ class BoardAnimation extends Component {
     }
   }
 
+  clearSelected = () => {
+    const {canvas, balls} = this.state
+    // Identify which ball is open to be reset
+    let ball = balls.find(ball => ball.clicked)
+    if (!!ball) {
+      ball.clicked = false
+      ball.x = canvas.width / 2
+      ball.y = canvas.height / 2
+      ball.velX = getRandomVel()
+      ball.velY = getRandomVel()
+      ball.radius = ball.originalRadius
+    }
+  }
+
   draw = (ball) => {
     const {
       ctx,
     } = this.state
 
     ctx.beginPath()
+
+    // Define gradient
     let g = ctx.createLinearGradient(ball.x-ball.radius, ball.y-ball.radius, ball.x+ball.radius, ball.y+ball.radius);
     g.addColorStop(0, ball.colorStart);
     g.addColorStop(1, ball.colorEnd);
     ctx.fillStyle = g
     
+    // Draw the dot
     ctx.arc(
       ball.x, ball.y,
       ball.radius,
-      0, Math.PI * 2
+      0, Math.PI * 2, true
     )
 
+    // Sets the type of compositing operation to apply when drawing new shapes
+    if (!ball.clicked) {
+      // ctx.globalCompositeOperation='color-burn';
+      // ctx.globalCompositeOperation='luminosity';
+    }
+    ctx.globalCompositeOperation='destination-over';
     // ctx.globalAlpha = 0.8;
 
     ctx.fill()
@@ -167,35 +219,40 @@ class BoardAnimation extends Component {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       balls.forEach((ball) => {
-        if (ball.y + ball.radius >= canvas.height) {
-          ball.velY *= -ball.bounce
-          ball.y = canvas.height - ball.radius
-          ball.velX *= friction
-        }
-        if (ball.y - ball.radius <= 0) {
-          ball.velY *= -ball.bounce
-          ball.y = ball.radius
-          ball.velX *= friction
-        }
-        if (ball.x - ball.radius <= 0) {
-          ball.velX *= -ball.bounce
-          ball.x = ball.radius
-        }
-        if (ball.x + ball.radius >= canvas.width) {
-          ball.velX *= -ball.bounce
-          ball.x = canvas.width - ball.radius
-        }
+        if (ball.clicked) {
+          ball.radius = canvas.width / 4.4
+          ball.x = (canvas.width / 4.4) + 20
+          ball.y = (canvas.width / 4.4) + 20
+        } else {
+          if (ball.y + ball.radius >= canvas.height) {
+            ball.velY *= -ball.bounce
+            ball.y = canvas.height - ball.radius
+            ball.velX *= friction
+          }
+          if (ball.y - ball.radius <= 0) {
+            ball.velY *= -ball.bounce
+            ball.y = ball.radius
+            ball.velX *= friction
+          }
+          if (ball.x - ball.radius <= 0) {
+            ball.velX *= -ball.bounce
+            ball.x = ball.radius
+          }
+          if (ball.x + ball.radius >= canvas.width) {
+            ball.velX *= -ball.bounce
+            ball.x = canvas.width - ball.radius
+          }
 
-        if (ball.velX < 0.01 && ball.velX > -0.01) {
-          ball.velX = 0
-        }
-        if (ball.velY < 0.01 && ball.velY > -0.01) {
-          ball.velY = 0
-        }
+          if (ball.velX < 0.01 && ball.velX > -0.01) {
+            ball.velX = 0
+          }
+          if (ball.velY < 0.01 && ball.velY > -0.01) {
+            ball.velY = 0
+          }
 
-        ball.x += ball.velX
-        ball.y += ball.velY
-
+          ball.x += ball.velX
+          ball.y += ball.velY
+        }
         this.draw(ball)
       })
     }
@@ -214,7 +271,9 @@ class BoardAnimation extends Component {
 
 BoardAnimation.propTypes = {
   classes: PropTypes.object.isRequired,
-  n: PropTypes.number.isRequired,
+  addresses: PropTypes.array.isRequired,
+  onBallClick: PropTypes.func.isRequired,
+  onBallClear: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(BoardAnimation);

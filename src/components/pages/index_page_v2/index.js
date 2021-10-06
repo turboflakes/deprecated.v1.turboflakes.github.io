@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { selectors } from '../../../selectors'
+import serialize from '../../../utils/serialize'
+import { selectAddress, clearAddress } from '../../../actions/leaderboard'
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +12,7 @@ import Header from '../../header'
 import Alert from '../../alert'
 import Leaderboard from '../../leaderboard'
 // import ControlPanel from '../../control_panel'
-import AccountInfo from '../../account_info'
+import AccountInfoTable from '../../account_info_table'
 import logo from '../../../assets/logo/logo_1_color_subtract_turboflakes_.svg';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
@@ -17,25 +20,21 @@ import styles from './styles'
 
 class NewIndexPage extends Component {
 
+  handleOnBallClick = (address) => {
+    if (!!address) {
+      this.props.selectAddress(address)
+    }
+  }
+
+  handleOnBallClear = () => {
+    this.props.clearAddress()
+  }
+
   render() {
-    const { classes, quantity, selected } = this.props;
+    const { classes, addresses, selected } = this.props;
     
     return (
       <Box className={classes.root}>
-        {/* <Box classes={{ root: classes.rootContainer}}>  
-          <Grid container spacing={0}>
-            <Grid item xs={12} sm={!!selected ? 4 : 6}>
-              <Leaderboard />
-            </Grid>
-            {!!selected ? 
-              <Grid item xs={12} sm={4}>
-                <AccountInfo />
-              </Grid> : null}
-            <Grid item xs={12} sm={!!selected ? 4 : 6}>
-              <ControlPanel />
-            </Grid>
-          </Grid>
-        </Box> */}
         <Box className={classes.heroBox}>
           <Box align="center">
             <img src={logo} className={classes.logo} alt={"logo"}/>
@@ -58,11 +57,15 @@ class NewIndexPage extends Component {
             Earn Rewards on Digital Assets
           </Typography>
         </Box>
-        <Box className={classes.animation}>
+        <Box className={classes.animationBox}>
           <BoardAnimation 
-              n={quantity}
+              addresses={addresses}
+              selected={selected}
               width={window.innerWidth} 
-              height={window.innerHeight} />
+              height={window.innerHeight * 0.9}
+              onBallClick={this.handleOnBallClick}
+              onBallClear={this.handleOnBallClear} />
+          <AccountInfoTable />
         </Box>
         <Leaderboard />
       </Box>
@@ -75,13 +78,17 @@ NewIndexPage.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const weights = state.leaderboard.weights
   const quantity = state.leaderboard.quantity
   const selected = state.leaderboard.selected
+  const query = serialize({q: "Board", w: weights, n: quantity})
+  const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
   return {
     quantity,
     selected,
+    addresses,
     isFetching: !!state.fetchers.async,
   }
 }
 
-export default connect(mapStateToProps)(withWidth()(withStyles(styles)(NewIndexPage)));
+export default connect(mapStateToProps, {selectAddress, clearAddress})(withWidth()(withStyles(styles)(NewIndexPage)));

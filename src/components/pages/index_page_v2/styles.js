@@ -11,6 +11,9 @@ const styles = (theme) => ({
   logo: {
     marginBottom: 6*theme.spacing.unit
   },
+  animationBox:{
+    position: "relative"
+  }
   
 })
 export default styles

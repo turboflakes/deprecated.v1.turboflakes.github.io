@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { LineWeight } from '@material-ui/icons';
 
 // https://material-ui.com/customization/default-theme/?expend-path=$.palette
 export default createMuiTheme({
@@ -116,18 +117,19 @@ export default createMuiTheme({
       fontWeight: 400
     },
     body1: {
-      color: "#6F7072",
+      fontFamily: "'Roboto', sans-serif"
     },
     caption: {
+      fontFamily: "'Roboto', sans-serif",
     },
     subtitle1: {
       fontFamily: "'Roboto', sans-serif",
-      fontSize: "2rem"
+      fontSize: "1.5rem",
     },
     subtitle2: {
       fontFamily: "'Roboto', sans-serif",
       fontSize: "1rem"
-    },    
+    }, 
   },
   shape: {
     borderRadius: 5,
