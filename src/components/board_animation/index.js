@@ -67,10 +67,12 @@ class BoardAnimation extends Component {
     if (prevProps.addresses.length !== addresses.length) {
       this.init()
     }
+
     if (prevProps.width !== width) {
       const canvas = document.getElementById('board')
       canvas.width = width
     }
+
     if (prevProps.selected !== selected) {
       const {balls} = this.state
       // Reset previous ball selected
@@ -92,6 +94,7 @@ class BoardAnimation extends Component {
 
   init = () => {
     const {
+      selected,
       addresses,
       width,
       height
@@ -147,6 +150,14 @@ class BoardAnimation extends Component {
           this.props.onBallClick(ball.address)
         }
       }, false);
+
+      if (!!selected) {
+        // Initialize any selected address
+        const ball = balls.find(ball => ball.address === selected)
+        if (!!ball) {
+          ball.clicked = true
+        }
+      }
 
       this.setState({
         canvas,
