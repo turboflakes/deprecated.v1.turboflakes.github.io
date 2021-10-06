@@ -228,7 +228,7 @@ class AccountInfo extends Component {
             <ListItemText 
               primary={
                 <React.Fragment>
-                  Average reward points:
+                  Average points:
                   <Typography
                     component="span"
                     variant="body1"
@@ -255,7 +255,7 @@ class AccountInfo extends Component {
             <ListItemText 
               primary={
                 <React.Fragment>
-                  Reward destination as 'Staked':
+                  Stake rewards:
                   <Typography
                     component="span"
                     variant="body1"

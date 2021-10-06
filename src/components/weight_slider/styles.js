@@ -1,19 +1,24 @@
 const styles = (theme) => ({
 	root: {
-		marginBottom: theme.spacing(2)
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "space-between",
+		marginBottom: theme.spacing()
 	},
 	titleBox: {
 		display: "flex",
 		alignItems: "center",
-		justifyContent: "space-between",
-		marginBottom: -theme.spacing(1)
+		justifyContent: "center",
+	},
+	title: {
+
 	},
 	sliderBox: {
-		margin: `${theme.spacing(1)}px 0 ${theme.spacing(1)}px 0`
+		margin: `${theme.spacing(1)}px 0`
 	},
 	slider: {
-		maxWidth: "96%",
-		margin: `0 0 ${theme.spacing(1)}px ${theme.spacing(1)}px`
+		maxWidth: 200,
+		margin: `0 ${theme.spacing(1)}px`
 	},
 	sliderRangeRoot: {
 		height: 4,

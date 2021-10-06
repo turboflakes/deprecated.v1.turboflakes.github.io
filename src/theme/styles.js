@@ -180,7 +180,7 @@ export default createMuiTheme({
         height: 24,
         width: 24,
         backgroundColor: '#fff',
-        border: '2px solid currentColor',
+        // border: '1px solid currentColor',
         marginTop: -8,
         marginLeft: -12,
         // '&:focus, &:hover, &$active': {
@@ -196,9 +196,10 @@ export default createMuiTheme({
         borderRadius: 4,
       },
       valueLabel: {
-        left: 'calc(-50% + 4px)',
-        top: 30,
-        fontSize: "1rem",
+        left: 'calc(-50% + 7px)',
+        top: 6,
+        fontSize: "0.75rem",
+        fontWeight: 600,
         '& *': {
           background: 'transparent',
           color: '#000',
@@ -210,7 +211,7 @@ export default createMuiTheme({
         padding: 16,
         backgroundColor: "#021220",
         color: "#FFFFFF"
-      }
+      },
     }
   }
 });

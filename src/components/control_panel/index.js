@@ -36,7 +36,7 @@ class ControlPanel extends Component {
 					{/* <Typography variant="h5" color="textPrimary">
 						Weights
 					</Typography> */}
-					<Typography variant="h6" gutterBottom>
+					<Typography variant="subtitle2" color="textSecondary" gutterBottom>
 					..based on the <PopoverWeight /> assigned to the traits below:
 					</Typography>
 					<WeightSlider index={0} 
@@ -53,20 +53,20 @@ class ControlPanel extends Component {
 						scaleDescription="The number of nominator is rescaled using the method min-max normalization. The maximum value is currently 256 (a validator is oversubscribed if more than 256 nominators nominate the same validator). And the minimum value is 0."
 						resultDescription="A lower number of nominators results on a higher score." />
 					<WeightSlider index={3} 
-						title="Average reward points"
+						title="Average points"
 						description="The average reward points is calculated by the mean of reward points a Validator has collected in the last 84 eras. For every era, validators are paid proportionally to the amount of era points they have collected. Era points are reward points earned for payable actions while the Validator is in the active set."
 						scaleDescription="The average reward points is rescaled using the method min-max normalization. The maximum value is the maximum of era points collected from a Validator in one of the last 84 eras. And the minimum value is the minimum of era points collected from a Validator in one of the last 84 eras."
 						resultDescription="A higher average value results on a higher score." />
 					<WeightSlider index={4} 
-						title="Reward destination as 'Staked'"
+						title="Stake rewards"
 						description="The reward destination as 'Staked' is the stash account where the rewards from validating are sent, increasing the amount at stake."
-						scaleDescription="The expression reward destination has a value of 0 if NOT 'Staked' or 1 if 'Staked'."
+						scaleDescription="The expression stake rewards has a value of 0 if NOT 'Staked' or 1 if 'Staked'."
 						resultDescription="A reward destination as 'Staked' results on a higher score." />
 					<WeightSlider index={5} 
-						title="Currently Elected" 
-						description="The Validators that are currently elected are in the active set."
-						scaleDescription="The expression currently elected has a value of 0 if NOT Active or 1 if Active."
-						resultDescription="A currently elected validator results on a higher score." />
+						title="Active" 
+						description="The Validators that are active are in the active set."
+						scaleDescription="The expression active has a value of 0 if NOT Active or 1 if Active."
+						resultDescription="An active validator results on a higher score." />
 					<WeightSlider index={6} 
 						title="Own self-stake" 
 						description="The own self-stake is the amount of funds a Validator has bonded to their stash account. These funds are put at stake for the security of the network and can be slashed." 
@@ -78,7 +78,7 @@ class ControlPanel extends Component {
 						scaleDescription="The total stake amount is rescaled using the method min-max normalization. The maximum value is the maximum total stake from all Validators currently available. And the minimum value is the minimum total stake from all Validators currently available."
 						resultDescription="A lower total stake amount results on a higher score." />
 					<WeightSlider index={8} 
-						title="Identity judgements" 
+						title="Identity" 
 						description="Identity is a naming system that allows participants to add personal information to their on-chain account and subsequently ask for verification of this information by registrars. When a registrar provides judgement, it can be one of the following [Unknown, Reasonable, Known Good, Out of Date, Low Quality, Erroneous]. The identity rate is based in the amount of judgements a Validator has with acceptable values e.g. 'Reasonable' or 'Known Good'." 
 						scaleDescription="The number of acceptable judgements is rescaled using the method min-max normalization. The maximum value is the maximum number of acceptable judgements from all Validators currently available. And the minimum value is the minimum number of acceptable judgements from all Validators currently available." 
 						resultDescription="A higher number of acceptable judgements results on a higher score." />

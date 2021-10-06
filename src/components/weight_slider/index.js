@@ -73,25 +73,40 @@ class WeightSlider extends Component {
 		return (
 			<div className={classes.root}>
 				<Box className={classes.titleBox}>
-					<Typography variant="h6" className={classes.title}>
-					{title}
-					</Typography>
-					<PopoverInfo >
-						{/* <Typography variant="h6">
-						{title}
+					{/* <Box className={classes.sliderBox}> */}
+						{/* <Typography variant="caption">
+							Weight given to {title} 
 						</Typography> */}
-						<Typography variant="body2" color="inherit" gutterBottom>
-						{description}
+						<PopoverInfo >
+							<Typography variant="body2" color="inherit" gutterBottom>
+							{description}
+							</Typography>
+							<Typography variant="body2" color="inherit" gutterBottom>
+							{scaleDescription}
+							</Typography>
+							<Typography variant="body2" color="inherit">
+							{resultDescription}
+							</Typography>
+						</PopoverInfo>
+						<Typography variant="subtitle2" color="textSecondary" align="left"
+						 className={classes.title}>
+						{title}
 						</Typography>
-						<Typography variant="body2" color="inherit" gutterBottom>
-						{scaleDescription}
-						</Typography>
-						<Typography variant="body2" color="inherit">
-						{resultDescription}
-						</Typography>
-					</PopoverInfo>
-				</Box>
-				<Box className={classes.sliderBox}>
+					</Box>
+					<Slider
+						className={classes.slider}
+						defaultValue={this.state.value}
+						getAriaValueText={() => value}
+						valueLabelDisplay="on"
+						step={1}
+						min={!!minValue ? minValue : 0}
+						max={!!maxValue ? maxValue : 10}
+						onChangeCommitted={this.handleOnChangeCommittedWeight}
+					/>
+					{/* </Box> */}
+					
+				
+				{/* <Box className={classes.sliderBox}>
 					<Typography variant="caption">
 						Weight given to {title} 
 					</Typography>
@@ -105,8 +120,8 @@ class WeightSlider extends Component {
 						max={!!maxValue ? maxValue : 10}
 						onChangeCommitted={this.handleOnChangeCommittedWeight}
 					/>
-				</Box>
-				<Box className={classes.sliderBox}>
+				</Box> */}
+				{/* <Box className={classes.sliderBox}>
 					<Typography variant="caption" className={classes.caption}>
 						{title} limit range
 					</Typography>
@@ -133,7 +148,7 @@ class WeightSlider extends Component {
 						max={!!maxValue ? maxValue : 100}
 						onChangeCommitted={this.handleOnChangeCommittedRange}
 					/>
-				</Box>
+				</Box> */}
 			</div>
 		)
 	}

@@ -78,7 +78,7 @@ class QuantitySlider extends Component {
 		const { classes, value, info } = this.props;
 		return (
 			<div className={classes.root}>
-				<Typography variant="h6" id="discrete-slider" gutterBottom>
+				<Typography variant="subtitle2" color="textSecondary" id="discrete-slider" gutterBottom>
 				Display the Top {value} {!!info.cache ? `out of ${info.cache.validators} ` : ``}Validators..
 				</Typography>
 				<Slider
