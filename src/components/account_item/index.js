@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { get } from '../../actions/validator'
 import { selectAddress } from '../../actions/leaderboard'
-import { networkDisplay, stashDisplay, nameDisplay } from '../../utils/display'
+import { stashDisplay, nameDisplay } from '../../utils/display'
 import { selectors } from '../../selectors'
+import { encodeAddress } from '@polkadot/util-crypto'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -43,8 +44,8 @@ class AccountItem extends Component {
   
 
  	render() {
-		const { classes, address, account, selected, expanded, isFetching } = this.props;
-    const stash = networkDisplay(address)
+		const { classes, address, account, selected, expanded, network, isFetching } = this.props;
+    const stash = encodeAddress(address, network.ss58_format)
 		const isSelected = account.id === selected
 
 		return (
@@ -84,9 +85,11 @@ AccountItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const network = selectors.getObjectByEntityAndId(state, 'api', '_').network
   const account = selectors.getObjectByEntityAndId(state, 'validator', ownProps.address)
   const selected = state.leaderboard.selected
   return {
+    network,
 		account,
     selected,
     isFetching: !!state.fetchers.ids[`/validator/${ownProps.address}`],

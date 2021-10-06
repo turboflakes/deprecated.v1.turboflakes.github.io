@@ -1,5 +1,3 @@
-import { NETWORK, networkPrefixes, networkDecimals, networkCodes } from '../constants'
-import { encodeAddress } from '@polkadot/util-crypto'
 
 export const stashDisplay = (stash) => {
     return !!stash ? `${stash.slice(0, 6)}...${stash.slice(stash.length-6, stash.length)}` : `-`
@@ -11,23 +9,19 @@ export const nameDisplay = (name, len) => {
     }
     return name.length > len ? `${name.slice(0, len)}...` : name
 }
-  
-export const networkDisplay = (stash) => {
-    if (NETWORK in networkPrefixes) {
-      return encodeAddress(stash, networkPrefixes[NETWORK])
-    }
-    return stash
-}
 
-export const stakeDisplay = (stake) => {
-    if (NETWORK in networkDecimals && NETWORK in networkCodes) {
-      return `${(stake/networkDecimals[NETWORK]).toFixed(2)} ${networkCodes[NETWORK]}`
+export const stakeDisplay = (stake, network) => {
+    if (!!network.token_decimals && !!network.token_symbol) {
+        const networkDecimals = Math.pow(10, network.token_decimals)
+        return `${(stake/networkDecimals).toFixed(2)} ${network.token_symbol}`
     }
     return stake
 }
-export const stakeDisplayNoSymbol = (stake) => {
-    if (NETWORK in networkDecimals && NETWORK in networkCodes) {
-      return `${(stake/networkDecimals[NETWORK]).toFixed(2)}`
+
+export const stakeDisplayNoSymbol = (stake, network) => {
+    if (!!network.token_decimals) {
+        const networkDecimals = Math.pow(10, network.token_decimals)
+        return `${(stake/networkDecimals).toFixed(2)}`
     }
     return stake
 }

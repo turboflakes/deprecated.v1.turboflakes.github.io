@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { get, getValidatorRank } from '../../actions/validator'
 import { clearAddress } from '../../actions/leaderboard'
-import { networkDisplay, stashDisplay, nameDisplay, stakeDisplay, commissionDisplay, rateDisplay } from '../../utils/display'
-import { NETWORK, networkWSS } from '../../constants'
+import { stashDisplay, nameDisplay, stakeDisplay, commissionDisplay, rateDisplay } from '../../utils/display'
+import { networkWSS } from '../../constants'
 import { selectors } from '../../selectors'
+import { encodeAddress } from '@polkadot/util-crypto'
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
@@ -67,14 +68,15 @@ class AccountInfo extends Component {
   }
 
   handleClickExternalGraph = (stash) => {
-    const uri = encodeURI(`https://polkadot.js.org/apps/?rpc=${networkWSS[NETWORK]}#/staking/query/${stash}`)
+    const {network} = this.props
+    const uri = encodeURI(`https://polkadot.js.org/apps/?rpc=${networkWSS[network.name.toLowerCase()]}#/staking/query/${stash}`)
     window.open(uri, '_blank')
   }
 
  	render() {
-		const { classes, account, weights, isFetching } = this.props;
+		const { classes, account, weights, network, isFetching } = this.props;
 
-    if (isFetching || !account.id || !account.scores || !account.rank || !account.limits) {
+    if (isFetching || !network.ss58_format || !account.id || !account.scores || !account.rank || !account.limits) {
       return (
         <div className={classes.fetching}>
           <Fade in={isFetching} 
@@ -88,7 +90,7 @@ class AccountInfo extends Component {
         </div>
     )}
 
-    const stash = networkDisplay(account.id)
+    const stash = encodeAddress(account.id, network.ss58_format)
 
     const weightsFn = (index) => weights.split(",").map(x => parseInt(x, 10))[index]
 
@@ -318,7 +320,7 @@ class AccountInfo extends Component {
                     className={classes.inline}
                     color="textPrimary"
                   >
-                    {` ${stakeDisplay(account.own_stake)}`}
+                    {` ${stakeDisplay(account.own_stake, network)}`}
                   </Typography>
                 </React.Fragment>} 
               secondary={
@@ -330,7 +332,7 @@ class AccountInfo extends Component {
                   >
                     {`score: ${scoreFn(6)} / ${weightsFn(6)}`}
                   </Typography>
-                  {`min: ${stakeDisplay(account.limits.min_own_stake_limit)} max: ${stakeDisplay(account.limits.max_own_stake_limit)}`}
+                  {`min: ${stakeDisplay(account.limits.min_own_stake_limit, network)} max: ${stakeDisplay(account.limits.max_own_stake_limit, network)}`}
                 </React.Fragment>
               }
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
@@ -346,7 +348,7 @@ class AccountInfo extends Component {
                     className={classes.inline}
                     color="textPrimary"
                   >
-                    {` ${stakeDisplay(account.own_stake + account.nominators_stake)}`}
+                    {` ${stakeDisplay(account.own_stake + account.nominators_stake, network)}`}
                   </Typography>
                 </React.Fragment>} 
               secondary={
@@ -358,7 +360,7 @@ class AccountInfo extends Component {
                   >
                     {`score: ${scoreFn(7)} / ${weightsFn(7)}`}
                   </Typography>
-                  {`min: ${stakeDisplay(account.limits.min_total_stake_limit)} max: ${stakeDisplay(account.limits.max_total_stake_limit)}`}
+                  {`min: ${stakeDisplay(account.limits.min_total_stake_limit, network)} max: ${stakeDisplay(account.limits.max_total_stake_limit, network)}`}
                 </React.Fragment>
               }
               classes={{ root: classes.rootItemText, primary: classes.primaryItemText, secondary: classes.secondaryItemText }} />
@@ -437,6 +439,7 @@ AccountInfo.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const network = selectors.getObjectByEntityAndId(state, 'api', '_').network
   const address = state.leaderboard.selected
   const account = selectors.getObjectByEntityAndId(state, 'validator', address)
   const weights = state.leaderboard.weights
@@ -444,6 +447,7 @@ const mapStateToProps = (state, ownProps) => {
     address,
     weights,
     account,
+    network,
     isFetching: !!state.fetchers.ids[`/validator/${address}`] || !!state.fetchers.ids[`/validator/${address}/rank`] || account.status === "NotReady",
   }
 }

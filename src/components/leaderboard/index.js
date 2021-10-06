@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-// import {NETWORK} from '../../constants'
 import { query } from '../../actions/validator'
 import { selectAddress } from '../../actions/leaderboard'
 import { add } from '../../actions/error'
