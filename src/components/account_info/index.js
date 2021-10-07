@@ -439,7 +439,7 @@ AccountInfo.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const network = selectors.getObjectByEntityAndId(state, 'api', '_').network
+  const network = selectors.getApiNetworkDetails(state)
   const address = state.leaderboard.selected
   const account = selectors.getObjectByEntityAndId(state, 'validator', address)
   const weights = state.leaderboard.weights

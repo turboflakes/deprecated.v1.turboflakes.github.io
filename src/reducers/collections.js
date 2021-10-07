@@ -9,6 +9,9 @@ export const collection = (entity) => {
   }
   const collectionReducer = (state = {}, action) => {
     switch (action.type) {
+      // Reset collections when api host is changed
+      case "CLEAR_STORE": 
+        return {}
       case `QUERY_${entity.toUpperCase()}_SUCCESS`: {
         const key = serialize(action.request.queryParams)
         const other = zipObject([key], [action.response.result])

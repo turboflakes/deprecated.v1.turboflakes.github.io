@@ -1,4 +1,13 @@
 
+// Define network hosts through env
+const networkHosts = {
+  polkadot: process.env.REACT_APP_POLKADOT_API_ENDPOINT,
+  kusama: process.env.REACT_APP_KUSAMA_API_ENDPOINT,
+  westend: process.env.REACT_APP_WESTEND_API_ENDPOINT
+}
+
+export const getHost = (network) => networkHosts[network]
+
 // Useful to open https://polkadot.js.org/apps/ with the right network
 export const networkWSS = {
   "polkadot": "wss://rpc.polkadot.io",

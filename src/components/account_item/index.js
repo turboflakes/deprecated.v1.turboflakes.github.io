@@ -85,7 +85,7 @@ AccountItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const network = selectors.getObjectByEntityAndId(state, 'api', '_').network
+  const network = selectors.getApiNetworkDetails(state)
   const account = selectors.getObjectByEntityAndId(state, 'validator', ownProps.address)
   const selected = state.leaderboard.selected
   return {

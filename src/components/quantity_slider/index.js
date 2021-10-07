@@ -75,11 +75,11 @@ class QuantitySlider extends Component {
 	}
 
  	render() {
-		const { classes, value, info } = this.props;
+		const { classes, value, apiCacheInfo } = this.props;
 		return (
 			<div className={classes.root}>
 				<Typography variant="subtitle2" color="textSecondary" id="discrete-slider" gutterBottom>
-				Display the Top {value} {!!info.cache ? `out of ${info.cache.validators} ` : ``}Validators..
+				Display the Top {value} {!!apiCacheInfo.validators ? `out of ${apiCacheInfo.validators} ` : `...`}Validators..
 				</Typography>
 				<Slider
 					className={classes.slider}
@@ -104,7 +104,7 @@ QuantitySlider.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		info: selectors.getObjectByEntityAndId(state, 'api', '_'),
+		apiCacheInfo: selectors.getApiCacheDetails(state),
 		value: state.leaderboard.quantity,
 		isFetching: !!state.fetchers.async,
   }

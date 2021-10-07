@@ -57,8 +57,8 @@ class Leaderboard extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const {weights, quantity} = this.props
-		if ((prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
+		const {host, weights, quantity} = this.props
+		if ((prevProps.host !== host) || (prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
 			if (weights === "0,0,0,0,0,0,0,0") {
 				return this.props.add("Hey! Set at least one of the weights higher than 0, so that scores can be calculated.")
 			}
@@ -134,11 +134,13 @@ Leaderboard.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+	const host = selectors.getApiHost(state)
   const weights = state.leaderboard.weights
 	const quantity = state.leaderboard.quantity
 	const query = serialize({q: "Board", w: weights, n: quantity})
 	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
 	return {
+		host,
 		addresses,
 		weights,
 		quantity,

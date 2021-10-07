@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { info } from '../../../actions/api'
+import { getApiDetails } from '../../../actions/api'
 import Box from '@material-ui/core/Box';
 import BoardAnimation from '../../board_animation'
 import Footer from '../../footer'
@@ -12,7 +12,7 @@ import styles from './styles'
 class NewLayout extends Component {
 
   componentDidMount() {
-    this.props.info()
+    this.props.getApiDetails()
   }21
   
   render() {
@@ -52,4 +52,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {info})(withWidth()(withStyles(styles)(NewLayout)));
+export default connect(mapStateToProps, {getApiDetails})(withWidth()(withStyles(styles)(NewLayout)));

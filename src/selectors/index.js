@@ -10,6 +10,10 @@ import {
   isFetching,
   isSchemaFetching,
   isIdFetching,
+  getApiHost,
+  getApiVersion,
+  getApiNetworkDetails,
+  getApiCacheDetails
 } from './selectors'
 
 export const selectors = {
@@ -24,4 +28,8 @@ export const selectors = {
   isFetching,
   isSchemaFetching,
   isIdFetching,
+  getApiHost,
+  getApiVersion,
+  getApiNetworkDetails,
+  getApiCacheDetails
 }

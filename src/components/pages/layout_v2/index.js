@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { setHost, info } from '../../../actions/api'
+import { getApiDetails } from '../../../actions/api'
 import Header from '../../header'
 import Alert from '../../alert'
 import Footer from '../../footer'
@@ -12,8 +12,14 @@ class Layout extends Component {
 
   componentDidMount() {
     const {network} = this.props
-    this.props.setHost(network)
-    this.props.info()
+    this.props.getApiDetails(network)
+  }
+
+  componentDidUpdate(prevProps) {
+    const {network} = this.props
+    if (!!network && prevProps.network !== this.props.network) {
+      this.props.getApiDetails(network)
+    }
   }
   
   render() {
@@ -41,4 +47,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {setHost, info})(withStyles(styles)(Layout));
+export default connect(mapStateToProps, {getApiDetails})(withStyles(styles)(Layout));

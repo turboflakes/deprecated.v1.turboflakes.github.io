@@ -62,7 +62,7 @@ class Footer extends Component {
   }
 
  	render() {
-		const { classes, info, style } = this.props;
+		const { classes, apiCacheInfo, apiVersion, style } = this.props;
 
 		return (
 			<div className={classes.root} style={style}>
@@ -117,18 +117,17 @@ class Footer extends Component {
 					<Typography color="textSecondary" paragraph>
 						Support your nominations with TurboFlakes decision tool ✌
 					</Typography>
-					{!!info.cache ? 
-						<Box className={classes.infoBox}>
-							<Typography variant="caption" className={classes.info}>
-							app v{process.env.REACT_APP_VERSION}
-							</Typography>
-							<Typography variant="caption" className={classes.info}>
-							api v{info.version}
-							</Typography>
-							<Typography variant="caption" className={classes.info}>
-							last sync time: {moment.unix(info.cache.syncing_finished_at).format('lll')} ({info.cache.syncing ? `syncing` : `duration ${moment.unix(info.cache.syncing_finished_at).diff(moment.unix(info.cache.syncing_started_at), 'minutes')} min`})
-							</Typography>
-						</Box> : null}
+					<Box className={classes.infoBox}>
+						<Typography variant="caption" className={classes.info}>
+						app v{process.env.REACT_APP_VERSION}
+						</Typography>
+						<Typography variant="caption" className={classes.info}>
+						api v{apiVersion}
+						</Typography>
+						<Typography variant="caption" className={classes.info}>
+						last sync time: {moment.unix(apiCacheInfo.syncing_finished_at).format('lll')} ({apiCacheInfo.syncing ? `syncing` : `duration ${moment.unix(apiCacheInfo.syncing_finished_at).diff(moment.unix(apiCacheInfo.syncing_started_at), 'minutes')} min`})
+						</Typography>
+					</Box>
 					<Box className={classes.pages}>
 						<Typography variant="body2" color="textSecondary">
 							<Link href="/#/about"  color="inherit" >About</Link>
@@ -194,7 +193,8 @@ Footer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-	info: selectors.getObjectByEntityAndId(state, 'api', '_')
+	apiCacheInfo: selectors.getApiCacheDetails(state),
+	apiVersion: selectors.getApiVersion(state)
 })
 
 export default connect(mapStateToProps, {selectAddress})(withRouter(withStyles(styles)(Footer)));

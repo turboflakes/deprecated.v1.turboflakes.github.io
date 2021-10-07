@@ -2,8 +2,9 @@ import {
   normalize
 } from 'normalizr'
 import serialize from '../utils/serialize'
+import { selectors } from '../selectors'
 
-// const API_ROOT = process.env.REACT_APP_API_ENDPOINT ? `https://${process.env.REACT_APP_API_ENDPOINT}` : 'http://localhost:5000'
+// const API_ROOT = process.env.REACT_APP_API_ENDPOINT ? `https://${process.env.REACT_APP_API_ENDPOINT}` : 'http://localhost:5000
 
 const isContentTypeJson = (value) => {
   value = value ? value : ''
@@ -113,7 +114,7 @@ const apiMiddleware = store => next => action => {
     return next(action)
   }
 
-  const host = store.getState().host;
+  const host = selectors.getApiHost(store.getState());
 
   let {
     endpoint,

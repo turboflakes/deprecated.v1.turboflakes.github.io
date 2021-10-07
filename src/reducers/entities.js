@@ -17,5 +17,8 @@ export const entities = (state = {}, action) => {
       }
     })
   }
+  if (action.type === "CLEAR_STORE") {
+    return {}
+  }
   return state
 }

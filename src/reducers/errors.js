@@ -6,6 +6,7 @@ export const errors = (state = [], action) => {
     return [...state, action.error]
   }
   switch (action.type) {
+    case "CLEAR_STORE":
     case "CLEAR_ERROR_MESSAGES":
       return []
     case "REMOVE_ERROR":

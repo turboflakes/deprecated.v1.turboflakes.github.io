@@ -39,3 +39,10 @@ export const getIdsByEntityAndQuery = (state, entityType, query, key) => getColl
 export const getIdsByEntityAndLastQuery = (state, entityType, key) => getCollectionByEntity(state, entityType)["last"] && getCollectionByEntity(state, entityType)[getCollectionByEntity(state, entityType)["last"]] ?
   (Array.isArray(getCollectionByEntity(state, entityType)[getCollectionByEntity(state, entityType)["last"]][key]) ? getCollectionByEntity(state, entityType)[getCollectionByEntity(state, entityType)["last"]][key] : []) :
   []
+
+
+// API
+export const getApiHost = (state) => getObjectByEntityAndId(state, 'api', 'v1').host
+export const getApiVersion = (state) => getObjectByEntityAndId(state, 'api', 'v1').version
+export const getApiNetworkDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').network || {}
+export const getApiCacheDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').cache || {}

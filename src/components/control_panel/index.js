@@ -25,11 +25,11 @@ import styles from './styles'
 class ControlPanel extends Component {
 
 	render() {
-		const { classes, info } = this.props;
+		const { classes, apiCacheInfo } = this.props;
 		return (
 			<div className={classes.root}>
 				<Typography variant="caption" color="textSecondary">
-					Synced at {!!info.cache ? moment.unix(info.cache.syncing_finished_at).format('lll') : '...'}
+					Synced at {!!apiCacheInfo.syncing_finished_at ? moment.unix(apiCacheInfo.syncing_finished_at).format('lll') : '...'}
 				</Typography>
 				<QuantitySlider />
 				<Box className={classes.weigths}>
@@ -99,7 +99,7 @@ ControlPanel.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		info: selectors.getObjectByEntityAndId(state, 'api', '_'),
+		apiCacheInfo: selectors.getApiCacheDetails(state),
 		isFetching: !!state.fetchers.async,
   }
 }

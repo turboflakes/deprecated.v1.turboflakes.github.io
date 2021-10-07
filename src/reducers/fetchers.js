@@ -3,11 +3,15 @@ import serialize from '../utils/serialize'
 
 // TODO: wrap this reducer to get a list of entities eg ["user", "bike", ..]
 const idFetcher = (state = {}, action) => {
+  // Reset idFetcher when api host is changed
+  if (action.type === "CLEAR_STORE") {
+    return {}
+  }
   const sufix = action.type.substr(action.type.length - 7, 7)
   const prefix = action.type.substr(0, action.type.indexOf("_"))
   const schema = action.request ? (!!action.request.schema ? (action.request.schema.key ? action.request.schema.key : "") : "") : ""
   const endpoint = action.request ? (!!action.request.endpoint ? action.request.endpoint : "") : ""
-  const match = schema.match(`(^validator)`)
+  const match = schema.match(`(^api)|(^validator)`)
   
   if (match) {
     const id = endpoint
@@ -45,9 +49,13 @@ const idFetcher = (state = {}, action) => {
 
 // TODO: wrap this reducer to get a list of entities eg ["user", "bike", ..]
 const schemaFetcher = (state = {}, action) => {
+  // Reset schemaFetcher when api host is changed
+  if (action.type === "CLEAR_STORE") {
+    return {}
+  }
   const entity = action.type.substring(action.type.indexOf("_") + 1, action.type.lastIndexOf("_"))
   const sufix = action.type.substr(action.type.length - 7, 7)
-  if (entity.match(`(VALIDATOR)$`)) {
+  if (entity.match(`(API)$|(VALIDATOR)$`)) {
     switch (sufix) {
       case "REQUEST":
         return {
@@ -68,11 +76,15 @@ const schemaFetcher = (state = {}, action) => {
 }
 
 const queryFetcher = (state = {}, action) => {
+  // Reset queryFetcher when api host is changed
+  if (action.type === "CLEAR_STORE") {
+    return {}
+  }
   const entity = action.type.substring(action.type.indexOf("_") + 1, action.type.lastIndexOf("_"))
   const sufix = action.type.substr(action.type.length - 7, 7)
   const prefix = action.type.substr(0, action.type.indexOf("_")+1)
   const params = action.request ? (!!action.request.queryParams ? serialize(action.request.queryParams) : "") : ""
-  if (entity.match(`(VALIDATOR)$`)) {
+  if (entity.match(`(API)$|(VALIDATOR)$`)) {
     const key = `${entity.toLowerCase()}?${params}`
     switch (prefix.concat(sufix)) {
       case "QUERY_REQUEST":
@@ -94,6 +106,10 @@ const queryFetcher = (state = {}, action) => {
 }
 
 const asyncFetcher = (state = 0, action) => {
+  // Reset asyncFetcher when api host is changed
+  if (action.type === "CLEAR_STORE") {
+    return 0
+  }
   const sufix = action.type.substr(action.type.length - 7, 7)
   switch (sufix) {
     case "REQUEST":
