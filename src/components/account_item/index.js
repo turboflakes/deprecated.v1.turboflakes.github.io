@@ -44,8 +44,8 @@ class AccountItem extends Component {
   
 
  	render() {
-		const { classes, address, account, selected, expanded, network, isFetching } = this.props;
-    const stash = encodeAddress(address, network.ss58_format)
+		const { classes, address, account, selected, expanded, networkDetails, isFetching } = this.props;
+    const stash = encodeAddress(address, networkDetails.ss58_format)
 		const isSelected = account.id === selected
 
 		return (
@@ -85,11 +85,11 @@ AccountItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const network = selectors.getApiNetworkDetails(state)
+  const networkDetails = selectors.getApiNetworkDetails(state)
   const account = selectors.getObjectByEntityAndId(state, 'validator', ownProps.address)
   const selected = state.leaderboard.selected
   return {
-    network,
+    networkDetails,
 		account,
     selected,
     isFetching: !!state.fetchers.ids[`/validator/${ownProps.address}`],

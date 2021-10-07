@@ -10,17 +10,17 @@ export const nameDisplay = (name, len) => {
     return name.length > len ? `${name.slice(0, len)}...` : name
 }
 
-export const stakeDisplay = (stake, network) => {
-    if (!!network.token_decimals && !!network.token_symbol) {
-        const networkDecimals = Math.pow(10, network.token_decimals)
-        return `${(stake/networkDecimals).toFixed(2)} ${network.token_symbol}`
+export const stakeDisplay = (stake, networkDetails) => {
+    if (!!networkDetails.token_decimals && !!networkDetails.token_symbol) {
+        const networkDecimals = Math.pow(10, networkDetails.token_decimals)
+        return `${(stake/networkDecimals).toFixed(2)} ${networkDetails.token_symbol}`
     }
     return stake
 }
 
-export const stakeDisplayNoSymbol = (stake, network) => {
-    if (!!network.token_decimals) {
-        const networkDecimals = Math.pow(10, network.token_decimals)
+export const stakeDisplayNoSymbol = (stake, networkDetails) => {
+    if (!!networkDetails.token_decimals) {
+        const networkDecimals = Math.pow(10, networkDetails.token_decimals)
         return `${(stake/networkDecimals).toFixed(2)}`
     }
     return stake

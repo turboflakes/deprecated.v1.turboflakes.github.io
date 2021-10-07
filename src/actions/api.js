@@ -7,7 +7,7 @@ import {
 import {
   get as _get
 } from './async/get'
-import {getHost} from '../constants'
+import {getNetworkHost} from '../constants'
 
 export const getApiDetails = (network) => dispatch => {
   dispatch(clearStore())
@@ -16,7 +16,7 @@ export const getApiDetails = (network) => dispatch => {
 }
 
 const setApiHost = (network) => dispatch => {
-  const data = normalize({id: "v1", host: getHost(network)}, schemas["API"])
+  const data = normalize({id: "v1", host: getNetworkHost(network), network}, schemas["API"])
   return dispatch({type: "SET_API_HOST", response: data})
 }
 

@@ -11,6 +11,7 @@ import {
   isSchemaFetching,
   isIdFetching,
   getApiHost,
+  getApiNetwork,
   getApiVersion,
   getApiNetworkDetails,
   getApiCacheDetails
@@ -29,6 +30,7 @@ export const selectors = {
   isSchemaFetching,
   isIdFetching,
   getApiHost,
+  getApiNetwork,
   getApiVersion,
   getApiNetworkDetails,
   getApiCacheDetails

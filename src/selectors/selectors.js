@@ -43,6 +43,7 @@ export const getIdsByEntityAndLastQuery = (state, entityType, key) => getCollect
 
 // API
 export const getApiHost = (state) => getObjectByEntityAndId(state, 'api', 'v1').host
-export const getApiVersion = (state) => getObjectByEntityAndId(state, 'api', 'v1').version
-export const getApiNetworkDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').network || {}
+export const getApiNetwork = (state) => getObjectByEntityAndId(state, 'api', 'v1').network
+export const getApiVersion = (state) => getObjectByEntityAndId(state, 'api', 'v1').pkg_version
+export const getApiNetworkDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').chain || {}
 export const getApiCacheDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').cache || {}

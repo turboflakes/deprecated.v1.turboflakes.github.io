@@ -5,10 +5,14 @@ import { withRouter } from 'react-router-dom';
 import { query } from '../../actions/validator'
 import { selectAddress } from '../../actions/leaderboard'
 import { add } from '../../actions/error'
+import {getNetworkIcon, getNetworkIndex, getNetworkKey} from '../../constants'
 import { selectors } from '../../selectors'
 import serialize from '../../utils/serialize'
 import { isValidAddress } from '../../utils/crypto'
 import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import Fade from '@material-ui/core/Fade';
@@ -19,7 +23,6 @@ import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
-import { ReactComponent as KusamaSVG } from '../../assets/kusama_icon.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -57,8 +60,8 @@ class Leaderboard extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const {host, weights, quantity} = this.props
-		if ((prevProps.host !== host) || (prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
+		const {network, weights, quantity} = this.props
+		if ((prevProps.network !== network) || (prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
 			if (weights === "0,0,0,0,0,0,0,0") {
 				return this.props.add("Hey! Set at least one of the weights higher than 0, so that scores can be calculated.")
 			}
@@ -70,17 +73,38 @@ class Leaderboard extends Component {
 		window.open('https://kusama.network/', '_blank')
 	}
 
+	changeNetwork = (network) => {
+		const {history, location} = this.props
+		const query = new URLSearchParams(location.search)
+		const newLocation = {
+			pathname: `/${network}`,
+			search: `?${query.toString()}`
+		}
+		history.replace(newLocation)
+	}
+
+	handleChangeTab = (event, index) => {
+		event.preventDefault()
+		this.changeNetwork(getNetworkKey(index))
+	}
+
 	render() {
-		const { classes, addresses } = this.props;
+		const { classes, network, networkDetails, addresses } = this.props;
 
 		return (
 			<div className={classes.root} >
+				<Tabs value={getNetworkIndex(network)} onChange={this.handleChangeTab}>
+					<Tab label="Polkadot" />
+					<Tab label="Kusama" />
+					<Tab label="Westend" />
+				</Tabs>
 				<Box className={classes.networkBox}>
 					<IconButton color="primary" size="small" onClick={this.handleKusama}>
-						<KusamaSVG className={classes.networkLogo} />
+						{/* <KusamaSVG className={classes.networkLogo} /> */}
+						<img src={getNetworkIcon(network)} className={classes.networkLogo} alt={"Icon"}/>
 					</IconButton>
 					<Typography variant="subtitle1" color="textSecondary" className={classes.networkLabel} >
-						Kusama
+						{networkDetails.name}
 					</Typography>
 				</Box>
 				<Box className={classes.titleBox}>
@@ -134,13 +158,15 @@ Leaderboard.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-	const host = selectors.getApiHost(state)
+	const network = selectors.getApiNetwork(state)
+	const networkDetails = selectors.getApiNetworkDetails(state)
   const weights = state.leaderboard.weights
 	const quantity = state.leaderboard.quantity
 	const query = serialize({q: "Board", w: weights, n: quantity})
 	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
 	return {
-		host,
+		network,
+		networkDetails,
 		addresses,
 		weights,
 		quantity,
