@@ -32,11 +32,11 @@ function App() {
   return (
       <Router>
         <Switch>
-          <LayoutRoute exact path="/" layout={LayoutV2} page={IndexPageV2} />
+          <LayoutRoute exact path="/:network" layout={LayoutV2} page={IndexPageV2} />
           <LayoutRoute exact path="/v1" layout={Layout} page={IndexPage} />
           <LayoutRoute exact path="/about" layout={Layout} page={AboutPage} />
           <LayoutRoute exact path="/disclaimer" layout={Layout} page={DisclaimerPage} />
-          <Redirect to="/" />
+          <Redirect to="/polkadot" />
         </Switch>
       </Router>
   );

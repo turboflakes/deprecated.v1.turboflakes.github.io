@@ -3,7 +3,7 @@ import {
 } from 'normalizr'
 import serialize from '../utils/serialize'
 
-const API_ROOT = process.env.REACT_APP_API_ENDPOINT ? `https://${process.env.REACT_APP_API_ENDPOINT}` : 'http://localhost:5000'
+// const API_ROOT = process.env.REACT_APP_API_ENDPOINT ? `https://${process.env.REACT_APP_API_ENDPOINT}` : 'http://localhost:5000'
 
 const isContentTypeJson = (value) => {
   value = value ? value : ''
@@ -12,9 +12,10 @@ const isContentTypeJson = (value) => {
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
-const fetchApi = async (method, headers, endpoint, queryParams, body, schema, id) => {
+const fetchApi = async (host, method, headers, endpoint, queryParams, body, schema, id) => {
 
-  let url = (endpoint.indexOf(API_ROOT) === -1) ? `${API_ROOT}/api/v1${endpoint}` : endpoint
+  // let url = (endpoint.indexOf(API_ROOT) === -1) ? `${API_ROOT}/api/v1${endpoint}` : endpoint
+  let url = `//${host}/api/v1${endpoint}`
 
   if (queryParams !== undefined) {
     url = url + `?` + serialize(queryParams)
@@ -105,16 +106,20 @@ export const CALL_API = 'CALL_API'
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
 const apiMiddleware = store => next => action => {
+
   const callAPI = action[CALL_API]
 
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
 
+  const host = store.getState().host;
+
   let {
     endpoint,
     body
   } = callAPI
+
   const {
     method,
     queryParams,
@@ -167,7 +172,7 @@ const apiMiddleware = store => next => action => {
     request
   }))
 
-  return fetchApi(method, headers, endpoint, queryParams, body, schema, id)
+  return fetchApi(host, method, headers, endpoint, queryParams, body, schema, id)
     .then(response => next(actionWith({
         type: successType,
         response,
