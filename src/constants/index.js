@@ -34,6 +34,7 @@ export const getNetworkLogo = (network) => networkSettings[network].logo
 // Useful for the leaderboard tabs selection
 export const getNetworkIndex = (network) => Object.keys(networkSettings).findIndex(n => n === network)
 export const getNetworkKey = (index) => Object.keys(networkSettings)[index]
+export const isNetworkSupported = (network) => Object.keys(networkSettings).includes(network)
 
 
 export const WEIGHTS = [7,8,6,10,6,4,3,7,5,9]

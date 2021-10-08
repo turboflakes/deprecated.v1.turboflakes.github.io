@@ -12,7 +12,7 @@ const styles = (theme) => ({
 		backgroundColor: theme.palette.neutrals[300],
 		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
 		borderTopLeftRadius: theme.spacing(3),
-		borderTopRightRadius: theme.spacing(3),
+		// borderTopRightRadius: theme.spacing(3),
 		position: "relative",
 		display: "flex",
 		alignItems: "center",
@@ -69,5 +69,9 @@ const styles = (theme) => ({
 		overflow: "auto",
 		height: 695,
 	},
+	tabIcon: {
+		width: 26,
+		height: 26
+	}
 })
 export default styles

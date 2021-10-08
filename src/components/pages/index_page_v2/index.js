@@ -20,7 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
 import styles from './styles'
 
-class NewIndexPage extends Component {
+class IndexPage extends Component {
 
   state = {
     address: ""
@@ -132,7 +132,7 @@ class NewIndexPage extends Component {
   }
 }
 
-NewIndexPage.propTypes = {
+IndexPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -150,4 +150,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {selectAddress, clearAddress})(withWidth()(withStyles(styles)(NewIndexPage)));
+export default connect(mapStateToProps, {selectAddress, clearAddress})(withWidth()(withStyles(styles)(IndexPage)));

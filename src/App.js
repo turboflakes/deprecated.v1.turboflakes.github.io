@@ -5,10 +5,9 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import LayoutV2 from './components/pages/layout_v2'
-import IndexPageV2 from './components/pages/index_page_v2'
-import Layout from './components/pages/layout'
-import IndexPage from './components/pages/index_page'
+import {isNetworkSupported} from './constants'
+import Layout from './components/pages/layout_v2'
+import IndexPage from './components/pages/index_page_v2'
 import AboutPage from './components/pages/about_page'
 import DisclaimerPage from './components/pages/disclaimer_page'
 import withTheme from './theme/withTheme'
@@ -20,10 +19,23 @@ function LayoutRoute({
   ...rest
 }) {
   return (
-    <Route {...rest} render={(props) =>
-      <Layout {...props}>
-        <Page {...props} />
-      </Layout>
+    <Route {...rest} render={props => {
+        if (isNetworkSupported(props.match.params.network) || typeof props.match.params.network === "undefined") {
+          return (
+            <Layout {...props} >
+              <Page {...props} />
+            </Layout>
+          )
+        }
+        return (
+          <Redirect
+            to={{
+              pathname: "/polkadot",
+              state: { from: props.location }
+            }}
+          />  
+        )
+      }
     } />
   );
 }
@@ -32,10 +44,9 @@ function App() {
   return (
       <Router>
         <Switch>
-          <LayoutRoute exact path="/:network" layout={LayoutV2} page={IndexPageV2} />
-          <LayoutRoute exact path="/v1" layout={Layout} page={IndexPage} />
-          <LayoutRoute exact path="/about" layout={Layout} page={AboutPage} />
-          <LayoutRoute exact path="/disclaimer" layout={Layout} page={DisclaimerPage} />
+          <LayoutRoute exact strict path="/about" layout={Layout} page={AboutPage} />
+          <LayoutRoute exact strict path="/disclaimer" layout={Layout} page={DisclaimerPage} />
+          <LayoutRoute exact strict path="/:network" layout={Layout} page={IndexPage} />
           <Redirect to="/polkadot" />
         </Switch>
       </Router>

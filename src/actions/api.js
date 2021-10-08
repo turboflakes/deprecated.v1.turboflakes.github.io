@@ -7,9 +7,14 @@ import {
 import {
   get as _get
 } from './async/get'
-import {getNetworkHost} from '../constants'
+import {selectors} from '../selectors'
+import {getNetworkHost, isNetworkSupported} from '../constants'
 
-export const getApiDetails = (network) => dispatch => {
+export const getApiDetails = (network) => (dispatch, getState)  => {
+  const state = getState()
+  if (!isNetworkSupported(network) || network === selectors.getApiNetwork(state)) {
+    return null
+  }
   dispatch(clearStore())
   dispatch(setApiHost(network))
   return dispatch(_get("v1", ["all"], "api", undefined, undefined, {endpoint: "", expire: 0}))

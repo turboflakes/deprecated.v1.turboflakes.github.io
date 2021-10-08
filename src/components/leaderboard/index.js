@@ -10,7 +10,6 @@ import { selectors } from '../../selectors'
 import serialize from '../../utils/serialize'
 import { isValidAddress } from '../../utils/crypto'
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -84,8 +83,9 @@ class Leaderboard extends Component {
 	}
 
 	handleChangeTab = (event, index) => {
+		console.log("handleChangeTab", index);
 		event.preventDefault()
-		this.changeNetwork(getNetworkKey(index))
+		this.changeNetwork(getNetworkKey(2-index))
 	}
 
 	render() {
@@ -93,14 +93,13 @@ class Leaderboard extends Component {
 
 		return (
 			<div className={classes.root} >
-				<Tabs value={getNetworkIndex(network)} onChange={this.handleChangeTab}>
-					<Tab label="Polkadot" />
-					<Tab label="Kusama" />
+				<Tabs value={2-getNetworkIndex(network)} onChange={this.handleChangeTab} >
 					<Tab label="Westend" />
+					<Tab label="Kusama" />
+					<Tab label="Polkadot" />
 				</Tabs>
 				<Box className={classes.networkBox}>
 					<IconButton color="primary" size="small" onClick={this.handleKusama}>
-						{/* <KusamaSVG className={classes.networkLogo} /> */}
 						<img src={getNetworkIcon(network)} className={classes.networkLogo} alt={"Icon"}/>
 					</IconButton>
 					<Typography variant="subtitle1" color="textSecondary" className={classes.networkLabel} >
@@ -128,7 +127,7 @@ class Leaderboard extends Component {
 				>
 					<Box className={classes.settingsBox}>
 						<Box className={classes.leaderboardBox} style={{
-									left: !this.state.expand ? -104 : -260
+									left: !this.state.expand ? -104 : -288
 								}}>
 							<Box className={classes.iconExpandBox}>
 								<IconButton aria-label="expand/collapse validator name"
@@ -138,7 +137,7 @@ class Leaderboard extends Component {
 								</IconButton>
 							</Box>
 							<Box className={classes.listBox} style={{
-									minWidth: !this.state.expand ? 55 : 211
+									minWidth: !this.state.expand ? 55 : 240
 								}}>
 								<List className={classes.list}>
 									{addresses.map((address, index) => <AccountItem address={address} key={index} expanded={this.state.expand}/>)}

@@ -12,7 +12,9 @@ class Layout extends Component {
 
   componentDidMount() {
     const {network} = this.props
-    this.props.getApiDetails(network)
+    if (!!network) {
+      this.props.getApiDetails(network)
+    }
   }
 
   componentDidUpdate(prevProps) {
