@@ -10,7 +10,7 @@ export const errors = (state = [], action) => {
     case "CLEAR_ERROR_MESSAGES":
       return []
     case "REMOVE_ERROR":
-      return state.filter((error, i) => i !== action.index)
+      return state.filter(error => error.id !== action.id)
     case "ADD_ERROR":
       return [...state, action.error]
     default:

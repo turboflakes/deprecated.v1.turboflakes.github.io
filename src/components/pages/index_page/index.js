@@ -24,8 +24,6 @@ import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
 import styles from './styles'
 
-const COCO_STASH = "FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX"
-
 class IndexPage extends Component {
 
   state = {
@@ -224,7 +222,7 @@ class IndexPage extends Component {
             <Grid item xs={6} className={classes.emaBox}>
               <Box align="center">
                 <Identicon
-                  value={COCO_STASH}
+                  value={process.env.REACT_APP_KUSAMA_COCO_STASH}
                   size={256}
                   theme={'polkadot'} />
               </Box>

@@ -1,6 +1,6 @@
-export const remove = (index) => ({
+export const remove = (id) => ({
   type: 'REMOVE_ERROR',
-  index
+  id
 })
 
 export const add = (error) => ({
