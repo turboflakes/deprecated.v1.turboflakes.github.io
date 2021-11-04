@@ -6,8 +6,8 @@ import {
   Redirect
 } from "react-router-dom";
 import {isNetworkSupported} from './constants'
-import Layout from './components/pages/layout_v2'
-import IndexPage from './components/pages/index_page_v2'
+import Layout from './components/pages/layout'
+import IndexPage from './components/pages/index_page'
 import AboutPage from './components/pages/about_page'
 import DisclaimerPage from './components/pages/disclaimer_page'
 import withTheme from './theme/withTheme'

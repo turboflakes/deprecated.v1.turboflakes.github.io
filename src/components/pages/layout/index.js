@@ -2,54 +2,51 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { getApiDetails } from '../../../actions/api'
-import Box from '@material-ui/core/Box';
-import BoardAnimation from '../../board_animation'
+import Header from '../../header'
+import Alert from '../../alert'
 import Footer from '../../footer'
 import { withStyles } from '@material-ui/core/styles';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import styles from './styles'
 
-class NewLayout extends Component {
+class Layout extends Component {
 
   componentDidMount() {
-    this.props.getApiDetails()
-  }21
+    const {network} = this.props
+    if (!!network) {
+      this.props.getApiDetails(network)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const {network} = this.props
+    if (!!network && prevProps.network !== this.props.network) {
+      this.props.getApiDetails(network)
+    }
+  }
   
   render() {
-    const { classes, width, quantity, selected } = this.props;
+    const { classes } = this.props;
     
     return (
       <div className={classes.root}>
-        {isWidthUp('sm', width) ?
-          <Box className={classes.leftBox} 
-            style={!!selected ? {width: `${100/3}vw`} : {width: "50vw"}}>
-            <BoardAnimation 
-              n={quantity} 
-              width={!!selected ? window.innerWidth / 3 : window.innerWidth / 2} 
-              height={window.innerHeight} />
-          </Box> : null}
-        <Box className={classes.rightBox}
-          style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})}>
-          {this.props.children}
-          <Footer style={isWidthUp('sm', width) ? (!!selected ? {width: `${100*(1-1/3)}vw`} : {width: "50vw"}) : ({width: "100vw"})} />
-        </Box>
+        <Header />
+        <Alert />
+        {this.props.children}
+        <Footer />
       </div>
     )
   }
 }
 
-NewLayout.propTypes = {
+Layout.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const quantity = state.leaderboard.quantity
-  const selected = state.leaderboard.selected
+  const network = ownProps.match ? (ownProps.match.params ? ownProps.match.params.network : undefined) : undefined
   return {
-    quantity,
-    selected,
-    isFetching: !!state.fetchers.async,
+    network
   }
 }
 
-export default connect(mapStateToProps, {getApiDetails})(withWidth()(withStyles(styles)(NewLayout)));
+export default connect(mapStateToProps, {getApiDetails})(withStyles(styles)(Layout));

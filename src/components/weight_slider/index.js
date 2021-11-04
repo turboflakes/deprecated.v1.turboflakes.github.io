@@ -101,7 +101,7 @@ class WeightSlider extends Component {
 						valueLabelDisplay="on"
 						step={1}
 						min={!!minValue ? minValue : 0}
-						max={!!maxValue ? maxValue : 10}
+						max={!!maxValue ? maxValue : 9}
 						onChangeCommitted={this.handleOnChangeCommittedWeight}
 					/>
 					{/* </Box> */}
