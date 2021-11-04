@@ -1,9 +1,12 @@
 export const errors = (state = [], action) => {
   if (action.error) {
     if (action.error.errors) {
-      return [...state, action.error.errors]
+      const errors = action.error.errors.map(msg => {
+        return {msg, id: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000}
+      })
+      return [...state, ...errors]
     }
-    return [...state, action.error]
+    return [...state, {msg: action.error, id: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000}]
   }
   switch (action.type) {
     case "CLEAR_STORE":

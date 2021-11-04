@@ -179,10 +179,10 @@ const apiMiddleware = store => next => action => {
         response,
         request
       })),
-      error_msg => {
+      error => {
         return next(actionWith({
           type: failureType,
-          error: {msg: error_msg, id: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000},
+          error,
           request
         }))
       })
