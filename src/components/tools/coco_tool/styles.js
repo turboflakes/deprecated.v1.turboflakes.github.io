@@ -7,7 +7,7 @@ const styles = (theme) => ({
   },
   toolTitle: {
     height: "25vh",
-    margin: theme.spacing(6)
+    margin: `${theme.spacing(4)}px 0 0 ${theme.spacing(6)}px`
   },
   emaLogo: {
     margin: `${theme.spacing(10)}px 0`,
