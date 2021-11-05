@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { selectors } from '../../selectors'
-import { changeQuantity } from '../../actions/leaderboard'
-import { parseInt } from '../../utils/math'
+import { selectors } from '../../../../selectors'
+import { changeQuantity } from '../../../../actions/leaderboard'
+import { parseInt } from '../../../../utils/math'
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';

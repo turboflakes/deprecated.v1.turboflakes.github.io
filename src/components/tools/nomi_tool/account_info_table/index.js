@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { get, getValidatorRank } from '../../actions/validator'
-import { clearAddress } from '../../actions/leaderboard'
-import { stashDisplay, nameDisplay, stakeDisplayNoSymbol, commissionDisplay, rateDisplay } from '../../utils/display'
-import {getNetworkWSS } from '../../constants'
-import { selectors } from '../../selectors'
+import { get, getValidatorRank } from '../../../../actions/validator'
+import { clearAddress } from '../../../../actions/leaderboard'
+import { stashDisplay, nameDisplay, stakeDisplayNoSymbol, commissionDisplay, rateDisplay } from '../../../../utils/display'
+import {getNetworkWSS } from '../../../../constants'
+import { selectors } from '../../../../selectors'
 import { encodeAddress } from '@polkadot/util-crypto'
 import Box from '@material-ui/core/Box';
 import Table from '@material-ui/core/Table';
@@ -21,7 +21,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
-import { ReactComponent as PolkadotJsSVG } from '../../assets/polkadot_js_logo.svg';
+import { ReactComponent as PolkadotJsSVG } from '../../../../assets/polkadot_js_logo.svg';
 import Identicon from '@polkadot/react-identicon';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';

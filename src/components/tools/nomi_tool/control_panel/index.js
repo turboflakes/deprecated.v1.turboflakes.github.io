@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { selectors } from '../../selectors'
+import { selectors } from '../../../../selectors'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import QuantitySlider from '../quantity_slider';

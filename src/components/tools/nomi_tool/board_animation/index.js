@@ -136,10 +136,13 @@ class BoardAnimation extends Component {
 
       // Add event listener for `click` events.
       canvas.addEventListener('click', (e) => {
-        var headerHeight = 80,
-        x = e.pageX - canvas.getBoundingClientRect().left,
-        y = e.pageY - (window.innerHeight / 2) - headerHeight
-
+        const x = e.pageX - canvas.getBoundingClientRect().left
+        // Note: y should be the position Y of the mouse in the screen but related to the animated board
+        // XxY at top left corner should be 0x0
+        // To get Y value we first find the position Y of the mouse and remove all the aggregated height 
+        // from previous components/pages
+        const y = e.pageY - window.innerHeight - (window.innerHeight * 0.3)
+        
         // Identify which ball was clicked
         let ball = balls.find(ball => Math.sqrt((x-ball.x)*(x-ball.x) + (y-ball.y)*(y-ball.y)) < ball.radius)
         if (!!ball) {

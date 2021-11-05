@@ -1,65 +1,52 @@
 const styles = (theme) => ({
   root: {
+    // Note: marginTop = -80 to remove the header appBar height
+    marginTop: -80,
   },
   heroBox: {
-    height: "50vh",
-    margin: `0 auto`,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between"
+    height: "100vh",
   },
   logoBox: {
-    margin: `0 auto`
+    ...theme.container,
+    padding: `${theme.spacing(6)}px 0`,
+    height: "25vh"
+  },
+  motoBox: {
+    padding: `${theme.spacing(3)}px 0`,
+    height: "25vh"
   },
   logo: {
-    marginBottom: theme.spacing(6)
+    width: "50%"
   },
   link: {
     textDecoration: "underline"
   },
-  nomiBox: {
-    
+  charactersBox: {
+    display: "flex",
+    justifyContent: "center",
+    // alignItems: "center",
+    height: "30vh"
   },
-  nomiTitle: {
-    height: "25vh",
-    margin: `0 ${theme.spacing(6)}px`
+  characterLink: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  characterLogo: {
+    maxWidth: 120,
+    margin: `${theme.spacing(2)}px ${theme.spacing(4)}px`
   },
   meet: {
-    fontFamily: "'Roboto', sans-serif"
+    fontFamily: "'Roboto', sans-serif",
   },
-  searchBox: {
-    margin: `0 0 ${theme.spacing(6)}px ${theme.spacing(6)}px`
-  },
-  searchForm: {
+  messageBox: {
+    height: "20vh",
+    backgroundColor: "#0B1317",
     display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
-    width: 680,
-  },
-  searchIcon: {
-    marginRight: theme.spacing(2)
-  },
-  animationBox:{
-    position: "relative"
-  },
-  toolsBox:{
-    // background: "linear-gradient(90deg, #439CFB, #F187FB)",
-    // padding: `${theme.spacing(10)}px 0`
-  },
-  crunchBox :{
-    background: "linear-gradient(90deg, #5CF6D3, #60EFFF)",
-    padding: `${theme.spacing(10)}px 0`,
-  },
-  toolTitle: {
-    height: "25vh",
-    margin: theme.spacing(6)
-  },
-  crunchLogo: {
-    margin: `${theme.spacing(10)}px 0`,
-    minWidth: "20%"
-  },
-  emaBox :{
-    background: "linear-gradient(90deg, #F187FB, #439CFB)",
-    padding: `${theme.spacing(10)}px 0`
+    color: "#FFF"
   }
 
 })

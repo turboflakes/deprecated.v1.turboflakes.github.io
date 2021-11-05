@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { get } from '../../actions/validator'
-import { selectAddress } from '../../actions/leaderboard'
-import { stashDisplay, nameDisplay } from '../../utils/display'
-import { selectors } from '../../selectors'
+import { get } from '../../../../actions/validator'
+import { selectAddress } from '../../../../actions/leaderboard'
+import { stashDisplay, nameDisplay } from '../../../../utils/display'
+import { selectors } from '../../../../selectors'
 import { encodeAddress } from '@polkadot/util-crypto'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -47,7 +47,7 @@ class AccountItem extends Component {
 		const { classes, address, account, selected, expanded, networkDetails, isFetching } = this.props;
     const stash = encodeAddress(address, networkDetails.ss58_format)
 		const isSelected = account.id === selected
-
+    const name = !!account.name ? `${nameDisplay(account.name, 15)}` : `${stashDisplay(stash)}`
 		return (
       <ListItem className={classes.root} button disableGutters 
         onClick={() => this.handleOnClick(address)} 
@@ -66,14 +66,14 @@ class AccountItem extends Component {
               <CircularProgress size={24} className={classes.progress} />
             </Fade>
              :
-            <Identicon
-              value={stash}
-              size={32}
-              theme={'polkadot'} />
+              <Identicon
+                value={stash}
+                size={32}
+                theme={'polkadot'} />
               }
         </ListItemAvatar>
         {expanded ? 
-          <ListItemText primary={isFetching ? `` : (!!account.name ? nameDisplay(account.name, 15) : stashDisplay(stash))}
+          <ListItemText primary={isFetching ? `` : name }
             align="left" classes={{primary: classes.itemText}} /> : null}
       </ListItem>
     )

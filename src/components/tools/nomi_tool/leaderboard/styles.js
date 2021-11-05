@@ -2,7 +2,9 @@ const styles = (theme) => ({
 	root: {
 		position: "absolute",
 		right: theme.spacing(2),
-		top: "50vh",
+		top: -theme.spacing(10),
+		// right: theme.spacing(2),
+		// top: "10vh",
 		// backgroundColor: theme.palette.neutrals[300],
 		borderRadius: theme.spacing(2),
 		minWidth: 400,

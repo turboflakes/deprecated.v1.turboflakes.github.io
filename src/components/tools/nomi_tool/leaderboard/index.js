@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { query } from '../../actions/validator'
-import { selectAddress } from '../../actions/leaderboard'
-import { add } from '../../actions/error'
-import {getNetworkIcon, getNetworkIndex, getNetworkKey} from '../../constants'
-import { selectors } from '../../selectors'
-import serialize from '../../utils/serialize'
-import { isValidAddress } from '../../utils/crypto'
+import { query } from '../../../../actions/validator'
+import { selectAddress } from '../../../../actions/leaderboard'
+import { add } from '../../../../actions/error'
+import {getNetworkIcon, getNetworkIndex, getNetworkKey} from '../../../../constants'
+import { selectors } from '../../../../selectors'
+import serialize from '../../../../utils/serialize'
+import { isValidAddress } from '../../../../utils/crypto'
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -140,7 +140,8 @@ class Leaderboard extends Component {
 									minWidth: !this.state.expand ? 55 : 240
 								}}>
 								<List className={classes.list}>
-									{addresses.map((address, index) => <AccountItem address={address} key={index} expanded={this.state.expand}/>)}
+									{addresses.map((address, index) => <AccountItem address={address} 
+										key={index} expanded={this.state.expand}/>)}
 								</List>
 							</Box>
 						</Box>

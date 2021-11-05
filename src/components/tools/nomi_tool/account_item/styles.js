@@ -16,6 +16,11 @@ const styles = (theme) => ({
 	},
 	progress: {
 		color: theme.palette.text.secondary
+	},
+	indexBox: {
+		padding: `0 ${theme.spacing()}px`,
+		display: "flex",
+		// justifyContent:
 	}
 })
 export default styles

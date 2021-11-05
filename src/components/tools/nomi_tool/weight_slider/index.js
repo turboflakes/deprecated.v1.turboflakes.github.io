@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { changeWeight, changeRange } from '../../actions/leaderboard'
-import { parseArray, parseArrayRanges } from '../../utils/math'
+import { changeWeight, changeRange } from '../../../../actions/leaderboard'
+import { parseArray, parseArrayRanges } from '../../../../utils/math'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
