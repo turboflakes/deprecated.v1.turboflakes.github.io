@@ -11,7 +11,7 @@ const styles = (theme) => ({
     justifyContent: "space-between",
   },
   nomiTitle: {
-    margin: `0 ${theme.spacing(6)}px`
+    margin: theme.spacing(6)
   },
   animationBox:{
     height: "90vh",

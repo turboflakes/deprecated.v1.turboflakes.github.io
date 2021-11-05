@@ -9,11 +9,11 @@ const styles = (theme) => ({
   logoBox: {
     ...theme.container,
     padding: `${theme.spacing(6)}px 0`,
-    height: "25vh"
+    height: "20vh"
   },
   motoBox: {
     padding: `${theme.spacing(3)}px 0`,
-    height: "25vh"
+    height: "20vh"
   },
   logo: {
     width: "50%"
@@ -21,11 +21,18 @@ const styles = (theme) => ({
   link: {
     textDecoration: "underline"
   },
+  toolsBox: {
+    ...theme.container,
+    height: "45vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
+  },
   charactersBox: {
     display: "flex",
     justifyContent: "center",
-    // alignItems: "center",
-    height: "30vh"
+    // alignItems: "flex-end",
+    // margin: `${theme.spacing(3)}px 0`
   },
   characterLink: {
     display: "flex",
@@ -40,7 +47,8 @@ const styles = (theme) => ({
     fontFamily: "'Roboto', sans-serif",
   },
   messageBox: {
-    height: "20vh",
+    // ...theme.container,
+    height: "15vh",
     backgroundColor: "#0B1317",
     display: "flex",
     flexDirection: "column",

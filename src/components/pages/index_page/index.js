@@ -47,65 +47,87 @@ class IndexPage extends Component {
               variant="h2"
               color="textPrimary"
               align="center"
+              gutterBottom
             >
-              AND THE <Link href="https://substrate.io/" 
-                target="_blank" rel="noreferrer" color="inherit" 
-                className={classes.link}>SUBSTRATE</Link><br/>
-              TOOLS FACTORY
+              AND THE<br/>
+              SUBSTRATE TOOLS FACTORY
             </Typography>
+            <Typography
+                variant="subtitle1"
+                color="textPrimary"
+                align="center"
+              >
+                Awesome <Link href="https://substrate.io/" 
+                target="_blank" rel="noreferrer" color="inherit" 
+                className={classes.link}>Substrate</Link> means <b>Bold</b> tools. 
+                <b>TurboFlakes</b> provides end-user tooling <br/>to easier the experience of interacting with Substrate blockchain networks.
+                {/* Turboflakes provides end-user tooling built on top of the awesome Substrate framework to easier the experience of interacting with Substrate blockchain networks. */}
+                </Typography>
           </Box>
-          <Box className={classes.charactersBox}>
-            <Link component="button" className={classes.characterLink} 
-              onClick={() => this.handleNext("nomi")}>
-              <img src={crunchLogo} className={classes.characterLogo} alt={"nomi-logo"}/>
-              <Typography
-                component="span"
-                variant="h4"
+          <Box className={classes.toolsBox}>
+            <Typography
+                variant="subtitle2"
                 color="textPrimary"
                 align="center"
-              >NOMI
-              </Typography>
-            </Link>
-            <Link component="button" className={classes.characterLink} 
-              onClick={() => this.handleNext("crunch")}>
-              <img src={crunchLogo} className={classes.characterLogo} alt={"crunch-logo"}/>
-              <Typography
-                component="span"
-                variant="h4"
-                color="textPrimary"
-                align="center"
-              >CRUNCH
-              </Typography>
-            </Link>
-            <Link component="button" className={classes.characterLink}  
-              onClick={() => this.handleNext("ema")}>
-              <img src={crunchLogo} className={classes.characterLogo} alt={"ema-logo"}/>
-              <Typography
-                component="span"
-                variant="h4"
-                color="textPrimary"
-                align="center"
-              >EMA
-              </Typography>
-            </Link>
-            {/* <Link component="button" className={classes.characterLink}   
-              onClick={() => this.handleNext("coco")}>
-              <img src={crunchLogo} className={classes.characterLogo} alt={"coco-logo"}/>
-              <Typography
-                component="span"
-                variant="h4"
-                color="textPrimary"
-                align="center"
-              >COCO
-              </Typography>
-            </Link> */}
+                gutterBottom
+              >
+                Meet Nomi, Crunch, and Ema
+            </Typography>
+            <Box className={classes.charactersBox}>
+              <Link component="button" className={classes.characterLink} 
+                onClick={() => this.handleNext("nomi")}>
+                <img src={crunchLogo} className={classes.characterLogo} alt={"nomi-logo"}/>
+                <Typography
+                  component="span"
+                  variant="h4"
+                  color="textPrimary"
+                  align="center"
+                >NOMI
+                </Typography>
+              </Link>
+              <Link component="button" className={classes.characterLink} 
+                onClick={() => this.handleNext("crunch")}>
+                <img src={crunchLogo} className={classes.characterLogo} alt={"crunch-logo"}/>
+                <Typography
+                  component="span"
+                  variant="h4"
+                  color="textPrimary"
+                  align="center"
+                >CRUNCH
+                </Typography>
+              </Link>
+              <Link component="button" className={classes.characterLink}  
+                onClick={() => this.handleNext("ema")}>
+                <img src={crunchLogo} className={classes.characterLogo} alt={"ema-logo"}/>
+                <Typography
+                  component="span"
+                  variant="h4"
+                  color="textPrimary"
+                  align="center"
+                >EMA
+                </Typography>
+              </Link> 
+              {/* <Link component="button" className={classes.characterLink}   
+                onClick={() => this.handleNext("coco")}>
+                <img src={crunchLogo} className={classes.characterLogo} alt={"coco-logo"}/>
+                <Typography
+                  component="span"
+                  variant="h4"
+                  color="textPrimary"
+                  align="center"
+                >COCO
+                </Typography>
+            </Link>*/}
+            </Box>
           </Box>
           <Box className={classes.messageBox} >
             <Typography
               variant="subtitle1"
               color="textSecondary"
               align="center"
-            >Explore our tools</Typography>
+            >
+              Tools built in the wild, open-source and ready to be explored.
+            </Typography>
             <IconButton 
               onClick={() => this.handleNext("nomi")}
               color="inherit"
