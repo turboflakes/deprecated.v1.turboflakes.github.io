@@ -1,14 +1,18 @@
 const styles = (theme) => ({
   root: {
-    background: "linear-gradient(90deg, #FFF, #FFF, #5CF6D3, #60EFFF)",
+    background: "linear-gradient(180deg, #FFF, #F1F1F0)",
     borderBottom: `solid 2px #FFF`,
   },
   container: {
-    ...theme.container
+    ...theme.container,
+    marginBottom: theme.spacing(16)
+  },
+  section: {
+    marginBottom: theme.spacing(8)
   },
   heroBox: {
     display: "flex",
-    padding: `${theme.spacing(8)}px 0`
+    padding: `${theme.spacing(8)}px 0`,
   },
   meet: {
     fontFamily: "'Roboto', sans-serif",
@@ -18,12 +22,17 @@ const styles = (theme) => ({
   },
   logoBox: {
     width: "40%",
+  },
+  logoGradient: {
+    background: "radial-gradient(#5CF6D3 0%, #60EFFF 60%)",
+    width: 400,
+    height: 400,
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    borderRadius: 200
   },
   logo: {
-    width: 300,
+    width: 260,
   },
   link: {
     textDecoration: "underline"
@@ -31,11 +40,8 @@ const styles = (theme) => ({
   inline: {
     // whiteSpace: "nowrap"
   },
-  body: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center"
+  subtitle: {
+    marginBottom: theme.spacing(4)
   },
   rooms: {
     display: "flex",

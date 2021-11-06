@@ -23,27 +23,40 @@ class EmaTool extends Component {
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
-        <Box className={classes.titleBox}>
-          <Typography
-              variant="h1"
-              className={classes.inline}
-              color="textPrimary"
-              align="left"
-            ><span className={classes.meet}>Meet</span> EMA
-          </Typography>
-          <Typography
-              variant="subtitle1"
-              className={classes.inline}
-              color="textPrimary"
-              align="left"
-            >
-              <b>Ema</b> submits <b>e</b>xtrinsics over <b>ma</b>trix. 
-              <br/>On public or private <Link href="https://matrix.org/" target="_blank" rel="noreferrer" color="inherit" 
-                className={classes.link}>matrix</Link> rooms → <b>Ema</b> bot is always available for a brief text message exchange.
-          </Typography>
-        </Box>
-        <Box align="center" className={classes.logoBox}>
-          <img src={crunchLogo} className={classes.logo} alt={"ema logo"}/>
+        <Box className={classes.container}>
+          <Box className={classes.section} align="center">
+            <Box className={classes.heroBox}>
+              <Box className={classes.titleBox}>
+                <Typography
+                    variant="h2"
+                    className={classes.meet}
+                    color="textPrimary"
+                    align="left"
+                  >Meet
+                </Typography>
+                <Typography
+                    variant="h1"
+                    color="textPrimary"
+                    align="left"
+                    paragraph
+                  >EMA
+                </Typography>
+                <Typography
+                    variant="subtitle1"
+                    className={classes.inline}
+                    color="textPrimary"
+                    align="left"
+                  >
+                    <b>Ema</b> submits <b>e</b>xtrinsics over <b>ma</b>trix. 
+                    <br/>On public or private <Link href="https://matrix.org/" target="_blank" rel="noreferrer" color="inherit" 
+                      className={classes.link}>matrix</Link> rooms → <b>Ema</b> bot is always available for a brief text message exchange.
+                </Typography>
+              </Box>
+              <Box align="center" className={classes.logoBox}>
+                <img src={crunchLogo} className={classes.logo} alt={"ema logo"}/>
+              </Box>
+            </Box>
+          </Box>
         </Box>
       </Box> 
     )
