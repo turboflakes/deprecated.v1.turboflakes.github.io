@@ -1,24 +1,54 @@
 const styles = (theme) => ({
   root: {
+    background: "linear-gradient(90deg, #FFF, #FFF, #5CF6D3, #60EFFF)",
     borderBottom: `solid 2px #FFF`,
+  },
+  container: {
+    ...theme.container
+  },
+  heroBox: {
+    display: "flex",
+    padding: `${theme.spacing(8)}px 0`
   },
   meet: {
     fontFamily: "'Roboto', sans-serif",
   },
-  toolTitle: {
-    height: "25vh",
-    margin: `${theme.spacing(4)}px 0 0 ${theme.spacing(6)}px`
+  titleBox: {
+    width: "60%",
   },
-  crunchLogo: {
-    margin: `${theme.spacing(10)}px 0`,
-    minWidth: "20%"
+  logoBox: {
+    width: "40%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
-  crunchBox :{
-    background: "linear-gradient(90deg, #FFF, #5CF6D3, #60EFFF)",
-    padding: `${theme.spacing(10)}px 0`,
+  logo: {
+    width: 300,
+  },
+  link: {
+    textDecoration: "underline"
   },
   inline: {
-    whiteSpace: "nowrap"
-  }
+    // whiteSpace: "nowrap"
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  rooms: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly"
+  },
+  room: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  listItemPrimary: {
+    padding: `0 ${theme.spacing(2)}px`,
+  },
 })
 export default styles

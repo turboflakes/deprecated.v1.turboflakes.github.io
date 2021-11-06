@@ -50,7 +50,7 @@ class IndexPage extends Component {
               gutterBottom
             >
               AND THE<br/>
-              SUBSTRATE TOOLS FACTORY
+              SUBSTRATE TOOLS GARAGE
             </Typography>
             <Typography
                 variant="subtitle1"
@@ -60,7 +60,7 @@ class IndexPage extends Component {
                 Awesome <Link href="https://substrate.io/" 
                 target="_blank" rel="noreferrer" color="inherit" 
                 className={classes.link}>Substrate</Link> means <b>Bold</b> tools. 
-                <b>TurboFlakes</b> provides end-user tooling <br/>to easier the experience of interacting with Substrate blockchain networks.
+                <b>TurboFlakes</b> provides end-user tooling <br/>to ease the experience of interacting with Substrate blockchain networks.
                 {/* Turboflakes provides end-user tooling built on top of the awesome Substrate framework to easier the experience of interacting with Substrate blockchain networks. */}
                 </Typography>
           </Box>

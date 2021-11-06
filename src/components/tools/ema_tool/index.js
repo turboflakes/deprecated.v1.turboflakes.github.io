@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import crunchLogo from '../../../assets/crunchbot.svg';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,35 +23,28 @@ class EmaTool extends Component {
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
-        <Grid container>
-          <Grid item xs={6}>
-            <Box className={classes.toolTitle}>
-              <Typography
-                  variant="h1"
-                  className={classes.inline}
-                  color="textPrimary"
-                  align="left"
-                >
-                  {/* <span className={classes.meet}>Meet</span>  */}
-                  EMA
-              </Typography>
-              <Typography
-                  variant="subtitle1"
-                  className={classes.inline}
-                  color="textPrimary"
-                  align="left"
-                >
-                  <b>Ema</b> submits <b>e</b>xtrinsics over <b>ma</b>trix. 
-                  <br/>Publicly or private, <b>Ema</b> bot is always available for a brief text message exchange.
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={6} className={classes.emaBox}>
-            <Box align="center">
-              <img src={crunchLogo} className={classes.emaLogo} alt={"logo"}/>
-            </Box>
-          </Grid>
-        </Grid>
+        <Box className={classes.titleBox}>
+          <Typography
+              variant="h1"
+              className={classes.inline}
+              color="textPrimary"
+              align="left"
+            ><span className={classes.meet}>Meet</span> EMA
+          </Typography>
+          <Typography
+              variant="subtitle1"
+              className={classes.inline}
+              color="textPrimary"
+              align="left"
+            >
+              <b>Ema</b> submits <b>e</b>xtrinsics over <b>ma</b>trix. 
+              <br/>On public or private <Link href="https://matrix.org/" target="_blank" rel="noreferrer" color="inherit" 
+                className={classes.link}>matrix</Link> rooms → <b>Ema</b> bot is always available for a brief text message exchange.
+          </Typography>
+        </Box>
+        <Box align="center" className={classes.logoBox}>
+          <img src={crunchLogo} className={classes.logo} alt={"ema logo"}/>
+        </Box>
       </Box> 
     )
   }

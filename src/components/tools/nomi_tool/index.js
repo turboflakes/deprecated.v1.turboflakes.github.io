@@ -47,7 +47,7 @@ class NomiTool extends Component {
                 className={classes.inline}
                 color="textPrimary"
                 align="left"
-              >NOMI
+              ><span className={classes.meet}>Meet</span> NOMI
             </Typography>
             <Typography
                 variant="subtitle1"

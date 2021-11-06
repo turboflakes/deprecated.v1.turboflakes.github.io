@@ -112,11 +112,11 @@ export default createMuiTheme({
       fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h6: {
-      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
-      fontWeight: 400
+      fontFamily: "'Roboto', sans-serif",
     },
     body1: {
-      fontFamily: "'Roboto', sans-serif"
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "1.2rem",
     },
     caption: {
       fontFamily: "'Roboto', sans-serif",

@@ -1,21 +1,27 @@
 const styles = (theme) => ({
   root: {
+    background: "linear-gradient(90deg, #F187FB, #439CFB)",
+    display: "flex",
     borderBottom: `solid 2px #FFF`,
+    height: "100vh"
   },
   meet: {
     fontFamily: "'Roboto', sans-serif",
   },
-  toolTitle: {
-    height: "25vh",
+  titleBox: {
+    width: "60vw",
     margin: `${theme.spacing(4)}px 0 0 ${theme.spacing(6)}px`
   },
-  emaLogo: {
-    margin: `${theme.spacing(10)}px 0`,
-    minWidth: "20%"
+  logoBox: {
+    width: "40vw",
+    display: "flex",
+    justifyContent: "center"
   },
-  emaBox: {
-    background: "linear-gradient(90deg, #FFF, #F187FB, #439CFB)",
-    padding: `${theme.spacing(10)}px 0`,
+  logo: {
+    maxWidth: "16vw"
+  },
+  link: {
+    textDecoration: "underline"
   },
 })
 export default styles

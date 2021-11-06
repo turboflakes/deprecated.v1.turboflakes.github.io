@@ -13,7 +13,7 @@ const styles = (theme) => ({
   },
   motoBox: {
     padding: `${theme.spacing(3)}px 0`,
-    height: "20vh"
+    height: "30vh"
   },
   logo: {
     width: "50%"
@@ -23,10 +23,11 @@ const styles = (theme) => ({
   },
   toolsBox: {
     ...theme.container,
-    height: "45vh",
+    height: "35vh",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
   },
   charactersBox: {
     display: "flex",

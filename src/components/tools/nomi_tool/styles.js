@@ -13,6 +13,9 @@ const styles = (theme) => ({
   nomiTitle: {
     margin: `${theme.spacing(4)}px 0 0 ${theme.spacing(6)}px`
   },
+  meet: {
+    fontFamily: "'Roboto', sans-serif",
+  },
   animationBox:{
     height: "90vh",
     position: "relative",
