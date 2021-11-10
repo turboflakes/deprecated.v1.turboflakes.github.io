@@ -129,7 +129,7 @@ class CrunchTool extends Component {
                   paragraph
                 ><b>Crunch</b> + <Link href="https://matrix.org/" 
                   target="_blank" rel="noreferrer" color="inherit" 
-                  className={classes.link}>matrix</Link> Awesome CRUNCHBOT
+                  className={classes.link}>Matrix</Link> Awesome CRUNCHBOT
                 </Typography>
                 <Typography
                   variant="subtitle1"
