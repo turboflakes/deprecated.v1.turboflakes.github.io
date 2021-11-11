@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
+// import IconButton from '@material-ui/core/IconButton';
+// import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
 import Link from '@material-ui/core/Link';
 import NomiTool from '../../tools/nomi_tool'
 import CrunchTool from '../../tools/crunch_tool'
@@ -130,12 +130,12 @@ class IndexPage extends Component {
             >
               Tools built in the wild, open-source and ready to be explored.
             </Typography>
-            <IconButton 
+            {/* <IconButton 
               onClick={() => this.handleNext("nomi")}
               color="inherit"
               aria-label="Menu">
               <KeyboardArrowDownIcon color="inherit" fontSize="large" />
-            </IconButton>
+            </IconButton> */}
           </Box>
         </Box>
 
