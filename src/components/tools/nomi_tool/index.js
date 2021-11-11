@@ -80,6 +80,12 @@ class NomiTool extends Component {
           <Search />
         </Box>
         <Box className={classes.animationBox}>
+          <Typography
+              variant="h4"
+              className={classes.watermark}
+              align="left"
+            >NOMI
+          </Typography>
           <BoardAnimation 
               addresses={addresses}
               selected={selected}
