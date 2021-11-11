@@ -12,6 +12,7 @@ const styles = (theme) => ({
   },
   heroBox: {
     display: "flex",
+    alignItems: "center",
     padding: `${theme.spacing(8)}px 0`,
   },
   meet: {
@@ -22,14 +23,6 @@ const styles = (theme) => ({
   },
   logoBox: {
     width: "40%",
-  },
-  logoGradient: {
-    background: "radial-gradient(#5CF6D3 0%, #60EFFF 60%)",
-    width: 400,
-    height: 400,
-    display: "flex",
-    justifyContent: "center",
-    borderRadius: 200
   },
   logo: {
     width: 260,
@@ -56,5 +49,14 @@ const styles = (theme) => ({
   listItemPrimary: {
     padding: `0 ${theme.spacing(2)}px`,
   },
+  nameBox: {
+    marginBottom: theme.spacing(4),
+    maxWidth: "max-content",
+  },
+  nameBase: {
+    background: "linear-gradient(90deg, #5CF6D3, #60EFFF)",
+    height: theme.spacing(2),
+    margin: `-${theme.spacing(1)}px ${theme.spacing(1)/3}px 0 ${theme.spacing(1)/2}px`,
+  }
 })
 export default styles

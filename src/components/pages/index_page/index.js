@@ -8,9 +8,11 @@ import Link from '@material-ui/core/Link';
 import NomiTool from '../../tools/nomi_tool'
 import CrunchTool from '../../tools/crunch_tool'
 import EmaTool from '../../tools/ema_tool'
-import CocoTool from '../../tools/coco_tool'
+// import CocoTool from '../../tools/coco_tool'
 import logo from '../../../assets/logo/logo_1_color_subtract_turboflakes_.svg';
 import crunchLogo from '../../../assets/crunchbot.svg';
+import nomiLogo from '../../../assets/nomi.png';
+import emaLogo from '../../../assets/ema.png';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -76,7 +78,7 @@ class IndexPage extends Component {
             <Box className={classes.charactersBox}>
               <Link component="button" className={classes.characterLink} 
                 onClick={() => this.handleNext("nomi")}>
-                <img src={crunchLogo} className={classes.characterLogo} alt={"nomi-logo"}/>
+                <img src={nomiLogo} className={classes.characterLogo} alt={"nomi-logo"}/>
                 <Typography
                   component="span"
                   variant="h4"
@@ -98,7 +100,7 @@ class IndexPage extends Component {
               </Link>
               <Link component="button" className={classes.characterLink}  
                 onClick={() => this.handleNext("ema")}>
-                <img src={crunchLogo} className={classes.characterLogo} alt={"ema-logo"}/>
+                <img src={emaLogo} className={classes.characterLogo} alt={"ema-logo"}/>
                 <Typography
                   component="span"
                   variant="h4"
@@ -141,7 +143,7 @@ class IndexPage extends Component {
         <NomiTool scrollIntoView={this.state.view === "nomi"}/>
         <CrunchTool scrollIntoView={this.state.view === "crunch"}/>
         <EmaTool scrollIntoView={this.state.view === "ema"}/>
-        <CocoTool scrollIntoView={this.state.view === "coco"}/>
+        {/* <CocoTool scrollIntoView={this.state.view === "coco"}/> */}
 
       </Box>
     )

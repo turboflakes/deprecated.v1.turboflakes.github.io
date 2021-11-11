@@ -5,7 +5,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import CodeBlock from '../../code_block';
-import crunchLogo from '../../../assets/crunchbot_plus_tokens.svg';
+import crunchLogo from '../../../assets/crunchbot.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -50,13 +50,17 @@ class CrunchTool extends Component {
                     align="left"
                   >Meet
                 </Typography>
-                <Typography
-                    variant="h1"
-                    color="textPrimary"
-                    align="left"
-                    paragraph
-                  >CRUNCH
-                </Typography>
+                <Box align="left">
+                  <Box className={classes.nameBox}>
+                    <Typography
+                        variant="h1"
+                        color="textPrimary"
+                        align="left"
+                      >CRUNCH
+                    </Typography>
+                    <Box className={classes.nameBase}> </Box>
+                  </Box>
+                </Box>
                 <Typography
                     variant="subtitle1"
                     className={classes.inline}
@@ -67,10 +71,8 @@ class CrunchTool extends Component {
                     <b>Crunch</b> is a command-line interface to easily automate payouts of staking rewards on Substrate-based chains.
                 </Typography>
               </Box>
-              <Box align="center" className={classes.logoBox}>
-                <Box align="center" className={classes.logoGradient}>
-                  <img src={crunchLogo} className={classes.logo} alt={"crunch logo"}/>
-                </Box>
+              <Box align="right" className={classes.logoBox}>
+                <img src={crunchLogo} className={classes.logo} alt={"crunch logo"}/>
               </Box>
             </Box>
           </Box>
@@ -136,7 +138,7 @@ class CrunchTool extends Component {
                   color="textPrimary"
                   align="left"
                   paragraph
-                  >Join and read the messages history of all the matrix public rooms where <b>CRUNCHBOTS</b> are sending in messages
+                  >Join and read the messages history of all the matrix public rooms where <b>Crunch</b> bots are sending in messages
                 </Typography>
               </Grid>
               <Grid item xs={2}>

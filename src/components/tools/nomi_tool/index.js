@@ -10,6 +10,8 @@ import BoardAnimation from './board_animation'
 import Search from './search'
 import Leaderboard from './leaderboard'
 import AccountInfoTable from './account_info_table'
+// import Web3Extension from '../../web3_extension'
+import nomiLogo from '../../../assets/nomi.png';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
 import styles from './styles'
@@ -40,24 +42,41 @@ class NomiTool extends Component {
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
-        <Box className={classes.nomiHeader}>
-          <Box className={classes.nomiTitle}>
+        <Box className={classes.heroBox}>
+          <Box className={classes.titleBox}>
             <Typography
-                variant="h1"
-                className={classes.inline}
+                variant="h2"
+                className={classes.meet}
                 color="textPrimary"
                 align="left"
-              ><span className={classes.meet}>Meet</span> NOMI
+              >Meet
             </Typography>
+            <Box align="left">
+              <Box className={classes.nameBox}>
+                <Typography
+                    variant="h1"
+                    color="textPrimary"
+                    align="left"
+                  >NOMI
+                </Typography>
+                <Box className={classes.nameBase}> </Box>
+              </Box>
+            </Box>
             <Typography
                 variant="subtitle1"
                 className={classes.inline}
                 color="textPrimary"
                 align="left"
+                paragraph
               >
-                <b>Nomi</b> is a nominator decision support tool for NPoS networks
+                <b>Nomi</b> is a nominator decision support tool for NPoS networks.
             </Typography>
           </Box>
+          <Box align="right" className={classes.logoBox}>
+            <img src={nomiLogo} className={classes.logo} alt={"nomi logo"}/>
+          </Box>
+        </Box>
+        <Box className={classes.searchBox} align="center">
           <Search />
         </Box>
         <Box className={classes.animationBox}>
@@ -71,6 +90,7 @@ class NomiTool extends Component {
           <AccountInfoTable />
           <Leaderboard />
         </Box>
+        {/* <Web3Extension /> */}
       </Box>
     )
   }

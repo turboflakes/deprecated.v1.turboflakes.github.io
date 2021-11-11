@@ -2,11 +2,6 @@ const styles = (theme) => ({
   root: {
     background: "linear-gradient(180deg, #FFF, #F1F1F0)",
     borderBottom: `solid 2px #FFF`,
-
-    // background: "linear-gradient(90deg, #F187FB, #439CFB)",
-    // display: "flex",
-    // borderBottom: `solid 2px #FFF`,
-    // height: "100vh"
   },
   container: {
     ...theme.container,
@@ -17,6 +12,7 @@ const styles = (theme) => ({
   },
   heroBox: {
     display: "flex",
+    alignItems: "center",
     padding: `${theme.spacing(8)}px 0`,
   },
   meet: {
@@ -28,19 +24,20 @@ const styles = (theme) => ({
   logoBox: {
     width: "40%",
   },
-  logoGradient: {
-    background: "radial-gradient(#5CF6D3 0%, #60EFFF 60%)",
-    width: 400,
-    height: 400,
-    display: "flex",
-    justifyContent: "center",
-    borderRadius: 200
-  },
   logo: {
     width: 260,
   },
   link: {
     textDecoration: "underline"
   },
+  nameBox: {
+    marginBottom: theme.spacing(4),
+    maxWidth: "max-content",
+  },
+  nameBase: {
+    background: "linear-gradient(90deg, #F187FB, #439CFB)",
+    height: theme.spacing(2),
+    margin: `-${theme.spacing(1)}px -${theme.spacing(1)/2}px 0 ${theme.spacing(1)/2}px`,
+  }
 })
 export default styles

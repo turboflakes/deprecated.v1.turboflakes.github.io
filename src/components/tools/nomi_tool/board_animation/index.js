@@ -141,8 +141,13 @@ class BoardAnimation extends Component {
         // XxY at top left corner should be 0x0
         // To get Y value we first find the position Y of the mouse and remove all the aggregated height 
         // from previous components/pages
-        const y = e.pageY - window.innerHeight - (window.innerHeight * 0.3)
-        
+        // 
+        // window.innerHeight = Landing page height
+        // 410 => Nomi hero box height
+        // 92 => Search box height
+        const y = e.pageY - window.innerHeight - 410 - 92
+        console.log("__e.pageY", e.pageY);
+        // 1270 - 769 - 
         // Identify which ball was clicked
         let ball = balls.find(ball => Math.sqrt((x-ball.x)*(x-ball.x) + (y-ball.y)*(y-ball.y)) < ball.radius)
         if (!!ball) {

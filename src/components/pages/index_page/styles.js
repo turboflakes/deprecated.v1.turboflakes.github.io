@@ -32,7 +32,7 @@ const styles = (theme) => ({
   charactersBox: {
     display: "flex",
     justifyContent: "center",
-    // alignItems: "flex-end",
+    alignItems: "flex-end",
     // margin: `${theme.spacing(3)}px 0`
   },
   characterLink: {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import crunchLogo from '../../../assets/crunchbot.svg';
+import emaLogo from '../../../assets/ema.png';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -34,13 +34,17 @@ class EmaTool extends Component {
                     align="left"
                   >Meet
                 </Typography>
-                <Typography
-                    variant="h1"
-                    color="textPrimary"
-                    align="left"
-                    paragraph
-                  >EMA
-                </Typography>
+                <Box align="left">
+                  <Box className={classes.nameBox}>
+                    <Typography
+                        variant="h1"
+                        color="textPrimary"
+                        align="left"
+                      >EMA
+                    </Typography>
+                    <Box className={classes.nameBase}> </Box>
+                  </Box>
+                </Box>
                 <Typography
                     variant="subtitle1"
                     className={classes.inline}
@@ -52,8 +56,8 @@ class EmaTool extends Component {
                       className={classes.link}>matrix</Link> rooms → <b>Ema</b> bot is always available for a brief text message exchange.
                 </Typography>
               </Box>
-              <Box align="center" className={classes.logoBox}>
-                <img src={crunchLogo} className={classes.logo} alt={"ema logo"}/>
+              <Box align="right" className={classes.logoBox}>
+                <img src={emaLogo} className={classes.logo} alt={"ema logo"}/>
               </Box>
             </Box>
           </Box>
