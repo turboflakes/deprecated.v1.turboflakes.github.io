@@ -11,8 +11,8 @@ import EmaTool from '../../tools/ema_tool'
 // import CocoTool from '../../tools/coco_tool'
 import logo from '../../../assets/logo/logo_1_color_subtract_turboflakes_.svg';
 import crunchLogo from '../../../assets/crunchbot.svg';
-import nomiLogo from '../../../assets/nomi.png';
-import emaLogo from '../../../assets/ema.png';
+import nomiLogo from '../../../assets/nomi.svg';
+import emaLogo from '../../../assets/ema.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 

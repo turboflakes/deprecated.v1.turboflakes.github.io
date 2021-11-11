@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import emaLogo from '../../../assets/ema.png';
+import emaLogo from '../../../assets/ema.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 

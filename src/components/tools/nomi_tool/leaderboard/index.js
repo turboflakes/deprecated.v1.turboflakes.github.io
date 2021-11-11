@@ -127,22 +127,24 @@ class Leaderboard extends Component {
 				>
 					<Box className={classes.settingsBox}>
 						<Box className={classes.leaderboardBox} style={{
-									left: !this.state.expand ? -104 : -288
+									left: !this.state.expand ? -56 : -240
 								}}>
-							<Box className={classes.iconExpandBox}>
-								<IconButton aria-label="expand/collapse validator name"
-									className={classes.iconExpand} 
-									onClick={() => this.setState({expand: !this.state.expand})}>
-									{!this.state.expand ? <RightIcon /> : <LeftIcon />}
-								</IconButton>
-							</Box>
-							<Box className={classes.listBox} style={{
-									minWidth: !this.state.expand ? 55 : 240
-								}}>
-								<List className={classes.list}>
-									{addresses.map((address, index) => <AccountItem address={address} 
-										key={index} expanded={this.state.expand}/>)}
-								</List>
+							<Box>
+								<Box className={classes.iconExpandBox}>
+									<IconButton aria-label="expand/collapse validator name"
+										className={classes.iconExpand} 
+										onClick={() => this.setState({expand: !this.state.expand})}>
+										{!this.state.expand ? <RightIcon /> : <LeftIcon />}
+									</IconButton>
+								</Box>
+								<Box className={classes.listBox} style={{
+										minWidth: !this.state.expand ? 55 : 240
+									}}>
+									<List className={classes.list}>
+										{addresses.map((address, index) => <AccountItem address={address} 
+											key={index} expanded={this.state.expand}/>)}
+									</List>
+								</Box>
 							</Box>
 						</Box>
 						<ControlPanel />

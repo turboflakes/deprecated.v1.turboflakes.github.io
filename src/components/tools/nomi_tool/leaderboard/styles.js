@@ -58,18 +58,22 @@ const styles = (theme) => ({
 		borderRight: `1px solid ${theme.palette.neutrals[100]}`,		
 	},
 	iconExpandBox: {
+		zIndex: 1,
 		backgroundColor: "rgba(77,77,77,0.9)",
 		borderTopLeftRadius: theme.spacing(3),
-		borderBottomLeftRadius: theme.spacing(3)
+		padding: `${theme.spacing()/2}px 0 0 ${theme.spacing()/2}px`
 	},
 	iconExpand: {
-		color: theme.palette.text.secondary
+		zIndex: 1,
+		color: theme.palette.text.secondary,
 	},
 	listBox: {
 		backgroundColor: "rgba(77,77,77,0.9)",
 		borderBottomLeftRadius: theme.spacing(3),
 		overflow: "auto",
-		height: 695,
+		height: 643,
+	},
+	list: {
 	},
 	tabIcon: {
 		width: 26,
