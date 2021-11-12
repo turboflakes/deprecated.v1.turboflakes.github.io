@@ -17,7 +17,6 @@ import List from '@material-ui/core/List';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import DownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
-import UpIcon from '@material-ui/icons/KeyboardArrowUpRounded';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ControlPanel from '../control_panel'
@@ -115,7 +114,7 @@ class Leaderboard extends Component {
 					</Typography>
 					<IconButton aria-label="Open / Close leaderboard settings" align="right"
 						className={classes.iconSettings} onClick={() => this.setState({open: !this.state.open})}>
-						{!this.state.open ? <DownIcon /> : <UpIcon />}
+						{!this.state.open ? <RightIcon /> : <DownIcon />}
 					</IconButton>
 				</Box>
 				<Fade
@@ -134,7 +133,7 @@ class Leaderboard extends Component {
 									<IconButton aria-label="expand/collapse validator name"
 										className={classes.iconExpand} 
 										onClick={() => this.setState({expand: !this.state.expand})}>
-										{!this.state.expand ? <RightIcon /> : <LeftIcon />}
+										{!this.state.expand ? <LeftIcon /> : <DownIcon /> }
 									</IconButton>
 								</Box>
 								<Box className={classes.listBox} style={{
