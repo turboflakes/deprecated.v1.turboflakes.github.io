@@ -10,7 +10,6 @@ import BoardAnimation from './board_animation'
 import Search from './search'
 import Leaderboard from './leaderboard'
 import AccountInfoTable from './account_info_table'
-import Web3Extension from '../../web3_extension'
 import nomiLogo from '../../../assets/nomi.svg';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
@@ -96,7 +95,6 @@ class NomiTool extends Component {
           <AccountInfoTable />
           <Leaderboard />
         </Box>
-        <Web3Extension />
       </Box>
     )
   }

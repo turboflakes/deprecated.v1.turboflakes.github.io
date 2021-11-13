@@ -43,10 +43,13 @@ const styles = (theme) => ({
 		bottom: theme.spacing(),
 		color: theme.palette.text.secondary
 	},
+	settingsWrapperBox: {
+		margin: `${theme.spacing()}px 0`,
+	},
 	settingsBox: {
 		display: "flex",
 		height: 695,
-		margin: `${theme.spacing()}px 0`,
+		maxWidth: 400,
 		backgroundColor: "rgba(77,77,77,0.9)",
 		borderTopRightRadius: theme.spacing(3),
 		borderBottomRightRadius: theme.spacing(3)

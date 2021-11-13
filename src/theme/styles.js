@@ -226,44 +226,44 @@ export default createMuiTheme({
         justifyContent: "flex-end"
       }
     },
-    MuiTab: {
-      root: {
-        '@media screen and (min-width: 900px)': {
-          minWidth: 140,
-        },
-        zIndex: 1,
-        minHeight: 32,
-        backgroundColor: "#4D4D4D",
-        marginRight: -32,
-        borderTopLeftRadius: 16,
-        borderTopRightRadius: 16,
-        fontSize: "0.8rem",
-        '&.Mui-selected' : {
-          zIndex: 2,
-          color: "#FFF",
-          backgroundColor: "#343434",
-          borderTopLeftRadius: 24,
-          borderTopRightRadius: 24,
-          opacity: 1,
-        },
-        '&:first-child': {
-          borderTopLeftRadius: 24,
-          opacity: 0.8,
-        },
-        '&:last-child': {
-          zIndex: 0,
-          borderTopRightRadius: 24,
-          marginRight: 0,
-          opacity: 0.8,
-        },
-        '&:last-child&.Mui-selected': {
-          zIndex: 2,
-        }
-      },
-      textColorInherit: {
-        opacity: 1,
-        color: "#F1F1F0",
-      }      
-    }
+    // MuiTab: {
+    //   root: {
+    //     '@media screen and (min-width: 900px)': {
+    //       minWidth: 140,
+    //     },
+    //     zIndex: 1,
+    //     minHeight: 32,
+    //     backgroundColor: "#4D4D4D",
+    //     marginRight: -32,
+    //     borderTopLeftRadius: 16,
+    //     borderTopRightRadius: 16,
+    //     fontSize: "0.8rem",
+    //     '&.Mui-selected' : {
+    //       zIndex: 2,
+    //       color: "#FFF",
+    //       backgroundColor: "#343434",
+    //       borderTopLeftRadius: 24,
+    //       borderTopRightRadius: 24,
+    //       opacity: 1,
+    //     },
+    //     '&:first-child': {
+    //       borderTopLeftRadius: 24,
+    //       opacity: 0.8,
+    //     },
+    //     '&:last-child': {
+    //       zIndex: 0,
+    //       borderTopRightRadius: 24,
+    //       marginRight: 0,
+    //       opacity: 0.8,
+    //     },
+    //     '&:last-child&.Mui-selected': {
+    //       zIndex: 2,
+    //     }
+    //   },
+    //   textColorInherit: {
+    //     opacity: 1,
+    //     color: "#F1F1F0",
+    //   }      
+    // }
   }
 });

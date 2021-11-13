@@ -5,10 +5,16 @@ import { withRouter } from 'react-router-dom';
 import { query } from '../../../../actions/validator'
 import { selectAddress } from '../../../../actions/leaderboard'
 import { add } from '../../../../actions/error'
-import {getNetworkIcon, getNetworkIndex, getNetworkKey} from '../../../../constants'
+import {
+	getNetworkIcon, 
+	getNetworkIndex, 
+	getNetworkKey, 
+	getNetworkURL 
+} from '../../../../constants'
 import { selectors } from '../../../../selectors'
 import serialize from '../../../../utils/serialize'
 import { isValidAddress } from '../../../../utils/crypto'
+import { web3Enable } from '@polkadot/extension-dapp';
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -21,6 +27,7 @@ import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
+import Web3Extension from '../../../web3_extension'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -42,8 +49,10 @@ class Leaderboard extends Component {
 
 		this.state = {
 			...state,
-			open: true,
-			expand: false,
+			openSettings: true,
+			expandLeaderboard: false,
+			settingsTabIndex: 1,
+			isExtensionEnabled: false
 		}
 	}
 
@@ -55,6 +64,19 @@ class Leaderboard extends Component {
 		if (this.state.address) {
 			this.props.selectAddress(this.state.address)
 		}
+
+		// Polkadot{.js} extension
+		// returns an array of all the injected sources
+    // (this needs to be called first, before other requests)
+    web3Enable('turboflakes.io').then(extensions => {
+      // console.log("__web3Enable", extensions);
+      if (extensions.length === 0) {
+        // no extension installed, or the user did not accept the authorization
+        // in this case we should inform the use and give a link to the extension
+        return;
+      } 
+      this.setState({isExtensionEnabled: true})    
+    });
 	}
 
 	componentDidUpdate(prevProps) {
@@ -67,8 +89,9 @@ class Leaderboard extends Component {
 		}
 	}
 
-	handleKusama = () => {
-		window.open('https://kusama.network/', '_blank')
+	handleNetworkSite = () => {
+		const { network } = this.props;
+		window.open(getNetworkURL(network), '_blank')
 	}
 
 	changeNetwork = (network) => {
@@ -82,23 +105,27 @@ class Leaderboard extends Component {
 	}
 
 	handleChangeTab = (event, index) => {
-		console.log("handleChangeTab", index);
 		event.preventDefault()
 		this.changeNetwork(getNetworkKey(2-index))
 	}
 
+	handleChangeControlTab = (event, index) => {
+		event.preventDefault()
+		this.setState({settingsTabIndex: index})
+	}
+
 	render() {
-		const { classes, network, networkDetails, addresses } = this.props;
+		const { classes, network, networkDetails, addresses, selectedAccount } = this.props;
 
 		return (
 			<div className={classes.root} >
-				<Tabs value={2-getNetworkIndex(network)} onChange={this.handleChangeTab} >
+				{/* <Tabs value={2-getNetworkIndex(network)} onChange={this.handleChangeTab} >
 					<Tab label="Westend" />
 					<Tab label="Kusama" />
 					<Tab label="Polkadot" />
-				</Tabs>
+				</Tabs> */}
 				<Box className={classes.networkBox}>
-					<IconButton color="primary" size="small" onClick={this.handleKusama}>
+					<IconButton color="primary" size="small" onClick={this.handleNetworkSite}>
 						<img src={getNetworkIcon(network)} className={classes.networkLogo} alt={"Icon"}/>
 					</IconButton>
 					<Typography variant="subtitle1" color="textSecondary" className={classes.networkLabel} >
@@ -113,40 +140,51 @@ class Leaderboard extends Component {
 						The highest-ranked Validators
 					</Typography>
 					<IconButton aria-label="Open / Close leaderboard settings" align="right"
-						className={classes.iconSettings} onClick={() => this.setState({open: !this.state.open})}>
-						{!this.state.open ? <RightIcon /> : <DownIcon />}
+						className={classes.iconSettings} onClick={() => this.setState({openSettings: !this.state.openSettings})}>
+						{!this.state.openSettings ? <RightIcon /> : <DownIcon />}
 					</IconButton>
 				</Box>
 				<Fade
-					in={this.state.open}
+					in={this.state.openSettings}
 					style={{
-						transitionDelay: !this.state.open ? '800ms' : '0ms',
+						transitionDelay: !this.state.openSettings ? '800ms' : '0ms',
 					}}
 					unmountOnExit
 				>
-					<Box className={classes.settingsBox}>
-						<Box className={classes.leaderboardBox} style={{
-									left: !this.state.expand ? -56 : -240
-								}}>
-							<Box>
-								<Box className={classes.iconExpandBox}>
-									<IconButton aria-label="expand/collapse validator name"
-										className={classes.iconExpand} 
-										onClick={() => this.setState({expand: !this.state.expand})}>
-										{!this.state.expand ? <LeftIcon /> : <DownIcon /> }
-									</IconButton>
-								</Box>
-								<Box className={classes.listBox} style={{
-										minWidth: !this.state.expand ? 55 : 240
+					<Box className={classes.settingsWrapperBox}>
+						<Tabs value={this.state.settingsTabIndex} onChange={this.handleChangeControlTab} >
+							<Tab label={this.state.isExtensionEnabled ? (!!selectedAccount ? selectedAccount : "Select Account") : "Connect Wallet" } />
+							<Tab label="Settings" />
+						</Tabs>
+						<Box className={classes.settingsBox}>
+							<Box className={classes.leaderboardBox} style={{
+										left: !this.state.expandLeaderboard ? -56 : -240
 									}}>
-									<List className={classes.list}>
-										{addresses.map((address, index) => <AccountItem address={address} 
-											key={index} expanded={this.state.expand}/>)}
-									</List>
+								<Box>
+									<Box className={classes.iconExpandBox}>
+										<IconButton aria-label="expand/collapse validator name"
+											className={classes.iconExpand} 
+											onClick={() => this.setState({expandLeaderboard: !this.state.expandLeaderboard})}>
+											{!this.state.expandLeaderboard ? <LeftIcon /> : <DownIcon /> }
+										</IconButton>
+										{this.state.expandLeaderboard ? 
+											<Typography variant="caption" color="textSecondary">
+												Highest rank on top
+											</Typography> : null}
+									</Box>
+									<Box className={classes.listBox} style={{
+											minWidth: !this.state.expandLeaderboard ? 55 : 240
+										}}>
+										<List className={classes.list}>
+											{addresses.map((address, index) => <AccountItem address={address} 
+												key={index} expanded={this.state.expandLeaderboard}/>)}
+										</List>
+									</Box>
 								</Box>
 							</Box>
+							{this.state.settingsTabIndex === 0 ? 
+								<Web3Extension isEnabled={this.state.isExtensionEnabled} /> : <ControlPanel />}
 						</Box>
-						<ControlPanel />
 					</Box>
 				</Fade>
 			</div>
@@ -171,6 +209,7 @@ const mapStateToProps = (state, ownProps) => {
 		addresses,
 		weights,
 		quantity,
+		selectedAccount: state.web3.name,
 		isFetching: !!state.fetchers.async,
   }
 }

@@ -12,18 +12,24 @@ const networkSettings = {
     externalWSS: "wss://rpc.polkadot.io",
     icon: iconPolkadotSVG,
     logo: logoPolkadotSVG,
+    url: "https://polkadot.network",
+    maxValidators: 16
   },
   kusama: {
     endpoint: process.env.REACT_APP_KUSAMA_API_ENDPOINT,
     externalWSS: "wss://rpc-kusama.polkadot.io",
     icon: iconKusamaSVG,
     logo: logoKusamaSVG,
+    url: "https://kusama.network",
+    maxValidators: 24
   },
   westend: {
     endpoint: process.env.REACT_APP_WESTEND_API_ENDPOINT,
     externalWSS: "wss://rpc-westend.polkadot.io",
     icon: iconWestendSVG,
     logo: logoWestendSVG,
+    url: "https://polkadot.network",
+    maxValidators: 16
   }
 }
 export const getNetworkHost = (network) => networkSettings[network].endpoint
@@ -31,6 +37,7 @@ export const getNetworkHost = (network) => networkSettings[network].endpoint
 export const getNetworkWSS = (network) => networkSettings[network].externalWSS
 export const getNetworkIcon = (network) => networkSettings[network].icon
 export const getNetworkLogo = (network) => networkSettings[network].logo
+export const getNetworkURL = (network) => networkSettings[network].url
 // Useful for the leaderboard tabs selection
 export const getNetworkIndex = (network) => Object.keys(networkSettings).findIndex(n => n === network)
 export const getNetworkKey = (index) => Object.keys(networkSettings)[index]

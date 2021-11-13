@@ -3,6 +3,7 @@ import { collection } from './collections'
 import { entities } from './entities'
 import { fetchers } from './fetchers'
 import { leaderboard } from './leaderboard'
+import { web3 } from './web3'
 
 import { errors } from './errors'
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   fetchers,
   collections,
   leaderboard,
+  web3,
   errors,
 })
 

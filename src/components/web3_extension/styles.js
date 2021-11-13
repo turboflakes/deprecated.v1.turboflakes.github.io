@@ -1,9 +1,12 @@
 const styles = (theme) => ({
 	root: {
-		position: "fixed",
-		top: 0,
-		right: 0,
-		zIndex: 9
+		position: "absolute",
+		padding: theme.spacing(2),
 	},
+	formControl: {
+		minWidth: 320,
+		marginBottom: theme.spacing(2),
+	}
+	
 })
 export default styles
