@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { selectors } from '../../../../selectors'
 import { selectAccount } from '../../../../actions/web3'
-import { error, info } from '../../../../actions/notification'
+import { error, info, success } from '../../../../actions/notification'
 import {nameDisplay, stashDisplay} from '../../../../utils/display'
 import {
 	getNetworkWSS, 
@@ -23,6 +23,7 @@ import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import NominationItem from '../nomination_item'
+import {hashDisplay} from '../../../../utils/display'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -92,31 +93,51 @@ class Nominate extends Component {
   }
 
   handleNominate = () => {
+    // https://polkadot.js.org/docs/api/cookbook/blocks
     const {network, account, nominations} = this.props
-    console.log("__account: ", account);
+    // console.log("__account: ", account);
     const provider = new WsProvider(getNetworkWSS(network));
     ApiPromise.create({ provider }).then(api => {
       web3FromSource(account.meta.source).then(injector => {
-        api.tx.staking.nominate(nominations).signAndSend(account.address, { signer: injector.signer }, ({status, isError, dispatchError}) => {
-          const msg = `Transaction status: ${status.type}`
-          console.log(msg)
-          this.props.info(msg)  
-          // console.log(`dispatchError?.toHuman(): ${dispatchError?.toHuman()}`);
+        const ext = api.tx.staking.nominate(nominations)
+        const {method: { method, section }} = ext
+        const extDescription = `${section}.${method}`
+        ext.signAndSend(account.address, { signer: injector.signer }, ({status, events = []}) => {
+          console.log(`Transaction status ${status.type}`)
           
           if (status.isInBlock) {
-            const msg = `Included at block hash: ${status.asInBlock.toHex()}`
-            console.log(msg)
-            this.props.info(msg)  
-          } else if (status.isFinalized) {
-            const msg = `Finalized block hash: ${status.asFinalized.toHex()}`
-            console.log(msg)
-            this.props.info(msg)  
-          } else if (isError) {
-            this.props.error(`${dispatchError}`)
-            console.log('Error', dispatchError);
-          }
-          
-        }).catch(error => {
+            console.log(`Transaction in block (https://${network}.subscan.io/extrinsic/${ext.hash.toString()})`)
+            
+            events.forEach(({ event }) => {
+              const url = {
+                href: `https://${network}.subscan.io/extrinsic/${ext.hash.toString()}`,
+                text: hashDisplay(status.hash.toString())
+              }
+              if (api.events.system.ExtrinsicSuccess.is(event)) {
+                this.props.success(`${extDescription} Success`, url)
+              } else if (api.events.system.ExtrinsicFailed.is(event)) {
+                // extract the data for this event
+                const [dispatchError] = event.data;
+                let errorInfo;
+
+                // decode the error
+                if (dispatchError.isModule) {
+                  // for module errors, we have the section indexed, lookup
+                  // (For specific known errors, we can also do a check against the
+                  // api.errors.<module>.<ErrorName>.is(dispatchError.asModule) guard)
+                  const decoded = api.registry.findMetaError(dispatchError.asModule);
+
+                  errorInfo = `${decoded.section}.${decoded.name}`;
+                } else {
+                  // Other, CannotLookup, BadOrigin, no extra info
+                  errorInfo = dispatchError.toString();
+                }
+                this.props.error(`${extDescription} Failed: ${errorInfo}`, url)
+              }
+            })
+          } 
+        })
+        .catch(error => {
           return this.props.error(`${error}`)
         });
       })
@@ -231,5 +252,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {selectAccount, error, info})(withStyles(styles)(Nominate));
+export default connect(mapStateToProps, {selectAccount, error, info, success})(withStyles(styles)(Nominate));
   

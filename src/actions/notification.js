@@ -3,14 +3,19 @@ export const remove = (id) => ({
   id
 })
 
-export const error = (error) => ({
+export const error = (msg, url = undefined) => ({
   type: 'ADD_NOTIFICATION_ERROR',
-  error
+  notification: {msg, url, severity: "error"},
 })
 
-export const info = (msg) => ({
+export const info = (msg, url = undefined) => ({
   type: 'ADD_NOTIFICATION_INFO',
-  msg
+  notification: {msg, url, severity: "info"},
+})
+
+export const success = (msg, url = undefined) => ({
+  type: 'ADD_NOTIFICATION_SUCCESS',
+  notification: {msg, url, severity: "success"},
 })
 
 export const clearALL = () => ({

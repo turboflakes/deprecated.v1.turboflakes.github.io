@@ -15,13 +15,12 @@ class Alert extends Component {
     return (
       <AlertBase notification={{severity: "info"}}
         action={
-          <Link color="inherit" component="button" size="small"
+          <Link component="button" color="inherit" underline="always"
             onClick={() => this.props.clearALL()}>
             Remove all notifications
           </Link>
         }
         icon={<CloseIcon fontSize="inherit" />}
-        color="inherit"
         className={classes.clear}
       />
     )
@@ -31,9 +30,9 @@ class Alert extends Component {
 		const { classes, notifications } = this.props;
     return (
       <div className={classes.root}>
-        {!!notifications.length ? this.renderDismissAll() : null}
+        {notifications.length > 1 ? this.renderDismissAll() : null}
         {notifications.map((notification, index) => 
-          <AlertBase key={index} notification={notification} delay={12000} />)}
+          <AlertBase key={index} notification={notification} delay={notification.delay} />)}
       </div>
     )
 	}

@@ -2,6 +2,10 @@
 export const stashDisplay = (stash) => {
     return !!stash ? `${stash.slice(0, 6)}...${stash.slice(stash.length-6, stash.length)}` : `-`
 }
+
+export const hashDisplay = (hash) => {
+    return !!hash ? `${hash.slice(0, 6)}...${hash.slice(hash.length-4, hash.length)}` : `-`
+}
   
 export const nameDisplay = (name, len) => {
     if (!len) {
