@@ -21,3 +21,18 @@ export const selectAddress = (address) => ({
 export const clearAddress = () => ({
   type: `CLEAR_ADDRESS`
 })
+
+export const addAddress = (address) => ({
+  type: `ADD_ADDRESS`,
+  address
+})
+
+export const removeAddress = (address) => ({
+  type: `REMOVE_ADDRESS`,
+  address
+})
+
+export const addAddresses = (addresses) => ({
+  type: `ADD_ADDRESSES`,
+  addresses
+})

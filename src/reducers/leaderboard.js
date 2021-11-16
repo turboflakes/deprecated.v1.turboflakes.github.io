@@ -25,7 +25,7 @@ export const ranges = (state = RANGES.toString(), action) => {
   }
 }
 
-export const quantity = (state = 16, action) => {
+export const quantity = (state = 24, action) => {
   switch (action.type) {
     case "CHANGE_QUANTITY":
       return action.value
@@ -48,9 +48,23 @@ export const selected = (state = "", action) => {
   }
 }
 
+export const nominations = (state = [], action) => {
+  switch (action.type) {
+    case "REMOVE_ADDRESS":
+      return state.filter(address => address !== action.address)
+    case "ADD_ADDRESS":
+      return [...state, action.error]
+    case "ADD_ADDRESSES": 
+    return action.addresses
+    default:
+      return state
+  }
+}
+
 export const leaderboard = combineReducers({
   weights: weights,
   ranges: ranges,
   quantity: quantity,
-  selected: selected
+  selected: selected,
+  nominations: nominations
 })

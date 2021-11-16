@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { query } from '../../../../actions/validator'
-import { selectAddress } from '../../../../actions/leaderboard'
+import { selectAddress, addAddresses } from '../../../../actions/leaderboard'
 import { add } from '../../../../actions/error'
 import {
+	getNetworks,
+	getNetworkWSS,
 	getNetworkIcon, 
-	getNetworkIndex, 
+	// getNetworkIndex, 
 	getNetworkKey, 
 	getNetworkURL 
 } from '../../../../constants'
@@ -15,19 +17,26 @@ import { selectors } from '../../../../selectors'
 import serialize from '../../../../utils/serialize'
 import { isValidAddress } from '../../../../utils/crypto'
 import { web3Enable } from '@polkadot/extension-dapp';
+import { ApiPromise, WsProvider } from '@polkadot/api';
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import DownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDownRounded';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
-import Web3Extension from '../../../web3_extension'
+import Nominate from '../nominate'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -52,7 +61,9 @@ class Leaderboard extends Component {
 			openSettings: true,
 			expandLeaderboard: false,
 			settingsTabIndex: 1,
-			isExtensionEnabled: false
+			isExtensionEnabled: false,
+			maxNominations: 16,
+			anchorEl: null
 		}
 	}
 
@@ -75,9 +86,23 @@ class Leaderboard extends Component {
         // in this case we should inform the use and give a link to the extension
         return;
       } 
-      this.setState({isExtensionEnabled: true})    
+      
+			this.getMaxNominations().then(a => {
+				this.setState({
+					isExtensionEnabled: true,
+					maxNominations: a.toNumber()
+				})
+			})
+			
     });
 	}
+
+	getMaxNominations = async () => {
+    const {network} = this.props
+    const provider = new WsProvider(getNetworkWSS(network));
+    const api = await ApiPromise.create({ provider });
+    return api.consts.staking.maxNominations;  
+  }
 
 	componentDidUpdate(prevProps) {
 		const {network, weights, quantity} = this.props
@@ -114,8 +139,28 @@ class Leaderboard extends Component {
 		this.setState({settingsTabIndex: index})
 	}
 
+	handleChangeNetwork = (network) => {
+		this.changeNetwork(network)
+		this.handleCloseNetworkMenu()
+	}
+
+	handleSelectTop = () => {
+		const {addresses} = this.props
+		this.props.addAddresses(addresses.slice(0, this.state.maxNominations))
+	}
+
+	handleClickNetworkMenu = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleCloseNetworkMenu = () => {
+    this.setState({ anchorEl: null });
+  };
+
 	render() {
-		const { classes, network, networkDetails, addresses, selectedAccount } = this.props;
+		const { classes, network, networkDetails, addresses, accountName, isFetching } = this.props;
+		const { anchorEl } = this.state
+		const open = Boolean(anchorEl);
 
 		return (
 			<div className={classes.root} >
@@ -131,6 +176,33 @@ class Leaderboard extends Component {
 					<Typography variant="subtitle1" color="textSecondary" className={classes.networkLabel} >
 						{networkDetails.name}
 					</Typography>
+					<IconButton
+						className={classes.iconNetwork}
+						onClick={this.handleClickNetworkMenu}
+					>
+						<ArrowDropDownIcon />
+					</IconButton>
+					<Menu
+						anchorEl={anchorEl}
+						keepMounted
+						open={open}
+						onClose={this.handleCloseNetworkMenu}
+					>
+						{getNetworks().map(option => (
+							<MenuItem key={option} selected={option === network} 
+								onClick={() => this.handleChangeNetwork(option)}>
+								{option}
+							</MenuItem>
+						))}
+					</Menu>
+					<Fade in={isFetching} 
+							style={{
+									transitionDelay: !isFetching ? '10ms' : '0ms',
+								}}
+								unmountOnExit
+							>
+							<CircularProgress size={24} className={classes.iconFetching} />
+					</Fade>
 				</Box>
 				<Box className={classes.titleBox}>
 					<Typography variant="h4" color="textSecondary">
@@ -153,12 +225,13 @@ class Leaderboard extends Component {
 				>
 					<Box className={classes.settingsWrapperBox}>
 						<Tabs value={this.state.settingsTabIndex} onChange={this.handleChangeControlTab} >
-							<Tab label={this.state.isExtensionEnabled ? (!!selectedAccount ? selectedAccount : "Select Account") : "Connect Wallet" } />
-							<Tab label="Settings" />
+							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Select Account") : "Connect Wallet" } 
+								className={classes.tab} />
+							<Tab label="Settings" className={classes.tab} />
 						</Tabs>
 						<Box className={classes.settingsBox}>
 							<Box className={classes.leaderboardBox} style={{
-										left: !this.state.expandLeaderboard ? -56 : -240
+										left: !this.state.expandLeaderboard ? -58 : -242
 									}}>
 								<Box>
 									<Box className={classes.iconExpandBox}>
@@ -176,14 +249,19 @@ class Leaderboard extends Component {
 											minWidth: !this.state.expandLeaderboard ? 55 : 240
 										}}>
 										<List className={classes.list}>
-											{addresses.map((address, index) => <AccountItem address={address} 
-												key={index} expanded={this.state.expandLeaderboard}/>)}
+											{addresses.map((address, index) => 
+												<AccountItem address={address} key={index} 
+													expanded={this.state.expandLeaderboard}/>)}
 										</List>
 									</Box>
 								</Box>
 							</Box>
 							{this.state.settingsTabIndex === 0 ? 
-								<Web3Extension isEnabled={this.state.isExtensionEnabled} /> : <ControlPanel />}
+								<Nominate 
+									isEnabled={this.state.isExtensionEnabled} 
+									maxNominations={this.state.maxNominations}
+									onSelectTop={this.handleSelectTop} /> : 
+								<ControlPanel />}
 						</Box>
 					</Box>
 				</Fade>
@@ -209,10 +287,10 @@ const mapStateToProps = (state, ownProps) => {
 		addresses,
 		weights,
 		quantity,
-		selectedAccount: state.web3.name,
+		accountName: !!state.web3.selectedAccount ? state.web3.selectedAccount.name : undefined,
 		isFetching: !!state.fetchers.async,
   }
 }
 
-export default connect(mapStateToProps, { query, add, selectAddress })(withRouter(withStyles(styles)(Leaderboard)));
+export default connect(mapStateToProps, { query, add, selectAddress, addAddresses })(withRouter(withStyles(styles)(Leaderboard)));
   

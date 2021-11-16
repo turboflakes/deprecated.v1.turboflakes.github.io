@@ -17,7 +17,7 @@ const networkSettings = {
   },
   kusama: {
     endpoint: process.env.REACT_APP_KUSAMA_API_ENDPOINT,
-    externalWSS: "wss://rpc-kusama.polkadot.io",
+    externalWSS: "wss://kusama-rpc.polkadot.io",
     icon: iconKusamaSVG,
     logo: logoKusamaSVG,
     url: "https://kusama.network",
@@ -25,13 +25,14 @@ const networkSettings = {
   },
   westend: {
     endpoint: process.env.REACT_APP_WESTEND_API_ENDPOINT,
-    externalWSS: "wss://rpc-westend.polkadot.io",
+    externalWSS: "wss://westend-rpc.polkadot.io",
     icon: iconWestendSVG,
     logo: logoWestendSVG,
     url: "https://polkadot.network",
     maxValidators: 16
   }
 }
+export const getNetworks = () => Object.keys(networkSettings)
 export const getNetworkHost = (network) => networkSettings[network].endpoint
 // Useful to open https://polkadot.js.org/apps/ with the right network
 export const getNetworkWSS = (network) => networkSettings[network].externalWSS

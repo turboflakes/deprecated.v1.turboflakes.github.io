@@ -131,35 +131,44 @@ export default createMuiTheme({
     }, 
   },
   shape: {
-    borderRadius: 5,
+    borderRadius: 8,
     border: 2,
   },
   button: {
     padding: "18px 26px"
   },
   overrides: {
+    MuiButton: {
+      outlined: {
+        borderRadius: 30,
+        borderWidth: 2,
+        padding: `8px 16px`
+      },
+      contained: {
+        borderRadius: 30,
+        padding: `8px 16px`
+      }
+    },
     MuiInputBase: {
       input: {
         borderRadius: 30,
       },
-      root: {
-        color: "#0B1317",
-      }
     },
     MuiOutlinedInput: {
-      input: {
-        color: "#0B1317",
-      }, 
       root: {
-        '& $notchedOutline' : {
-          borderColor: "#ED1C24",
-          borderRadius: 30,
-          borderWidth: 2,
+        '&.Mui-focused $notchedOutline' :{
+          borderColor: "inherit",
+          borderWidth: 0,
         },
-        '&:hover:not($disabled):not($focused):not($error) $notchedOutline' : {
-          borderColor: "#ED1C24", // primary
-        }
       },
+      notchedOutline: {
+        borderWidth: 0,
+      }
+    },
+    MuiSelect: {
+      icon: {
+        color: "inherit",
+      }
     },
     MuiSlider: {
       root: {

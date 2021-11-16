@@ -14,13 +14,14 @@ const styles = (theme) => ({
 		backgroundColor: theme.palette.neutrals[300],
 		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
 		borderTopLeftRadius: theme.spacing(3),
-		// borderTopRightRadius: theme.spacing(3),
+		borderTopRightRadius: theme.spacing(3),
 		position: "relative",
 		display: "flex",
 		alignItems: "center",
 	},
 	networkLabel: {
 		margin: `0 ${theme.spacing(1)}px`,
+		minWidth: 100
 	},
 	networkLogo: {
 		width: 49,
@@ -43,6 +44,15 @@ const styles = (theme) => ({
 		bottom: theme.spacing(),
 		color: theme.palette.text.secondary
 	},
+	iconNetwork: {
+		color: theme.palette.text.secondary
+	},
+	iconFetching: {
+		position: "absolute",
+		right: theme.spacing(3),
+		top: theme.spacing(3),
+		color: theme.palette.text.secondary
+	},
 	settingsWrapperBox: {
 		margin: `${theme.spacing()}px 0`,
 	},
@@ -51,14 +61,14 @@ const styles = (theme) => ({
 		height: 695,
 		maxWidth: 400,
 		backgroundColor: "rgba(77,77,77,0.9)",
-		borderTopRightRadius: theme.spacing(3),
+		// borderTopRightRadius: theme.spacing(3),
 		borderBottomRightRadius: theme.spacing(3)
 	},
 	leaderboardBox:{
 		position: "relative",
 		display: "flex",
 		alignItems: "start",
-		borderRight: `1px solid ${theme.palette.neutrals[100]}`,		
+		borderRight: `2px solid ${theme.palette.neutrals[100]}`,		
 	},
 	iconExpandBox: {
 		zIndex: 1,
@@ -77,6 +87,19 @@ const styles = (theme) => ({
 		height: 643,
 	},
 	list: {
+	},
+	tab: {
+    zIndex: 1,
+		minHeight: 32,
+		backgroundColor: "#4D4D4D",
+		// marginRight: -32,
+		borderTopLeftRadius: 16,
+		borderTopRightRadius: 16,
+		borderBottom: "2px solid #FFF",
+		fontSize: "0.8rem",
+		'&.Mui-selected' : {
+			color: theme.palette.text.secondary,
+		},
 	},
 	tabIcon: {
 		width: 26,

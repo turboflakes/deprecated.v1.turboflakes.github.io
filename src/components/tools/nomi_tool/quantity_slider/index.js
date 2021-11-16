@@ -46,7 +46,7 @@ class QuantitySlider extends Component {
 
 		let query = new URLSearchParams(props.location.search)
 		let quantity = parseInt(query.get("n"))
-		quantity = quantity > 0 && quantity <= MAX_QUANTITY ? quantity : 16
+		quantity = quantity > 0 && quantity <= MAX_QUANTITY ? quantity : 24
 		this.changeParams(query, quantity)
 		this.state = { value: quantity }
 	}

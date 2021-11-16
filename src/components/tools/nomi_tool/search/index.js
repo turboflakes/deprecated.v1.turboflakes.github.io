@@ -52,10 +52,12 @@ class Search extends Component {
           {/* <SearchIcon color="primary" fontSize="large" className={classes.searchIcon}/> */}
           <TextField
             variant="outlined"
-            fullWidth
             placeholder="Search by validator address"
+            color="primary"
+            className={classes.textfield}
             value={this.state.address}
             onChange={this.handleChange}
+            fullWidth
             // error={!isValidAddress(this.state.address)}
             InputProps={{
               endAdornment: (
