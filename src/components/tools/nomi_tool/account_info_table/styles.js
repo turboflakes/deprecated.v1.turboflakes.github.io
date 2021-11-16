@@ -26,6 +26,7 @@ const styles = (theme) => ({
 	},
 	tableBox: {
 		height: "100%",
+		position: "relative"
 	},
 	tableContainerRoot: {
 		height: "100%",
@@ -39,15 +40,20 @@ const styles = (theme) => ({
 			border: 0
 		}
 	},
-	polkadotJsLogo: {
+	closeButton: {
+		position: "absolute",
+		top: -48,
+		right: 0
+	},
+	iconLogo: {
 		width: 26,
 		height: 26
 	},
 	footerBox:{
 		height: "100%",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "flex-end",
+		// display: "flex",
+		// flexDirection: "column",
+		// justifyContent: "flex-end",
 	},
 	cellFooter: {
 		fontSize: "0.9rem",

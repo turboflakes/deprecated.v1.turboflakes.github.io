@@ -134,8 +134,13 @@ class BoardAnimation extends Component {
         balls.push(ball);
       }
 
+      canvas.addEventListener('dblclick', (e) => {
+        console.log("__dblclick", e);
+      })
+
       // Add event listener for `click` events.
       canvas.addEventListener('click', (e) => {
+        console.log("__click", e);
         const x = e.pageX - canvas.getBoundingClientRect().left
         // Note: y should be the position Y of the mouse in the screen but related to the animated board
         // XxY at top left corner should be 0x0
@@ -146,8 +151,6 @@ class BoardAnimation extends Component {
         // 410 => Nomi hero box height
         // 92 => Search box height
         const y = e.pageY - window.innerHeight - 410 - 92
-        console.log("__e.pageY", e.pageY);
-        // 1270 - 769 - 
         // Identify which ball was clicked
         let ball = balls.find(ball => Math.sqrt((x-ball.x)*(x-ball.x) + (y-ball.y)*(y-ball.y)) < ball.radius)
         if (!!ball) {
@@ -184,8 +187,8 @@ class BoardAnimation extends Component {
     let ball = balls.find(ball => ball.clicked)
     if (!!ball) {
       ball.clicked = false
-      ball.x = canvas.width / 2
-      ball.y = canvas.height / 2
+      ball.x = getRandomInt(canvas.width / 2, canvas.width)
+      ball.y = getRandomInt(0, canvas.height)
       ball.velX = getRandomVel()
       ball.velY = getRandomVel()
       ball.radius = ball.originalRadius

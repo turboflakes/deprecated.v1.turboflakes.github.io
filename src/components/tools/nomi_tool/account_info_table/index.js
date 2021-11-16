@@ -22,6 +22,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import { ReactComponent as PolkadotJsSVG } from '../../../../assets/polkadot_js_logo.svg';
+import { ReactComponent as SubscanSVG } from '../../../../assets/subscan_logo.svg';
 import Identicon from '@polkadot/react-identicon';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
@@ -72,18 +73,26 @@ class AccountInfoTable extends Component {
     }
   }
 	
-	handleClear = () => {
+	handleClose = () => {
     this.props.clearAddress()
   }
 
-  handleClickExternalGraph = (stash) => {
+  handleClickPolkadotJsExternal = (stash) => {
     const {network} = this.props
     const uri = encodeURI(`https://polkadot.js.org/apps/?rpc=${getNetworkWSS(network)}#/staking/query/${stash}`)
     window.open(uri, '_blank')
   }
 
+  handleClickSubscanExternal = (stash) => {
+    const {network} = this.props
+    const uri = encodeURI(`https://${network}.subscan.io/validator/${stash}`)
+    window.open(uri, '_blank')
+  }
+
+  
+
  	render() {
-		const { classes, width, rows, account, weights, networkDetails, isFetching } = this.props;
+		const { classes, width, rows, account, weights, networkDetails, address, isFetching } = this.props;
     
     if (isFetching) {
       return (
@@ -128,6 +137,11 @@ class AccountInfoTable extends Component {
         </Box>
 
         <Box className={classes.tableBox}>
+          <IconButton aria-label="Close" color="default"
+            className={classes.closeButton}
+            onClick={this.handleClose}>
+            <ClearIcon />
+          </IconButton>
           <TableContainer component={Paper} elevation={0} 
             classes={{root: classes.tableContainerRoot}}>
             <Table size="small" className={classes.table} >
@@ -167,12 +181,12 @@ class AccountInfoTable extends Component {
         </Box>
         <Box className={classes.footerBox}>
           <IconButton aria-label="Polkadot{.js}" className={classes.iconBtn} 
-            onClick={() => this.handleClickExternalGraph(stash)}>
-            <PolkadotJsSVG className={classes.polkadotJsLogo} />
+            onClick={() => this.handleClickPolkadotJsExternal(stash)}>
+            <PolkadotJsSVG className={classes.iconLogo} />
           </IconButton>
-          <IconButton aria-label="Close" color="default"
-            onClick={this.handleClear}>
-            <ClearIcon />
+          <IconButton aria-label="Subscan" className={classes.iconBtn} 
+            onClick={() => this.handleClickSubscanExternal(stash)}>
+            <SubscanSVG className={classes.iconLogo} />
           </IconButton>
         </Box>
       </div>
