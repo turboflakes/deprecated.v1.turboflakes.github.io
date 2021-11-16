@@ -3,21 +3,16 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { selectors } from '../../../../selectors'
 import { selectAccount } from '../../../../actions/web3'
-import { add as addError } from '../../../../actions/error'
-import serialize from '../../../../utils/serialize'
+import { error, info } from '../../../../actions/notification'
 import {nameDisplay, stashDisplay} from '../../../../utils/display'
 import {
 	getNetworkWSS, 
-	getNetworkIndex, 
-	getNetworkKey, 
-	getNetworkURL 
 } from '../../../../constants'
 import {
   web3FromSource,
   web3Accounts,
 } from '@polkadot/extension-dapp';
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { hexToU8a, isHex }  from '@polkadot/util';
 import { encodeAddress, decodeAddress } from "@polkadot/util-crypto";
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
@@ -103,18 +98,26 @@ class Nominate extends Component {
     ApiPromise.create({ provider }).then(api => {
       web3FromSource(account.meta.source).then(injector => {
         api.tx.staking.nominate(nominations).signAndSend(account.address, { signer: injector.signer }, ({status, isError, dispatchError}) => {
-          console.log(`Transaction status: ${status.type}`);
-          console.log(`dispatchError?.toHuman(): ${dispatchError?.toHuman()}`);
+          const msg = `Transaction status: ${status.type}`
+          console.log(msg)
+          this.props.info(msg)  
+          // console.log(`dispatchError?.toHuman(): ${dispatchError?.toHuman()}`);
           
           if (status.isInBlock) {
-            console.log('Included at block hash', status.asInBlock.toHex());
+            const msg = `Included at block hash: ${status.asInBlock.toHex()}`
+            console.log(msg)
+            this.props.info(msg)  
           } else if (status.isFinalized) {
-            console.log('Finalized block hash', status.asFinalized.toHex());
+            const msg = `Finalized block hash: ${status.asFinalized.toHex()}`
+            console.log(msg)
+            this.props.info(msg)  
           } else if (isError) {
+            this.props.error(`${dispatchError}`)
             console.log('Error', dispatchError);
           }
+          
         }).catch(error => {
-          return this.props.addError(`${error}`)
+          return this.props.error(`${error}`)
         });
       })
     })
@@ -228,5 +231,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {selectAccount, addError})(withStyles(styles)(Nominate));
+export default connect(mapStateToProps, {selectAccount, error, info})(withStyles(styles)(Nominate));
   

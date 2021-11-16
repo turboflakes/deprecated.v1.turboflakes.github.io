@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { query } from '../../../../actions/validator'
 import { selectAddress, addAddresses } from '../../../../actions/leaderboard'
-import { add } from '../../../../actions/error'
+import { error, info } from '../../../../actions/notification'
 import {
 	getNetworks,
 	getNetworkWSS,
@@ -21,8 +21,6 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
@@ -107,8 +105,8 @@ class Leaderboard extends Component {
 	componentDidUpdate(prevProps) {
 		const {network, weights, quantity} = this.props
 		if ((prevProps.network !== network) || (prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
-			if (weights === "0,0,0,0,0,0,0,0") {
-				return this.props.add("Hey! Set at least one of the weights higher than 0, so that scores can be calculated.")
+			if (weights === "0,0,0,0,0,0,0,0,0,0") {
+				return this.props.error("Hey! Set at least one of the weights higher than 0, so that scores can be calculated.")
 			}
 			this.props.query({q: "Board", w: weights, n: quantity})
 		}
@@ -292,5 +290,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { query, add, selectAddress, addAddresses })(withRouter(withStyles(styles)(Leaderboard)));
+export default connect(mapStateToProps, { query, error, info, selectAddress, addAddresses })(withRouter(withStyles(styles)(Leaderboard)));
   

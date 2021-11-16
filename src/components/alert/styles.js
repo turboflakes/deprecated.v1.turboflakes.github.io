@@ -5,5 +5,9 @@ const styles = (theme) => ({
 		right: 0,
 		zIndex: 9
 	},
+	clear: {
+		margin: theme.spacing(1)/2,
+		backgroundColor: "#FFF"
+	}
 })
 export default styles
