@@ -50,6 +50,8 @@ export const selected = (state = "", action) => {
 
 export const nominations = (state = [], action) => {
   switch (action.type) {
+    case "CLEAR_STORE":
+      return []
     case "REMOVE_ADDRESS":
       return state.filter(address => address !== action.address)
     case "ADD_ADDRESS":

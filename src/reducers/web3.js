@@ -2,6 +2,8 @@ import {combineReducers} from 'redux'
 
 const selectedAccount = (state = {}, action) => {
   switch (action.type) {
+    case "CLEAR_STORE":
+      return {}
     case "WEB3_SELECT_ACCOUNT":
       return action.account
     default:
@@ -11,6 +13,8 @@ const selectedAccount = (state = {}, action) => {
 
 const maxNominations = (state = 0, action) => {
   switch (action.type) {
+    case "CLEAR_STORE":
+      return 0
     case "WEB3_SET_MAX_NOMINATIONS":
       return action.value
     default:

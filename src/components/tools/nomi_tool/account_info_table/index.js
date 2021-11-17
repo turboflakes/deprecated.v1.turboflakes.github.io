@@ -99,8 +99,8 @@ class AccountInfoTable extends Component {
   }
 
  	render() {
-		const { classes, width, rows, account, weights, networkDetails, isFetching, isCandidate, canBeAdded } = this.props;
-    console.log("__", isCandidate, canBeAdded);
+		const { classes, width, rows, account, weights, 
+      networkDetails, isFetching, isCandidate, canBeAdded } = this.props;
     
     if (isFetching) {
       return (

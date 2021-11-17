@@ -34,6 +34,18 @@ class Nominate extends Component {
   }
 
   componentDidMount() {
+    this.getAccounts()
+  }
+
+  componentDidUpdate(prevProps) {
+    const {chain} = this.props
+    // Change network update selected accounts
+		if (prevProps.chain.genesis_hash !== chain.genesis_hash) {
+			this.getAccounts()
+    }
+  }
+
+  getAccounts = () => {
     const {isEnabled, chain } = this.props
  
     if (isEnabled) {
@@ -62,8 +74,6 @@ class Nominate extends Component {
       }); 
     }
   }
-
-
 
   getBondedAccounts = (accounts = []) => {
     const {network} = this.props

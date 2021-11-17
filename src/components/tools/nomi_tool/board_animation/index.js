@@ -134,13 +134,8 @@ class BoardAnimation extends Component {
         balls.push(ball);
       }
 
-      canvas.addEventListener('dblclick', (e) => {
-        console.log("__dblclick", e);
-      })
-
       // Add event listener for `click` events.
       canvas.addEventListener('click', (e) => {
-        console.log("__click", e);
         const x = e.pageX - canvas.getBoundingClientRect().left
         // Note: y should be the position Y of the mouse in the screen but related to the animated board
         // XxY at top left corner should be 0x0

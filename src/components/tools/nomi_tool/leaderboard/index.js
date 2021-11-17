@@ -94,13 +94,6 @@ class Leaderboard extends Component {
     });
 	}
 
-	getMaxNominations = async () => {
-    const {network} = this.props
-    const provider = new WsProvider(getNetworkWSS(network));
-    const api = await ApiPromise.create({ provider });
-    return api.consts.staking.maxNominations;  
-  }
-
 	componentDidUpdate(prevProps) {
 		const {network, weights, quantity} = this.props
 		if ((prevProps.network !== network) || (prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
@@ -109,7 +102,22 @@ class Leaderboard extends Component {
 			}
 			this.props.query({q: "Board", w: weights, n: quantity})
 		}
+		// Change network update maxNominations constant
+		if (prevProps.network !== network) {
+			if (this.state.isExtensionEnabled) {
+				this.getMaxNominations().then(a => {
+					this.props.setMaxNominations(a.toNumber())
+				})
+			}
+		}
 	}
+
+	getMaxNominations = async () => {
+    const {network} = this.props
+    const provider = new WsProvider(getNetworkWSS(network));
+    const api = await ApiPromise.create({ provider });
+    return api.consts.staking.maxNominations;  
+  }
 
 	handleNetworkSite = () => {
 		const { network } = this.props;
