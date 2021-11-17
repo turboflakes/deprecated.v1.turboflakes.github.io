@@ -12,6 +12,10 @@ const styles = (theme) => ({
 		flexDirection: "column",
 		justifyContent: "center",
 		alignItems: "center",
+		// 
+		// "--animate-duration": "10s",
+		// animation: "fadeIn", /* referring directly to the animation's @keyframe declaration */
+  	// animationDuration: "0.5s", /* don't forget to set a duration! */
 	},
 	headerBox:{
 		height: "100%",
@@ -19,14 +23,18 @@ const styles = (theme) => ({
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
-		marginBottom: theme.spacing(2)
+		marginBottom: theme.spacing(2),
+		animation: "fadeIn",
+  	animationDuration: "0.2s",
 	},
 	rank: {
 		marginBottom: theme.spacing(2)
 	},
 	tableBox: {
 		height: "100%",
-		position: "relative"
+		position: "relative",
+		animation: "fadeIn",
+  	animationDuration: "0.2s",
 	},
 	tableContainerRoot: {
 		height: "100%",
@@ -43,7 +51,13 @@ const styles = (theme) => ({
 	closeButton: {
 		position: "absolute",
 		top: -48,
-		right: 0
+		left: 0
+	},
+	selectButton: {
+		position: "absolute",
+		top: -48,
+		right: 0,
+		minWidth: 180
 	},
 	iconLogo: {
 		width: 26,
@@ -51,9 +65,8 @@ const styles = (theme) => ({
 	},
 	footerBox:{
 		height: "100%",
-		// display: "flex",
-		// flexDirection: "column",
-		// justifyContent: "flex-end",
+		animation: "fadeIn",
+  	animationDuration: "0.2s",
 	},
 	cellFooter: {
 		fontSize: "0.9rem",

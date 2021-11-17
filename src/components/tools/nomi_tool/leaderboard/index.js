@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { query } from '../../../../actions/validator'
 import { selectAddress, addAddresses } from '../../../../actions/leaderboard'
+import { setMaxNominations } from '../../../../actions/web3'
 import { error, info } from '../../../../actions/notification'
 import {
 	getNetworks,
@@ -60,7 +61,6 @@ class Leaderboard extends Component {
 			expandLeaderboard: false,
 			settingsTabIndex: 1,
 			isExtensionEnabled: false,
-			maxNominations: 16,
 			anchorEl: null
 		}
 	}
@@ -84,12 +84,11 @@ class Leaderboard extends Component {
         // in this case we should inform the use and give a link to the extension
         return;
       } 
+
+			this.setState({isExtensionEnabled: true})
       
 			this.getMaxNominations().then(a => {
-				this.setState({
-					isExtensionEnabled: true,
-					maxNominations: a.toNumber()
-				})
+				this.props.setMaxNominations(a.toNumber())
 			})
 			
     });
@@ -143,8 +142,8 @@ class Leaderboard extends Component {
 	}
 
 	handleSelectTop = () => {
-		const {addresses} = this.props
-		this.props.addAddresses(addresses.slice(0, this.state.maxNominations))
+		const {addresses, maxNominations} = this.props
+		this.props.addAddresses(addresses.slice(0, maxNominations))
 	}
 
 	handleClickNetworkMenu = event => {
@@ -156,7 +155,7 @@ class Leaderboard extends Component {
   };
 
 	render() {
-		const { classes, network, networkDetails, addresses, accountName, isFetching } = this.props;
+		const { classes, network, networkDetails, addresses, accountName, totalCandidates, maxNominations, isFetching } = this.props;
 		const { anchorEl } = this.state
 		const open = Boolean(anchorEl);
 
@@ -224,6 +223,11 @@ class Leaderboard extends Component {
 					<Box className={classes.settingsWrapperBox}>
 						<Tabs value={this.state.settingsTabIndex} onChange={this.handleChangeControlTab} >
 							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Select Account") : "Connect Wallet" } 
+								icon={!!totalCandidates ? <span className={classes.counter}>{`${totalCandidates}`}</span> : null}
+								classes={{
+									wrapper: classes.tabWrapper,
+									labelIcon: classes.tabLabelIcon,
+								}}
 								className={classes.tab} />
 							<Tab label="Settings" className={classes.tab} />
 						</Tabs>
@@ -257,7 +261,7 @@ class Leaderboard extends Component {
 							{this.state.settingsTabIndex === 0 ? 
 								<Nominate 
 									isEnabled={this.state.isExtensionEnabled} 
-									maxNominations={this.state.maxNominations}
+									maxNominations={maxNominations}
 									onSelectTop={this.handleSelectTop} /> : 
 								<ControlPanel />}
 						</Box>
@@ -279,16 +283,19 @@ const mapStateToProps = (state, ownProps) => {
 	const quantity = state.leaderboard.quantity
 	const query = serialize({q: "Board", w: weights, n: quantity})
 	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
+
 	return {
 		network,
 		networkDetails,
 		addresses,
 		weights,
 		quantity,
-		accountName: !!state.web3.selectedAccount ? state.web3.selectedAccount.name : undefined,
+		accountName: !!state.web3.selectedAccount ? (!!state.web3.selectedAccount.meta ? state.web3.selectedAccount.meta.name : undefined) : undefined,
+		maxNominations: state.web3.maxNominations,
+		totalCandidates: state.leaderboard.nominations.length,
 		isFetching: !!state.fetchers.async,
   }
 }
 
-export default connect(mapStateToProps, { query, error, info, selectAddress, addAddresses })(withRouter(withStyles(styles)(Leaderboard)));
+export default connect(mapStateToProps, { query, error, info, selectAddress, addAddresses, setMaxNominations })(withRouter(withStyles(styles)(Leaderboard)));
   

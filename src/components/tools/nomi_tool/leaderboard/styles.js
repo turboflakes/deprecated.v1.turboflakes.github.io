@@ -90,7 +90,7 @@ const styles = (theme) => ({
 	},
 	tab: {
     zIndex: 1,
-		minHeight: 32,
+		height: 48,
 		backgroundColor: "#4D4D4D",
 		// marginRight: -32,
 		borderTopLeftRadius: 16,
@@ -101,9 +101,23 @@ const styles = (theme) => ({
 			color: theme.palette.text.secondary,
 		},
 	},
-	tabIcon: {
+	counter: {
+		backgroundColor: "#FFF",
+		borderRadius: "50%",
 		width: 26,
-		height: 26
+		height: 26,
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		margin: `0 ${theme.spacing(1)}px 0 0`,
+		color: theme.palette.text.primary
+	},
+	tabWrapper: {
+		display: "flex",
+		flexDirection: "row"
+	},
+	tabLabelIcon: {
+		minHeight: 0
 	}
 })
 export default styles

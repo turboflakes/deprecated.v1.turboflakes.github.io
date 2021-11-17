@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { get, getValidatorRank } from '../../../../actions/validator'
-import { clearAddress } from '../../../../actions/leaderboard'
+import { addAddress, removeAddress, clearAddress } from '../../../../actions/leaderboard'
 import { stashDisplay, nameDisplay, stakeDisplayNoSymbol, commissionDisplay, rateDisplay } from '../../../../utils/display'
 import {getNetworkWSS } from '../../../../constants'
 import { selectors } from '../../../../selectors'
@@ -15,6 +15,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -89,10 +90,17 @@ class AccountInfoTable extends Component {
     window.open(uri, '_blank')
   }
 
-  
+  handleCandidate = () => {
+    const {address, isCandidate} = this.props
+    if (isCandidate) {
+      return this.props.removeAddress(address)
+    }
+    this.props.addAddress(address)
+  }
 
  	render() {
-		const { classes, width, rows, account, weights, networkDetails, address, isFetching } = this.props;
+		const { classes, width, rows, account, weights, networkDetails, isFetching, isCandidate, canBeAdded } = this.props;
+    console.log("__", isCandidate, canBeAdded);
     
     if (isFetching) {
       return (
@@ -142,6 +150,11 @@ class AccountInfoTable extends Component {
             onClick={this.handleClose}>
             <ClearIcon />
           </IconButton>
+          <Button variant="contained" color={isCandidate ? "secondary" : "primary" }
+            disabled={!isCandidate && !canBeAdded}
+            onClick={this.handleCandidate} className={classes.selectButton}>
+            {isCandidate ? `Remove candidate` : `Add candidate`}
+          </Button>
           <TableContainer component={Paper} elevation={0} 
             classes={{root: classes.tableContainerRoot}}>
             <Table size="small" className={classes.table} >
@@ -237,9 +250,11 @@ const mapStateToProps = (state, ownProps) => {
     rows,
     network,
     networkDetails,
+    isCandidate: !!state.leaderboard.nominations.find(a => a === address),
+    canBeAdded: state.web3.maxNominations > state.leaderboard.nominations.length,
     isFetching: !!state.fetchers.ids[`/validator/${address}`] || !!state.fetchers.ids[`/validator/${address}/rank`] || account.status === "NotReady",
   }
 }
 
-export default connect(mapStateToProps, { get, getValidatorRank, clearAddress })(withWidth()(withStyles(styles)(AccountInfoTable)));
+export default connect(mapStateToProps, { get, getValidatorRank, addAddress, removeAddress, clearAddress })(withWidth()(withStyles(styles)(AccountInfoTable)));
   

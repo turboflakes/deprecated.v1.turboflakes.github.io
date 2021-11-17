@@ -221,8 +221,9 @@ class Nominate extends Component {
           variant="subtitle2"
           color="textSecondary"
           align="left"
+          className={classes.candidatesLabel}
           gutterBottom
-          >Validator candidates: {nominations.length}
+          >Validator candidates {!!nominations.length ? <span className={classes.candidatesCounter}>{nominations.length}</span> : null}
         </Typography>
         <Box className={classes.listBox}>
           <List className={classes.list}>

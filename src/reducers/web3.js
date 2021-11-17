@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 
-const account = (state = {}, action) => {
+const selectedAccount = (state = {}, action) => {
   switch (action.type) {
     case "WEB3_SELECT_ACCOUNT":
       return action.account
@@ -9,6 +9,16 @@ const account = (state = {}, action) => {
   }
 }
 
+const maxNominations = (state = 0, action) => {
+  switch (action.type) {
+    case "WEB3_SET_MAX_NOMINATIONS":
+      return action.value
+    default:
+      return state
+  }
+}
+
 export const web3 = combineReducers({
-  selectedAccount: account
+  selectedAccount,
+  maxNominations,
 })

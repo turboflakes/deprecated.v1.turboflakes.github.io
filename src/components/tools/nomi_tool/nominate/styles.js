@@ -37,7 +37,22 @@ const styles = (theme) => ({
 	},
 	list: {
 
-	}
+	},
+	candidatesLabel: {
+		width: "100%"
+	},
+	candidatesCounter: {
+		backgroundColor: "#FFF",
+		borderRadius: "50%",
+		width: 26,
+		height: 26,
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		margin: `0 ${theme.spacing(2)}px`,
+		color: theme.palette.text.primary,
+		float: "right"
+	},
 	
 })
 export default styles

@@ -53,7 +53,8 @@ export const nominations = (state = [], action) => {
     case "REMOVE_ADDRESS":
       return state.filter(address => address !== action.address)
     case "ADD_ADDRESS":
-      return [...state, action.error]
+      const s = state.filter(address => address !== action.address)
+      return [...s, action.address]
     case "ADD_ADDRESSES": 
     return action.addresses
     default:

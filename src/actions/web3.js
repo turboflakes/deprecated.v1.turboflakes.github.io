@@ -4,3 +4,8 @@ export const selectAccount = (account) => ({
   account
 })
 
+export const setMaxNominations = (value) => ({
+  type: 'WEB3_SET_MAX_NOMINATIONS',
+  value
+})
+
