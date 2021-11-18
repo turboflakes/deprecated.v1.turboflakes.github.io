@@ -49,7 +49,6 @@ class IndexPage extends Component {
               variant="h2"
               color="textPrimary"
               align="center"
-              gutterBottom
             >
               AND THE<br/>
               SUBSTRATE TOOLS GARAGE

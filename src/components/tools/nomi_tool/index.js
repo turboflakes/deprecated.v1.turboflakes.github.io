@@ -43,13 +43,13 @@ class NomiTool extends Component {
       <Box className={classes.root} ref={this.rootRef}>
         <Box className={classes.heroBox}>
           <Box className={classes.titleBox}>
-            <Typography
+            {/* <Typography
                 variant="h2"
                 className={classes.meet}
                 color="textPrimary"
                 align="left"
               >Meet
-            </Typography>
+            </Typography> */}
             <Box align="left">
               <Box className={classes.nameBox}>
                 <Typography

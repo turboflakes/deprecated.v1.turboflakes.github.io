@@ -171,17 +171,33 @@ class Nominate extends Component {
       return (
         <div className={classes.root}>
           <Typography
+            variant="subtitle1"
             color="textSecondary"
             align="left"
             paragraph
-          >{`It looks like you don't have the Polkadot{.js} extension installed.`}
+          >{`Access to Polkadot{.js}`}
+          </Typography>
+
+          <Typography
+            // variant="body2"
+            color="textSecondary"
+            align="left"
+            paragraph
+          >{`In order to Nominate or your choosen Validators or the highest-ranked ones, this application needs access to the Polkadot{.js} extension in your browser.`}
           </Typography>
           
           <Typography
-            variant="body2"
+            // variant="body2"
             color="textSecondary"
             align="left"
-          >{`Go to `} <Link href="https://polkadot.js.org/extension/" target="_blank" 
+            paragraph
+          >{`If Polkadot{.js} extension is already installed, just allow turboflakes.io to access it.`}
+          </Typography>
+          <Typography
+            // variant="body2"
+            color="textSecondary"
+            align="left"
+          >{`Otherwise go to `} <Link href="https://polkadot.js.org/extension/" target="_blank" 
             color="textSecondary" underline="always" >polkadot.js.org/extension</Link> {` to install it.`}
           </Typography>
         </div>

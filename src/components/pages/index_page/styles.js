@@ -8,11 +8,15 @@ const styles = (theme) => ({
   },
   logoBox: {
     ...theme.container,
-    padding: `${theme.spacing(6)}px 0`,
+    // padding: `${theme.spacing(6)}px 0`,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-end",
     height: "20vh"
   },
   motoBox: {
-    padding: `${theme.spacing(3)}px 0`,
+    // padding: `${theme.spacing(3)}px 0`,
+    // padding: `${theme.spacing(3)}px 0 0 0`,
     height: "30vh"
   },
   logo: {

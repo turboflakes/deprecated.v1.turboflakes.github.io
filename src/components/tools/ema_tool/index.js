@@ -27,13 +27,13 @@ class EmaTool extends Component {
           <Box className={classes.section} align="center">
             <Box className={classes.heroBox}>
               <Box className={classes.titleBox}>
-                <Typography
+                {/* <Typography
                     variant="h2"
                     className={classes.meet}
                     color="textPrimary"
                     align="left"
                   >Meet
-                </Typography>
+                </Typography> */}
                 <Box align="left">
                   <Box className={classes.nameBox}>
                     <Typography
