@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { query } from '../../../../actions/validator'
+import { query, get } from '../../../../actions/validator'
 import { selectAddress, addAddresses } from '../../../../actions/leaderboard'
 import { setMaxNominations } from '../../../../actions/web3'
 import { error, info } from '../../../../actions/notification'
@@ -102,14 +102,24 @@ class Leaderboard extends Component {
 			}
 			this.props.query({q: "Board", w: weights, n: quantity})
 		}
-		// Change network update maxNominations constant
+		
 		if (prevProps.network !== network) {
+			// Change network update maxNominations constant
 			if (this.state.isExtensionEnabled) {
 				this.getMaxNominations().then(a => {
 					this.props.setMaxNominations(a.toNumber())
 				})
 			}
 		}
+
+		const {featured} = this.props
+		if (prevProps.featured.length !== featured.length) {
+			// Add featured stashes to the list of candidates
+			this.props.addAddresses(featured)
+			// Fetch featured Validators details
+			featured.forEach(stash => this.props.get(stash))
+		}
+		
 	}
 
 	getMaxNominations = async () => {
@@ -291,7 +301,7 @@ const mapStateToProps = (state, ownProps) => {
 	const quantity = state.leaderboard.quantity
 	const query = serialize({q: "Board", w: weights, n: quantity})
 	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
-
+	const featured = selectors.getApiFeatured(state)
 	return {
 		network,
 		networkDetails,
@@ -299,11 +309,12 @@ const mapStateToProps = (state, ownProps) => {
 		weights,
 		quantity,
 		accountName: !!state.web3.selectedAccount ? (!!state.web3.selectedAccount.meta ? state.web3.selectedAccount.meta.name : undefined) : undefined,
-		maxNominations: state.web3.maxNominations,
+		maxNominations: state.web3.maxNominations - featured.length > 0 ? state.web3.maxNominations - featured.length : 0,
 		totalCandidates: state.leaderboard.nominations.length,
+		featured,
 		isFetching: !!state.fetchers.async,
   }
 }
 
-export default connect(mapStateToProps, { query, error, info, selectAddress, addAddresses, setMaxNominations })(withRouter(withStyles(styles)(Leaderboard)));
+export default connect(mapStateToProps, { query, get, error, info, selectAddress, addAddresses, setMaxNominations })(withRouter(withStyles(styles)(Leaderboard)));
   

@@ -100,7 +100,7 @@ class AccountInfoTable extends Component {
 
  	render() {
 		const { classes, width, rows, account, weights, 
-      networkDetails, isFetching, isCandidate, canBeAdded } = this.props;
+      networkDetails, isFetching, isCandidate, canBeAdded, isFeatured } = this.props;
     
     if (isFetching) {
       return (
@@ -150,11 +150,12 @@ class AccountInfoTable extends Component {
             onClick={this.handleClose}>
             <ClearIcon />
           </IconButton>
-          <Button variant="contained" color={isCandidate ? "secondary" : "primary" }
-            disabled={!isCandidate && !canBeAdded}
-            onClick={this.handleCandidate} className={classes.selectButton}>
-            {isCandidate ? `Remove candidate` : `Add candidate`}
-          </Button>
+          {!isFeatured ?
+            <Button variant="contained" color={isCandidate ? "secondary" : "primary" }
+              disabled={!isCandidate && !canBeAdded}
+              onClick={this.handleCandidate} className={classes.selectButton}>
+              {isCandidate ? `Remove candidate` : `Add candidate`}
+            </Button> : null}
           <TableContainer component={Paper} elevation={0} 
             classes={{root: classes.tableContainerRoot}}>
             <Table size="small" className={classes.table} >
@@ -252,6 +253,7 @@ const mapStateToProps = (state, ownProps) => {
     networkDetails,
     isCandidate: !!state.leaderboard.nominations.find(a => a === address),
     canBeAdded: state.web3.maxNominations > state.leaderboard.nominations.length,
+    isFeatured: !!selectors.getApiFeatured(state).find(s => s === address),
     isFetching: !!state.fetchers.ids[`/validator/${address}`] || !!state.fetchers.ids[`/validator/${address}/rank`] || account.status === "NotReady",
   }
 }

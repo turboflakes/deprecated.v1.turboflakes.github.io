@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { removeAddress } from '../../../../actions/leaderboard'
+import { selectAddress, removeAddress } from '../../../../actions/leaderboard'
 import { stashDisplay, nameDisplay } from '../../../../utils/display'
 import { selectors } from '../../../../selectors'
 import { encodeAddress } from '@polkadot/util-crypto'
@@ -20,12 +20,28 @@ import styles from './styles'
 
 class NominationItem extends Component {
 
-  handleOnClick = (address) => {
+  handleSelectOnClick = (address) => {
+    const {location} = this.props
+		let query = new URLSearchParams(location.search)
+		this.changeParams(query, address)
+    this.props.selectAddress(address)
+  }
+
+  changeParams = (query, value) => {
+		const {history} = this.props
+		query.set("a", value)
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+
+  handleRemoveOnClick = (address) => {
     this.props.removeAddress(address)
   }
   
  	render() {
-		const { classes, address, account, selected, networkDetails, isFetching } = this.props;
+		const { classes, address, account, selected, networkDetails, isFetching, isFeatured } = this.props;
     const stash = encodeAddress(address, networkDetails.ss58_format)
 		const isSelected = account.id === selected
     const name = !!account.name ? `${nameDisplay(account.name, 30)}` : `${stashDisplay(stash)}`
@@ -53,13 +69,15 @@ class NominationItem extends Component {
               }
         </ListItemAvatar>
         <ListItemText primary={isFetching ? `` : name }
+          onClick={() => this.handleSelectOnClick(address)} 
           align="left" classes={{primary: classes.itemText}} />
-        <ListItemSecondaryAction>
-          <IconButton edge="end" aria-label="delete"
-            onClick={() => this.handleOnClick(address)} >
-            <DeleteIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
+        {!isFeatured ? 
+          <ListItemSecondaryAction>
+            <IconButton edge="end" aria-label="delete"
+              onClick={() => this.handleRemoveOnClick(address)} >
+              <DeleteIcon />
+            </IconButton>
+          </ListItemSecondaryAction> : null}
       </ListItem>
     )
 	}
@@ -76,9 +94,10 @@ const mapStateToProps = (state, ownProps) => {
     networkDetails,
     account,
     selected: state.leaderboard.selected,
+    isFeatured: !!selectors.getApiFeatured(state).find(s => s === ownProps.address),
     isFetching: !!state.fetchers.ids[`/validator/${ownProps.address}`],
   }
 }
 
-export default connect(mapStateToProps, { removeAddress })(withRouter(withStyles(styles)(NominationItem)));
+export default connect(mapStateToProps, { selectAddress, removeAddress })(withRouter(withStyles(styles)(NominationItem)));
   

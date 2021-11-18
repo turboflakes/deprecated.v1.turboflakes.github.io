@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux'
+import _union from 'lodash/union'
 import {WEIGHTS, RANGES} from '../constants'
 
 export const weights = (state = WEIGHTS.toString(), action) => {
@@ -57,7 +58,8 @@ export const nominations = (state = [], action) => {
     case "ADD_ADDRESS":
       const s = state.filter(address => address !== action.address)
       return [...s, action.address]
-    case "ADD_ADDRESSES": 
+    case "ADD_ADDRESSES":
+      return _union(state, action.addresses)
     return action.addresses
     default:
       return state

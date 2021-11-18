@@ -216,7 +216,9 @@ class Nominate extends Component {
         </FormControl>
         <Box className={classes.actionsBox}>
           <Button variant="outlined" color="inherit" onClick={this.handleSelectTop}
-            className={classes.button} fullWidth>
+            className={classes.button} 
+            fullWidth
+            disabled={!maxNominations}>
             Select top {maxNominations}
           </Button>
           <Button variant="contained" 
@@ -258,6 +260,7 @@ const mapStateToProps = (state, ownProps) => {
     network: selectors.getApiNetwork(state),
     account: state.web3.selectedAccount,
     nominations: state.leaderboard.nominations,
+    featured: selectors.getApiFeatured(state),
     chain: selectors.getApiNetworkDetails(state),
     isFetching: !!state.fetchers.async,
   }

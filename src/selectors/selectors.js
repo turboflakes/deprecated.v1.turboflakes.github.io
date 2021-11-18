@@ -47,3 +47,4 @@ export const getApiNetwork = (state) => getObjectByEntityAndId(state, 'api', 'v1
 export const getApiVersion = (state) => getObjectByEntityAndId(state, 'api', 'v1').pkg_version
 export const getApiNetworkDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').chain || {}
 export const getApiCacheDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').cache || {}
+export const getApiFeatured = (state) => getObjectByEntityAndId(state, 'api', 'v1').featured || []
