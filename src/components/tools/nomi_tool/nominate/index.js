@@ -211,7 +211,7 @@ class Nominate extends Component {
           color="textSecondary"
           align="left"
           gutterBottom
-          >{`Select ${chain.name} Account`}
+          >{`Select ${chain.name} controller account`}
         </Typography>
         <FormControl className={classes.formControl}>
           <Select
