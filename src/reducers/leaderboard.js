@@ -60,7 +60,6 @@ export const nominations = (state = [], action) => {
       return [...s, action.address]
     case "ADD_ADDRESSES":
       return _union(state, action.addresses)
-    return action.addresses
     default:
       return state
   }
