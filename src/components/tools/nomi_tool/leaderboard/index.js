@@ -240,7 +240,7 @@ class Leaderboard extends Component {
 				>
 					<Box className={classes.settingsWrapperBox}>
 						<Tabs value={this.state.settingsTabIndex} onChange={this.handleChangeControlTab} >
-							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Select Account") : "Connect Wallet" } 
+							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Nominate") : "Connect Wallet" } 
 								icon={!!totalCandidates ? <span className={classes.counter}>{`${totalCandidates}`}</span> : null}
 								classes={{
 									wrapper: classes.tabWrapper,
