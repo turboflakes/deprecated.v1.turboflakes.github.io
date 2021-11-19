@@ -106,9 +106,10 @@ NomiTool.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const weights = state.leaderboard.weights
+  const ranges = state.leaderboard.ranges
   const quantity = state.leaderboard.quantity
   const selected = state.leaderboard.selected
-  const query = serialize({q: "Board", w: weights, n: quantity})
+  const query = serialize({q: "Board", w: weights, r: ranges, n: quantity})
   const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
   return {
     quantity,

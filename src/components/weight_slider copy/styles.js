@@ -1,27 +1,19 @@
 const styles = (theme) => ({
 	root: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "space-between",
-		marginBottom: theme.spacing()
+		marginBottom: theme.spacing(2)
 	},
 	titleBox: {
 		display: "flex",
 		alignItems: "center",
-		justifyContent: "center",
-	},
-	title: {
-
+		justifyContent: "space-between",
+		marginBottom: -theme.spacing(1)
 	},
 	sliderBox: {
-		margin: `${theme.spacing(1)}px 0`
+		margin: `${theme.spacing(1)}px 0 ${theme.spacing(1)}px 0`
 	},
 	slider: {
-		maxWidth: 200,
-		margin: `0 ${theme.spacing(1)}px`
-	},
-	sliderRangeBox: {
-		margin: `${theme.spacing(2)}px 0`
+		maxWidth: "96%",
+		margin: `0 0 ${theme.spacing(1)}px ${theme.spacing(1)}px`
 	},
 	sliderRangeRoot: {
 		height: 4,
@@ -53,7 +45,7 @@ const styles = (theme) => ({
 		textAlign: "center",
 		'& *': {
 			background: 'transparent',
-			color: '#fff',
+			color: '#000',
 		},
 	},
 	

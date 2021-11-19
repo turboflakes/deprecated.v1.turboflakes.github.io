@@ -42,11 +42,13 @@ class ControlPanel extends Component {
 					<WeightSlider index={0} 
 						title="Inclusion rate"
 						description="The inclusion rate is the percentage of eras out of the past 84 that the validator was in the active set." 
-						resultDescription="A higher inclusion rate results on a higher score." />
+						resultDescription="A higher inclusion rate results on a higher score."
+						rangeUnit="%" />
 					<WeightSlider index={1}
 						title="Commission" 
 						description="The commission fee is a fee charged by a Validator for their service."
-						resultDescription="A lower commission results on a higher score." />
+						resultDescription="A lower commission results on a higher score."
+						rangeUnit="%" />
 					<WeightSlider index={2} 
 						title="Nominators"
 						description="The number of nominators backing a validator."

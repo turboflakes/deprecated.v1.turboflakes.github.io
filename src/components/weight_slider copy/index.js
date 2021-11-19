@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { changeWeight, changeRange } from '../../../../actions/leaderboard'
-import { parseArray, parseArrayRanges } from '../../../../utils/math'
+import { changeWeight, changeRange } from '../../actions/leaderboard'
+import { parseArray, parseArrayRanges } from '../../utils/math'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
@@ -17,17 +17,17 @@ class WeightSlider extends Component {
 		super(props);
 
 		let query = new URLSearchParams(props.location.search)
-		let weights = parseArray(query.get("w"))
-		this.changeParamsWeights(query, weights)
+		let weightValues = parseArray(query.get("w"))
+		this.changeParams(query, weightValues)
 		this.state = { 
-			value: weights[props.index],
+			value: weightValues[props.index],
 			limitRange: [0, 100]
 		 }
 	}
 
-	changeParamsWeights = (query, weights) => {
+	changeParams = (query, weightValues) => {
 		const {history} = this.props
-		query.set("w", weights.join())
+		query.set("w", weightValues.join())
 		const location = {
 			search: `?${query.toString()}`
 		}
@@ -51,17 +51,15 @@ class WeightSlider extends Component {
 	}
 	
 	handleOnChangeCommittedWeight = (_event, value) => {
-		console.log("__handleOnChangeCommittedWeight", value);
 		const {index, location} = this.props
 		let query = new URLSearchParams(location.search)
-		let weights = parseArray(query.get("w"))
-		weights[index] = value
-		this.changeParamsWeights(query, weights)
+		let weightValues = parseArray(query.get("w"))
+		weightValues[index] = value
+		this.changeParams(query, weightValues)
 		this.props.changeWeight(index, value)
 	}
 
 	handleOnChangeCommittedRange = (_event, value) => {
-		console.log("__handleOnChangeCommittedRange", value);
 		const {index, location} = this.props
 		let query = new URLSearchParams(location.search)
 		let ranges = parseArrayRanges(query.get("r"))
@@ -71,73 +69,71 @@ class WeightSlider extends Component {
 	}
 
  	render() {
-		const { classes, title, description, scaleDescription, resultDescription, value, minValue, maxValue, 
-			rangeUnit, rangeMinValue, rangeMaxValue} = this.props;
+		const { classes, title, description, scaleDescription, resultDescription, value, minValue, maxValue} = this.props;
 		return (
 			<div className={classes.root}>
-					<Box className={classes.titleBox}>
-						<PopoverInfo >
-							<Typography variant="subtitle2">
-								{title} 
-							</Typography>
-							<Typography variant="body2" color="inherit" gutterBottom>
-							{description}
-							</Typography>
-							<Typography variant="body2" color="inherit" gutterBottom>
-							{scaleDescription}
-							</Typography>
-							<Typography variant="body2" color="inherit">
-							{resultDescription}
-							</Typography>
-							<Box className={classes.sliderRangeBox}>
-								<Typography variant="subtitle2">
-								{title} range
-								</Typography>
-								<Typography variant="body2" 
-									className={classes.caption}>
-								Only Validators with their {title} result inside the range defeined below are ranked in the leaderboard
-								</Typography>
-								<Slider
-									className={classes.slider}
-									classes={{
-										root: classes.sliderRangeRoot,
-										track: classes.sliderRangeTrack,
-										rail: classes.sliderRangeRail,
-										thumb: classes.sliderRangeThumb,
-										valueLabel: classes.sliderRangeValueLabel
-									}}
-									color="primary"
-									defaultValue={this.state.limitRange}
-									valueLabelFormat={(v, i) => {
-										if (i === 1) {
-											return `${v}${rangeUnit || ''} max`	
-										}
-										return `${v}${rangeUnit || ''} min`
-									}}
-									valueLabelDisplay="on"
-									step={1}
-									min={!!rangeMinValue ? rangeMinValue : 0}
-									max={!!rangeMaxValue ? rangeMaxValue : 100}
-									onChangeCommitted={this.handleOnChangeCommittedRange}
-								/>
-							</Box>
-						</PopoverInfo>
-						<Typography variant="subtitle2" color="textSecondary" align="left"
-						 className={classes.title}>
+				<Box className={classes.titleBox}>
+					<Typography variant="h6" className={classes.title}>
+					{title}
+					</Typography>
+					<PopoverInfo >
+						{/* <Typography variant="h6">
 						{title}
+						</Typography> */}
+						<Typography variant="body2" color="inherit" gutterBottom>
+						{description}
 						</Typography>
-					</Box>
+						<Typography variant="body2" color="inherit" gutterBottom>
+						{scaleDescription}
+						</Typography>
+						<Typography variant="body2" color="inherit">
+						{resultDescription}
+						</Typography>
+					</PopoverInfo>
+				</Box>
+				<Box className={classes.sliderBox}>
+					<Typography variant="caption">
+						Weight given to {title} 
+					</Typography>
 					<Slider
 						className={classes.slider}
-						color="secondary"
 						defaultValue={this.state.value}
 						getAriaValueText={() => value}
 						valueLabelDisplay="on"
 						step={1}
 						min={!!minValue ? minValue : 0}
-						max={!!maxValue ? maxValue : 9}
+						max={!!maxValue ? maxValue : 10}
 						onChangeCommitted={this.handleOnChangeCommittedWeight}
 					/>
+				</Box>
+				<Box className={classes.sliderBox}>
+					<Typography variant="caption" className={classes.caption}>
+						{title} limit range
+					</Typography>
+					<Slider
+						className={classes.slider}
+						classes={{
+							root: classes.sliderRangeRoot,
+							track: classes.sliderRangeTrack,
+							rail: classes.sliderRangeRail,
+							thumb: classes.sliderRangeThumb,
+							valueLabel: classes.sliderRangeValueLabel
+						}}
+						color="secondary"
+						defaultValue={this.state.limitRange}
+						valueLabelFormat={(v, i) => {
+							if (i === 1) {
+								return `${v} max`	
+							}
+							return `${v} min`
+						}}
+						valueLabelDisplay="on"
+						step={1}
+						min={!!minValue ? minValue : 0}
+						max={!!maxValue ? maxValue : 100}
+						onChangeCommitted={this.handleOnChangeCommittedRange}
+					/>
+				</Box>
 			</div>
 		)
 	}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import Popover from '@material-ui/core/Popover';
+import ClearIcon from '@material-ui/icons/Clear';
 import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -59,6 +60,11 @@ class PopoverInfo extends Component {
           }}
           disableRestoreFocus
         >
+          <IconButton aria-label="Close"
+            className={classes.closeButton}
+            onClick={this.handleClose}>
+            <ClearIcon />
+          </IconButton>
           {this.props.children}
         </Popover>
       </span>

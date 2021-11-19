@@ -66,9 +66,9 @@ class Leaderboard extends Component {
 	}
 
 	componentDidMount() {
-		const {weights, quantity} = this.props
+		const {weights, ranges, quantity} = this.props
 		if (!!weights && !!quantity) {
-			this.props.query({q: "Board", w: weights, n: quantity})
+			this.props.query({q: "Board", w: weights, r: ranges, n: quantity})
 		}
 		if (this.state.address) {
 			this.props.selectAddress(this.state.address)
@@ -95,12 +95,12 @@ class Leaderboard extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const {network, weights, quantity} = this.props
-		if ((prevProps.network !== network) || (prevProps.weights !== weights) || (prevProps.quantity !== quantity)){
+		const {network, weights, ranges, quantity} = this.props
+		if ((prevProps.network !== network) || (prevProps.weights !== weights) || (prevProps.ranges !== ranges) || (prevProps.quantity !== quantity)){
 			if (weights === "0,0,0,0,0,0,0,0,0,0") {
-				return this.props.error("Hey! Set at least one of the weights higher than 0, so that scores can be calculated.")
+				return this.props.error("Please set at least one of the weights higher than 0, so that scores can be calculated.")
 			}
-			this.props.query({q: "Board", w: weights, n: quantity})
+			this.props.query({q: "Board", w: weights, r: ranges, n: quantity})
 		}
 		
 		if (prevProps.network !== network) {
@@ -298,8 +298,9 @@ const mapStateToProps = (state, ownProps) => {
 	const network = selectors.getApiNetwork(state)
 	const networkDetails = selectors.getApiNetworkDetails(state)
   const weights = state.leaderboard.weights
+	const ranges = state.leaderboard.ranges
 	const quantity = state.leaderboard.quantity
-	const query = serialize({q: "Board", w: weights, n: quantity})
+	const query = serialize({q: "Board", w: weights, r: ranges, n: quantity})
 	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
 	const featured = selectors.getApiFeatured(state)
 	return {
@@ -307,6 +308,7 @@ const mapStateToProps = (state, ownProps) => {
 		networkDetails,
 		addresses,
 		weights,
+		ranges,
 		quantity,
 		accountName: !!state.web3.selectedAccount ? (!!state.web3.selectedAccount.meta ? state.web3.selectedAccount.meta.name : undefined) : undefined,
 		maxNominations: state.web3.maxNominations - featured.length > 0 ? state.web3.maxNominations - featured.length : 0,
