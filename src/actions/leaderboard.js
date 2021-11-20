@@ -3,9 +3,9 @@ export const changeWeight = (index, weight) => ({
   data: {index, weight}
 })
 
-export const changeRange = (index, range) => ({
-  type: `CHANGE_RANGE`,
-  data: {index, range}
+export const changeInterval = (index, interval) => ({
+  type: `CHANGE_INTERVAL`,
+  data: {index, interval}
 })
 
 export const changeQuantity = (value) => ({

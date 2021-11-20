@@ -1,4 +1,4 @@
-import {WEIGHTS, RANGES} from '../constants'
+import {WEIGHTS, LIMITS} from '../constants'
 
 export const parseInt = (x) => {
     const parsed = Number.parseInt(x, 10);
@@ -25,16 +25,16 @@ export const parseArray = (w) => {
     }
 }
 
-export const parseArrayRanges = (w) => {
+export const parseArrayIntervals = (w) => {
     try {
         const a = w.split(",")
-        for (let i = 0; i < RANGES.length; i++) {
+        for (let i = 0; i < LIMITS.length; i++) {
             if (!a[i]) {
                 a.push("0:100")
             }
         }
-        return a.slice(0, RANGES.length)
+        return a.slice(0, LIMITS.length)
     } catch (e) {
-        return RANGES
+        return LIMITS
     }
 }

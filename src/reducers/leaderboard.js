@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 import _union from 'lodash/union'
-import {WEIGHTS, RANGES} from '../constants'
+import {WEIGHTS, LIMITS} from '../constants'
 
 export const weights = (state = WEIGHTS.toString(), action) => {
   switch (action.type) {
@@ -14,11 +14,11 @@ export const weights = (state = WEIGHTS.toString(), action) => {
   }
 }
 
-export const ranges = (state = RANGES.toString(), action) => {
+export const intervals = (state = LIMITS.toString(), action) => {
   switch (action.type) {
-    case "CHANGE_RANGE": {
+    case "CHANGE_INTERVAL": {
       let t = state.split(",")
-      t[action.data.index] = action.data.range
+      t[action.data.index] = action.data.interval
       return t.toString()
     }
     default:
@@ -67,7 +67,7 @@ export const nominations = (state = [], action) => {
 
 export const leaderboard = combineReducers({
   weights: weights,
-  ranges: ranges,
+  intervals: intervals,
   quantity: quantity,
   selected: selected,
   nominations: nominations

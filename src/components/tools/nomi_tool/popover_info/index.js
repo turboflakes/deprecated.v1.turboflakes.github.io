@@ -24,7 +24,7 @@ class PopoverInfo extends Component {
   };
 
   render() {
-    const { classes } = this.props
+    const { classes, isFetching } = this.props
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
@@ -32,6 +32,7 @@ class PopoverInfo extends Component {
       <span className={classes.root}>
         <IconButton
           aria-describedby={open ? 'popover-info-pep' : undefined} 
+          disabled={isFetching}
           onClick={this.handleClick}
           classes={{
             root: classes.iconRoot,

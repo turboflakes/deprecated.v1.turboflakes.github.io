@@ -1,6 +1,6 @@
 const styles = (theme) => ({
 	root: {
-		marginBottom: theme.spacing(2)
+		marginBottom: theme.spacing(1) / 2
 	},
 	slider: {
 		maxWidth: "96%",

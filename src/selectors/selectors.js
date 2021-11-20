@@ -40,6 +40,8 @@ export const getIdsByEntityAndLastQuery = (state, entityType, key) => getCollect
   (Array.isArray(getCollectionByEntity(state, entityType)[getCollectionByEntity(state, entityType)["last"]][key]) ? getCollectionByEntity(state, entityType)[getCollectionByEntity(state, entityType)["last"]][key] : []) :
   []
 
+export const getMetaByEntityAndQuery = (state, entityType, query) => getCollectionByEntity(state, entityType)[query] ?
+  getCollectionByEntity(state, entityType)[query]["meta"] : {}
 
 // API
 export const getApiHost = (state) => getObjectByEntityAndId(state, 'api', 'v1').host

@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { changeWeight, changeRange } from '../../../../actions/leaderboard'
-import { parseArray, parseArrayRanges } from '../../../../utils/math'
+import serialize from '../../../../utils/serialize'
+import { changeWeight, changeInterval } from '../../../../actions/leaderboard'
+import { parseArray, parseArrayIntervals } from '../../../../utils/math'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
@@ -19,9 +20,11 @@ class WeightSlider extends Component {
 		let query = new URLSearchParams(props.location.search)
 		let weights = parseArray(query.get("w"))
 		this.changeParamsWeights(query, weights)
+		let intervals = parseArrayIntervals(query.get("i"))
+		this.changeParamsIntervals(query, intervals)
 		this.state = { 
 			value: weights[props.index],
-			limitRange: [0, 100]
+			interval: intervals[props.index].split(":")
 		 }
 	}
 
@@ -34,9 +37,9 @@ class WeightSlider extends Component {
 		history.replace(location)
 	}
 
-	changeParamsRanges = (query, ranges) => {
+	changeParamsIntervals = (query, intervals) => {
 		const {history} = this.props
-		query.set("r", ranges.join())
+		query.set("i", intervals.join())
 		const location = {
 			search: `?${query.toString()}`
 		}
@@ -51,7 +54,6 @@ class WeightSlider extends Component {
 	}
 	
 	handleOnChangeCommittedWeight = (_event, value) => {
-		console.log("__handleOnChangeCommittedWeight", value);
 		const {index, location} = this.props
 		let query = new URLSearchParams(location.search)
 		let weights = parseArray(query.get("w"))
@@ -60,72 +62,95 @@ class WeightSlider extends Component {
 		this.props.changeWeight(index, value)
 	}
 
-	handleOnChangeCommittedRange = (_event, value) => {
-		console.log("__handleOnChangeCommittedRange", value);
+	handleOnChangeCommittedInterval = (event, value) => {
+		event.preventDefault()
 		const {index, location} = this.props
 		let query = new URLSearchParams(location.search)
-		let ranges = parseArrayRanges(query.get("r"))
-		ranges[index] = value.join().replace(',', ':')
-		this.changeParamsRanges(query, ranges)
-		this.props.changeRange(index, ranges[index])
+		let intervals = parseArrayIntervals(query.get("i"))
+		intervals[index] = value.join().replace(',', ':');
+		this.changeParamsIntervals(query, intervals)
+		this.props.changeInterval(index, intervals[index])
+		this.setState({interval: intervals[index].split(":")})
 	}
 
  	render() {
 		const { classes, title, description, scaleDescription, resultDescription, value, minValue, maxValue, 
-			rangeUnit, rangeMinValue, rangeMaxValue} = this.props;
+			hideIntervalSlider, unitLimit, minLimit, maxLimit, isFetching} = this.props;
+
+		const marks = [
+			{
+				value: minLimit,
+				label: `${Math.round(minLimit)} ${unitLimit || ''}`,
+			},
+			{
+				value: maxLimit,
+				label: `${Math.round(maxLimit)} ${unitLimit || ''}`,
+			},
+		];
 		return (
 			<div className={classes.root}>
-					<Box className={classes.titleBox}>
-						<PopoverInfo >
-							<Typography variant="subtitle2">
-								{title} 
-							</Typography>
-							<Typography variant="body2" color="inherit" gutterBottom>
-							{description}
-							</Typography>
-							<Typography variant="body2" color="inherit" gutterBottom>
-							{scaleDescription}
-							</Typography>
-							<Typography variant="body2" color="inherit">
-							{resultDescription}
-							</Typography>
-							<Box className={classes.sliderRangeBox}>
+				<Box className={classes.traitBox}>
+					<PopoverInfo isFetching={isFetching}>
+						<Typography variant="subtitle2">
+							{title} 
+						</Typography>
+						<Typography variant="body2" color="inherit" gutterBottom>
+						{description}
+						</Typography>
+						<Typography variant="body2" color="inherit" gutterBottom>
+						{scaleDescription}
+						</Typography>
+						<Typography variant="body2" color="inherit">
+						{resultDescription}
+						</Typography>
+						{!hideIntervalSlider ? 
+							<Box className={classes.sliderIntervalBox}>
 								<Typography variant="subtitle2">
-								{title} range
+								{title} Interval
 								</Typography>
 								<Typography variant="body2" 
 									className={classes.caption}>
-								Only Validators with their {title} result inside the range defeined below are ranked in the leaderboard
+								Only Validators with the {title} between the interval defined below are ranked in the leaderboard
 								</Typography>
 								<Slider
-									className={classes.slider}
+									className={classes.sliderInterval}
 									classes={{
-										root: classes.sliderRangeRoot,
-										track: classes.sliderRangeTrack,
-										rail: classes.sliderRangeRail,
-										thumb: classes.sliderRangeThumb,
-										valueLabel: classes.sliderRangeValueLabel
+										root: classes.sliderIntervalRoot,
+										track: classes.sliderIntervalTrack,
+										rail: classes.sliderIntervalRail,
+										thumb: classes.sliderIntervalThumb,
+										valueLabel: classes.sliderIntervalValueLabel
 									}}
+									disabled={isFetching}
 									color="primary"
-									defaultValue={this.state.limitRange}
+									defaultValue={this.state.interval}
 									valueLabelFormat={(v, i) => {
 										if (i === 1) {
-											return `${v}${rangeUnit || ''} max`	
+											return `${v}`	
 										}
-										return `${v}${rangeUnit || ''} min`
+										return `${v}`
 									}}
 									valueLabelDisplay="on"
 									step={1}
-									min={!!rangeMinValue ? rangeMinValue : 0}
-									max={!!rangeMaxValue ? rangeMaxValue : 100}
-									onChangeCommitted={this.handleOnChangeCommittedRange}
+									min={!!minLimit ? Math.round(minLimit) : 0}
+									max={!!maxLimit ? Math.round(maxLimit) : 100}
+									marks={marks}
+									onChange={(event) => event.preventDefault()}
+									onChangeCommitted={this.handleOnChangeCommittedInterval}
 								/>
-							</Box>
+							</Box> : null}
 						</PopoverInfo>
-						<Typography variant="subtitle2" color="textSecondary" align="left"
-						 className={classes.title}>
-						{title}
-						</Typography>
+						<Box className={classes.titleBox}>
+							<Typography variant="subtitle2" color="textSecondary" align="left"
+								className={classes.title}>
+								{title}
+							</Typography>
+							{!hideIntervalSlider ?
+								<Typography variant="caption" color="textSecondary"
+									className={classes.caption}>
+									{`[${this.state.interval.toString()}]`} {unitLimit ? `(${unitLimit})` : null} 
+								</Typography> : null}
+						</Box>
 					</Box>
 					<Slider
 						className={classes.slider}
@@ -155,11 +180,15 @@ WeightSlider.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+	const weights = state.leaderboard.weights
+	const intervals = state.leaderboard.intervals
+	const quantity = state.leaderboard.quantity
+	const query = serialize({q: "Board", w: weights, i: intervals, n: quantity})
 	return {
 		value: parseArray(state.leaderboard.weights)[ownProps.index],
-		isFetching: !!state.fetchers.async,
+		isFetching: !!state.fetchers.queries[`validator?${query}`],
   }
 }
 
-export default connect(mapStateToProps, { changeWeight, changeRange })(withRouter(withStyles(styles)(WeightSlider)));
+export default connect(mapStateToProps, { changeWeight, changeInterval })(withRouter(withStyles(styles)(WeightSlider)));
   

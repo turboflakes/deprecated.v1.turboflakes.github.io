@@ -5,12 +5,22 @@ const styles = (theme) => ({
 		justifyContent: "space-between",
 		marginBottom: theme.spacing()
 	},
-	titleBox: {
+	traitBox: {
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
 	},
+	titleBox: {
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		minHeight: 56,
+		width: 128,
+	},
 	title: {
+
+	},
+	caption: {
 
 	},
 	sliderBox: {
@@ -20,34 +30,46 @@ const styles = (theme) => ({
 		maxWidth: 200,
 		margin: `0 ${theme.spacing(1)}px`
 	},
-	sliderRangeBox: {
+	sliderInterval: {
+		maxWidth: "50%",
+		margin: `${theme.spacing(3)}px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px`
+	},
+	sliderIntervalBox: {
 		margin: `${theme.spacing(2)}px 0`
 	},
-	sliderRangeRoot: {
+	sliderIntervalRoot: {
 		height: 4,
 	},
-	sliderRangeTrack: {
-		height: 4,
-		borderRadius: 2,
-	},
-	sliderRangeRail: {
+	sliderIntervalTrack: {
 		height: 4,
 		borderRadius: 2,
 	},
-	sliderRangeThumb: {
+	sliderIntervalRail: {
+		height: 4,
+		borderRadius: 2,
+	},
+	sliderIntervalThumb: {
 		height: 18,
 		width: 18,
 		backgroundColor: '#fff',
 		border: '2px solid currentColor',
 		marginTop: -7,
 		marginLeft: -10,
+		'&.Mui-disabled': {
+			height: 18,
+			width: 18,
+			backgroundColor: '#fff',
+			border: '2px solid currentColor',
+			marginTop: -7,
+			marginLeft: -10,
+		}
 		// '&:focus, &:hover, &$active': {
 		//   boxShadow: 'inherit',
 		// },
 	},
-	sliderRangeValueLabel: {
+	sliderIntervalValueLabel: {
 		left: 'calc(-50% - 2px)',
-		top: 30,
+		top: -20,
 		minWidth: theme.spacing(3),
 		fontSize: "0.75rem",
 		textAlign: "center",
@@ -55,7 +77,6 @@ const styles = (theme) => ({
 			background: 'transparent',
 			color: '#fff',
 		},
-	},
-	
+	},	
 })
 export default styles

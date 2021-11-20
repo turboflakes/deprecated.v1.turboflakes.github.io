@@ -45,5 +45,5 @@ export const getNetworkKey = (index) => Object.keys(networkSettings)[index]
 export const isNetworkSupported = (network) => Object.keys(networkSettings).includes(network)
 
 
-export const WEIGHTS = [7,8,6,10,6,4,3,7,5,9]
-export const RANGES = ["0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100"]
+export const WEIGHTS = [7,8,6,9,6,4,3,7,5,8]
+export const LIMITS = ["0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100","0:100"]

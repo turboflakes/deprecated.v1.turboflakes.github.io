@@ -1,6 +1,5 @@
 const styles = theme => ({
   root: {  
-    padding: theme.spacing(1),
   },
   popover: {
   },
@@ -12,7 +11,10 @@ const styles = theme => ({
   iconRoot: {
     color: theme.palette.text.secondary,
     padding: theme.spacing(1),
-    marginLeft: -theme.spacing(1)
+    marginLeft: -theme.spacing(1),
+    '&.Mui-disabled': {
+      color: theme.palette.text.secondary
+    }
   },
   closeButton: {
     position: "absolute",

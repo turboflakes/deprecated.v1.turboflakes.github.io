@@ -228,12 +228,12 @@ const mapStateToProps = (state, ownProps) => {
       return []
     }
     return [
-      addRow('Inclusion rate', rateDisplay(account.inclusion_rate), `[0, 100]`, `${scoreFn(0)} / ${weightsFn(0)}`),
-      addRow('Commission', commissionDisplay(account.commission), `[0, 100]`, `${scoreFn(1)} / ${weightsFn(1)}`),
-      addRow('Nominators', account.nominators, `[0, 256]`, `${scoreFn(2)} / ${weightsFn(2)}`),
+      addRow('Inclusion rate', rateDisplay(account.inclusion_rate), `[${Math.round(account.limits.inclusion_rate.min)}, ${Math.round(account.limits.inclusion_rate.max)}]`, `${scoreFn(0)} / ${weightsFn(0)}`),
+      addRow('Commission', commissionDisplay(account.commission), `[${Math.round(account.limits.commission.min)}, ${Math.round(account.limits.commission.max)}]`, `${scoreFn(1)} / ${weightsFn(1)}`),
+      addRow('Nominators', account.nominators, `[${Math.round(account.limits.nominators.min)}, ${Math.round(account.limits.nominators.max)}]`, `${scoreFn(2)} / ${weightsFn(2)}`),
       addRow('Average points', Math.round(account.avg_reward_points), `[${Math.round(account.limits.avg_reward_points.min)}, ${Math.round(account.limits.avg_reward_points.max)}]`, `${scoreFn(3)} / ${weightsFn(3)}`),
-      addRow('Stake rewards', !!account.reward_staked ? 'yes' : 'no', `[0, 1]`, `${scoreFn(4)} / ${weightsFn(4)}`),
-      addRow("Active", !!account.active ? 'yes' : 'no', `[0, 1]`, `${scoreFn(5)} / ${weightsFn(5)}`),
+      addRow('Stake rewards', !!account.reward_staked ? 'yes' : 'no', `[${Math.round(account.limits.reward_staked.min)}, ${Math.round(account.limits.reward_staked.max)}]`, `${scoreFn(4)} / ${weightsFn(4)}`),
+      addRow("Active", !!account.active ? 'yes' : 'no', `[${Math.round(account.limits.active.min)}, ${Math.round(account.limits.active.max)}]`, `${scoreFn(5)} / ${weightsFn(5)}`),
       addRow(`Own self-stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake, networkDetails), `[${stakeDisplayNoSymbol(account.limits.own_stake.min, networkDetails)}, ${stakeDisplayNoSymbol(account.limits.own_stake.max, networkDetails)}]`, `${scoreFn(6)} / ${weightsFn(6)}`),
       addRow(`Total stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake + account.nominators_stake, networkDetails), `[${stakeDisplayNoSymbol(account.limits.total_stake.min, networkDetails)}, ${stakeDisplayNoSymbol(account.limits.total_stake.max, networkDetails)}]`, `${scoreFn(7)} / ${weightsFn(7)}`),
       addRow("Identity", account.judgements, `[${Math.abs(Math.round(account.limits.judgements.min))}, ${Math.round(account.limits.judgements.max)}]`, `${scoreFn(8)} / ${weightsFn(8)}`),
