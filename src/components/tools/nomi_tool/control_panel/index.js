@@ -87,8 +87,10 @@ class ControlPanel extends Component {
 						scaleDescription="The own self-stake amount is rescaled using the method min-max normalization. The maximum value is the maximum self-stake bonded from all Validators currently available. And the minimum value is the minimum self-stake bonded from all Validators currently available."
 						resultDescription="A higher own self-stake amount results on a higher score." 
 						unitLimit={networkDetails.token_symbol}
-						minLimit={limits ? stakeDisplayNoSymbol(limits.own_stake.min, networkDetails) : 0}
-						maxLimit={limits ? stakeDisplayNoSymbol(limits.own_stake.max, networkDetails) : 1} />
+						// minLimit={limits ? stakeDisplayNoSymbol(limits.own_stake.min, networkDetails) : 0}
+						// maxLimit={limits ? stakeDisplayNoSymbol(limits.own_stake.max, networkDetails) : 1} />
+						minLimit={limits ? limits.own_stake.min : 0}
+						maxLimit={limits ? limits.own_stake.max : 1} />
 					<WeightSlider index={7}
 						title="Total stake" 
 						description="The total stake is the sum of the validator own self-stake and the total amount bonded from the nominators who nominate the validator." 

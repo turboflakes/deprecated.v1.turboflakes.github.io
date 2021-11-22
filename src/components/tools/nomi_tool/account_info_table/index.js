@@ -56,22 +56,22 @@ const addRow = (name, value, interval, score) => {
 class AccountInfoTable extends Component {
 
   componentDidMount() {
-    const {address, weights} = this.props
+    const {address, weights, intervals} = this.props
     if (!!address) {
       this.props.get(address)
       if (!!weights) {
-        this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
+        this.props.getValidatorRank(address, {q: "Board", w: weights, i: intervals}, {expire: 0})
       }
     }
   }
 
   componentDidUpdate(prevProps) {
-    const {address, weights, isFetching, account} = this.props
+    const {address, weights, intervals, isFetching, account} = this.props
     if (!isFetching && !!address && prevProps.address !== address && !account.id) {
       this.props.get(address)
     }
-    if (!isFetching && (prevProps.weights !== weights || (!!address && prevProps.address !== address))) {
-      this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
+    if (!isFetching && (prevProps.weights !== weights || prevProps.intervals !== intervals || (!!address && prevProps.address !== address))) {
+      this.props.getValidatorRank(address, {q: "Board", w: weights, i: intervals}, {expire: 0})
     }
   }
 	
@@ -251,6 +251,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     address,
     weights,
+    intervals,
     account,
     rows,
     network,
