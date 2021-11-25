@@ -6,7 +6,11 @@ import { addAddress, removeAddress, clearAddress } from '../../../../actions/lea
 import { stashDisplay, nameDisplay, stakeDisplayNoSymbol, commissionDisplay, rateDisplay } from '../../../../utils/display'
 import {getNetworkWSS } from '../../../../constants'
 import { selectors } from '../../../../selectors'
-import serialize from '../../../../utils/serialize'
+import { 
+	parseIntervalsIntoArray,
+	parseRateIntervalToPercentage, 
+	parseCommissionIntervalToPercentage, 
+} from '../../../../utils/math'
 import { encodeAddress } from '@polkadot/util-crypto'
 import Box from '@material-ui/core/Box';
 import Table from '@material-ui/core/Table';
@@ -220,28 +224,26 @@ const mapStateToProps = (state, ownProps) => {
   const account = selectors.getObjectByEntityAndId(state, 'validator', address)
   const weights = state.leaderboard.weights
   const intervals = state.leaderboard.intervals
-  const quantity = state.leaderboard.quantity
-  const query = serialize({q: "Board", w: weights, i: intervals, n: quantity})
-	const meta = selectors.getMetaByEntityAndQuery(state, 'validator', query)
+  const _intervals = parseIntervalsIntoArray(intervals)
   const weightsFn = (i) => weights.split(",").map(x => parseInt(x, 10))[i]
 
   const scoreFn = (i) => round2(account.scores[i])
 
   const createTableData = () => {
-    if (!network || !account.id || !account.scores || !account.rank || !meta.limits) {
+    if (!network || !account.id || !account.scores || !account.rank || !intervals) {
       return []
     }
     return [
-      addRow('Inclusion rate', rateDisplay(account.inclusion_rate), `[${Math.round(meta.limits.inclusion_rate.min)}, ${Math.round(meta.limits.inclusion_rate.max)}]`, `${scoreFn(0)} / ${weightsFn(0)}`),
-      addRow('Commission', commissionDisplay(account.commission), `[${Math.round(meta.limits.commission.min)}, ${Math.round(meta.limits.commission.max)}]`, `${scoreFn(1)} / ${weightsFn(1)}`),
-      addRow('Nominators', account.nominators, `[${Math.round(meta.limits.nominators.min)}, ${Math.round(meta.limits.nominators.max)}]`, `${scoreFn(2)} / ${weightsFn(2)}`),
-      addRow('Average points', Math.round(account.avg_reward_points), `[${Math.round(meta.limits.avg_reward_points.min)}, ${Math.round(meta.limits.avg_reward_points.max)}]`, `${scoreFn(3)} / ${weightsFn(3)}`),
-      addRow('Stake rewards', !!account.reward_staked ? 'yes' : 'no', `[${Math.round(meta.limits.reward_staked.min)}, ${Math.round(meta.limits.reward_staked.max)}]`, `${scoreFn(4)} / ${weightsFn(4)}`),
-      addRow("Active", !!account.active ? 'yes' : 'no', `[${Math.round(meta.limits.active.min)}, ${Math.round(meta.limits.active.max)}]`, `${scoreFn(5)} / ${weightsFn(5)}`),
-      addRow(`Own self-stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake, networkDetails), `[${stakeDisplayNoSymbol(meta.limits.own_stake.min, networkDetails)}, ${stakeDisplayNoSymbol(meta.limits.own_stake.max, networkDetails)}]`, `${scoreFn(6)} / ${weightsFn(6)}`),
-      addRow(`Total stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake + account.nominators_stake, networkDetails), `[${stakeDisplayNoSymbol(meta.limits.total_stake.min, networkDetails)}, ${stakeDisplayNoSymbol(meta.limits.total_stake.max, networkDetails)}]`, `${scoreFn(7)} / ${weightsFn(7)}`),
-      addRow("Identity", account.judgements, `[${Math.abs(Math.round(meta.limits.judgements.min))}, ${Math.round(meta.limits.judgements.max)}]`, `${scoreFn(8)} / ${weightsFn(8)}`),
-      addRow("Sub-accounts", account.sub_accounts, `[${Math.abs(Math.round(meta.limits.sub_accounts.min))}, ${Math.round(meta.limits.sub_accounts.max)}]`, `${scoreFn(9)} / ${weightsFn(9)}`),
+      addRow('Inclusion rate', rateDisplay(account.inclusion_rate), `[${parseRateIntervalToPercentage(_intervals[0])}] %`, `${scoreFn(0)} / ${weightsFn(0)}`),
+      addRow('Commission', commissionDisplay(account.commission), `[${parseCommissionIntervalToPercentage(_intervals[1])}] %`, `${scoreFn(1)} / ${weightsFn(1)}`),
+      // addRow('Nominators', account.nominators, `[${Math.round(meta.limits.nominators.min)}, ${Math.round(meta.limits.nominators.max)}]`, `${scoreFn(2)} / ${weightsFn(2)}`),
+      // addRow('Average points', Math.round(account.avg_reward_points), `[${Math.round(meta.limits.avg_reward_points.min)}, ${Math.round(meta.limits.avg_reward_points.max)}]`, `${scoreFn(3)} / ${weightsFn(3)}`),
+      // addRow('Stake rewards', !!account.reward_staked ? 'yes' : 'no', `[${Math.round(meta.limits.reward_staked.min)}, ${Math.round(meta.limits.reward_staked.max)}]`, `${scoreFn(4)} / ${weightsFn(4)}`),
+      // addRow("Active", !!account.active ? 'yes' : 'no', `[${Math.round(meta.limits.active.min)}, ${Math.round(meta.limits.active.max)}]`, `${scoreFn(5)} / ${weightsFn(5)}`),
+      // addRow(`Own self-stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake, networkDetails), `[${stakeDisplayNoSymbol(meta.limits.own_stake.min, networkDetails)}, ${stakeDisplayNoSymbol(meta.limits.own_stake.max, networkDetails)}]`, `${scoreFn(6)} / ${weightsFn(6)}`),
+      // addRow(`Total stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake + account.nominators_stake, networkDetails), `[${stakeDisplayNoSymbol(meta.limits.total_stake.min, networkDetails)}, ${stakeDisplayNoSymbol(meta.limits.total_stake.max, networkDetails)}]`, `${scoreFn(7)} / ${weightsFn(7)}`),
+      // addRow("Identity", account.judgements, `[${Math.abs(Math.round(meta.limits.judgements.min))}, ${Math.round(meta.limits.judgements.max)}]`, `${scoreFn(8)} / ${weightsFn(8)}`),
+      // addRow("Sub-accounts", account.sub_accounts, `[${Math.abs(Math.round(meta.limits.sub_accounts.min))}, ${Math.round(meta.limits.sub_accounts.max)}]`, `${scoreFn(9)} / ${weightsFn(9)}`),
       // addRow("Total", "", "", `${displayScore(account.scores)} / ${displayMaxScore(weights)}`),
     ];
   }

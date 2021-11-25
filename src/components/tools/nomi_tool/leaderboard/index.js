@@ -15,7 +15,7 @@ import {
 	getNetworkURL 
 } from '../../../../constants'
 import { selectors } from '../../../../selectors'
-import serialize from '../../../../utils/serialize'
+import {serializeBoard} from '../../../../utils/serialize'
 import { isValidAddress } from '../../../../utils/crypto'
 import { web3Enable } from '@polkadot/extension-dapp';
 import { ApiPromise, WsProvider } from '@polkadot/api';
@@ -67,9 +67,12 @@ class Leaderboard extends Component {
 
 	componentDidMount() {
 		const {weights, intervals, quantity} = this.props
-		if (!!weights && !!quantity) {
+		if (!!weights && !!quantity && !!intervals) {
 			this.props.query({q: "Board", w: weights, i: intervals, n: quantity})
+		} else if (!!weights && !!quantity) {
+			this.props.query({q: "Board", w: weights, n: quantity})
 		}
+
 		if (this.state.address) {
 			this.props.selectAddress(this.state.address)
 		}
@@ -100,7 +103,11 @@ class Leaderboard extends Component {
 			if (weights === "0,0,0,0,0,0,0,0,0,0") {
 				return this.props.error("Please set at least one of the weights higher than 0, so that scores can be calculated.")
 			}
-			this.props.query({q: "Board", w: weights, i: intervals, n: quantity})
+			if (!!weights && !!quantity && !!intervals) {
+				this.props.query({q: "Board", w: weights, i: intervals, n: quantity})
+			} else if (!!weights && !!quantity) {
+				this.props.query({q: "Board", w: weights, n: quantity})
+			}
 		}
 		
 		if (prevProps.network !== network) {
@@ -281,7 +288,8 @@ class Leaderboard extends Component {
 									isEnabled={this.state.isExtensionEnabled} 
 									maxNominations={maxNominations}
 									onSelectTop={this.handleSelectTop} /> : 
-								<ControlPanel />}
+								<ControlPanel />
+								}
 						</Box>
 					</Box>
 				</Fade>
@@ -300,8 +308,7 @@ const mapStateToProps = (state, ownProps) => {
   const weights = state.leaderboard.weights
 	const intervals = state.leaderboard.intervals
 	const quantity = state.leaderboard.quantity
-	const query = serialize({q: "Board", w: weights, i: intervals, n: quantity})
-	const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
+	const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
 	const featured = selectors.getApiFeatured(state)
 	return {
 		network,

@@ -192,10 +192,18 @@ export default createMuiTheme({
         backgroundColor: '#fff',
         // border: '1px solid currentColor',
         marginTop: -8,
-        marginLeft: -12,
+        marginLeft: -10,
         // '&:focus, &:hover, &$active': {
         //   boxShadow: 'inherit',
         // },
+        '&.Mui-disabled': {
+          height: 24,
+          width: 24,
+          backgroundColor: '#fff',
+          // border: '2px solid currentColor',
+          marginTop: -8,
+          marginLeft: -10,
+        }
       },
       track: {
         height: 8,

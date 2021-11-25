@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux'
 import _union from 'lodash/union'
-import {WEIGHTS, LIMITS} from '../constants'
+import {WEIGHTS, COMMISSION_PLANCK} from '../constants'
+import { parseIntervalsIntoArray, parseIntervalsArrayIntoString } from '../utils/math'
 
 export const weights = (state = WEIGHTS.toString(), action) => {
   switch (action.type) {
@@ -14,12 +15,34 @@ export const weights = (state = WEIGHTS.toString(), action) => {
   }
 }
 
-export const intervals = (state = LIMITS.toString(), action) => {
+export const intervals = (state = "", action) => {
   switch (action.type) {
+    case "QUERY_VALIDATOR_SUCCESS": {
+      if (state === "") {
+        // Note: Define default intervals, some based on the board limits others static
+        let i = parseIntervalsIntoArray(action.response.result.meta.limits)
+        // Default Inclusion Rate [0.2, 1]
+        i[0] = [0.2, 1]
+        // Default Commission [0, 200_000_000] = [0, 20%]
+        i[1] = [0, 0.2*COMMISSION_PLANCK]
+        return parseIntervalsArrayIntoString(i)
+      }
+      return state
+    }
     case "CHANGE_INTERVAL": {
       let t = state.split(",")
-      t[action.data.index] = action.data.interval
+      t[action.data.index] = action.data.interval.join().replace(',', ':')
       return t.toString()
+    }
+    default:
+      return state
+  }
+}
+
+export const limits = (state = "", action) => {
+  switch (action.type) {
+    case "QUERY_VALIDATOR_SUCCESS": {
+      return action.response.result.meta.limits
     }
     default:
       return state
@@ -67,6 +90,7 @@ export const nominations = (state = [], action) => {
 
 export const leaderboard = combineReducers({
   weights: weights,
+  limits: limits,
   intervals: intervals,
   quantity: quantity,
   selected: selected,

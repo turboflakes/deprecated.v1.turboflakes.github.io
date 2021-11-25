@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { selectors } from '../../../selectors'
-import serialize from '../../../utils/serialize'
+import { serializeBoard } from '../../../utils/serialize'
 import { selectAddress, clearAddress } from '../../../actions/leaderboard'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -105,12 +105,9 @@ NomiTool.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const weights = state.leaderboard.weights
-  const intervals = state.leaderboard.intervals
   const quantity = state.leaderboard.quantity
   const selected = state.leaderboard.selected
-  const query = serialize({q: "Board", w: weights, i: intervals, n: quantity})
-  const addresses = selectors.getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
+  const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
   return {
     quantity,
     selected,

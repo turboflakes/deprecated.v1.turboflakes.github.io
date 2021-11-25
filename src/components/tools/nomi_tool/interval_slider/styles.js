@@ -15,7 +15,6 @@ const styles = (theme) => ({
 		flexDirection: "column",
 		justifyContent: "center",
 		minHeight: 56,
-		width: 128,
 	},
 	title: {
 
@@ -23,12 +22,20 @@ const styles = (theme) => ({
 	caption: {
 
 	},
-	sliderBox: {
-		margin: `${theme.spacing(1)}px 0`
-	},
 	slider: {
-		width: 128,
+		width: 192,
 		margin: `0 ${theme.spacing(1)}px`
 	},
+	sliderValueLabel: {
+		// left: 'calc(-50% - 2px)',
+		top: -20,
+		minWidth: theme.spacing(3),
+		fontSize: "0.75rem",
+		textAlign: "center",
+		'& *': {
+			background: 'transparent',
+			color: '#fff',
+		},
+	},	
 })
 export default styles

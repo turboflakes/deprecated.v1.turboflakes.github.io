@@ -59,7 +59,8 @@ const styles = (theme) => ({
 	settingsBox: {
 		display: "flex",
 		height: 695,
-		maxWidth: 400,
+		// maxWidth: 400,
+		width: 640,
 		backgroundColor: "rgba(77,77,77,0.9)",
 		// borderTopRightRadius: theme.spacing(3),
 		borderBottomRightRadius: theme.spacing(3)

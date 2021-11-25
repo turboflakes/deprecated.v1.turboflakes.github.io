@@ -3,7 +3,9 @@ const styles = (theme) => ({
 		marginBottom: theme.spacing(1) / 2
 	},
 	slider: {
-		maxWidth: "96%",
+		// maxWidth: "96%",
+		// maxWidth: "60%",
+		width: 384,
 		marginLeft: theme.spacing(1)
 	},
 })
