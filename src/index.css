@@ -12,3 +12,7 @@ pre {
     monospace;
   margin: 0;
 }
+
+.disable-scroll {
+  overflow: hidden;
+}

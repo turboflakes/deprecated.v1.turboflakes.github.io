@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { selectors } from '../../../selectors'
 import { serializeBoard } from '../../../utils/serialize'
 import { selectAddress, clearAddress } from '../../../actions/leaderboard'
+import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import BoardAnimation from './board_animation'
@@ -20,8 +21,8 @@ class NomiTool extends Component {
   rootRef = React.createRef();
 
   componentDidUpdate(prevProps) {
-    const {scrollIntoView} = this.props
-    if (scrollIntoView && prevProps.scrollIntoView !== scrollIntoView) {
+    const {scrollHere} = this.props
+    if (scrollHere && prevProps.scrollHere !== scrollHere) {
       this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
     }
   }
@@ -116,4 +117,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {selectAddress, clearAddress})(withWidth()(withStyles(styles)(NomiTool)));
+export default connect(mapStateToProps, {selectAddress, clearAddress, scrollIntoView})(withWidth()(withStyles(styles)(NomiTool)));

@@ -12,8 +12,8 @@ class EmaTool extends Component {
   rootRef = React.createRef();
 
   componentDidUpdate(prevProps) {
-    const {scrollIntoView} = this.props
-    if (scrollIntoView && prevProps.scrollIntoView !== scrollIntoView) {
+    const {scrollHere} = this.props
+    if (scrollHere && prevProps.scrollHere !== scrollHere) {
       this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
     }
   }

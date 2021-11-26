@@ -2,13 +2,9 @@ const styles = (theme) => ({
 	root: {
 		position: "absolute",
 		right: theme.spacing(2),
-		top: -theme.spacing(10),
-		// right: theme.spacing(2),
-		// top: "10vh",
-		// backgroundColor: theme.palette.neutrals[300],
+		top: -92, // Search box height,
 		borderRadius: theme.spacing(2),
 		minWidth: 400,
-		// minHeight: 210
 	},
 	networkBox: {
 		backgroundColor: theme.palette.neutrals[300],
@@ -20,12 +16,23 @@ const styles = (theme) => ({
 		alignItems: "center",
 	},
 	networkLabel: {
-		margin: `0 ${theme.spacing(1)}px`,
+		margin: `0 ${theme.spacing(2)}px`,
 		minWidth: 100
 	},
+	networkLogoBox: {
+		position: 'relative',
+		margin: `0 0 ${theme.spacing()}px 0`
+	},
+	spinner: {
+		position: 'absolute',
+		top: -5,
+		left: -5,
+		color: theme.palette.text.secondary,
+		zIndex: 1,
+	},
 	networkLogo: {
-		width: 49,
-		height: 49
+		width: 48,
+		height: 48
 	},
 	titleBox: {
 		position: "relative",
@@ -49,9 +56,17 @@ const styles = (theme) => ({
 	},
 	iconFetching: {
 		position: "absolute",
-		right: theme.spacing(3),
+		right: 48 + theme.spacing(3),
 		top: theme.spacing(3),
 		color: theme.palette.text.secondary
+	},
+	iconScroll: {
+		position: "absolute",
+		right: theme.spacing(1),
+		top: theme.spacing(1),
+		color: theme.palette.text.secondary,
+		// transform: "rotate(45deg)",
+		// boxShadow: "2px 2px #000"
 	},
 	settingsWrapperBox: {
 		margin: `${theme.spacing()}px 0`,

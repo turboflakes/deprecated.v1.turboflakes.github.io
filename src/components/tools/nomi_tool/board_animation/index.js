@@ -63,6 +63,13 @@ class BoardAnimation extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    // Layout
+		const {view} = this.props
+    if (view === "leaderboard" && prevProps.view !== view) {
+			console.log("__leaderboard", "scrollIntoView");
+      this.rootRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+    
     const {addresses, width, selected} = this.props
     if (prevProps.addresses.length !== addresses.length) {
       this.init()
@@ -143,9 +150,9 @@ class BoardAnimation extends Component {
         // from previous components/pages
         // 
         // window.innerHeight = Landing page height
-        // 410 => Nomi hero box height
-        // 92 => Search box height
-        const y = e.pageY - window.innerHeight - 410 - 92
+        // 384 => Nomi hero box height
+        // 60 + 32 => Search box height + margin
+        const y = e.pageY - window.innerHeight - 384 - 92
         // Identify which ball was clicked
         let ball = balls.find(ball => Math.sqrt((x-ball.x)*(x-ball.x) + (y-ball.y)*(y-ball.y)) < ball.radius)
         if (!!ball) {

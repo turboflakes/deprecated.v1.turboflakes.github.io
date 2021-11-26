@@ -5,12 +5,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from '../reducers'
 import apiMiddleware from '../middlewares/api'
 import validatorMiddleware from '../middlewares/validator'
+import layoutMiddleware from '../middlewares/layout'
 
 
 const configureStore = () => {
   const store = createStore(
     reducer, /* preloadedState, */
-    composeWithDevTools(applyMiddleware(thunk, apiMiddleware, validatorMiddleware, createLogger())
+    composeWithDevTools(applyMiddleware(thunk, apiMiddleware, validatorMiddleware, layoutMiddleware, createLogger())
     )
   )
 

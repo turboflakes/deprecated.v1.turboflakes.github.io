@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 // import IconButton from '@material-ui/core/IconButton';
@@ -8,6 +10,7 @@ import Link from '@material-ui/core/Link';
 import NomiTool from '../../tools/nomi_tool'
 import CrunchTool from '../../tools/crunch_tool'
 import EmaTool from '../../tools/ema_tool'
+import Scroll from '../../scroll'
 // import CocoTool from '../../tools/coco_tool'
 import logo from '../../../assets/logo/logo_1_color_subtract_turboflakes_.svg';
 import crunchLogo from '../../../assets/crunchbot.svg';
@@ -18,28 +21,23 @@ import styles from './styles'
 
 class IndexPage extends Component {
 
-  state = {
-    view: undefined
-  }
+  rootRef = React.createRef();
 
-  handleNext = (view) => {
-    this.setState({view})
-    this.timeout = setTimeout(() => {
-      this.setState({view: undefined})
-    }, 100)
-  }
-
-  componentWillUnmount() {
-    if (this.timeout) {
-      clearTimeout(this.timeout)
+  componentDidUpdate(prevProps) {
+    // Layout
+    const {view} = this.props
+    if (view === "top" && prevProps.view !== view) {
+      console.log("__componentDidUpdate", view);
+      this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
     }
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, view } = this.props;
     
     return (
-      <Box className={classes.root}>
+      <Box className={classes.root} ref={this.rootRef}>
+        <Scroll />
         <Box className={classes.heroBox}>
           <Box className={classes.logoBox} align="center">
             <img src={logo} className={classes.logo} alt={"logo"}/>
@@ -76,7 +74,7 @@ class IndexPage extends Component {
             </Typography>
             <Box className={classes.charactersBox}>
               <Link component="button" className={classes.characterLink} 
-                onClick={() => this.handleNext("nomi")}>
+                onClick={() => this.props.scrollIntoView("nomi")}>
                 <img src={nomiLogo} className={classes.characterLogo} alt={"nomi-logo"}/>
                 <Typography
                   component="span"
@@ -87,7 +85,7 @@ class IndexPage extends Component {
                 </Typography>
               </Link>
               <Link component="button" className={classes.characterLink} 
-                onClick={() => this.handleNext("crunch")}>
+                onClick={() => this.props.scrollIntoView("crunch")}>
                 <img src={crunchLogo} className={classes.characterLogo} alt={"crunch-logo"}/>
                 <Typography
                   component="span"
@@ -98,7 +96,7 @@ class IndexPage extends Component {
                 </Typography>
               </Link>
               <Link component="button" className={classes.characterLink}  
-                onClick={() => this.handleNext("ema")}>
+                onClick={() => this.props.scrollIntoView("ema")}>
                 <img src={emaLogo} className={classes.characterLogo} alt={"ema-logo"}/>
                 <Typography
                   component="span"
@@ -139,11 +137,10 @@ class IndexPage extends Component {
         </Box>
 
         {/* Tool sections here */}
-        <NomiTool scrollIntoView={this.state.view === "nomi"}/>
-        <CrunchTool scrollIntoView={this.state.view === "crunch"}/>
-        <EmaTool scrollIntoView={this.state.view === "ema"}/>
+        <NomiTool scrollHere={view === "nomi"}/>
+        <CrunchTool scrollHere={view === "crunch"}/>
+        <EmaTool scrollHere={view === "ema"}/>
         {/* <CocoTool scrollIntoView={this.state.view === "coco"}/> */}
-
       </Box>
     )
   }
@@ -153,4 +150,10 @@ IndexPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(IndexPage);
+const mapStateToProps = (state, ownProps) => ({
+  view: state.layout.view,
+  isFetching: !!state.fetchers.async,
+})
+
+
+export default connect(mapStateToProps, {scrollIntoView})(withStyles(styles)(IndexPage));

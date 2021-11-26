@@ -6,6 +6,7 @@ import { query, get } from '../../../../actions/validator'
 import { selectAddress, addAddresses } from '../../../../actions/leaderboard'
 import { setMaxNominations } from '../../../../actions/web3'
 import { error, info } from '../../../../actions/notification'
+import { scrollIntoView, enableScroll, disableScroll } from '../../../../actions/layout'
 import {
 	getNetworks,
 	getNetworkWSS,
@@ -29,10 +30,12 @@ import List from '@material-ui/core/List';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
+import Fab from '@material-ui/core/Fab';
 import DownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDownRounded';
+import { ReactComponent as PushPinIcon } from '../../../../assets/push_pin_white_24dp.svg';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
 import Nominate from '../nominate'
@@ -40,6 +43,8 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 class Leaderboard extends Component {
+
+	rootRef = React.createRef();
 
 	constructor(props) {
 		super(props);
@@ -98,6 +103,12 @@ class Leaderboard extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
+		// Layout
+		const {view} = this.props
+    if (view === "leaderboard" && prevProps.view !== view) {
+			this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    }
+
 		const {network, weights, intervals, quantity} = this.props
 		if ((prevProps.network !== network) || (prevProps.weights !== weights) || (prevProps.intervals !== intervals) || (prevProps.quantity !== quantity)){
 			if (weights === "0,0,0,0,0,0,0,0,0,0") {
@@ -126,7 +137,7 @@ class Leaderboard extends Component {
 			// Fetch featured Validators details
 			featured.forEach(stash => this.props.get(stash))
 		}
-		
+
 	}
 
 	getMaxNominations = async () => {
@@ -179,22 +190,41 @@ class Leaderboard extends Component {
     this.setState({ anchorEl: null });
   };
 
+	handleTogglePin = () => {
+		const {scrollable} = this.props
+		if (scrollable) {
+			return this.props.scrollIntoView("leaderboard")
+		}
+		this.props.enableScroll()
+	}
+
 	render() {
-		const { classes, network, networkDetails, addresses, accountName, totalCandidates, maxNominations, isFetching } = this.props;
+		const { classes, network, networkDetails, addresses, accountName, totalCandidates, 
+			maxNominations, isFetching, scrollable } = this.props;
 		const { anchorEl } = this.state
 		const open = Boolean(anchorEl);
 
 		return (
-			<div className={classes.root} >
+			<div className={classes.root} ref={this.rootRef}>
 				{/* <Tabs value={2-getNetworkIndex(network)} onChange={this.handleChangeTab} >
 					<Tab label="Westend" />
 					<Tab label="Kusama" />
 					<Tab label="Polkadot" />
 				</Tabs> */}
 				<Box className={classes.networkBox}>
-					<IconButton color="primary" size="small" onClick={this.handleNetworkSite}>
-						<img src={getNetworkIcon(network)} className={classes.networkLogo} alt={"Icon"}/>
-					</IconButton>
+					<Box className={classes.networkLogoBox}>
+						<IconButton color="primary" size="small" onClick={this.handleNetworkSite}>
+							<img src={getNetworkIcon(network)} className={classes.networkLogo} alt={"Icon"}/>
+						</IconButton>
+						<Fade in={isFetching} 
+								style={{
+										transitionDelay: !isFetching ? '10ms' : '0ms',
+									}}
+									unmountOnExit
+								>
+								<CircularProgress size={64} className={classes.spinner} />
+						</Fade>
+					</Box>
 					<Typography variant="subtitle1" color="textSecondary" className={classes.networkLabel} >
 						{networkDetails.name}
 					</Typography>
@@ -217,14 +247,14 @@ class Leaderboard extends Component {
 							</MenuItem>
 						))}
 					</Menu>
-					<Fade in={isFetching} 
-							style={{
-									transitionDelay: !isFetching ? '10ms' : '0ms',
-								}}
-								unmountOnExit
-							>
-							<CircularProgress size={24} className={classes.iconFetching} />
-					</Fade>
+					<IconButton aria-label="Enable / Disable scroll"
+						style={scrollable ? {
+								transform: "rotate(45deg)",
+								boxShadow: "2px 2px #000"
+							} : null}
+						className={classes.iconScroll} onClick={this.handleTogglePin}>
+						<PushPinIcon />
+					</IconButton>
 				</Box>
 				<Box className={classes.titleBox}>
 					<Typography variant="h4" color="textSecondary">
@@ -303,6 +333,8 @@ Leaderboard.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+	const view = state.layout.view
+	const scrollable = state.layout.scrollable
 	const network = selectors.getApiNetwork(state)
 	const networkDetails = selectors.getApiNetworkDetails(state)
   const weights = state.leaderboard.weights
@@ -311,6 +343,8 @@ const mapStateToProps = (state, ownProps) => {
 	const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
 	const featured = selectors.getApiFeatured(state)
 	return {
+		view,
+		scrollable,
 		network,
 		networkDetails,
 		addresses,
@@ -325,5 +359,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { query, get, error, info, selectAddress, addAddresses, setMaxNominations })(withRouter(withStyles(styles)(Leaderboard)));
+export default connect(mapStateToProps, { query, get, error, info, selectAddress, 
+	addAddresses, setMaxNominations, scrollIntoView, enableScroll, disableScroll })(withRouter(withStyles(styles)(Leaderboard)));
   

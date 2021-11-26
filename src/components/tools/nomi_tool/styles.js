@@ -6,6 +6,7 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     padding: `${theme.spacing(8)}px 0`,
+    height: theme.spacing(48) // 384px
   },
   meet: {
     fontFamily: "'Roboto', sans-serif",
