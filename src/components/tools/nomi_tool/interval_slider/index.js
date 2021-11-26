@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import isEqual from 'lodash/isEqual'
 import { changeWeight, changeInterval } from '../../../../actions/leaderboard'
 import { parseIntervalsIntoArray } from '../../../../utils/math'
+import { selectors } from '../../../../selectors'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
@@ -12,10 +13,11 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 const valueLabelFormat = (v, i) => {
-	if (i === 1) {
-		return `${v} ]`	
-	}
-	return `[ ${v}`
+	return `${v}`	
+	// if (i === 1) {
+	// 	return `${v}]`	
+	// }
+	// return `[${v}`
 }
 
 class IntervalSlider extends Component {
@@ -59,18 +61,20 @@ class IntervalSlider extends Component {
 	componentDidUpdate	(prevProps) {
 		const {interval} = this.props
 		if (!isEqual(prevProps.interval, interval)) {
-			console.log("__prevProps.interval", prevProps.interval, interval);
 			this.setState({interval})
 		}
 	}
 
 	handleOnChange = (event, value) => {
-		// event.preventDefault()
+		event.preventDefault()
+		if (value[0] >= value[1] || value[1] < value[0]) {
+			return
+		}
 		this.setState({interval: value})
 	}
 
 	handleOnChangeCommitted = (event, value) => {
-		// event.preventDefault()
+		event.preventDefault()
 		const {index, intervals, location, parseFunc} = this.props
 		let query = new URLSearchParams(location.search)
 		let _intervals = parseIntervalsIntoArray(intervals)
@@ -82,31 +86,31 @@ class IntervalSlider extends Component {
 	}
 
  	render() {
-		const { classes, title, unit, limits} = this.props;
+		const { classes, title, unit, limits, minLimitLabel, maxLimitLabel, stepFraction} = this.props;
 
 		const marks = [
 			{
 				value: limits[0],
-				label: `${Math.round(limits[0])} ${unit || ''}`,
+				label: `${minLimitLabel || ''}${Math.round(limits[0])} ${unit || ''}`,
 			},
 			{
 				value: limits[1],
-				label: `${Math.round(limits[1])} ${unit || ''}`,
+				label: `${maxLimitLabel || ''}${Math.round(limits[1])} ${unit || ''}`,
 			},
 		];
 
-		const step = parseInt(((limits[1] - limits[0]) / 10), 10)
+		const step = !!stepFraction ? parseInt(((limits[1] - limits[0]) / stepFraction), 10) : 1
 
 		return (
 			<div className={classes.root}>
 				<Box className={classes.traitBox}>
 						<Box className={classes.titleBox}>
-							<Typography variant="subtitle2" color="textSecondary" align="left"
+							{/* <Typography variant="subtitle2" color="textSecondary" align="left"
 								className={classes.title}>
 								{title}
-							</Typography>
+							</Typography> */}
 						</Box>
-					</Box>
+				</Box>
 					<Slider
 						ref={this.sliderRef}
 						className={classes.slider}
@@ -117,14 +121,13 @@ class IntervalSlider extends Component {
 						color="primary"
 						value={this.state.interval}
 						getAriaValueText={valueLabelFormat}
+						// ValueLabelComponent={ValueLabelComponent}
 						valueLabelFormat={valueLabelFormat}
 						valueLabelDisplay="on"
 						step={step}
 						min={!!limits ? parseInt(limits[0], 10) : 0}
 						max={!!limits ? parseInt(limits[1], 10) : 0}
 						marks={marks}
-						onMouseDown={this.handleOnMouseDown}
-						onMouseUp={this.handleOnMouseUp}
 						onChange={this.handleOnChange}
 						onChangeCommitted={this.handleOnChangeCommitted}
 					/>
@@ -146,7 +149,9 @@ IntervalSlider.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+	const networkDetails = selectors.getApiNetworkDetails(state)
 	return {
+		networkDetails,
 		intervals: state.leaderboard.intervals,
 		isFetching: !!state.fetchers.async
   }

@@ -10,6 +10,8 @@ import {
 	parseIntervalsIntoArray,
 	parseRateIntervalToPercentage, 
 	parseCommissionIntervalToPercentage, 
+  parsePointsInterval,
+  parseTokenInPlanckIntervalToUnit
 } from '../../../../utils/math'
 import { encodeAddress } from '@polkadot/util-crypto'
 import Box from '@material-ui/core/Box';
@@ -63,8 +65,10 @@ class AccountInfoTable extends Component {
     const {address, weights, intervals} = this.props
     if (!!address) {
       this.props.get(address)
-      if (!!weights) {
+      if (!!weights && !!intervals) {
         this.props.getValidatorRank(address, {q: "Board", w: weights, i: intervals}, {expire: 0})
+      } else if (!!weights) {
+        this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
       }
     }
   }
@@ -74,8 +78,12 @@ class AccountInfoTable extends Component {
     if (!isFetching && !!address && prevProps.address !== address && !account.id) {
       this.props.get(address)
     }
-    if (!isFetching && (prevProps.weights !== weights || prevProps.intervals !== intervals || (!!address && prevProps.address !== address))) {
-      this.props.getValidatorRank(address, {q: "Board", w: weights, i: intervals}, {expire: 0})
+    if (!isFetching && !!address && (prevProps.weights !== weights || prevProps.intervals !== intervals || prevProps.address !== address)) {
+      if (!!weights && !!intervals) {
+        this.props.getValidatorRank(address, {q: "Board", w: weights, i: intervals}, {expire: 0})
+      } else if (!!weights) {
+        this.props.getValidatorRank(address, {q: "Board", w: weights}, {expire: 0})
+      }
     }
   }
 	
@@ -236,14 +244,14 @@ const mapStateToProps = (state, ownProps) => {
     return [
       addRow('Inclusion rate', rateDisplay(account.inclusion_rate), `[${parseRateIntervalToPercentage(_intervals[0])}] %`, `${scoreFn(0)} / ${weightsFn(0)}`),
       addRow('Commission', commissionDisplay(account.commission), `[${parseCommissionIntervalToPercentage(_intervals[1])}] %`, `${scoreFn(1)} / ${weightsFn(1)}`),
-      // addRow('Nominators', account.nominators, `[${Math.round(meta.limits.nominators.min)}, ${Math.round(meta.limits.nominators.max)}]`, `${scoreFn(2)} / ${weightsFn(2)}`),
-      // addRow('Average points', Math.round(account.avg_reward_points), `[${Math.round(meta.limits.avg_reward_points.min)}, ${Math.round(meta.limits.avg_reward_points.max)}]`, `${scoreFn(3)} / ${weightsFn(3)}`),
-      // addRow('Stake rewards', !!account.reward_staked ? 'yes' : 'no', `[${Math.round(meta.limits.reward_staked.min)}, ${Math.round(meta.limits.reward_staked.max)}]`, `${scoreFn(4)} / ${weightsFn(4)}`),
-      // addRow("Active", !!account.active ? 'yes' : 'no', `[${Math.round(meta.limits.active.min)}, ${Math.round(meta.limits.active.max)}]`, `${scoreFn(5)} / ${weightsFn(5)}`),
-      // addRow(`Own self-stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake, networkDetails), `[${stakeDisplayNoSymbol(meta.limits.own_stake.min, networkDetails)}, ${stakeDisplayNoSymbol(meta.limits.own_stake.max, networkDetails)}]`, `${scoreFn(6)} / ${weightsFn(6)}`),
-      // addRow(`Total stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake + account.nominators_stake, networkDetails), `[${stakeDisplayNoSymbol(meta.limits.total_stake.min, networkDetails)}, ${stakeDisplayNoSymbol(meta.limits.total_stake.max, networkDetails)}]`, `${scoreFn(7)} / ${weightsFn(7)}`),
-      // addRow("Identity", account.judgements, `[${Math.abs(Math.round(meta.limits.judgements.min))}, ${Math.round(meta.limits.judgements.max)}]`, `${scoreFn(8)} / ${weightsFn(8)}`),
-      // addRow("Sub-accounts", account.sub_accounts, `[${Math.abs(Math.round(meta.limits.sub_accounts.min))}, ${Math.round(meta.limits.sub_accounts.max)}]`, `${scoreFn(9)} / ${weightsFn(9)}`),
+      addRow('Nominators', account.nominators, `[${_intervals[2]}]`, `${scoreFn(2)} / ${weightsFn(2)}`),
+      addRow('Average points', Math.round(account.avg_reward_points), `[${parsePointsInterval(_intervals[3])}]`, `${scoreFn(3)} / ${weightsFn(3)}`),
+      addRow('Stake rewards', !!account.reward_staked ? 'yes' : 'no', `[${_intervals[4]}]`, `${scoreFn(4)} / ${weightsFn(4)}`),
+      addRow("Active", !!account.active ? 'yes' : 'no', `[${_intervals[5]}]`, `${scoreFn(5)} / ${weightsFn(5)}`),
+      addRow(`Own self-stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake, networkDetails), `[${parseTokenInPlanckIntervalToUnit(_intervals[6], networkDetails)}]`, `${scoreFn(6)} / ${weightsFn(6)}`),
+      addRow(`Total stake (${networkDetails.token_symbol})`, stakeDisplayNoSymbol(account.own_stake + account.nominators_stake, networkDetails), `[${parseTokenInPlanckIntervalToUnit(_intervals[7], networkDetails)}]`, `${scoreFn(7)} / ${weightsFn(7)}`),
+      addRow("Identity", account.judgements, `[${_intervals[8]}]`, `${scoreFn(8)} / ${weightsFn(8)}`),
+      addRow("Sub-accounts", account.sub_accounts, `[${_intervals[9]}]`, `${scoreFn(9)} / ${weightsFn(9)}`),
       // addRow("Total", "", "", `${displayScore(account.scores)} / ${displayMaxScore(weights)}`),
     ];
   }

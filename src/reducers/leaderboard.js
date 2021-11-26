@@ -25,6 +25,10 @@ export const intervals = (state = "", action) => {
         i[0] = [0.2, 1]
         // Default Commission [0, 200_000_000] = [0, 20%]
         i[1] = [0, 0.2*COMMISSION_PLANCK]
+        // Default Nominators number [0, 255]
+        i[2] = [0, 255]
+        // Default Sub-accounts number [0, 10]
+        i[9] = [0, 10]
         return parseIntervalsArrayIntoString(i)
       }
       return state

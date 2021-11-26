@@ -76,6 +76,7 @@ class QuantitySlider extends Component {
 
  	render() {
 		const { classes, value, apiCacheInfo } = this.props;
+		// TODO: We should include here how many validators we rank based on the filters defined
 		return (
 			<div className={classes.root}>
 				<Typography variant="subtitle2" color="textSecondary" id="discrete-slider" gutterBottom>

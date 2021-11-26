@@ -18,5 +18,8 @@ const styles = (theme) => ({
 		// display: "flex",
 		// justifyContent: "space-between"
 	},
+	noSlider: {
+		minHeight: 64
+	}
 })
 export default styles

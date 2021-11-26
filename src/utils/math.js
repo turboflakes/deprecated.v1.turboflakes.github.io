@@ -9,18 +9,18 @@ export const parseInt = (x) => {
 }
 
 // rate is defined between 0 and 1
-export const parseRateToPercentage = (x) => {
+export const parseRateToPercentage = (value) => {
     try {
-        return Math.round(Number(x)*100)
+        return Math.round(Number(value)*100)
     } catch (e) {
         console.error(e);
         return 0
     }
 }
 
-export const parseRateIntervalToPercentage = (x) => {
+export const parseRateIntervalToPercentage = (interval = [0,0]) => {
     try {
-        return [parseRateToPercentage(x[0]), parseRateToPercentage(x[1])]
+        return [parseRateToPercentage(interval[0]), parseRateToPercentage(interval[1])]
     }
     catch (e) {
         console.error(e);
@@ -28,13 +28,13 @@ export const parseRateIntervalToPercentage = (x) => {
     }
 }
 
-export const parseToRate = (x) => {
-    return x/100
+export const parseToRate = (value) => {
+    return value/100
 }
 
-export const parseIntervalToRate = (x) => {
+export const parseIntervalToRate = (interval = [0,0]) => {
     try {
-        return [parseToRate(x[0]), parseToRate(x[1])]
+        return [parseToRate(interval[0]), parseToRate(interval[1])]
     }
     catch (e) {
         console.error(e);
@@ -43,18 +43,18 @@ export const parseIntervalToRate = (x) => {
 }
 
 // commission is defined in plancks
-export const parseCommissionToPercentage = (x) => {
+export const parseCommissionToPercentage = (value) => {
     try {
-        return Math.round((Number(x)/COMMISSION_PLANCK)*100)
+        return Math.round((Number(value)/COMMISSION_PLANCK)*100)
     } catch (e) {
         console.error(e);
         return 0
     }
 }
 
-export const parseCommissionIntervalToPercentage = (x) => {
+export const parseCommissionIntervalToPercentage = (interval = [0,0]) => {
     try {
-        return [parseCommissionToPercentage(x[0]), parseCommissionToPercentage(x[1])]
+        return [parseCommissionToPercentage(interval[0]), parseCommissionToPercentage(interval[1])]
     }
     catch (e) {
         console.error(e);
@@ -62,13 +62,13 @@ export const parseCommissionIntervalToPercentage = (x) => {
     }
 }
 
-export const parseToCommission = (x) => {
-    return (x/100) * COMMISSION_PLANCK
+export const parseToCommission = (value) => {
+    return (value/100) * COMMISSION_PLANCK
 }
 
-export const parseIntervalToCommission = (x) => {
+export const parseIntervalToCommission = (interval = [0,0]) => {
     try {
-        return [parseToCommission(x[0]), parseToCommission(x[1])]
+        return [parseToCommission(interval[0]), parseToCommission(interval[1])]
     }
     catch (e) {
         console.error(e);
@@ -76,7 +76,73 @@ export const parseIntervalToCommission = (x) => {
     }
 }
 
+export const parsePoints = (value) => {
+    try {
+        return Math.ceil(Number(value))
+    } catch (e) {
+        console.error(e);
+        return 0
+    }
+}
 
+export const parsePointsInterval = (interval = [0,0]) => {
+    try {
+        return [Math.floor(Number(interval[0])), Math.ceil(Number(interval[1]))]
+    }
+    catch (e) {
+        console.error(e);
+        return [0, 0]
+    }
+}
+
+export const parseTokenInPlanckToUnit = (value, networkDetails) => {
+    try {
+        if (!!networkDetails.token_decimals) {
+            const networkDecimals = Math.pow(10, Number(networkDetails.token_decimals))
+            return Math.round(Number(value)/networkDecimals)
+        }
+        return Number(value)
+    }
+    catch (e) {
+        console.error(e);
+        return 0
+    }
+}
+
+export const parseTokenInPlanckIntervalToUnit = (interval = [0,0], networkDetails) => {
+    try {
+        return [parseTokenInPlanckToUnit(interval[0], networkDetails), parseTokenInPlanckToUnit(interval[1], networkDetails)]
+    }
+    catch (e) {
+        console.error(e);
+        return [0, 0]
+    }
+}
+
+export const parseTokenInUnitToPlanck = (value, networkDetails) => {
+    try {
+        if (!!networkDetails.token_decimals) {
+            const networkDecimals = Math.pow(10, Number(networkDetails.token_decimals))
+            return Number(value)*networkDecimals
+        }
+        return Number(value)
+    }
+    catch (e) {
+        console.error(e);
+        return 0
+    }
+}
+
+export const parseTokenIntervalInUnitToPlanck = (interval = [0,0], networkDetails) => {
+    try {
+        return [parseTokenInUnitToPlanck(interval[0], networkDetails), parseTokenInUnitToPlanck(interval[1], networkDetails)]
+    }
+    catch (e) {
+        console.error(e);
+        return [0, 0]
+    }
+}
+// 
 
 export const parseWeightsIntoArray = (w) => {
     try {

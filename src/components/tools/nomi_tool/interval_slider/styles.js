@@ -14,7 +14,7 @@ const styles = (theme) => ({
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
-		minHeight: 56,
+		minHeight: 64,
 	},
 	title: {
 
@@ -23,7 +23,7 @@ const styles = (theme) => ({
 
 	},
 	slider: {
-		width: 192,
+		width: 256,
 		margin: `0 ${theme.spacing(1)}px`
 	},
 	sliderValueLabel: {

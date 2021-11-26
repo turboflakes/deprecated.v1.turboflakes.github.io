@@ -45,6 +45,6 @@ export const getNetworkKey = (index) => Object.keys(networkSettings)[index]
 export const isNetworkSupported = (network) => Object.keys(networkSettings).includes(network)
 
 
-export const WEIGHTS = [7,8,6,9,6,4,3,7,5,8]
+export const WEIGHTS = [7,8,6,9,6,4,3,7,8,5]
 export const LIMITS = ["0:0","0:0","0:0","0:0","0:0","0:0","0:0","0:0","0:0","0:0"]
 export const COMMISSION_PLANCK = 1000000000
