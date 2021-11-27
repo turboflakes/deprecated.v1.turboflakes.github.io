@@ -20,6 +20,24 @@ const styles = (theme) => ({
   logo: {
     width: 260,
   },
+  logoAnimateOutRight:{
+    animation: "bounceOutRight",
+  	animationDuration: "0.4s",
+  },
+  logoAnimateInRight:{
+    animation: "fadeInRight",
+  	animationDuration: "0.7s",
+  },
+  logoFixedBoard: {
+    position: "absolute",
+    top: "calc(100vh + 384px)",
+    left: theme.spacing(8), 
+    width: 240,
+  },
+  logoAnimateInLeft:{
+    animation: "fadeInLeft",
+  	animationDuration: "0.7s",
+  },
   link: {
     textDecoration: "underline"
   },
@@ -46,7 +64,7 @@ const styles = (theme) => ({
     position: "absolute",
     color: "rgba(255,255,255,0.8)",
     zIndex: 1,
-    top: theme.spacing(2),
+    bottom: theme.spacing(2),
     left: theme.spacing(2)
   }
 })

@@ -2,7 +2,7 @@ const styles = (theme) => ({
   root: {
     position: "relative",
     // height: "90vh",
-    backgroundColor: theme.palette.neutrals[100],
+    backgroundColor: "rgba(241, 241, 240, 0.95)",
     borderBottom: `solid 2px #FFF`,
   },
   canvas: {

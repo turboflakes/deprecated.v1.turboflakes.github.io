@@ -21,7 +21,7 @@ class Scroll extends Component {
     scrollY: 0,
     nomiSectionTop: window.innerHeight,
     nomiSectionTopOneQuarter: window.innerHeight + ((NOMI_HEADER_HEIGHT + NOMI_SEARCH_HEIGHT) / 4),
-    nomiLeaderboardTopY: window.innerHeight + NOMI_HEADER_HEIGHT,
+    nomiLeaderboardTopY: window.innerHeight + (NOMI_HEADER_HEIGHT + NOMI_SEARCH_HEIGHT) - (0.1 * window.innerHeight),
     nomiBoardTopY: window.innerHeight + NOMI_HEADER_HEIGHT + NOMI_SEARCH_HEIGHT,
     nomiBoardTopOneQuarter: window.innerHeight + NOMI_HEADER_HEIGHT + NOMI_SEARCH_HEIGHT + ((window.innerHeight * 0.9) / 4)
   }
@@ -69,7 +69,7 @@ class Scroll extends Component {
       clearTimeout(this.timer);        
     }
 
-    this.timer = setTimeout(this.handleScrollFinished, 150)
+    this.timer = setTimeout(this.handleScrollFinished, 500)
     
   }
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { selectors } from '../../../selectors'
-import { serializeBoard } from '../../../utils/serialize'
 import { selectAddress, clearAddress } from '../../../actions/leaderboard'
 import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
@@ -38,7 +38,7 @@ class NomiTool extends Component {
   }
 
   render() {
-    const { classes, addresses, selected } = this.props;
+    const { classes, addresses, selected, view, scrollable } = this.props;
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
@@ -73,7 +73,12 @@ class NomiTool extends Component {
             </Typography>
           </Box>
           <Box align="right" className={classes.logoBox}>
-            <img src={nomiLogo} className={classes.logo} alt={"nomi logo"}/>
+            <img src={nomiLogo} 
+            className={classNames(classes.logo,
+              view === "leaderboard" ? classes.logoAnimateOutRight : null,
+              !scrollable ? classes.logoFixedBoard : null,
+              !scrollable ? classes.logoAnimateInLeft : null,
+              )} alt={"nomi logo"}/>
           </Box>
         </Box>
         <Box className={classes.searchBox} align="center">
@@ -106,10 +111,14 @@ NomiTool.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const scrollable = state.layout.scrollable
+  const view = state.layout.view
   const quantity = state.leaderboard.quantity
   const selected = state.leaderboard.selected
   const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
   return {
+    scrollable,
+    view,
     quantity,
     selected,
     addresses,

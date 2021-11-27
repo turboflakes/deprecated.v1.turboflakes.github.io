@@ -6,7 +6,6 @@ import isEqual from 'lodash/isEqual'
 import { changeWeight, changeInterval } from '../../../../actions/leaderboard'
 import { parseIntervalsIntoArray } from '../../../../utils/math'
 import { selectors } from '../../../../selectors'
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
@@ -86,7 +85,7 @@ class IntervalSlider extends Component {
 	}
 
  	render() {
-		const { classes, title, unit, limits, minLimitLabel, maxLimitLabel, stepFraction} = this.props;
+		const { classes, unit, limits, minLimitLabel, maxLimitLabel, stepFraction} = this.props;
 
 		const marks = [
 			{

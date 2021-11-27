@@ -107,9 +107,9 @@ class CrunchTool extends Component {
                 paragraph
               >Use <b>Crunch</b> by default or with custom options.
             </Typography>
-            {/* <CodeBlock>
+            <CodeBlock>
               {gist1}
-            </CodeBlock> */}
+            </CodeBlock>
             <Typography
               variant="body1"
               color="textPrimary"
