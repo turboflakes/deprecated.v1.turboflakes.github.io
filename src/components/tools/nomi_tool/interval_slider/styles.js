@@ -3,7 +3,8 @@ const styles = (theme) => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-between",
-		marginBottom: theme.spacing()
+		padding: theme.spacing(1),
+		backgroundColor: "rgba(77,77,77,0.7)",
 	},
 	traitBox: {
 		display: "flex",
@@ -23,8 +24,8 @@ const styles = (theme) => ({
 
 	},
 	slider: {
-		width: 256,
-		margin: `0 ${theme.spacing(1)}px`
+		width: "100%",
+		margin: `0 ${theme.spacing(3)}px 0 ${theme.spacing(2)}px`
 	},
 	sliderValueLabel: {
 		// left: 'calc(-50% - 2px)',

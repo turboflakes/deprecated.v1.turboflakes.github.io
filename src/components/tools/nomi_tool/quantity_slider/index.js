@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { selectors } from '../../../../selectors'
 import { changeQuantity } from '../../../../actions/leaderboard'
 import { parseInt } from '../../../../utils/math'
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -75,25 +75,28 @@ class QuantitySlider extends Component {
 	}
 
  	render() {
-		const { classes, value, apiCacheInfo } = this.props;
+		const { classes, value } = this.props;
 		// TODO: We should include here how many validators we rank based on the filters defined
 		return (
 			<div className={classes.root}>
-				<Typography variant="subtitle2" color="textSecondary" id="discrete-slider" gutterBottom>
-				Display the Top {value} {!!apiCacheInfo.validators ? `out of ${apiCacheInfo.validators} ` : `...`}Validators..
-				</Typography>
-				<Slider
-					className={classes.slider}
-					defaultValue={this.state.value}
-					getAriaValueText={() => value}
-					color="primary"
-					valueLabelDisplay="on"
-					step={null}
-					min={8}
-					max={128}
-					marks={marks}
-					onChangeCommitted={this.handleOnChangeCommitted}
-				/>
+				<Box className={classes.sliderBox}>
+					<Typography variant="body" color="textSecondary" align="left"
+						className={classes.title}>
+						Quantity
+					</Typography>
+					<Slider
+						className={classes.slider}
+						defaultValue={this.state.value}
+						getAriaValueText={() => value}
+						color="primary"
+						valueLabelDisplay="on"
+						step={null}
+						min={8}
+						max={128}
+						marks={marks}
+						onChangeCommitted={this.handleOnChangeCommitted}
+					/>
+				</Box>
 			</div>
 		)
 	}
@@ -105,7 +108,6 @@ QuantitySlider.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		apiCacheInfo: selectors.getApiCacheDetails(state),
 		value: state.leaderboard.quantity,
 		isFetching: !!state.fetchers.async,
   }

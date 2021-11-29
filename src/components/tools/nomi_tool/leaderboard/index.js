@@ -16,7 +16,6 @@ import {
 	getNetworkURL 
 } from '../../../../constants'
 import { selectors } from '../../../../selectors'
-import {serializeBoard} from '../../../../utils/serialize'
 import { isValidAddress } from '../../../../utils/crypto'
 import { web3Enable } from '@polkadot/extension-dapp';
 import { ApiPromise, WsProvider } from '@polkadot/api';
@@ -30,7 +29,6 @@ import List from '@material-ui/core/List';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
-import Fab from '@material-ui/core/Fab';
 import DownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
@@ -193,7 +191,8 @@ class Leaderboard extends Component {
 	handleTogglePin = () => {
 		const {scrollable} = this.props
 		if (scrollable) {
-			return this.props.scrollIntoView("leaderboard")
+			this.props.scrollIntoView("leaderboard")
+			return this.props.disableScroll()
 		}
 		this.props.enableScroll()
 	}
@@ -205,7 +204,7 @@ class Leaderboard extends Component {
 		const open = Boolean(anchorEl);
 
 		return (
-			<div className={classes.root} ref={this.rootRef}>
+			<Box className={classes.root} ref={this.rootRef} align="right">
 				{/* <Tabs value={2-getNetworkIndex(network)} onChange={this.handleChangeTab} >
 					<Tab label="Westend" />
 					<Tab label="Kusama" />
@@ -256,26 +255,81 @@ class Leaderboard extends Component {
 						<PushPinIcon />
 					</IconButton>
 				</Box>
-				<Box className={classes.titleBox}>
+				<Box className={classes.titleBox} align="left">
 					<Typography variant="h4" color="textSecondary">
 						LEADERBOARD
 					</Typography>
-					<Typography variant="subtitle2" color="textSecondary" gutterBottom>
+					<Typography variant="subtitle2" color="textSecondary">
 						The highest-ranked Validators
 					</Typography>
+					{/* <Typography variant="caption" color="textSecondary" >
+						Synced at {!!apiCacheInfo.syncing_finished_at ? moment.unix(apiCacheInfo.syncing_finished_at).format('lll') : '...'}
+					</Typography> */}
 					<IconButton aria-label="Open / Close leaderboard settings" align="right"
 						className={classes.iconSettings} onClick={() => this.setState({openSettings: !this.state.openSettings})}>
 						{!this.state.openSettings ? <RightIcon /> : <DownIcon />}
 					</IconButton>
 				</Box>
-				<Fade
-					in={this.state.openSettings}
-					style={{
-						transitionDelay: !this.state.openSettings ? '800ms' : '0ms',
-					}}
-					unmountOnExit
-				>
-					<Box className={classes.settingsWrapperBox}>
+				
+				{this.state.openSettings ?
+					<Fade
+						in={this.state.openSettings}
+						style={{
+							transitionDelay: !this.state.openSettings ? '800ms' : '0ms',
+						}}
+						unmountOnExit
+					> 
+						<Tabs value={this.state.settingsTabIndex} className={classes.tabs}
+							onChange={this.handleChangeControlTab} >
+							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Nominate") : "Connect Wallet" } 
+								icon={!!totalCandidates ? <span className={classes.counter}>{`${totalCandidates}`}</span> : null}
+								classes={{
+									wrapper: classes.tabWrapper,
+									labelIcon: classes.tabLabelIcon,
+								}}
+								className={classes.tab} />
+							<Tab label="Settings" className={classes.tab} />
+						</Tabs>
+					</Fade> : null}
+				
+				<Box className={classes.settingsBox}>
+					<Box className={classes.leaderboardBox}>
+						<Box align="left">
+							<Box className={classes.iconExpandBox}>
+								<IconButton aria-label="expand/collapse validator name"
+									className={classes.iconExpand} 
+									onClick={() => this.setState({expandLeaderboard: !this.state.expandLeaderboard})}>
+									{!this.state.expandLeaderboard ? <LeftIcon /> : <DownIcon /> }
+								</IconButton>
+								{this.state.expandLeaderboard ? 
+									<Typography variant="caption" color="textSecondary">
+										Highest rank on top 
+									</Typography> : null}
+							</Box>
+							<Box className={classes.listBox} style={{
+									minWidth: !this.state.expandLeaderboard ? 55 : 288
+								}}>
+								<List className={classes.list}>
+									{addresses.map((address, index) => 
+										<AccountItem address={address} key={index} 
+											expanded={this.state.expandLeaderboard}/>)}
+								</List>
+							</Box>
+						</Box>
+					</Box>
+					{/*  */}
+					<Box>
+						{this.state.openSettings && this.state.settingsTabIndex === 0 ? 
+							<Nominate 
+								isEnabled={this.state.isExtensionEnabled} 
+								maxNominations={maxNominations}
+								onSelectTop={this.handleSelectTop} /> : null}
+
+						{this.state.openSettings && this.state.settingsTabIndex === 1 ?
+							<ControlPanel /> : null}
+					</Box>
+				</Box>
+					{/* <Box className={classes.settingsWrapperBox}>
 						<Tabs value={this.state.settingsTabIndex} onChange={this.handleChangeControlTab} >
 							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Nominate") : "Connect Wallet" } 
 								icon={!!totalCandidates ? <span className={classes.counter}>{`${totalCandidates}`}</span> : null}
@@ -321,9 +375,8 @@ class Leaderboard extends Component {
 								<ControlPanel />
 								}
 						</Box>
-					</Box>
-				</Fade>
-			</div>
+					</Box> */}
+			</Box>
 		)
 	}
 }

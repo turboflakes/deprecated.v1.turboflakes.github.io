@@ -2,11 +2,13 @@ const styles = (theme) => ({
 	root: {
 		marginBottom: theme.spacing(1) / 2
 	},
+	sliderBox: {
+		display: "flex",
+		alignItems: "center",
+	},
 	slider: {
-		// maxWidth: "96%",
-		// maxWidth: "60%",
-		width: 384,
-		marginLeft: theme.spacing(1)
+		width: 224,
+		margin: `0 ${theme.spacing(1)}px 0 ${theme.spacing(2)}px`
 	},
 })
 export default styles

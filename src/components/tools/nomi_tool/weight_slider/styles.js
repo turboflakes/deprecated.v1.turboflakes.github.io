@@ -3,7 +3,8 @@ const styles = (theme) => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-between",
-		marginBottom: theme.spacing()
+		padding: theme.spacing(1),
+		backgroundColor: "rgba(77,77,77,0.9)",
 	},
 	traitBox: {
 		display: "flex",
@@ -15,7 +16,7 @@ const styles = (theme) => ({
 		flexDirection: "column",
 		justifyContent: "center",
 		minHeight: 64,
-		width: 128,
+		width: 112,
 	},
 	title: {
 
@@ -23,12 +24,9 @@ const styles = (theme) => ({
 	caption: {
 
 	},
-	sliderBox: {
-		margin: `${theme.spacing(1)}px 0`
-	},
 	slider: {
-		width: 128,
-		margin: `0 ${theme.spacing(1)}px`
+		width: "100%",
+		margin: `0 ${theme.spacing(1)}px 0 ${theme.spacing(2)}px`
 	},
 })
 export default styles

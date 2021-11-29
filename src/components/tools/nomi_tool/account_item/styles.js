@@ -11,6 +11,7 @@ const styles = (theme) => ({
 		overflow: "visible",
 	},
 	itemText: {
+		fontSize: "1rem",
 		color: theme.palette.text.secondary,
 		padding: `0 ${theme.spacing()}px`
 	},

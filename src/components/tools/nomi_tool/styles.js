@@ -66,6 +66,13 @@ const styles = (theme) => ({
     zIndex: 1,
     bottom: theme.spacing(2),
     left: theme.spacing(2)
+  },
+  watermarkSync: {
+    position: "absolute",
+    color: "rgba(255,255,255,0.8)",
+    zIndex: 1,
+    bottom: theme.spacing(1) / 2 ,
+    left: theme.spacing(2)
   }
 })
 export default styles

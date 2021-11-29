@@ -1,12 +1,14 @@
 const styles = (theme) => ({
 	root: {
 		position: "absolute",
-		right: theme.spacing(2),
-		top: -92, // Search box height,
+		right: theme.spacing(1),
+		// top: -92, // Search box height,
+		top: "calc(-10vh)", // since nomi board takes 90vh of space
 		borderRadius: theme.spacing(2),
-		minWidth: 400,
+		padding: `${theme.spacing(1)}px 0 0 0`,
 	},
 	networkBox: {
+		width: 384,
 		backgroundColor: theme.palette.neutrals[300],
 		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
 		borderTopLeftRadius: theme.spacing(3),
@@ -35,6 +37,7 @@ const styles = (theme) => ({
 		height: 48
 	},
 	titleBox: {
+		width: 384,
 		position: "relative",
 		backgroundColor: theme.palette.neutrals[300],
 		padding: `0 ${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px`,
@@ -73,24 +76,20 @@ const styles = (theme) => ({
 	},
 	settingsBox: {
 		display: "flex",
-		height: 695,
-		// maxWidth: 400,
-		width: 640,
-		backgroundColor: "rgba(77,77,77,0.9)",
-		// borderTopRightRadius: theme.spacing(3),
-		borderBottomRightRadius: theme.spacing(3)
+		height: 704, // maxHeight
 	},
 	leaderboardBox:{
 		position: "relative",
 		display: "flex",
 		alignItems: "start",
-		borderRight: `2px solid ${theme.palette.neutrals[100]}`,		
+		marginRight: 2
 	},
 	iconExpandBox: {
 		zIndex: 1,
 		backgroundColor: "rgba(77,77,77,0.9)",
 		borderTopLeftRadius: theme.spacing(3),
-		padding: `${theme.spacing()/2}px 0 0 ${theme.spacing()/2}px`
+		padding: `${theme.spacing()/2}px 0 ${theme.spacing()/2}px ${theme.spacing()/2}px`,
+		marginBottom: 2
 	},
 	iconExpand: {
 		zIndex: 1,
@@ -100,9 +99,12 @@ const styles = (theme) => ({
 		backgroundColor: "rgba(77,77,77,0.9)",
 		borderBottomLeftRadius: theme.spacing(3),
 		overflow: "auto",
-		height: 643,
+		height: 652,
 	},
 	list: {
+	},
+	tabs: {
+		marginTop: theme.spacing(1)
 	},
 	tab: {
     zIndex: 1,

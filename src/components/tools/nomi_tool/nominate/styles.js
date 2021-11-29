@@ -1,9 +1,11 @@
 const styles = (theme) => ({
 	root: {
-		position: "absolute",
+		position: "relative",
 		padding: theme.spacing(2),
 		color: theme.palette.text.secondary,
-		width: "100%"
+		height: 710,
+		width: 384,
+		backgroundColor: "rgba(77,77,77,0.9)",
 	},
 	formControl: {
 		marginBottom: theme.spacing(2),
@@ -33,7 +35,8 @@ const styles = (theme) => ({
 		borderRadius: theme.spacing(2),
 		backgroundColor: "rgba(255,255,255,0.1)",
 		overflow: "auto",
-		height: 484,
+		marginBottom: theme.spacing(2),
+		height: "74%",
 	},
 	list: {
 
