@@ -1,59 +1,68 @@
 const styles = (theme) => ({
 	root: {
 		position: "relative",
-		right: -384,
 		color: theme.palette.text.secondary,
-		// width: 768,
-		// height: "75vh",
-		// backgroundColor: "rgba(77,77,77,0.9)",
-		borderBottomRightRadius: theme.spacing(3),
-	},
-	iconExpand: {
-		position: "absolute",
-		top: theme.spacing(1),
-		right: 392,
-		color: theme.palette.text.secondary,
+		// borderBottomRightRadius: theme.spacing(3),
+		overflow: "hidden"
 	},
 	quantityBoxWrapper:{ 
-		width: "100%",
+		borderTopRightRadius: theme.spacing(3),
 		backgroundColor: "rgba(77,77,77,0.9)",
-		marginBottom: 2, 
+		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(1)}px ${theme.spacing(2)}px`,
+		display: "flex",
+		marginBottom: 1
 	},
 	quantityBox: {
-		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
+	},
+	nominateBox: {
+		display: "flex",
+		alignItems: "flex-start",
+		justifyContent: "flex-end",
+		flexGrow: 1
 	},
 	slidersTitles: {
 		display: "flex",
 	},
-	weightsTitle: {
-		width: 288,
-		padding: `0 ${theme.spacing(2)}px`,
+	titleBox: {
+		padding: `${theme.spacing(2)}px 0 0 ${theme.spacing(2)}px`,
 	},
-	filtersTitle: {
-		width: 288,
-		padding: `0 ${theme.spacing(2)}px`,
+	weightsTitleBox: {
+		backgroundColor: "rgba(77,77,77,0.9)"
+	},
+	slidersTitleBox: {
+		backgroundColor: "rgba(77,77,77,0.8)"
 	},
 	slidersBox: {
 		display: "flex",
 		justifyContent: "space-between",
 		overflowY: "scroll",
 		overflowX: "hidden",
-		height: 599,
+		height: 248,
 	},
 	weightsSlidersBox:{
-		width: 288,
+		width: 260,
 	},
 	intervalsSlidersBox:{
-		width: 288,
-		// height: "10
-	},
-	slidersInline: {
-		// display: "flex",
-		// justifyContent: "space-between"
+		width: 260,
 	},
 	noSlider: {
-		minHeight: 80,
-		backgroundColor: "rgba(77,77,77,0.7)",
+		minHeight: 76,
+		backgroundColor: "rgba(77,77,77,0.8)",
+	},
+	popoverList: {
+		marginLeft: theme.spacing(1)
+	},
+	counter: {
+		backgroundColor: "#FFF",
+		borderRadius: "50%",
+		width: 26,
+		height: 26,
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		margin: `0 ${theme.spacing(1)}px 0px 0`,
+		color: theme.palette.text.primary,
+		fontSize: "inherit !important"
 	},
 	
 })

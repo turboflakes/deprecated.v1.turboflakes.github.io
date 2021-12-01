@@ -45,7 +45,7 @@ class AccountItem extends Component {
 		const { classes, address, account, selected, expanded, networkDetails, isFetching } = this.props;
     const stash = encodeAddress(address, networkDetails.ss58_format)
 		const isSelected = account.id === selected
-    const name = !!account.name ? `${nameDisplay(account.name, 22)}` : `${stashDisplay(stash)}`
+    const name = !!account.name ? `${nameDisplay(account.name, 20)}` : `${stashDisplay(stash)}`
 		return (
       <ListItem className={classes.root} button disableGutters 
         onClick={() => this.handleOnClick(address)} 
@@ -53,7 +53,10 @@ class AccountItem extends Component {
           root: classes.rootItem,
           selected: classes.selectedItem
         }} selected={isSelected} >
-				<ListItemAvatar>
+				<ListItemAvatar
+          classes={{
+            root: classes.rootItemAvatar
+          }}>
           {isFetching ? 
             <Fade in={isFetching} 
                 style={{

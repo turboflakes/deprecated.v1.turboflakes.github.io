@@ -9,7 +9,6 @@ import {
 	getNetworkWSS, 
 } from '../../../../constants'
 import {
-  web3FromSource,
   web3Accounts,
 } from '@polkadot/extension-dapp';
 import { ApiPromise, WsProvider } from '@polkadot/api';
@@ -22,8 +21,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/CloseRounded';
 import NominationItem from '../nomination_item'
-import {hashDisplay} from '../../../../utils/display'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -102,56 +102,8 @@ class Nominate extends Component {
     this.props.onSelectTop()
   }
 
-  handleNominate = () => {
-    // https://polkadot.js.org/docs/api/cookbook/blocks
-    const {network, account, nominations} = this.props
-    // console.log("__account: ", account);
-    const provider = new WsProvider(getNetworkWSS(network));
-    ApiPromise.create({ provider }).then(api => {
-      web3FromSource(account.meta.source).then(injector => {
-        const ext = api.tx.staking.nominate(nominations)
-        const {method: { method, section }} = ext
-        const extDescription = `${section}.${method}`
-        ext.signAndSend(account.address, { signer: injector.signer }, ({status, events = []}) => {
-          console.log(`Transaction status ${status.type}`)
-          
-          if (status.isInBlock) {
-            console.log(`Transaction in block (https://${network}.subscan.io/extrinsic/${ext.hash.toString()})`)
-            
-            events.forEach(({ event }) => {
-              const url = {
-                href: `https://${network}.subscan.io/extrinsic/${ext.hash.toString()}`,
-                text: hashDisplay(status.hash.toString())
-              }
-              if (api.events.system.ExtrinsicSuccess.is(event)) {
-                this.props.success(`${extDescription} Success`, url)
-              } else if (api.events.system.ExtrinsicFailed.is(event)) {
-                // extract the data for this event
-                const [dispatchError] = event.data;
-                let errorInfo;
-
-                // decode the error
-                if (dispatchError.isModule) {
-                  // for module errors, we have the section indexed, lookup
-                  // (For specific known errors, we can also do a check against the
-                  // api.errors.<module>.<ErrorName>.is(dispatchError.asModule) guard)
-                  const decoded = api.registry.findMetaError(dispatchError.asModule);
-
-                  errorInfo = `${decoded.section}.${decoded.name}`;
-                } else {
-                  // Other, CannotLookup, BadOrigin, no extra info
-                  errorInfo = dispatchError.toString();
-                }
-                this.props.error(`${extDescription} Failed: ${errorInfo}`, url)
-              }
-            })
-          } 
-        })
-        .catch(error => {
-          return this.props.error(`${error}`)
-        });
-      })
-    })
+  handleClose = () => {
+    this.props.onClose()
   }
 
  	render() {
@@ -206,6 +158,11 @@ class Nominate extends Component {
 
     return (
       <div className={classes.root}>
+        <IconButton aria-label="collapse nomination panel"
+					className={classes.iconClose}
+					onClick={this.handleClose}>
+					<CloseIcon />
+				</IconButton>
         <Typography
           variant="subtitle2"
           color="textSecondary"
@@ -229,29 +186,41 @@ class Nominate extends Component {
           >
             {accounts.map(acc => <MenuItem key={acc.address} value={acc.address}>{parseName(acc)}</MenuItem>)}
           </Select>
+          <Button variant="outlined" color="inherit" onClick={this.handleSelectTop}
+            className={classes.button} 
+            // fullWidth
+            disabled={!maxNominations}>
+            Select top {maxNominations}
+          </Button>
         </FormControl>
-        <Box className={classes.actionsBox}>
+        {/* <Box className={classes.actionsBox}>
           <Button variant="outlined" color="inherit" onClick={this.handleSelectTop}
             className={classes.button} 
             fullWidth
             disabled={!maxNominations}>
             Select top {maxNominations}
-          </Button>
-          <Button variant="contained" 
+          </Button> */}
+          {/* <Button variant="outlined" color="inherit" onClick={this.handleSelectTop}
+            className={classes.button} 
+            fullWidth
+            disabled={!maxNominations}>
+            I'm Feeling Lucky
+          </Button> */}
+          {/* <Button variant="contained" 
             color="primary"
             onClick={this.handleNominate}
             fullWidth
             disabled={!nominations.length || !account.address}>
             Nominate            
-          </Button>
-        </Box>
+          </Button> */}
+        {/* </Box> */}
         <Typography
           variant="subtitle2"
           color="textSecondary"
           align="left"
           className={classes.candidatesLabel}
           gutterBottom
-          >Validator candidates {!!nominations.length ? <span className={classes.candidatesCounter}>{nominations.length}</span> : null}
+          >Validator candidates
         </Typography>
         <Box className={classes.listBox}>
           <List className={classes.list}>
@@ -268,7 +237,8 @@ Nominate.propTypes = {
 	classes: PropTypes.object.isRequired,
   isEnabled: PropTypes.bool.isRequired,
   maxNominations: PropTypes.number.isRequired,
-  onSelectTop: PropTypes.func.isRequired
+  onSelectTop: PropTypes.func.isRequired,
+  onClose: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import moment from 'moment';
 import { selectors } from '../../../selectors'
 import { selectAddress, clearAddress } from '../../../actions/leaderboard'
 import {scrollIntoView} from '../../../actions/layout'
@@ -39,7 +38,7 @@ class NomiTool extends Component {
   }
 
   render() {
-    const { classes, addresses, selected, view, scrollable, apiCacheInfo } = this.props;
+    const { classes, addresses, selected, view, scrollable } = this.props;
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
@@ -92,12 +91,6 @@ class NomiTool extends Component {
               align="left"
             >NOMI
           </Typography>
-          <Typography 
-            variant="caption"
-            className={classes.watermarkSync}
-            align="left">
-            Synced at {!!apiCacheInfo.syncing_finished_at ? moment.unix(apiCacheInfo.syncing_finished_at).format('lll') : '...'}
-          </Typography>
           <BoardAnimation 
               addresses={addresses}
               selected={selected}
@@ -124,7 +117,6 @@ const mapStateToProps = (state, ownProps) => {
   const selected = state.leaderboard.selected
   const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
   return {
-    apiCacheInfo: selectors.getApiCacheDetails(state),
     scrollable,
     view,
     quantity,

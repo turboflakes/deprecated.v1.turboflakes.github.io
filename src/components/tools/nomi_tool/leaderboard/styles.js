@@ -10,7 +10,7 @@ const styles = (theme) => ({
 	networkBox: {
 		width: 384,
 		backgroundColor: theme.palette.neutrals[300],
-		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
+		padding: `${theme.spacing(1)}px 0 0 ${theme.spacing(1)}px`,
 		borderTopLeftRadius: theme.spacing(3),
 		borderTopRightRadius: theme.spacing(3),
 		position: "relative",
@@ -40,9 +40,10 @@ const styles = (theme) => ({
 		width: 384,
 		position: "relative",
 		backgroundColor: theme.palette.neutrals[300],
-		padding: `0 ${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px`,
+		padding: `0 0 ${theme.spacing(2)}px ${theme.spacing(2)}px`,
 		borderBottomLeftRadius: theme.spacing(3),
 		borderBottomRightRadius: theme.spacing(3),
+		marginBottom: 2,
 	},
 	rootIconClasses: {
 		color: theme.palette.text.primary,
@@ -68,28 +69,40 @@ const styles = (theme) => ({
 		right: theme.spacing(1),
 		top: theme.spacing(1),
 		color: theme.palette.text.secondary,
-		// transform: "rotate(45deg)",
-		// boxShadow: "2px 2px #000"
 	},
 	settingsWrapperBox: {
 		margin: `${theme.spacing()}px 0`,
 	},
-	settingsBox: {
+	panelBox: {
 		display: "flex",
-		height: 704, // maxHeight
+	},
+	configBox: {
+		borderTopRightRadius: theme.spacing(3),
+	},
+	configHeaderBox: {
+		display: "flex",
+		justifyContent: "flex-end",
+		backgroundColor: "rgba(77,77,77,0.9)",
+		borderTopRightRadius: theme.spacing(3),
 	},
 	leaderboardBox:{
 		position: "relative",
 		display: "flex",
 		alignItems: "start",
-		marginRight: 2
+		marginRight: 1
+		// borderRight: "1px solid rgba(77,77,77,0.8)"
 	},
-	iconExpandBox: {
+	expandBox: {
 		zIndex: 1,
 		backgroundColor: "rgba(77,77,77,0.9)",
 		borderTopLeftRadius: theme.spacing(3),
-		padding: `${theme.spacing()/2}px 0 ${theme.spacing()/2}px ${theme.spacing()/2}px`,
-		marginBottom: 2
+		// marginBottom: 2,
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center"
+	},
+	expandTitle: {
+		padding: `0 ${theme.spacing(2)}px`,
 	},
 	iconExpand: {
 		zIndex: 1,
@@ -97,45 +110,17 @@ const styles = (theme) => ({
 	},
 	listBox: {
 		backgroundColor: "rgba(77,77,77,0.9)",
-		borderBottomLeftRadius: theme.spacing(3),
 		overflow: "auto",
-		height: 652,
+		height: 698,
 	},
 	list: {
 	},
-	tabs: {
-		marginTop: theme.spacing(1)
+	footerBox: {
+		minWidth: 48,
+		minHeight: 21,
+		padding: `0 ${theme.spacing(2)}px`,
+		backgroundColor: "rgba(77,77,77,0.9)",
+		borderBottomLeftRadius: theme.spacing(3),
 	},
-	tab: {
-    zIndex: 1,
-		height: 48,
-		backgroundColor: "#4D4D4D",
-		// marginRight: -32,
-		borderTopLeftRadius: 16,
-		borderTopRightRadius: 16,
-		borderBottom: "2px solid #FFF",
-		fontSize: "0.8rem",
-		'&.Mui-selected' : {
-			color: theme.palette.text.secondary,
-		},
-	},
-	counter: {
-		backgroundColor: "#FFF",
-		borderRadius: "50%",
-		width: 26,
-		height: 26,
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		margin: `0 ${theme.spacing(1)}px 0 0`,
-		color: theme.palette.text.primary
-	},
-	tabWrapper: {
-		display: "flex",
-		flexDirection: "row"
-	},
-	tabLabelIcon: {
-		minHeight: 0
-	}
 })
 export default styles

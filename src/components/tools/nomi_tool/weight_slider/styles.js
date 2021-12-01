@@ -15,8 +15,8 @@ const styles = (theme) => ({
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
-		minHeight: 64,
-		width: 112,
+		minHeight: 60,
+		width: 98,
 	},
 	title: {
 

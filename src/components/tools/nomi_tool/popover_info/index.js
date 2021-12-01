@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import Popover from '@material-ui/core/Popover';
+import Link from '@material-ui/core/Link';
 import ClearIcon from '@material-ui/icons/Clear';
 import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,22 +25,28 @@ class PopoverInfo extends Component {
   };
 
   render() {
-    const { classes, isFetching } = this.props
+    const { classes, isFetching, linkComponent } = this.props
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
       <span className={classes.root}>
-        <IconButton
-          aria-describedby={open ? 'popover-info-pep' : undefined} 
-          disabled={isFetching}
-          onClick={this.handleClick}
-          classes={{
-            root: classes.iconRoot,
-            ...this.props.iconClasses
-          }}>
-          <InfoIcon />
-        </IconButton>
+        {linkComponent ? 
+        <Link color="inherit" onClick={this.handleClick}>
+          {linkComponent}
+        </Link>
+         : 
+            <IconButton
+            aria-describedby={open ? 'popover-info-pep' : undefined} 
+            disabled={isFetching}
+            onClick={this.handleClick}
+            classes={{
+              root: classes.iconRoot,
+              ...this.props.iconClasses
+            }}>
+            <InfoIcon />
+          </IconButton>
+        }
         <Popover
           id={"popover-info-pep"}
           className={classes.popover}

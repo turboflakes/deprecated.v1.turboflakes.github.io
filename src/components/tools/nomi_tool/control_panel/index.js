@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import isEqual from 'lodash/isEqual'
+import { get } from '../../../../actions/validator'
+import { addAddresses } from '../../../../actions/leaderboard'
+import { error, info, success } from '../../../../actions/notification'
+import { setMaxNominations } from '../../../../actions/web3'
 import { selectors } from '../../../../selectors'
+import {hashDisplay} from '../../../../utils/display'
 import { 
 	parseIntervalsIntoArray,
 	parseRateIntervalToPercentage, 
@@ -13,15 +19,24 @@ import {
 	parseTokenInPlanckIntervalToUnit,
 	parseTokenIntervalInUnitToPlanck
 } from '../../../../utils/math'
+import {
+	getNetworkWSS, 
+} from '../../../../constants'
+import {
+	web3Enable,
+  web3FromSource,
+} from '@polkadot/extension-dapp';
+import { ApiPromise, WsProvider } from '@polkadot/api';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import DownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
-import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
+import Button from '@material-ui/core/Button';
+import NominateIcon from '@material-ui/icons/PanToolRounded';
+import VisibilityIcon from '@material-ui/icons/VisibilityRounded';
 import QuantitySlider from '../quantity_slider';
 import WeightSlider from '../weight_slider';
 import IntervalSlider from '../interval_slider';
-import PopoverWeight from '../popover_weight';
+import PopoverInfo from '../popover_info';
+import Nominate from '../nominate'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -39,41 +54,194 @@ import styles from './styles'
 class ControlPanel extends Component {
 
 	state = {
-		expanded: true
+		isExtensionEnabled: false,
+		nominate: false
+	}
+
+	componentDidMount() {
+		// Polkadot{.js} extension
+		// returns an array of all the injected sources
+    // (this needs to be called first, before other requests)
+    web3Enable('turboflakes.io').then(extensions => {
+      // console.log("__web3Enable", extensions);
+      if (extensions.length === 0) {
+        // no extension installed, or the user did not accept the authorization
+        // in this case we should inform the use and give a link to the extension
+        return;
+      } 
+
+			this.setState({isExtensionEnabled: true})
+      
+			this.getMaxNominations().then(a => {
+				this.props.setMaxNominations(a.toNumber())
+			})
+			
+    });
+	}
+
+	componentDidUpdate(prevProps) {
+		const {network} = this.props
+		if (prevProps.network !== network) {
+			// Change network update maxNominations constant
+			if (this.state.isExtensionEnabled) {
+				this.getMaxNominations().then(a => {
+					this.props.setMaxNominations(a.toNumber())
+				})
+			}
+		}
+
+		const {featured} = this.props
+		if (prevProps.featured.length !== featured.length) {
+			// Add featured stashes to the list of candidates
+			this.props.addAddresses(featured)
+			// Fetch featured Validators details
+			featured.forEach(stash => this.props.get(stash))
+		}
+	}
+
+	getMaxNominations = async () => {
+    const {network} = this.props
+    const provider = new WsProvider(getNetworkWSS(network));
+    const api = await ApiPromise.create({ provider });
+    return api.consts.staking.maxNominations;  
+  }
+
+	handleOnClickNominate = () => {
+		const {nominate} = this.state
+		if (nominate) {
+			this.handleNominate()
+			return
+		}
+		this.setState({nominate: true})
+	}
+
+	handleNominate = () => {
+    // https://polkadot.js.org/docs/api/cookbook/blocks
+    const {network, account, nominations} = this.props
+    // console.log("__account: ", account);
+    const provider = new WsProvider(getNetworkWSS(network));
+    ApiPromise.create({ provider }).then(api => {
+      web3FromSource(account.meta.source).then(injector => {
+        const ext = api.tx.staking.nominate(nominations)
+        const {method: { method, section }} = ext
+        const extDescription = `${section}.${method}`
+        ext.signAndSend(account.address, { signer: injector.signer }, ({status, events = []}) => {
+          console.log(`Transaction status ${status.type}`)
+          
+          if (status.isInBlock) {
+            console.log(`Transaction in block (https://${network}.subscan.io/extrinsic/${ext.hash.toString()})`)
+            
+            events.forEach(({ event }) => {
+              const url = {
+                href: `https://${network}.subscan.io/extrinsic/${ext.hash.toString()}`,
+                text: hashDisplay(status.hash.toString())
+              }
+              if (api.events.system.ExtrinsicSuccess.is(event)) {
+                this.props.success(`${extDescription} Success`, url)
+              } else if (api.events.system.ExtrinsicFailed.is(event)) {
+                // extract the data for this event
+                const [dispatchError] = event.data;
+                let errorInfo;
+
+                // decode the error
+                if (dispatchError.isModule) {
+                  // for module errors, we have the section indexed, lookup
+                  // (For specific known errors, we can also do a check against the
+                  // api.errors.<module>.<ErrorName>.is(dispatchError.asModule) guard)
+                  const decoded = api.registry.findMetaError(dispatchError.asModule);
+
+                  errorInfo = `${decoded.section}.${decoded.name}`;
+                } else {
+                  // Other, CannotLookup, BadOrigin, no extra info
+                  errorInfo = dispatchError.toString();
+                }
+                this.props.error(`${extDescription} Failed: ${errorInfo}`, url)
+              }
+            })
+          } 
+        })
+        .catch(error => {
+          return this.props.error(`${error}`)
+        });
+      })
+    })
+  }
+
+	handleSelectTop = () => {
+		const {addresses, maxNominations} = this.props
+		this.props.addAddresses(addresses.slice(0, maxNominations))
 	}
 
 	render() {
-		const { classes, apiCacheInfo, limits, intervals, networkDetails, quantity } = this.props;
+		const { classes, apiCacheInfo, limits, intervals, networkDetails, 
+			quantity, totalCandidates, account, nominations, maxNominations } = this.props;
 
 		let _limits = parseIntervalsIntoArray(limits)
 		let _intervals = parseIntervalsIntoArray(intervals)
-		
+
 		return (
-			<Box className={classes.root} align="left" style={{ right: this.state.expanded ? 0 : -384}}>
-				<IconButton aria-label="expand/collapse validator name"
-					className={classes.iconExpand}
-					style={{ right: this.state.expanded ? 8 : 392}}
-					onClick={() => this.setState({expanded: !this.state.expanded})}>
-					{!this.state.expanded ? <RightIcon /> : <DownIcon /> }
-				</IconButton>
+			<Box className={classes.root} align="left">
+					
 				<Box className={classes.quantityBoxWrapper} >
 					<Box className={classes.quantityBox} align="left">
 						<Typography variant="subtitle2" color="textSecondary" gutterBottom>
-						Display the Top {quantity} {!!apiCacheInfo.validators ? `out of ${apiCacheInfo.validators} ` : `...`}Validators
+						Display Top {quantity} {!!apiCacheInfo.validators ? `out of ${apiCacheInfo.validators} ` : `...`}Validators
 						</Typography>
 						<QuantitySlider />
 					</Box>
-					<Box className={classes.slidersTitles}>
-						<Typography variant="subtitle2" color="textSecondary" className={classes.weightsTitle}>
-							Weights<PopoverWeight />
-						</Typography>
-						<Typography variant="subtitle2" color="textSecondary" className={classes.filtersTitle}>
-							Filters
-						</Typography>
+					<Box className={classes.nominateBox}>
+						<Button variant="contained" 
+							color="primary"
+							onClick={this.handleOnClickNominate}
+							startIcon={<span className={classes.counter}>{`${totalCandidates}`}</span>}
+							endIcon={this.state.nominate ? <NominateIcon /> : <VisibilityIcon />}
+							disabled={this.state.nominate && (!nominations.length || !account.address)}
+							>
+							Nominate            
+						</Button>
 					</Box>
 				</Box>
-				<Box className={classes.slidersBox}>
+
+				{ this.state.nominate ? 
+					<Nominate 
+						isEnabled={this.state.isExtensionEnabled} 
+						maxNominations={maxNominations}
+						onSelectTop={this.handleSelectTop}
+						onClose={() => this.setState({nominate: false})} /> : null}
+
+				<Box className={classes.slidersBox} style={{
+					height: this.state.nominate ? 308 : 678,
+				}}>
 					<Box className={classes.weightsSlidersBox}>
+						<Box className={classNames(classes.titleBox, classes.weightsTitleBox)} display="flex" alignItems="center">
+							<PopoverInfo linkComponent={
+								<Typography variant="subtitle2" color="textSecondary">
+									Weights
+								</Typography>
+								}>
+								<Typography variant="body2" color="inherit" paragraph>
+								Weights are your personal preferences and define the level of importance towards a specific trait.
+								</Typography>
+								<Typography variant="body2" color="inherit" >
+									The weight scale is defined in a 10-point ordinal scale. e.g:
+								</Typography>
+								<Typography variant="body2" color="inherit" className={classes.popoverList}>
+								0 = Not Applicable
+								</Typography>
+								<Typography variant="body2" color="inherit" className={classes.popoverList}>
+								1 = Less Important
+								</Typography>
+								<Typography variant="body2" color="inherit" className={classes.popoverList}>
+								5 = Moderately Important
+								</Typography>
+								<Typography variant="body2" color="inherit" className={classes.popoverList} gutterBottom>
+								10 = Very Important
+								</Typography>
+								<Typography variant="body2" color="inherit" gutterBottom>
+									Note: If you do not want a specific trait to interfer in the final score, you have the option to select <b className={classes.bold}>0 - Not Applicable</b>. 
+								</Typography>
+							</PopoverInfo>
+						</Box>
 						<WeightSlider index={0}
 							title="Inclusion rate"
 							description="The inclusion rate is the percentage of eras out of the past 84 that the validator was in the active set." 
@@ -148,6 +316,20 @@ class ControlPanel extends Component {
 							/>
 					</Box>
 					<Box className={classes.intervalsSlidersBox}>
+						<Box className={classNames(classes.titleBox, classes.slidersTitleBox)} display="flex" alignItems="center">
+							<PopoverInfo linkComponent={
+								<Typography variant="subtitle2" color="textSecondary">
+									Filters
+								</Typography>
+								}>
+								<Typography variant="body2" color="inherit" paragraph>
+								Filters lets you limit the number of Validators to be included in the rank calculation.
+								</Typography>
+								<Typography variant="body2" color="inherit" >
+								For example, you might want to be interested only in Validators with commission between 5% and 10%, so you can filter this specific trait so that a new rank is calculated for you.
+								</Typography>
+							</PopoverInfo>
+						</Box>
 						<IntervalSlider index={0}
 							title="Interval"
 							unit="%"
@@ -215,13 +397,23 @@ class ControlPanel extends Component {
 
 ControlPanel.propTypes = {
 	classes: PropTypes.object.isRequired,
+	expanded: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
 	const networkDetails = selectors.getApiNetworkDetails(state)
+	const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
+	const featured = selectors.getApiFeatured(state)
 	return {
+		addresses,
 		networkDetails,
 		apiCacheInfo: selectors.getApiCacheDetails(state),
+		network: selectors.getApiNetwork(state),
+		account: state.web3.selectedAccount,
+		nominations: state.leaderboard.nominations,
+		featured,
+		maxNominations: state.web3.maxNominations - featured.length > 0 ? state.web3.maxNominations - featured.length : 0,
+		totalCandidates: state.leaderboard.nominations.length,
 		quantity: state.leaderboard.quantity,
 		limits: state.leaderboard.limits,
 		intervals: state.leaderboard.intervals,
@@ -229,5 +421,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(ControlPanel));
+export default connect(mapStateToProps, {get, setMaxNominations, addAddresses, error, info, success})(withStyles(styles)(ControlPanel));
   

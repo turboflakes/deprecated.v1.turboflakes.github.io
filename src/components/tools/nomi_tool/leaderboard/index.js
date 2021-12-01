@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 import { query, get } from '../../../../actions/validator'
 import { selectAddress, addAddresses } from '../../../../actions/leaderboard'
 import { setMaxNominations } from '../../../../actions/web3'
@@ -9,7 +10,6 @@ import { error, info } from '../../../../actions/notification'
 import { scrollIntoView, enableScroll, disableScroll } from '../../../../actions/layout'
 import {
 	getNetworks,
-	getNetworkWSS,
 	getNetworkIcon, 
 	// getNetworkIndex, 
 	getNetworkKey, 
@@ -17,11 +17,7 @@ import {
 } from '../../../../constants'
 import { selectors } from '../../../../selectors'
 import { isValidAddress } from '../../../../utils/crypto'
-import { web3Enable } from '@polkadot/extension-dapp';
-import { ApiPromise, WsProvider } from '@polkadot/api';
 import Box from '@material-ui/core/Box';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
@@ -30,13 +26,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import DownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
+import UpIcon from '@material-ui/icons/KeyboardArrowUpRounded';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDownRounded';
 import { ReactComponent as PushPinIcon } from '../../../../assets/push_pin_white_24dp.svg';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
-import Nominate from '../nominate'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -63,7 +59,6 @@ class Leaderboard extends Component {
 			openSettings: true,
 			expandLeaderboard: false,
 			settingsTabIndex: 1,
-			isExtensionEnabled: false,
 			anchorEl: null
 		}
 	}
@@ -79,25 +74,6 @@ class Leaderboard extends Component {
 		if (this.state.address) {
 			this.props.selectAddress(this.state.address)
 		}
-
-		// Polkadot{.js} extension
-		// returns an array of all the injected sources
-    // (this needs to be called first, before other requests)
-    web3Enable('turboflakes.io').then(extensions => {
-      // console.log("__web3Enable", extensions);
-      if (extensions.length === 0) {
-        // no extension installed, or the user did not accept the authorization
-        // in this case we should inform the use and give a link to the extension
-        return;
-      } 
-
-			this.setState({isExtensionEnabled: true})
-      
-			this.getMaxNominations().then(a => {
-				this.props.setMaxNominations(a.toNumber())
-			})
-			
-    });
 	}
 
 	componentDidUpdate(prevProps) {
@@ -118,32 +94,8 @@ class Leaderboard extends Component {
 				this.props.query({q: "Board", w: weights, n: quantity})
 			}
 		}
-		
-		if (prevProps.network !== network) {
-			// Change network update maxNominations constant
-			if (this.state.isExtensionEnabled) {
-				this.getMaxNominations().then(a => {
-					this.props.setMaxNominations(a.toNumber())
-				})
-			}
-		}
-
-		const {featured} = this.props
-		if (prevProps.featured.length !== featured.length) {
-			// Add featured stashes to the list of candidates
-			this.props.addAddresses(featured)
-			// Fetch featured Validators details
-			featured.forEach(stash => this.props.get(stash))
-		}
 
 	}
-
-	getMaxNominations = async () => {
-    const {network} = this.props
-    const provider = new WsProvider(getNetworkWSS(network));
-    const api = await ApiPromise.create({ provider });
-    return api.consts.staking.maxNominations;  
-  }
 
 	handleNetworkSite = () => {
 		const { network } = this.props;
@@ -175,11 +127,6 @@ class Leaderboard extends Component {
 		this.handleCloseNetworkMenu()
 	}
 
-	handleSelectTop = () => {
-		const {addresses, maxNominations} = this.props
-		this.props.addAddresses(addresses.slice(0, maxNominations))
-	}
-
 	handleClickNetworkMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -198,8 +145,8 @@ class Leaderboard extends Component {
 	}
 
 	render() {
-		const { classes, network, networkDetails, addresses, accountName, totalCandidates, 
-			maxNominations, isFetching, scrollable } = this.props;
+		const { classes, network, networkDetails, addresses,
+			apiCacheInfo, isFetching, scrollable } = this.props;
 		const { anchorEl } = this.state
 		const open = Boolean(anchorEl);
 
@@ -224,7 +171,7 @@ class Leaderboard extends Component {
 								<CircularProgress size={64} className={classes.spinner} />
 						</Fade>
 					</Box>
-					<Typography variant="subtitle1" color="textSecondary" className={classes.networkLabel} >
+					<Typography variant="subtitle1" color="textSecondary" align="left" className={classes.networkLabel} >
 						{networkDetails.name}
 					</Typography>
 					<IconButton
@@ -262,73 +209,51 @@ class Leaderboard extends Component {
 					<Typography variant="subtitle2" color="textSecondary">
 						The highest-ranked Validators
 					</Typography>
-					{/* <Typography variant="caption" color="textSecondary" >
-						Synced at {!!apiCacheInfo.syncing_finished_at ? moment.unix(apiCacheInfo.syncing_finished_at).format('lll') : '...'}
-					</Typography> */}
 					<IconButton aria-label="Open / Close leaderboard settings" align="right"
 						className={classes.iconSettings} onClick={() => this.setState({openSettings: !this.state.openSettings})}>
-						{!this.state.openSettings ? <RightIcon /> : <DownIcon />}
+						{!this.state.openSettings ? <UpIcon /> : <DownIcon />}
 					</IconButton>
 				</Box>
 				
 				{this.state.openSettings ?
-					<Fade
-						in={this.state.openSettings}
-						style={{
-							transitionDelay: !this.state.openSettings ? '800ms' : '0ms',
-						}}
-						unmountOnExit
-					> 
-						<Tabs value={this.state.settingsTabIndex} className={classes.tabs}
-							onChange={this.handleChangeControlTab} >
-							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Nominate") : "Connect Wallet" } 
-								icon={!!totalCandidates ? <span className={classes.counter}>{`${totalCandidates}`}</span> : null}
-								classes={{
-									wrapper: classes.tabWrapper,
-									labelIcon: classes.tabLabelIcon,
-								}}
-								className={classes.tab} />
-							<Tab label="Settings" className={classes.tab} />
-						</Tabs>
-					</Fade> : null}
-				
-				<Box className={classes.settingsBox}>
-					<Box className={classes.leaderboardBox}>
-						<Box align="left">
-							<Box className={classes.iconExpandBox}>
-								<IconButton aria-label="expand/collapse validator name"
-									className={classes.iconExpand} 
-									onClick={() => this.setState({expandLeaderboard: !this.state.expandLeaderboard})}>
-									{!this.state.expandLeaderboard ? <LeftIcon /> : <DownIcon /> }
-								</IconButton>
-								{this.state.expandLeaderboard ? 
-									<Typography variant="caption" color="textSecondary">
-										Highest rank on top 
-									</Typography> : null}
+						<Box className={classes.panelBox}>
+							<Box className={classes.leaderboardBox} >
+								<Box align="right" >
+									<Box className={classes.expandBox}>
+										{this.state.expandLeaderboard ? 
+											<Typography variant="subtitle2" color="textSecondary" className={classes.expandTitle}>
+												Highest ranked on top 
+											</Typography> : null}
+										<IconButton aria-label="expand/collapse validator name"
+											className={classes.iconExpand} 
+											onClick={() => this.setState({expandLeaderboard: !this.state.expandLeaderboard})}>
+											{!this.state.expandLeaderboard ? <LeftIcon /> : <RightIcon /> }
+										</IconButton>
+									</Box>
+									<Box className={classes.listBox} style={{
+											minWidth: !this.state.expandLeaderboard ? 48 : 260
+										}}>
+										<List className={classes.list}>
+											{addresses.map((address, index) => 
+												<AccountItem address={address} key={index} 
+													expanded={this.state.expandLeaderboard}/>)}
+										</List>
+									</Box>
+									<Box className={classes.footerBox} align="left">
+										<Typography 
+											variant="caption"
+											color="textSecondary">
+											{this.state.expandLeaderboard ? `Synced at ${!!apiCacheInfo.syncing_finished_at ? moment.unix(apiCacheInfo.syncing_finished_at).format('lll') : '...'}` : ''}
+										</Typography>
+									</Box>
+								</Box>
 							</Box>
-							<Box className={classes.listBox} style={{
-									minWidth: !this.state.expandLeaderboard ? 55 : 288
-								}}>
-								<List className={classes.list}>
-									{addresses.map((address, index) => 
-										<AccountItem address={address} key={index} 
-											expanded={this.state.expandLeaderboard}/>)}
-								</List>
+							{/*  */}
+							<Box className={classes.configBox}>
+								<ControlPanel />
 							</Box>
 						</Box>
-					</Box>
-					{/*  */}
-					<Box>
-						{this.state.openSettings && this.state.settingsTabIndex === 0 ? 
-							<Nominate 
-								isEnabled={this.state.isExtensionEnabled} 
-								maxNominations={maxNominations}
-								onSelectTop={this.handleSelectTop} /> : null}
-
-						{this.state.openSettings && this.state.settingsTabIndex === 1 ?
-							<ControlPanel /> : null}
-					</Box>
-				</Box>
+					 : null}
 					{/* <Box className={classes.settingsWrapperBox}>
 						<Tabs value={this.state.settingsTabIndex} onChange={this.handleChangeControlTab} >
 							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Nominate") : "Connect Wallet" } 
@@ -404,6 +329,7 @@ const mapStateToProps = (state, ownProps) => {
 		weights,
 		intervals,
 		quantity,
+		apiCacheInfo: selectors.getApiCacheDetails(state),
 		accountName: !!state.web3.selectedAccount ? (!!state.web3.selectedAccount.meta ? state.web3.selectedAccount.meta.name : undefined) : undefined,
 		maxNominations: state.web3.maxNominations - featured.length > 0 ? state.web3.maxNominations - featured.length : 0,
 		totalCandidates: state.leaderboard.nominations.length,

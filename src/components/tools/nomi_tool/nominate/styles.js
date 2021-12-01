@@ -3,16 +3,23 @@ const styles = (theme) => ({
 		position: "relative",
 		padding: theme.spacing(2),
 		color: theme.palette.text.secondary,
-		height: 710,
-		width: 384,
-		backgroundColor: "rgba(77,77,77,0.9)",
+		backgroundColor: "rgba(77,77,77,0.98)",
+		marginBottom: 1
+	},
+	iconClose: {
+		position: "absolute",
+		top: theme.spacing(1),
+		right: theme.spacing(1),
+		color: theme.palette.text.secondary
 	},
 	formControl: {
+		display: "flex",
+		flexDirection: "row",
 		marginBottom: theme.spacing(2),
-		width: "100%"
 	},
 	actionsBox: {
 		display: "flex",
+		justifyContent: "space-between",
 		marginBottom: theme.spacing(2),
 	},
 	select: {
@@ -20,7 +27,9 @@ const styles = (theme) => ({
 		border: `2px solid ${theme.palette.text.secondary}`,
 		borderColor: theme.palette.text.secondary,
 		color: theme.palette.text.secondary,
-		minHeight: 44
+		minHeight: 44,
+		maxWidth: 236,
+		marginRight: theme.spacing(2)
 	},
 	selectRoot: {
 		padding: `8px 16px`,
@@ -29,14 +38,14 @@ const styles = (theme) => ({
 		...theme.typography.button,
 	},
 	button: {
-		marginRight: theme.spacing(2),
+		maxWidth: 236
+		// marginRight: theme.spacing(2),
 	},
 	listBox: {
 		borderRadius: theme.spacing(2),
 		backgroundColor: "rgba(255,255,255,0.1)",
 		overflow: "auto",
-		marginBottom: theme.spacing(2),
-		height: "74%",
+		height: 216,
 	},
 	list: {
 

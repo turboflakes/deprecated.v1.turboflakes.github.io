@@ -10,8 +10,12 @@ const styles = theme => ({
     },
   },
   iconRoot: {
-    color: theme.palette.primary.light,
-    padding: theme.spacing(1)
+    color: theme.palette.text.secondary,
+    padding: theme.spacing(1),
+    marginLeft: -theme.spacing(1),
+    '&.Mui-disabled': {
+      color: theme.palette.text.secondary
+    }
   },
   list: {
     marginLeft: theme.spacing(1)

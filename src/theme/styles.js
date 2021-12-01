@@ -243,6 +243,16 @@ export default createMuiTheme({
         justifyContent: "flex-end"
       }
     },
+    MuiTab: {
+      root: {
+        padding: 0,
+        minHeight: 48,
+        '&.MuiTab-labelIcon .MuiTab-wrapper > *:first-child': {
+          marginBottom: 0
+        }
+      },
+      
+    },
     // MuiTab: {
     //   root: {
     //     '@media screen and (min-width: 900px)': {

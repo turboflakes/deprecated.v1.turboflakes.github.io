@@ -4,7 +4,7 @@ const styles = (theme) => ({
 		alignItems: "center",
 		justifyContent: "space-between",
 		padding: theme.spacing(1),
-		backgroundColor: "rgba(77,77,77,0.7)",
+		backgroundColor: "rgba(77,77,77,0.8)",
 	},
 	traitBox: {
 		display: "flex",
@@ -15,7 +15,7 @@ const styles = (theme) => ({
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
-		minHeight: 64,
+		minHeight: 60,
 	},
 	title: {
 

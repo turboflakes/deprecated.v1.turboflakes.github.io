@@ -10,32 +10,28 @@ import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-const marks = [
-  {
-    value: 8,
-    label: '',
-  },
-  {
-    value: 16,
-    label: '',
-  },
-  {
-    value: 24,
-    label: '',
-  },
-  {
-    value: 32,
-    label: '',
-  },
-	{
-    value: 64,
-    label: '',
-  },
-	{
-    value: 128,
-    label: '',
-  }
-];
+// const marks = [
+//   {
+//     value: 8,
+//     label: '',
+//   },
+//   {
+//     value: 16,
+//     label: '',
+//   },
+//   {
+//     value: 24,
+//     label: '',
+//   },
+//   {
+//     value: 32,
+//     label: '',
+//   },
+// 	{
+//     value: 64,
+//     label: '',
+//   },
+// ];
 
 const MAX_QUANTITY = 128;
 
@@ -90,10 +86,10 @@ class QuantitySlider extends Component {
 						getAriaValueText={() => value}
 						color="primary"
 						valueLabelDisplay="on"
-						step={null}
+						step={8}
 						min={8}
-						max={128}
-						marks={marks}
+						max={64}
+						// marks={marks}
 						onChangeCommitted={this.handleOnChangeCommitted}
 					/>
 				</Box>

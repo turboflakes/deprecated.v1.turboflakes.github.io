@@ -1,10 +1,15 @@
 const styles = (theme) => ({
-	root: {},
+	root: {
+		maxWidth: 252
+	},
 	rootItem: {
 		textAlign: "center",
 		'&:hover': {
 			backgroundColor: theme.palette.neutrals[300],
 		},
+	},
+	rootItemAvatar: {
+		minWidth: 48
 	},
 	selectedItem: {
 		backgroundColor: `${theme.palette.primary.main} !important`,
