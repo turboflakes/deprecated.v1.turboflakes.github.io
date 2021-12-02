@@ -28,7 +28,7 @@ const styles = (theme) => ({
 		borderColor: theme.palette.text.secondary,
 		color: theme.palette.text.secondary,
 		minHeight: 44,
-		maxWidth: 236,
+		width: 252,
 		marginRight: theme.spacing(2)
 	},
 	selectRoot: {

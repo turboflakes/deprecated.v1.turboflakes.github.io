@@ -248,59 +248,13 @@ class Leaderboard extends Component {
 									</Box>
 								</Box>
 							</Box>
-							{/*  */}
+							
 							<Box className={classes.configBox}>
 								<ControlPanel />
 							</Box>
 						</Box>
 					 : null}
-					{/* <Box className={classes.settingsWrapperBox}>
-						<Tabs value={this.state.settingsTabIndex} onChange={this.handleChangeControlTab} >
-							<Tab label={this.state.isExtensionEnabled ? (!!accountName ? accountName : "Nominate") : "Connect Wallet" } 
-								icon={!!totalCandidates ? <span className={classes.counter}>{`${totalCandidates}`}</span> : null}
-								classes={{
-									wrapper: classes.tabWrapper,
-									labelIcon: classes.tabLabelIcon,
-								}}
-								className={classes.tab} />
-							<Tab label="Settings" className={classes.tab} />
-						</Tabs>
-						<Box className={classes.settingsBox}>
-							<Box className={classes.leaderboardBox} style={{
-										left: !this.state.expandLeaderboard ? -58 : -242
-									}}>
-								<Box>
-									<Box className={classes.iconExpandBox}>
-										<IconButton aria-label="expand/collapse validator name"
-											className={classes.iconExpand} 
-											onClick={() => this.setState({expandLeaderboard: !this.state.expandLeaderboard})}>
-											{!this.state.expandLeaderboard ? <LeftIcon /> : <DownIcon /> }
-										</IconButton>
-										{this.state.expandLeaderboard ? 
-											<Typography variant="caption" color="textSecondary">
-												Highest rank on top
-											</Typography> : null}
-									</Box>
-									<Box className={classes.listBox} style={{
-											minWidth: !this.state.expandLeaderboard ? 55 : 240
-										}}>
-										<List className={classes.list}>
-											{addresses.map((address, index) => 
-												<AccountItem address={address} key={index} 
-													expanded={this.state.expandLeaderboard}/>)}
-										</List>
-									</Box>
-								</Box>
-							</Box>
-							{this.state.settingsTabIndex === 0 ? 
-								<Nominate 
-									isEnabled={this.state.isExtensionEnabled} 
-									maxNominations={maxNominations}
-									onSelectTop={this.handleSelectTop} /> : 
-								<ControlPanel />
-								}
-						</Box>
-					</Box> */}
+					
 			</Box>
 		)
 	}
@@ -319,7 +273,6 @@ const mapStateToProps = (state, ownProps) => {
 	const intervals = state.leaderboard.intervals
 	const quantity = state.leaderboard.quantity
 	const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
-	const featured = selectors.getApiFeatured(state)
 	return {
 		view,
 		scrollable,
@@ -330,10 +283,6 @@ const mapStateToProps = (state, ownProps) => {
 		intervals,
 		quantity,
 		apiCacheInfo: selectors.getApiCacheDetails(state),
-		accountName: !!state.web3.selectedAccount ? (!!state.web3.selectedAccount.meta ? state.web3.selectedAccount.meta.name : undefined) : undefined,
-		maxNominations: state.web3.maxNominations - featured.length > 0 ? state.web3.maxNominations - featured.length : 0,
-		totalCandidates: state.leaderboard.nominations.length,
-		featured,
 		isFetching: !!state.fetchers.async,
   }
 }
