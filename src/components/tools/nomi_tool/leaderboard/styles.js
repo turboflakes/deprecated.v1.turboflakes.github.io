@@ -108,6 +108,10 @@ const styles = (theme) => ({
 		zIndex: 1,
 		color: theme.palette.text.secondary,
 	},
+	searchBox: {
+		backgroundColor: "rgba(77,77,77,0.9)",
+		padding: `0 ${theme.spacing(1)}px ${theme.spacing(1)/2}px ${theme.spacing(1)}px`,
+	},
 	listBox: {
 		backgroundColor: "rgba(77,77,77,0.9)",
 		overflow: "auto",

@@ -33,6 +33,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDownRounded';
 import { ReactComponent as PushPinIcon } from '../../../../assets/push_pin_white_24dp.svg';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
+import SearchSmall from '../search_small'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -230,8 +231,13 @@ class Leaderboard extends Component {
 											{!this.state.expandLeaderboard ? <LeftIcon /> : <RightIcon /> }
 										</IconButton>
 									</Box>
+									{this.state.expandLeaderboard ? 
+										<Box className={classes.searchBox}>
+											<SearchSmall />
+										</Box> : null}
 									<Box className={classes.listBox} style={{
-											minWidth: !this.state.expandLeaderboard ? 48 : 260
+											minWidth: !this.state.expandLeaderboard ? 48 : 260,
+											height: !this.state.expandLeaderboard ? 698 : 657
 										}}>
 										<List className={classes.list}>
 											{addresses.map((address, index) => 

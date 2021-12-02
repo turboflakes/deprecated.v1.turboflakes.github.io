@@ -75,6 +75,7 @@ class AccountInfoTable extends Component {
 
   componentDidUpdate(prevProps) {
     const {address, weights, intervals, isFetching, account} = this.props
+    console.log("__account", isFetching, account, prevProps.address, address);
     if (!isFetching && !!address && prevProps.address !== address && !account.id) {
       this.props.get(address)
     }
@@ -269,7 +270,7 @@ const mapStateToProps = (state, ownProps) => {
     isCandidate: !!state.leaderboard.nominations.find(a => a === address),
     canBeAdded: state.web3.maxNominations > state.leaderboard.nominations.length,
     isFeatured: !!selectors.getApiFeatured(state).find(s => s === address),
-    isFetching: !!state.fetchers.ids[`/validator/${address}`] || !!state.fetchers.ids[`/validator/${address}/rank`] || account.status === "NotReady",
+    isFetching: !!state.fetchers.ids[`/validator/${address}`] || !!state.fetchers.ids[`/validator/${address}/rank`] || account.status === "NotReady" || account.status === "NotFound",
   }
 }
 

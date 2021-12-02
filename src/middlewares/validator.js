@@ -12,6 +12,19 @@ import { getValidatorRank } from '../actions/validator'
         }, 1000)
         break
       }
+      case "NotFound": {
+        // Try to search the validator rank without filters
+        const params = {
+          q: action.request.queryParams.q,
+          w: action.request.queryParams.w
+        }
+        const timerId = setTimeout(() => {
+          store.dispatch(getValidatorRank(action.response.result,  params))
+          clearTimeout(timerId)
+        }, 500)
+        break
+      }
+      
       default: {
           return nextAction
       }
