@@ -8,7 +8,6 @@ import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import BoardAnimation from './board_animation'
-import Search from './search'
 import Leaderboard from './leaderboard'
 import AccountInfoTable from './account_info_table'
 import nomiLogo from '../../../assets/nomi.svg';
@@ -38,7 +37,7 @@ class NomiTool extends Component {
   }
 
   render() {
-    const { classes, addresses, selected, view, scrollable } = this.props;
+    const { classes, network, addresses, selected, view, scrollable } = this.props;
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
@@ -81,9 +80,6 @@ class NomiTool extends Component {
               )} alt={"nomi logo"}/>
           </Box>
         </Box>
-        <Box className={classes.searchBox} align="center">
-          <Search />
-        </Box>
         <Box className={classes.animationBox}>
           <Typography
               variant="h4"
@@ -92,12 +88,13 @@ class NomiTool extends Component {
             >NOMI
           </Typography>
           <BoardAnimation 
-              addresses={addresses}
-              selected={selected}
-              width={window.innerWidth} 
-              height={window.innerHeight * 0.9}
-              onBallClick={this.handleOnBallClick}
-              onBallClear={this.handleOnBallClear} />
+            network={network}
+            addresses={addresses}
+            selected={selected}
+            width={window.innerWidth} 
+            height={window.innerHeight * 0.95}
+            onBallClick={this.handleOnBallClick}
+            onBallClear={this.handleOnBallClear} />
           <AccountInfoTable />
           <Leaderboard />
         </Box>
@@ -115,12 +112,14 @@ const mapStateToProps = (state, ownProps) => {
   const view = state.layout.view
   const quantity = state.leaderboard.quantity
   const selected = state.leaderboard.selected
+  const network = selectors.getApiNetwork(state)
   const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
   return {
     scrollable,
     view,
     quantity,
     selected,
+    network,
     addresses,
     isFetching: !!state.fetchers.async,
   }

@@ -55,29 +55,28 @@ let cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimat
 class BoardAnimation extends Component {
 
   state = {
+    ctx: undefined,
+    friction: 0.98,
     balls: []
   }
 
-  componentDidMount(){
-    this.init();
+  componentDidMount() {
+    this.canvas = this.initCanvas();
+    this.init(this.canvas);
   }
 
   componentDidUpdate(prevProps) {
-    // Layout
-		const {view} = this.props
-    if (view === "leaderboard" && prevProps.view !== view) {
-			console.log("__leaderboard", "scrollIntoView");
-      this.rootRef.current.scrollIntoView({ behavior: 'smooth' })
-    }
-    
-    const {addresses, width, selected} = this.props
-    if (prevProps.addresses.length !== addresses.length) {
-      this.init()
+    const {network, addresses, width, height, selected} = this.props
+    if (prevProps.network !== network || prevProps.addresses.length !== addresses.length) {
+      this.init(this.canvas)
     }
 
     if (prevProps.width !== width) {
-      const canvas = document.getElementById('board')
-      canvas.width = width
+      this.canvas.width = width
+    }
+
+    if (prevProps.height !== height) {
+      this.canvas.height = height
     }
 
     if (prevProps.selected !== selected) {
@@ -97,29 +96,63 @@ class BoardAnimation extends Component {
     if (this.req) {
       cancelAnimationFrame(this.req);
     }
+    if (this.canvas) {
+      this.canvas.removeEventListener('click', this.handleCanvasOnClick, false);
+    }
   }
 
-  init = () => {
+  handleCanvasOnClick = (e) => {
+    const {balls} = this.state
+    const x = e.pageX - this.canvas.getBoundingClientRect().left
+    // Note: y should be the position Y of the mouse in the screen but related to the animated board
+    // XxY at top left corner should be 0x0
+    // To get Y value we first find the position Y of the mouse and remove all the aggregated height 
+    // from previous components/pages
+    // 
+    // window.innerHeight = Landing page height
+    // 384 => Nomi hero box height
+    const y = e.pageY - window.innerHeight - 384
+    // Identify which ball was clicked
+    let ball = balls.find(ball => Math.sqrt((x-ball.x)*(x-ball.x) + (y-ball.y)*(y-ball.y)) < ball.radius)
+    if (!!ball) {
+      // Reset previous ball selected
+      this.clearSelected()
+      
+      ball.clicked = true
+      this.props.onBallClick(ball.address)
+    }
+  }
+
+  initCanvas = () => {
+    const {
+      width,
+      height
+    } = this.props
+    const canvas = document.getElementById('board')
+    if (canvas.getContext('2d')) {
+        // Add event listener for `click` events.
+      canvas.addEventListener('click', this.handleCanvasOnClick, false);
+
+      // set the canvas size
+      canvas.width = width
+      canvas.height = height
+
+      return canvas
+    }
+  }
+
+  init = (canvas) => {
     const {
       selected,
       addresses,
-      width,
-      height
     } = this.props
 
     if (this.req) {
       cancelAnimationFrame(this.req);
     }
     
-    const canvas = document.getElementById('board')
-    if (canvas.getContext) {
+    if (canvas) {
       const ctx = canvas.getContext('2d')
-
-      // set the canvas size
-      canvas.width = width
-      canvas.height = height
-
-      const friction = 0.98
 
       let balls = []
       
@@ -141,29 +174,6 @@ class BoardAnimation extends Component {
         balls.push(ball);
       }
 
-      // Add event listener for `click` events.
-      canvas.addEventListener('click', (e) => {
-        const x = e.pageX - canvas.getBoundingClientRect().left
-        // Note: y should be the position Y of the mouse in the screen but related to the animated board
-        // XxY at top left corner should be 0x0
-        // To get Y value we first find the position Y of the mouse and remove all the aggregated height 
-        // from previous components/pages
-        // 
-        // window.innerHeight = Landing page height
-        // 384 => Nomi hero box height
-        // 60 + 32 => Search box height + margin
-        const y = e.pageY - window.innerHeight - 384 - 92
-        // Identify which ball was clicked
-        let ball = balls.find(ball => Math.sqrt((x-ball.x)*(x-ball.x) + (y-ball.y)*(y-ball.y)) < ball.radius)
-        if (!!ball) {
-          // Reset previous ball selected
-          this.clearSelected()
-          
-          ball.clicked = true
-          this.props.onBallClick(ball.address)
-        }
-      }, false);
-
       if (!!selected) {
         // Initialize any selected address
         const ball = balls.find(ball => ball.address === selected)
@@ -173,9 +183,7 @@ class BoardAnimation extends Component {
       }
 
       this.setState({
-        canvas,
         ctx,
-        friction,
         balls
       })
 
@@ -184,13 +192,14 @@ class BoardAnimation extends Component {
   }
 
   clearSelected = () => {
-    const {canvas, balls} = this.state
+    const {width, height} = this.props
+    const {balls} = this.state
     // Identify which ball is open to be reset
     let ball = balls.find(ball => ball.clicked)
     if (!!ball) {
       ball.clicked = false
-      ball.x = getRandomInt(canvas.width / 2, canvas.width)
-      ball.y = getRandomInt(0, canvas.height)
+      ball.x = getRandomInt(width / 2, width)
+      ball.y = getRandomInt(0, height)
       ball.velX = getRandomVel()
       ball.velY = getRandomVel()
       ball.radius = ball.originalRadius
@@ -229,9 +238,9 @@ class BoardAnimation extends Component {
   }
 
   update = () => {
+    const {width, height} = this.props
     const {
       friction,
-      canvas,
       ctx,
       balls
     } = this.state
@@ -240,17 +249,17 @@ class BoardAnimation extends Component {
 
     if (!!ctx) {
       // clear the canvas and redraw everything
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(0, 0, width, height)
 
       balls.forEach((ball) => {
         if (ball.clicked) {
-          ball.radius = canvas.width / 4.4
-          ball.x = (canvas.width / 4.4) + 20
-          ball.y = (canvas.width / 4.4) + 20
+          ball.radius = width / 4.4
+          ball.x = (width / 4.4) + 20
+          ball.y = (width / 4.4) + 20
         } else {
-          if (ball.y + ball.radius >= canvas.height) {
+          if (ball.y + ball.radius >= height) {
             ball.velY *= -ball.bounce
-            ball.y = canvas.height - ball.radius
+            ball.y = height - ball.radius
             ball.velX *= friction
           }
           if (ball.y - ball.radius <= 0) {
@@ -262,9 +271,9 @@ class BoardAnimation extends Component {
             ball.velX *= -ball.bounce
             ball.x = ball.radius
           }
-          if (ball.x + ball.radius >= canvas.width) {
+          if (ball.x + ball.radius >= width) {
             ball.velX *= -ball.bounce
-            ball.x = canvas.width - ball.radius
+            ball.x = width - ball.radius
           }
 
           if (ball.velX < 0.01 && ball.velX > -0.01) {

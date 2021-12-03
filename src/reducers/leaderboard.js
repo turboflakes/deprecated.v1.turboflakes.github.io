@@ -17,6 +17,8 @@ export const weights = (state = WEIGHTS.toString(), action) => {
 
 export const intervals = (state = "", action) => {
   switch (action.type) {
+    case "CLEAR_STORE":
+      return ""
     case "QUERY_VALIDATOR_SUCCESS": {
       if (state === "") {
         // Note: Define default intervals, some based on the board limits others static
@@ -45,6 +47,8 @@ export const intervals = (state = "", action) => {
 
 export const limits = (state = "", action) => {
   switch (action.type) {
+    case "CLEAR_STORE":
+      return ""
     case "QUERY_VALIDATOR_SUCCESS": {
       return action.response.result.meta.limits
     }
@@ -67,6 +71,8 @@ export const selected = (state = "", action) => {
     return ""
   }
   switch (action.type) {
+    case "CLEAR_STORE":
+      return ""
     case "SELECT_ADDRESS":
       return action.address
     case "CLEAR_ADDRESS":

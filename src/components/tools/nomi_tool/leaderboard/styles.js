@@ -2,8 +2,7 @@ const styles = (theme) => ({
 	root: {
 		position: "absolute",
 		right: theme.spacing(1),
-		// top: -92, // Search box height,
-		top: "calc(-10vh)", // since nomi board takes 90vh of space
+		top: "calc(-5vh)", // since nomi board takes 95vh of space
 		borderRadius: theme.spacing(2),
 		padding: `${theme.spacing(1)}px 0 0 0`,
 	},

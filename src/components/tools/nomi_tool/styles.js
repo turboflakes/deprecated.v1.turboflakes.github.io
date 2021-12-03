@@ -30,7 +30,7 @@ const styles = (theme) => ({
   },
   logoFixedBoard: {
     position: "absolute",
-    top: "calc(100vh + 384px)",
+    top: "calc(95vh + 384px)",
     left: theme.spacing(8), 
     width: 240,
   },
@@ -53,11 +53,8 @@ const styles = (theme) => ({
   nomiTitle: {
     margin: `${theme.spacing(4)}px 0 0 ${theme.spacing(6)}px`
   },
-  searchBox: {
-    margin: `${theme.spacing(2)}px 0`
-  },
   animationBox:{
-    height: "90vh",
+    height: "95vh",
     position: "relative",
   },
   watermark: {

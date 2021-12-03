@@ -106,6 +106,8 @@ class Leaderboard extends Component {
 	changeNetwork = (network) => {
 		const {history, location} = this.props
 		const query = new URLSearchParams(location.search)
+		query.delete("a")
+		query.delete("i")
 		const newLocation = {
 			pathname: `/${network}`,
 			search: `?${query.toString()}`
