@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import _debounce from 'lodash/debounce';
 import {scrollIntoView, clearView, disableScroll} from '../../actions/layout'
@@ -91,10 +90,6 @@ class Scroll extends Component {
     return null
 	}
 }
-
-Scroll.propTypes = {
-	classes: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => ({ view: state.layout.view })
 

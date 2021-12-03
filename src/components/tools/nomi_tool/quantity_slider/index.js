@@ -76,7 +76,7 @@ class QuantitySlider extends Component {
 		return (
 			<div className={classes.root}>
 				<Box className={classes.sliderBox}>
-					<Typography variant="body" color="textSecondary" align="left"
+					<Typography variant="body2" color="textSecondary" align="left"
 						className={classes.title}>
 						Quantity
 					</Typography>

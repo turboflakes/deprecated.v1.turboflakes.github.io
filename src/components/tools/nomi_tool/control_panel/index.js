@@ -242,7 +242,7 @@ class ControlPanel extends Component {
 								</Typography>
 							</PopoverInfo>
 						</Box>
-						<WeightSlider index={0}
+						 <WeightSlider index={0}
 							title="Inclusion rate"
 							description="The inclusion rate is the percentage of eras out of the past 84 that the validator was in the active set." 
 							resultDescription="A higher inclusion rate results on a higher score."
@@ -397,7 +397,6 @@ class ControlPanel extends Component {
 
 ControlPanel.propTypes = {
 	classes: PropTypes.object.isRequired,
-	expanded: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {

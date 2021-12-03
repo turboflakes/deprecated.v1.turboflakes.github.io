@@ -75,7 +75,7 @@ class WeightSlider extends Component {
 						</Typography>
 					</PopoverInfo>
 					<Box className={classes.titleBox}>
-						<Typography variant="body" color="textSecondary" align="left"
+						<Typography variant="body2" color="textSecondary" align="left"
 							className={classes.title}>
 							{title}
 						</Typography>
