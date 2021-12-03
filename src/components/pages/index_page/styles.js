@@ -37,16 +37,19 @@ const styles = (theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "flex-end",
-    // margin: `${theme.spacing(3)}px 0`
   },
   characterLink: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    '&:hover > img': {
+      animation: "headShake",
+  	  animationDuration: "1.5s",
+    }
   },
   characterLogo: {
     maxWidth: 120,
-    margin: `${theme.spacing(2)}px ${theme.spacing(4)}px`
+    margin: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
   },
   meet: {
     fontFamily: "'Roboto', sans-serif",

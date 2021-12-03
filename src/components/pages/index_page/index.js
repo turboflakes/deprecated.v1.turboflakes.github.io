@@ -27,7 +27,6 @@ class IndexPage extends Component {
     // Layout
     const {view} = this.props
     if (view === "top" && prevProps.view !== view) {
-      console.log("__componentDidUpdate", view);
       this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
     }
   }
@@ -74,6 +73,7 @@ class IndexPage extends Component {
             </Typography>
             <Box className={classes.charactersBox}>
               <Link component="button" className={classes.characterLink} 
+                color="textPrimary"
                 onClick={() => this.props.scrollIntoView("nomi")}>
                 <img src={nomiLogo} className={classes.characterLogo} alt={"nomi-logo"}/>
                 <Typography
@@ -85,6 +85,7 @@ class IndexPage extends Component {
                 </Typography>
               </Link>
               <Link component="button" className={classes.characterLink} 
+                color="textPrimary"
                 onClick={() => this.props.scrollIntoView("crunch")}>
                 <img src={crunchLogo} className={classes.characterLogo} alt={"crunch-logo"}/>
                 <Typography
@@ -96,6 +97,7 @@ class IndexPage extends Component {
                 </Typography>
               </Link>
               <Link component="button" className={classes.characterLink}  
+                color="textPrimary"
                 onClick={() => this.props.scrollIntoView("ema")}>
                 <img src={emaLogo} className={classes.characterLogo} alt={"ema-logo"}/>
                 <Typography
