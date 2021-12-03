@@ -75,7 +75,6 @@ class AccountInfoTable extends Component {
 
   componentDidUpdate(prevProps) {
     const {address, weights, intervals, isFetching, account} = this.props
-    console.log("__account", isFetching, account, prevProps.address, address);
     if (!isFetching && !!address && prevProps.address !== address && !account.id) {
       this.props.get(address)
     }

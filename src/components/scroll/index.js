@@ -36,7 +36,12 @@ class Scroll extends Component {
     const {scrollY, nomiSectionHalf, nomiLeaderboardTop, 
       nomiBoardHalf, crunchSectionTopOneQuarter} = this.state
 
-    if (scrollY >= window.innerHeight / 2  && scrollY < nomiSectionHalf) {
+    if (scrollY > 0  && scrollY < window.innerHeight / 6) {
+        this.props.clearView()
+        this.props.scrollIntoView("top")
+    }
+    
+    if (scrollY >= (window.innerHeight * 5 / 6)  && scrollY < nomiSectionHalf) {
         this.props.clearView()
         this.props.scrollIntoView("nomi")
     }
@@ -77,7 +82,7 @@ class Scroll extends Component {
           position: "fixed",
           top: 2,
           left: 2
-        }}> {this.props.view} : {this.state.scrollY} : 
+        }}> {this.props.view} : {this.state.scrollY} : {window.innerHeight} :
         {this.state.nomiLeaderboardTop} : 
         {this.state.nomiBoardTop} :
         {this.state.nomiBoardHalf}
