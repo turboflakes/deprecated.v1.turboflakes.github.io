@@ -3,11 +3,14 @@ const styles = (theme) => ({
 		background: theme.palette.text.primary,
 	},
 	container: {
-    padding: theme.spacing(6),
-		[theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(2),
-    }
+		...theme.container,
   },
+	padding: {
+		padding: `${theme.spacing(6)}px 0`,
+		[theme.breakpoints.down('sm')]: {
+      padding: `${theme.spacing(2)}px 0`,
+    },
+	},
 	list: {
 		maxWidth: 600
 	},
@@ -16,7 +19,7 @@ const styles = (theme) => ({
 		alignItems: "center"
 	},
 	logo:{
-		height: 60,
+		height: 64,
 		marginBottom: theme.spacing(3)
 	},
 	primary: {
@@ -54,9 +57,9 @@ const styles = (theme) => ({
 		marginLeft: -20
 	},
 	bottom: {
-		padding: theme.spacing(6),
+		padding: `${theme.spacing(3)}px 0`,
 		[theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(2),
+      padding: `${theme.spacing(1)}px 0`,
     },
 		display: "flex",
 		alignItems: "center",

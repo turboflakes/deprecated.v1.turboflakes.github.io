@@ -88,7 +88,7 @@ const styles = (theme) => ({
 		position: "relative",
 		display: "flex",
 		alignItems: "start",
-		marginRight: 1
+		marginRight: 1,
 		// borderRight: "1px solid rgba(77,77,77,0.8)"
 	},
 	expandBox: {
@@ -114,16 +114,10 @@ const styles = (theme) => ({
 	listBox: {
 		backgroundColor: "rgba(77,77,77,0.9)",
 		overflow: "auto",
-		height: 698,
+		height: 719,
+		borderBottomLeftRadius: theme.spacing(3)
 	},
 	list: {
-	},
-	footerBox: {
-		minWidth: 48,
-		minHeight: 21,
-		padding: `0 ${theme.spacing(2)}px`,
-		backgroundColor: "rgba(77,77,77,0.9)",
-		borderBottomLeftRadius: theme.spacing(3),
 	},
 })
 export default styles

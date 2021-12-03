@@ -1,5 +1,6 @@
 const styles = theme => ({
-  root: {  
+  root: { 
+    color: theme.palette.text.secondary,
   },
   popover: {
   },

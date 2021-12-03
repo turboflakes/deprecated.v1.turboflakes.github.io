@@ -31,6 +31,7 @@ import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDownRounded';
 import { ReactComponent as PushPinIcon } from '../../../../assets/push_pin_white_24dp.svg';
+import PopoverInfo from '../popover_info';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
 import SearchSmall from '../search_small'
@@ -149,7 +150,7 @@ class Leaderboard extends Component {
 
 	render() {
 		const { classes, network, networkDetails, addresses,
-			apiCacheInfo, isFetching, scrollable } = this.props;
+			apiCacheInfo, apiVersion, isFetching, scrollable } = this.props;
 		const { anchorEl } = this.state
 		const open = Boolean(anchorEl);
 
@@ -206,9 +207,21 @@ class Leaderboard extends Component {
 					</IconButton>
 				</Box>
 				<Box className={classes.titleBox} align="left">
-					<Typography variant="h4" color="textSecondary">
-						LEADERBOARD
-					</Typography>
+					<PopoverInfo linkComponent={
+						<Typography variant="h4" color="textSecondary">
+							LEADERBOARD
+						</Typography>
+						}>
+						<Typography variant="body2">
+						app v{process.env.REACT_APP_VERSION}
+						</Typography>
+						<Typography variant="body2">
+						api v{apiVersion}
+						</Typography>
+						<Typography variant="body2">
+						Synced at {moment.unix(apiCacheInfo.syncing_finished_at).format('lll')} ({apiCacheInfo.syncing ? `syncing` : `duration ${moment.unix(apiCacheInfo.syncing_finished_at).diff(moment.unix(apiCacheInfo.syncing_started_at), 'minutes')} min`})
+						</Typography>
+					</PopoverInfo>
 					<Typography variant="subtitle2" color="textSecondary">
 						The highest-ranked Validators
 					</Typography>
@@ -239,20 +252,13 @@ class Leaderboard extends Component {
 										</Box> : null}
 									<Box className={classes.listBox} style={{
 											minWidth: !this.state.expandLeaderboard ? 48 : 260,
-											height: !this.state.expandLeaderboard ? 698 : 657
+											height: !this.state.expandLeaderboard ? 719 : 678
 										}}>
 										<List className={classes.list}>
 											{addresses.map((address, index) => 
 												<AccountItem address={address} key={index} 
 													expanded={this.state.expandLeaderboard}/>)}
 										</List>
-									</Box>
-									<Box className={classes.footerBox} align="left">
-										<Typography 
-											variant="caption"
-											color="textSecondary">
-											{this.state.expandLeaderboard ? `Synced at ${!!apiCacheInfo.syncing_finished_at ? moment.unix(apiCacheInfo.syncing_finished_at).format('lll') : '...'}` : ''}
-										</Typography>
 									</Box>
 								</Box>
 							</Box>
@@ -291,6 +297,7 @@ const mapStateToProps = (state, ownProps) => {
 		intervals,
 		quantity,
 		apiCacheInfo: selectors.getApiCacheDetails(state),
+		apiVersion: selectors.getApiVersion(state),
 		isFetching: !!state.fetchers.async,
   }
 }
