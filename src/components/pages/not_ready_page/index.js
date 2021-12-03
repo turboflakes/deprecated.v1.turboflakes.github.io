@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 import HeaderLogo from '../header_logo'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-class AboutPage extends Component {
+class NotReadyPage extends Component {
 
   rootRef = React.createRef();
 
@@ -31,19 +30,21 @@ class AboutPage extends Component {
         <HeaderLogo />
         <Container className={classes.container}>
           <Typography variant="h2" align="center" className={classes.title}>
-          About us
+          Ups! It looks like we still have some work to do. This page is not ready yet 🙃
           </Typography>
+          {/* 
           <Typography paragraph>
-          TurboFlakes was born out of interest and research about the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Polkadot</Link> network.
+          -
           </Typography> 
+          */}
         </Container>
       </div>
     )
   }
 }
 
-AboutPage.propTypes = {
+NotReadyPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AboutPage);
+export default withStyles(styles)(NotReadyPage);

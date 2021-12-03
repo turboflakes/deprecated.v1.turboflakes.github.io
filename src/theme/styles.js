@@ -106,7 +106,6 @@ export default createMuiTheme({
     },
     h4: {
       fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
-      textTransform: "uppercase"
     },
     h5: {
       fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",

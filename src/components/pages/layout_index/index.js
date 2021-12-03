@@ -8,7 +8,7 @@ import Footer from '../../footer'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-class Layout extends Component {
+class LayoutIndex extends Component {
 
   componentDidMount() {
     const {network} = this.props
@@ -38,7 +38,7 @@ class Layout extends Component {
   }
 }
 
-Layout.propTypes = {
+LayoutIndex.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -49,4 +49,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {getApiDetails})(withStyles(styles)(Layout));
+export default connect(mapStateToProps, {getApiDetails})(withStyles(styles)(LayoutIndex));
