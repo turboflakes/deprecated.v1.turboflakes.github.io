@@ -7,7 +7,7 @@ import {
   generalRequest
 } from './generalRequest'
 
-const isExpired = (state, id, schema, after = 60) => {
+const isExpired = (state, id, schema, after = 10*60) => {
   if (state.entities &&
     state.entities[`${schema.toLowerCase()}`] &&
     state.entities[`${schema.toLowerCase()}`][id] &&
@@ -20,7 +20,7 @@ const isExpired = (state, id, schema, after = 60) => {
 export const get = (id, requiredFields = [], schema, headers = {}, queryParams, options = {}) => (dispatch, getState) => {
   const state = getState()
 
-  // The same request can only be made after X seconds - default is 60s
+  // The same request can only be made after X seconds - default is 10*60s
   if (!isExpired(state, id, schema, options.expire)) {
     return null
   }

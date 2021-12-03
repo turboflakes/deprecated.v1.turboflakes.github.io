@@ -113,7 +113,7 @@ const mapStateToProps = (state, ownProps) => {
   const quantity = state.leaderboard.quantity
   const selected = state.leaderboard.selected
   const network = selectors.getApiNetwork(state)
-  const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
+  const addresses = selectors.getBoardAddresses(state)
   return {
     scrollable,
     view,

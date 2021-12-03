@@ -16,7 +16,8 @@ import {
   getApiVersion,
   getApiNetworkDetails,
   getApiCacheDetails,
-  getApiFeatured
+  getApiFeatured,
+  getBoardAddresses
 } from './selectors'
 
 export const selectors = {
@@ -37,5 +38,6 @@ export const selectors = {
   getApiVersion,
   getApiNetworkDetails,
   getApiCacheDetails,
-  getApiFeatured
+  getApiFeatured,
+  getBoardAddresses
 }

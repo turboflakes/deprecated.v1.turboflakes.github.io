@@ -401,7 +401,7 @@ ControlPanel.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
 	const networkDetails = selectors.getApiNetworkDetails(state)
-	const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
+	const addresses = selectors.getBoardAddresses(state)
 	const featured = selectors.getApiFeatured(state)
 	return {
 		addresses,

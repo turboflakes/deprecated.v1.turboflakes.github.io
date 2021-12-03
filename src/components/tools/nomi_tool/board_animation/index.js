@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -67,7 +68,7 @@ class BoardAnimation extends Component {
 
   componentDidUpdate(prevProps) {
     const {network, addresses, width, height, selected} = this.props
-    if (prevProps.network !== network || prevProps.addresses.length !== addresses.length) {
+    if (prevProps.network !== network || !isEqual(prevProps.addresses, addresses)) {
       this.init(this.canvas)
     }
 

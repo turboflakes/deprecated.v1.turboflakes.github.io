@@ -280,7 +280,7 @@ const mapStateToProps = (state, ownProps) => {
   const weights = state.leaderboard.weights
 	const intervals = state.leaderboard.intervals
 	const quantity = state.leaderboard.quantity
-	const addresses = selectors.getIdsByEntityAndLastQuery(state, 'validator', 'addresses')
+	const addresses = selectors.getBoardAddresses(state)
 	return {
 		view,
 		scrollable,

@@ -1,3 +1,5 @@
+import {serializeBoard} from '../utils/serialize'
+
 // ENTITIES
 export const getEntity = (state, entityType) => state.entities[entityType] || {}
 
@@ -42,6 +44,15 @@ export const getIdsByEntityAndLastQuery = (state, entityType, key) => getCollect
 
 export const getMetaByEntityAndQuery = (state, entityType, query) => getCollectionByEntity(state, entityType)[query] ?
   getCollectionByEntity(state, entityType)[query]["meta"] : {}
+
+// Board Validator Addresses
+export const getBoardAddresses = (state) => {
+  const quantity = state.leaderboard.quantity
+  const weights = state.leaderboard.weights
+  const intervals = state.leaderboard.intervals
+  const query = serializeBoard(weights, intervals, quantity)
+  return getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
+}
 
 // API
 export const getApiHost = (state) => getObjectByEntityAndId(state, 'api', 'v1').host
