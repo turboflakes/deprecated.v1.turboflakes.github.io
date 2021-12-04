@@ -31,10 +31,10 @@ class AboutPage extends Component {
         <HeaderLogo />
         <Container className={classes.container}>
           <Typography variant="h2" align="center" className={classes.title}>
-          About us
+          About Us
           </Typography>
           <Typography paragraph>
-          TurboFlakes was born out of interest and research about the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Polkadot</Link> network.
+          TurboFlakes was born out of interest and research about the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Polkadot</Link> network on Jan 2021.
           </Typography> 
         </Container>
       </div>

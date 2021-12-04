@@ -55,10 +55,10 @@ class MenuDialog extends Component {
             
             <Link variant="h1" color="textSecondary" align="center" href="/#/about" 
               className={classes.link}>ABOUT</Link>
-            <Link variant="h1" color="textSecondary" align="center" href="/#/about" 
-              className={classes.link}>NEWS</Link>            
-            <Link variant="h1" color="textSecondary" align="center" href="/#/about" 
-              className={classes.link}>CONTACT</Link>
+            <Link variant="h1" color="textSecondary" align="center" href="/#/tools" 
+              className={classes.link}>TOOLS</Link>            
+            <Link variant="h1" color="textSecondary" align="center" href="/#/validators" 
+              className={classes.link}>VALIDATORS</Link>
 
           </DialogContent>
           <DialogContent classes={{
