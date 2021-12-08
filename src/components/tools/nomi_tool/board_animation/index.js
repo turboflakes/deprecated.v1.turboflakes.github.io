@@ -103,6 +103,7 @@ class BoardAnimation extends Component {
   }
 
   handleCanvasOnClick = (e) => {
+    const {topY} = this.props
     const {balls} = this.state
     const x = e.pageX - this.canvas.getBoundingClientRect().left
     // Note: y should be the position Y of the mouse in the screen but related to the animated board
@@ -110,9 +111,7 @@ class BoardAnimation extends Component {
     // To get Y value we first find the position Y of the mouse and remove all the aggregated height 
     // from previous components/pages
     // 
-    // window.innerHeight = Landing page height
-    // 384 => Nomi hero box height
-    const y = e.pageY - window.innerHeight - 384
+    const y = e.pageY - topY
     // Identify which ball was clicked
     let ball = balls.find(ball => Math.sqrt((x-ball.x)*(x-ball.x) + (y-ball.y)*(y-ball.y)) < ball.radius)
     if (!!ball) {

@@ -16,3 +16,8 @@ pre {
 .disable-scroll {
   overflow: hidden;
 }
+
+@font-face {
+  font-family: "Gilroy-Heavy";
+  src: url('./assets/fonts/Gilroy/Gilroy-Heavy.woff2') format('woff2'), url('./assets/fonts/Gilroy/Gilroy-Heavy.woff') format('woff');
+}

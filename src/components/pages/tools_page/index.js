@@ -43,7 +43,7 @@ class ToolsPage extends Component {
           NPoS networks
           </Typography> 
           <Typography gutterBottom>
-          Turboflakes is focused around the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Staking</Link> system and its Nominated Proof of Stake mechanism. In <Link href="https://wiki.polkadot.network/docs/en/glossary#nominated-proof-of-stake-npos" target="_blank" rel="noreferrer" color="inherit" underline="always">NPoS</Link> networks, nominators back validators with their own stake to help them get into the active validator set. In this way validators proactively secure the network. In return for backing validators, the nominators receive part of the validators rewards. 
+          Nomi tool is focused around the <Link href="https://wiki.polkadot.network/docs/en/learn-staking#docsNav" target="_blank" rel="noreferrer" color="inherit" underline="always">Staking</Link> system and its Nominated Proof of Stake mechanism. In <Link href="https://wiki.polkadot.network/docs/en/glossary#nominated-proof-of-stake-npos" target="_blank" rel="noreferrer" color="inherit" underline="always">NPoS</Link> networks, nominators back validators with their own stake to help them get into the active validator set. In this way validators proactively secure the network. In return for backing validators, the nominators receive part of the validators rewards. 
           </Typography> 
           <Typography paragraph>
           To get the most out of the Staking mechanism and the best reward returns, nominators need to gather information on the validators - <Link href="https://support.polkadot.network/support/solutions/articles/65000150130-how-do-i-know-which-validators-to-choose-" target="_blank" rel="noreferrer" color="inherit" underline="always">“How do I know which validators to choose?”</Link>
@@ -94,7 +94,7 @@ class ToolsPage extends Component {
           -
           </Typography>
           <Typography color="inherit" align="justify" paragraph>
-          Hope you find these tools helpful ✌️
+          Hope you find these tools helpful 🖖
           </Typography>
         </Container>
       </div>

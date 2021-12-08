@@ -2,6 +2,7 @@ const styles = (theme) => ({
   root: {
     background: "linear-gradient(180deg, #FFF, #F1F1F0)",
     borderBottom: `solid 2px #FFF`,
+    minHeight: "100vh"
   },
   container: {
     ...theme.container,
@@ -28,7 +29,12 @@ const styles = (theme) => ({
     width: 260,
   },
   link: {
-    textDecoration: "underline"
+    textDecoration: "underline",
+    textDecorationThickness: 4,
+    '&:hover': {
+      textDecorationThickness: 4,
+      textDecorationColor: theme.palette.primary.main,
+    }
   },
   nameBox: {
     marginBottom: theme.spacing(4),

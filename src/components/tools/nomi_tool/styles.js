@@ -3,6 +3,7 @@ const styles = (theme) => ({
   },
   heroBox: {
     ...theme.container,
+    position: "relative",
     display: "flex",
     alignItems: "center",
     padding: `${theme.spacing(8)}px 0`,
@@ -30,9 +31,9 @@ const styles = (theme) => ({
   },
   logoFixedBoard: {
     position: "absolute",
-    top: "calc(95vh + 384px)",
-    left: theme.spacing(8), 
-    width: 240,
+    top: "calc(384px - 5vh)",
+    left: 0, 
+    width: 160,
   },
   logoAnimateInLeft:{
     animation: "fadeInLeft",
@@ -61,7 +62,7 @@ const styles = (theme) => ({
     position: "absolute",
     color: "rgba(255,255,255,0.8)",
     zIndex: 1,
-    bottom: theme.spacing(2),
+    top: theme.spacing(2),
     left: theme.spacing(2)
   },
   watermarkSync: {

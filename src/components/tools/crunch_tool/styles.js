@@ -27,24 +27,31 @@ const styles = (theme) => ({
   logo: {
     width: 260,
   },
-  link: {
-    textDecoration: "underline"
-  },
   inline: {
     // whiteSpace: "nowrap"
   },
-  subtitle: {
-    marginBottom: theme.spacing(4)
-  },
   rooms: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "space-evenly"
+    alignItems: "flex-end",
+    justifyContent: "space-between"
   },
   room: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    padding: `0 ${theme.spacing(6)}px`,
+    '&:hover > img': {
+      animation: "headShake",
+  	  animationDuration: "1.5s",
+    },
+  },
+  link:{
+    textDecoration: "underline",
+    textDecorationThickness: 4,
+    '&:hover': {
+      textDecorationThickness: 4,
+      textDecorationColor: theme.palette.primary.main,
+    }
   },
   listItemPrimary: {
     padding: `0 ${theme.spacing(2)}px`,

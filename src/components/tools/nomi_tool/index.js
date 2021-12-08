@@ -37,7 +37,7 @@ class NomiTool extends Component {
   }
 
   render() {
-    const { classes, network, addresses, selected, view, scrollable } = this.props;
+    const { classes, network, addresses, selected, view, scrollable, topY } = this.props;
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
@@ -93,6 +93,7 @@ class NomiTool extends Component {
             selected={selected}
             width={window.innerWidth} 
             height={window.innerHeight * 0.95}
+            topY={topY + 384} // heroBox height = 384
             onBallClick={this.handleOnBallClick}
             onBallClear={this.handleOnBallClear} />
           <AccountInfoTable />
