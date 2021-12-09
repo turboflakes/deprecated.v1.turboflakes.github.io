@@ -32,8 +32,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build:production",
+    "predeploy": "npm run build:production",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:production": "sh -ac '. .env.production.local; react-scripts build'",
