@@ -13,10 +13,6 @@ import styles from './styles'
 
 const valueLabelFormat = (v, i) => {
 	return `${v}`	
-	// if (i === 1) {
-	// 	return `${v}]`	
-	// }
-	// return `[${v}`
 }
 
 class IntervalSlider extends Component {

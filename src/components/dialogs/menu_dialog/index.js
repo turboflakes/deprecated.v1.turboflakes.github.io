@@ -63,7 +63,6 @@ class MenuDialog extends Component {
           <DialogContent classes={{
             root: classes.contentRoot
           }}>
-
             
             <Link variant="h1" color="textSecondary" align="center" href="/#/about" 
               className={classes.link}>ABOUT</Link>

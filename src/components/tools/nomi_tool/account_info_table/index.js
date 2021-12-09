@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { get, getValidatorRank } from '../../../../actions/validator'
-import { addAddress, removeAddress, clearAddress } from '../../../../actions/leaderboard'
+import { addAddress, removeAddress } from '../../../../actions/leaderboard'
 import { stashDisplay, nameDisplay, stakeDisplayNoSymbol, commissionDisplay, rateDisplay } from '../../../../utils/display'
 import {getNetworkWSS } from '../../../../constants'
 import { selectors } from '../../../../selectors'
@@ -88,7 +88,7 @@ class AccountInfoTable extends Component {
   }
 	
 	handleClose = () => {
-    this.props.clearAddress()
+    this.props.onClose()
   }
 
   handleClickPolkadotJsExternal = (stash) => {
@@ -273,5 +273,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { get, getValidatorRank, addAddress, removeAddress, clearAddress })(withWidth()(withStyles(styles)(AccountInfoTable)));
+export default connect(mapStateToProps, { get, getValidatorRank, addAddress, removeAddress })(withWidth()(withStyles(styles)(AccountInfoTable)));
   

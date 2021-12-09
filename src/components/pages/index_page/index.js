@@ -235,7 +235,7 @@ class IndexPage extends Component {
         <CrunchTool scrollHere={view === "crunch"}/>
         <EmaTool scrollHere={view === "ema"}/>
         {/* <CocoTool scrollIntoView={this.state.view === "coco"}/> */}
-        <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY}/>
+        <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY} />
       </Box>
     )
   }

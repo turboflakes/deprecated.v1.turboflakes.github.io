@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import classNames from 'classnames'
+import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 import { selectors } from '../../../selectors'
 import { selectAddress, clearAddress } from '../../../actions/leaderboard'
 import {scrollIntoView} from '../../../actions/layout'
@@ -54,14 +55,46 @@ class NomiTool extends Component {
     }
   }
 
+  changeParams = (query, value) => {
+		const {history} = this.props
+		query.set("a", value)
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+
+  deleteParams = (query) => {
+		const {history} = this.props
+		query.delete("a")
+		const location = {
+			search: `?${query.toString()}`
+		}
+		history.replace(location)
+	}
+  
+  removeAddress = () => {
+    const {location} = this.props
+    let query = new URLSearchParams(location.search)
+    this.deleteParams(query)
+    this.props.clearAddress()
+  }
+
   handleOnBallClick = (address) => {
     if (!!address) {
+      const {location} = this.props
+      let query = new URLSearchParams(location.search)
+      this.changeParams(query, address)
       this.props.selectAddress(address)
     }
   }
 
   handleOnBallClear = () => {
-    this.props.clearAddress()
+    this.removeAddress()
+  }
+
+  handleOnAccountInfoClose = () => {
+    this.removeAddress()
   }
 
   render() {
@@ -132,7 +165,7 @@ class NomiTool extends Component {
             topY={topY + 384} // heroBox height = 384
             onBallClick={this.handleOnBallClick}
             onBallClear={this.handleOnBallClear} />
-          <AccountInfoTable />
+          <AccountInfoTable onClose={this.handleOnAccountInfoClose} />
           <Leaderboard />
         </Box>
       </Box>
@@ -162,4 +195,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {selectAddress, clearAddress, scrollIntoView})(withWidth()(withStyles(styles)(NomiTool)));
+export default connect(mapStateToProps, {selectAddress, clearAddress, scrollIntoView})(withWidth()(withRouter(withStyles(styles)(NomiTool))));
