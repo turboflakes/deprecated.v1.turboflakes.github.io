@@ -23,6 +23,18 @@ function Transition(props) {
 
 class MenuDialog extends Component {
 
+  handleTwitter = () => {
+		window.open('https://twitter.com/turboflakes', '_blank')
+	}
+	
+	handleGithub = () => {
+		window.open('https://github.com/turboflakes', '_blank')
+	}
+
+	handleEmail = () => {
+		window.location.href = "mailto:support@turboflakes.io"
+	}
+
   render() {
     const { classes, isLoggedIn, isAdmin, hasCompanies, applications,
       ...other } = this.props;

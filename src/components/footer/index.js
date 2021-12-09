@@ -26,7 +26,7 @@ class Footer extends Component {
 	}
 
 	handleEmail = () => {
-		window.location.href = "mailto:support@turboflakes.com"
+		window.location.href = "mailto:support@turboflakes.io"
 	}
 
  	render() {

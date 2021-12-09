@@ -13,11 +13,6 @@ class Header extends Component {
 
   state = {
     open: false,
-    network: 2
-  }
-
-  handleChange = () => {
-    // TODO
   }
 
   render() {
