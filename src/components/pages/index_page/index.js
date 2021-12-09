@@ -233,7 +233,7 @@ class IndexPage extends Component {
         {/* Tool sections here */}
         <NomiTool scrollHere={view === "nomi"} topY={nomiTopY} />
         <CrunchTool scrollHere={view === "crunch"}/>
-        {/* <EmaTool scrollHere={view === "ema"}/> */}
+        <EmaTool scrollHere={view === "ema"}/>
         {/* <CocoTool scrollIntoView={this.state.view === "coco"}/> */}
         <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY} />
       </Box>

@@ -51,10 +51,18 @@ class EmaTool extends Component {
                     color="textPrimary"
                     align="left"
                   >
+                    Coming Soon 😉
+                </Typography>
+                {/* <Typography
+                    variant="subtitle1"
+                    className={classes.inline}
+                    color="textPrimary"
+                    align="left"
+                  >
                     <b>Ema</b> submits <b>e</b>xtrinsics over <b>ma</b>trix. 
                     <br/>On public or private <Link href="https://matrix.org/" target="_blank" rel="noreferrer" color="inherit" 
                       className={classes.link}>matrix</Link> rooms → <b>Ema</b> bot is always available for a brief text message exchange.
-                </Typography>
+                </Typography> */}
               </Box>
               <Box align="right" className={classes.logoBox}>
                 <img src={emaLogo} className={classes.logo} alt={"ema logo"}/>
