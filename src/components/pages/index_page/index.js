@@ -109,7 +109,7 @@ class IndexPage extends Component {
               align="left"
               paragraph
               >
-              Polkadot aims to facilitate a fully functional and user-friendly decentralized web, where users are in control. A Web3 that looked like to far way, is gone. Web3 is hapening and is Hapening Now.
+              Polkadot aims to facilitate a fully functional and user-friendly decentralized web, where users are in control.
               </Typography>
               <Typography
               variant="body1"
