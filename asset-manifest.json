@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.099262ab.chunk.css",
-    "main.js": "/static/js/main.84be59cf.chunk.js",
+    "main.js": "/static/js/main.a64d0b87.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.f719126e.js",
     "static/css/2.29852eb5.chunk.css": "/static/css/2.29852eb5.chunk.css",
-    "static/js/2.bdbc485d.chunk.js": "/static/js/2.bdbc485d.chunk.js",
+    "static/js/2.9e6fcb22.chunk.js": "/static/js/2.9e6fcb22.chunk.js",
     "static/js/3.cee02a89.chunk.js": "/static/js/3.cee02a89.chunk.js",
     "index.html": "/index.html",
-    "static/js/2.bdbc485d.chunk.js.LICENSE.txt": "/static/js/2.bdbc485d.chunk.js.LICENSE.txt",
+    "static/js/2.9e6fcb22.chunk.js.LICENSE.txt": "/static/js/2.9e6fcb22.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Gilroy-Heavy.e6ba4147.woff2",
     "static/media/crunchbot.9ad6e9da.svg": "/static/media/crunchbot.9ad6e9da.svg",
     "static/media/ema.524a7d71.svg": "/static/media/ema.524a7d71.svg",
@@ -29,8 +29,8 @@
   "entrypoints": [
     "static/js/runtime-main.f719126e.js",
     "static/css/2.29852eb5.chunk.css",
-    "static/js/2.bdbc485d.chunk.js",
+    "static/js/2.9e6fcb22.chunk.js",
     "static/css/main.099262ab.chunk.css",
-    "static/js/main.84be59cf.chunk.js"
+    "static/js/main.a64d0b87.chunk.js"
   ]
 }
