@@ -12,4 +12,11 @@ const serialize = (obj) => {
     return str.join("&");
 }
 
+export const serializeBoard = (weights, intervals, quantity) => {
+	if (!!intervals) {
+		return serialize({q: "Board", w: weights, i: intervals, n: quantity})
+	}
+	return serialize({q: "Board", w: weights, n: quantity})
+}
+
 export default serialize

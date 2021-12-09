@@ -3,9 +3,9 @@ export const changeWeight = (index, weight) => ({
   data: {index, weight}
 })
 
-export const changeRange = (index, range) => ({
-  type: `CHANGE_RANGE`,
-  data: {index, range}
+export const changeInterval = (index, interval) => ({
+  type: `CHANGE_INTERVAL`,
+  data: {index, interval}
 })
 
 export const changeQuantity = (value) => ({
@@ -20,4 +20,19 @@ export const selectAddress = (address) => ({
 
 export const clearAddress = () => ({
   type: `CLEAR_ADDRESS`
+})
+
+export const addAddress = (address) => ({
+  type: `ADD_ADDRESS`,
+  address
+})
+
+export const removeAddress = (address) => ({
+  type: `REMOVE_ADDRESS`,
+  address
+})
+
+export const addAddresses = (addresses) => ({
+  type: `ADD_ADDRESSES`,
+  addresses
 })

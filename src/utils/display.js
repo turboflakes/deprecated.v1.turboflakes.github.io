@@ -1,24 +1,31 @@
-import { NETWORK, networkPrefixes, networkDecimals, networkCodes } from '../constants'
-import { encodeAddress } from '@polkadot/util-crypto'
 
 export const stashDisplay = (stash) => {
     return !!stash ? `${stash.slice(0, 6)}...${stash.slice(stash.length-6, stash.length)}` : `-`
 }
-  
-export const nameDisplay = (name) => {
-    return name.length > 24 ? `${name.slice(0, 24)}...` : name
+
+export const hashDisplay = (hash) => {
+    return !!hash ? `${hash.slice(0, 6)}...${hash.slice(hash.length-4, hash.length)}` : `-`
 }
   
-export const networkDisplay = (stash) => {
-    if (NETWORK in networkPrefixes) {
-      return encodeAddress(stash, networkPrefixes[NETWORK])
+export const nameDisplay = (name, len) => {
+    if (!len) {
+        len = 24
     }
-    return stash
+    return name.length > len ? `${name.slice(0, len)}...` : name
 }
 
-export const stakeDisplay = (stake) => {
-    if (NETWORK in networkDecimals && NETWORK in networkCodes) {
-      return `${(stake/networkDecimals[NETWORK]).toFixed(4)} ${networkCodes[NETWORK]}`
+export const stakeDisplay = (stake, networkDetails) => {
+    if (!!networkDetails.token_decimals && !!networkDetails.token_symbol) {
+        const networkDecimals = Math.pow(10, networkDetails.token_decimals)
+        return `${(stake/networkDecimals).toFixed(2)} ${networkDetails.token_symbol}`
+    }
+    return stake
+}
+
+export const stakeDisplayNoSymbol = (stake, networkDetails) => {
+    if (!!networkDetails.token_decimals) {
+        const networkDecimals = Math.pow(10, networkDetails.token_decimals)
+        return `${(stake/networkDecimals).toFixed(2)}`
     }
     return stake
 }

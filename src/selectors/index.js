@@ -7,9 +7,17 @@ import {
   getArrayFromQuery,
   getIdsByEntityAndQuery,
   getIdsByEntityAndLastQuery,
+  getMetaByEntityAndQuery,
   isFetching,
   isSchemaFetching,
   isIdFetching,
+  getApiHost,
+  getApiNetwork,
+  getApiVersion,
+  getApiNetworkDetails,
+  getApiCacheDetails,
+  getApiFeatured,
+  getBoardAddresses
 } from './selectors'
 
 export const selectors = {
@@ -21,7 +29,15 @@ export const selectors = {
   getArrayFromQuery,
   getIdsByEntityAndQuery,
   getIdsByEntityAndLastQuery,
+  getMetaByEntityAndQuery,
   isFetching,
   isSchemaFetching,
   isIdFetching,
+  getApiHost,
+  getApiNetwork,
+  getApiVersion,
+  getApiNetworkDetails,
+  getApiCacheDetails,
+  getApiFeatured,
+  getBoardAddresses
 }

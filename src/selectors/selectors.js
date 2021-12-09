@@ -1,3 +1,5 @@
+import {serializeBoard} from '../utils/serialize'
+
 // ENTITIES
 export const getEntity = (state, entityType) => state.entities[entityType] || {}
 
@@ -39,3 +41,23 @@ export const getIdsByEntityAndQuery = (state, entityType, query, key) => getColl
 export const getIdsByEntityAndLastQuery = (state, entityType, key) => getCollectionByEntity(state, entityType)["last"] && getCollectionByEntity(state, entityType)[getCollectionByEntity(state, entityType)["last"]] ?
   (Array.isArray(getCollectionByEntity(state, entityType)[getCollectionByEntity(state, entityType)["last"]][key]) ? getCollectionByEntity(state, entityType)[getCollectionByEntity(state, entityType)["last"]][key] : []) :
   []
+
+export const getMetaByEntityAndQuery = (state, entityType, query) => getCollectionByEntity(state, entityType)[query] ?
+  getCollectionByEntity(state, entityType)[query]["meta"] : {}
+
+// Board Validator Addresses
+export const getBoardAddresses = (state) => {
+  const quantity = state.leaderboard.quantity
+  const weights = state.leaderboard.weights
+  const intervals = state.leaderboard.intervals
+  const query = serializeBoard(weights, intervals, quantity)
+  return getIdsByEntityAndQuery(state, 'validator', query, 'addresses')
+}
+
+// API
+export const getApiHost = (state) => getObjectByEntityAndId(state, 'api', 'v1').host
+export const getApiNetwork = (state) => getObjectByEntityAndId(state, 'api', 'v1').network
+export const getApiVersion = (state) => getObjectByEntityAndId(state, 'api', 'v1').pkg_version
+export const getApiNetworkDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').chain || {}
+export const getApiCacheDetails = (state) => getObjectByEntityAndId(state, 'api', 'v1').cache || {}
+export const getApiFeatured = (state) => getObjectByEntityAndId(state, 'api', 'v1').featured || []

@@ -1,7 +1,13 @@
 const styles = (theme) => ({
-	root: {},
-	alert: {
-		margin: theme.spacing(1)
+	root: {
+		position: "fixed",
+		top: 0,
+		right: 0,
+		zIndex: 9
+	},
+	clear: {
+		margin: theme.spacing(1)/2,
+		backgroundColor: "#FFF"
 	}
 })
 export default styles

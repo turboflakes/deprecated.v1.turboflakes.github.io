@@ -7,7 +7,7 @@ import {
 import serialize from '../../utils/serialize'
 
 
-const isExpired = (state, queryParams, schema, after = 60) => {
+const isExpired = (state, queryParams, schema, after = 10*60) => {
   const queryKey = serialize(queryParams)
   if (state.collections &&
     state.collections[`${schema.toLowerCase()}`] &&
@@ -22,7 +22,7 @@ export const query = (queryParams, schema, headers, force = false, options = {})
 
   const state = getState()
   
-  // The same request can only be made after X seconds - default is 60s
+  // The same request can only be made after X seconds - default is 10*60s
   if (!force && !isExpired(state, queryParams, schema, options.expire)) {
     return null
   }

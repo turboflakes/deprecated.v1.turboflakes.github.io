@@ -1,35 +1,38 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { remove } from '../../actions/error'
-import AlertBase from '@material-ui/lab/Alert';
+import {clearALL} from '../../actions/notification';
+import AlertBase from './alert_base';
+import Link from '@material-ui/core/Link';
+import CloseIcon from '@material-ui/icons/CloseRounded';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
 class Alert extends Component {
 
-	handleClear = () => {
-    this.props.clearAddress()
-  }
-
-  renderError = (msg, index) => {
+  renderDismissAll() {
     const { classes } = this.props;
     return (
-      <AlertBase className={classes.alert}
-        severity="error"
-        onClose={() => this.props.remove(index)}
-      >
-        {msg}
-      </AlertBase>
+      <AlertBase notification={{severity: "info"}}
+        action={
+          <Link component="button" color="inherit" underline="always"
+            onClick={() => this.props.clearALL()}>
+            Remove all notifications
+          </Link>
+        }
+        icon={<CloseIcon fontSize="inherit" />}
+        className={classes.clear}
+      />
     )
   }
 
  	render() {
-		const { classes, errors } = this.props;
-
+		const { classes, notifications } = this.props;
     return (
       <div className={classes.root}>
-        {errors.map((msg, index) => this.renderError(msg, index))}
+        {notifications.length > 1 ? this.renderDismissAll() : null}
+        {notifications.map((notification, index) => 
+          <AlertBase key={index} notification={notification} delay={notification.delay} />)}
       </div>
     )
 	}
@@ -39,12 +42,7 @@ Alert.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    errors: state.errors,
-    isFetching: !!state.fetchers.async,
-  }
-}
+const mapStateToProps = (state, ownProps) => ({ notifications: state.notifications })
 
-export default connect(mapStateToProps, { remove })(withStyles(styles)(Alert));
+export default connect(mapStateToProps, {clearALL})(withStyles(styles)(Alert));
   

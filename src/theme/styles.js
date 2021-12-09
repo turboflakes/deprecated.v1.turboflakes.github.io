@@ -18,12 +18,12 @@ export default createMuiTheme({
   palette: {
     primary: {
       // dark automatic calculated
-      main: "#85BCE4",
+      main: "#ED1C24",
       contrastText: '#FFFFFF',
     },
     secondary: {
       // dark automatic calculated
-      main: "#E86866",
+      main: "#343434",
       contrastText: '#FFFFFF',
     },
     semantics: {
@@ -49,13 +49,13 @@ export default createMuiTheme({
       }
     },
     neutrals: {
-      100: "#FFFFFF",
-      200: "#F9FDFF",
-      300: "#F1F9FD",
-      400: "#DFF1FA",
-      500: "#BBDFF3",
-      600: "#6F7072",
-      700: "#021220",
+      100: "#F1F1F0",
+      200: "#4D4D4D",
+      300: "#343434",
+      // 400: "#DFF1FA",
+      // 500: "#BBDFF3",
+      // 600: "#6F7072",
+      // 700: "#021220",
     },
     // neutrals: {
     //   100: "#FFFFFF",
@@ -83,7 +83,7 @@ export default createMuiTheme({
       secondary180: "linear-gradient(180deg,#85BCE4,#E86866)",
     },
     text: {
-      primary: "#021220",
+      primary: "#0B1317",
       secondary: "#FFFFFF",
       disabled: "rgba(0, 0, 0, 0.38)",
       hint: "rgba(0, 0, 0, 0.38)"
@@ -96,74 +96,78 @@ export default createMuiTheme({
   typography: {
     useNextVariants: true,
     h1: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h2: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h3: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h4: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
-      textTransform: "uppercase"
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h5: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
+      fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
     },
     h6: {
-      color: "#021220",
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
-      fontWeight: 400
+      fontFamily: "'Roboto', sans-serif",
     },
     body1: {
-      color: "#6F7072",
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "1.2rem",
     },
     caption: {
-      color: "#6F7072",
+      fontFamily: "'Roboto', sans-serif",
     },
     subtitle1: {
-      fontFamily: "'IBM Plex Sans', 'Helvetica Neue', 'Arial', sans-serif",
-      fontWeight: 500
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "1.5rem",
     },
     subtitle2: {
-      color: "#6F7072",
-    },    
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "1rem"
+    }, 
   },
   shape: {
-    borderRadius: 5,
+    borderRadius: 8,
     border: 2,
   },
   button: {
     padding: "18px 26px"
   },
   overrides: {
-    MuiInputBase: {
-      input: {
-        borderRadius: 5,
+    MuiButton: {
+      outlined: {
+        borderRadius: 30,
+        borderWidth: 2,
+        padding: `8px 16px`
       },
-      root: {
-        borderRadius: 5,
-        color: "#FFFFFF"
+      contained: {
+        borderRadius: 30,
+        padding: `8px 16px`
       }
     },
-    MuiOutlinedInput: {
+    MuiInputBase: {
       input: {
-        color: "#FFFFFF"
-      }, 
-      root: {
-        '& $notchedOutline' : {
-          borderColor: "#FFFFFF",
-        },
-        '&:hover:not($disabled):not($focused):not($error) $notchedOutline' : {
-          borderColor: "#85BCE4", // primary
-        }
+        borderRadius: 30,
       },
+    },
+    MuiOutlinedInput: {
+      root: {
+        '&.Mui-focused $notchedOutline' :{
+          borderColor: "inherit",
+          borderWidth: 0,
+        },
+      },
+      notchedOutline: {
+        borderWidth: 0,
+      }
+    },
+    MuiSelect: {
+      icon: {
+        color: "inherit",
+      }
     },
     MuiSlider: {
       root: {
@@ -185,25 +189,35 @@ export default createMuiTheme({
         height: 24,
         width: 24,
         backgroundColor: '#fff',
-        border: '2px solid currentColor',
+        // border: '1px solid currentColor',
         marginTop: -8,
-        marginLeft: -12,
+        marginLeft: -10,
         // '&:focus, &:hover, &$active': {
         //   boxShadow: 'inherit',
         // },
+        '&.Mui-disabled': {
+          height: 24,
+          width: 24,
+          backgroundColor: '#fff',
+          // border: '2px solid currentColor',
+          marginTop: -8,
+          marginLeft: -10,
+        }
       },
       track: {
         height: 8,
         borderRadius: 4,
+        // backgroundColor: "#FFF"
       },
       rail: {
         height: 8,
         borderRadius: 4,
       },
       valueLabel: {
-        left: 'calc(-50% + 4px)',
-        top: 30,
-        fontSize: "1rem",
+        left: 'calc(-50% + 7px)',
+        top: 6,
+        fontSize: "0.75rem",
+        fontWeight: 600,
         '& *': {
           background: 'transparent',
           color: '#000',
@@ -215,7 +229,67 @@ export default createMuiTheme({
         padding: 16,
         backgroundColor: "#021220",
         color: "#FFFFFF"
+      },
+    },
+    MuiTabs:{
+      root:{
+        minHeight: 32,
+      },
+      indicator: {
+        display: "none"
+      },
+      flexContainer: {
+        justifyContent: "flex-end"
       }
-    }
+    },
+    MuiTab: {
+      root: {
+        padding: 0,
+        minHeight: 48,
+        '&.MuiTab-labelIcon .MuiTab-wrapper > *:first-child': {
+          marginBottom: 0
+        }
+      },
+      
+    },
+    // MuiTab: {
+    //   root: {
+    //     '@media screen and (min-width: 900px)': {
+    //       minWidth: 140,
+    //     },
+    //     zIndex: 1,
+    //     minHeight: 32,
+    //     backgroundColor: "#4D4D4D",
+    //     marginRight: -32,
+    //     borderTopLeftRadius: 16,
+    //     borderTopRightRadius: 16,
+    //     fontSize: "0.8rem",
+    //     '&.Mui-selected' : {
+    //       zIndex: 2,
+    //       color: "#FFF",
+    //       backgroundColor: "#343434",
+    //       borderTopLeftRadius: 24,
+    //       borderTopRightRadius: 24,
+    //       opacity: 1,
+    //     },
+    //     '&:first-child': {
+    //       borderTopLeftRadius: 24,
+    //       opacity: 0.8,
+    //     },
+    //     '&:last-child': {
+    //       zIndex: 0,
+    //       borderTopRightRadius: 24,
+    //       marginRight: 0,
+    //       opacity: 0.8,
+    //     },
+    //     '&:last-child&.Mui-selected': {
+    //       zIndex: 2,
+    //     }
+    //   },
+    //   textColorInherit: {
+    //     opacity: 1,
+    //     color: "#F1F1F0",
+    //   }      
+    // }
   }
 });

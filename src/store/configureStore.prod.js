@@ -3,11 +3,12 @@ import thunk from 'redux-thunk'
 import reducer from '../reducers'
 import apiMiddleware from '../middlewares/api'
 import validatorMiddleware from '../middlewares/validator'
+import layoutMiddleware from '../middlewares/layout'
 
 const configureStore = () => {
   return createStore(
     reducer,
-    applyMiddleware(thunk, apiMiddleware, validatorMiddleware)
+    applyMiddleware(thunk, apiMiddleware, validatorMiddleware, layoutMiddleware)
   )
 }
 
