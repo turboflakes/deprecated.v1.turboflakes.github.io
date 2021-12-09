@@ -49,7 +49,7 @@ const styles = (theme) => ({
   nameBase: {
     background: "linear-gradient(90deg, #00AEEF, #F7941D)",
     height: theme.spacing(2),
-    margin: `-${theme.spacing(1)}px -${theme.spacing(1)/2}px 0 ${theme.spacing(1)/2}px`,
+    margin: `-${theme.spacing(1)}px ${theme.spacing(1)/2}px 0 ${theme.spacing(1)/2}px`,
   },
   nomiTitle: {
     margin: `${theme.spacing(4)}px 0 0 ${theme.spacing(6)}px`
@@ -60,17 +60,24 @@ const styles = (theme) => ({
   },
   watermark: {
     position: "absolute",
-    color: "rgba(255,255,255,0.8)",
+    color: "rgba(255,255,255,0.9)",
     zIndex: 1,
     top: theme.spacing(2),
+    left: theme.spacing(2),
+    maxWidth: 96
+  },
+  headWatermark: {
+    position: "absolute",
+    zIndex: 1,
+    top: theme.spacing(8),
+    maxWidth: 90
+  },
+  visible: {
     left: theme.spacing(2)
   },
-  watermarkSync: {
-    position: "absolute",
-    color: "rgba(255,255,255,0.8)",
-    zIndex: 1,
-    bottom: theme.spacing(1) / 2 ,
-    left: theme.spacing(2)
-  }
+  logoAnimateFadeOutLeft:{
+    animation: "bounceOutLeft",
+  	animationDuration: "1s",
+  },
 })
 export default styles

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classNames from 'classnames'
 import { selectors } from '../../../selectors'
 import { selectAddress, clearAddress } from '../../../actions/leaderboard'
 import {scrollIntoView} from '../../../actions/layout'
@@ -11,6 +11,7 @@ import BoardAnimation from './board_animation'
 import Leaderboard from './leaderboard'
 import AccountInfoTable from './account_info_table'
 import nomiLogo from '../../../assets/nomi.svg';
+import nomiHead from '../../../assets/nomi_head_white.svg';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
 import styles from './styles'
@@ -18,11 +19,38 @@ import styles from './styles'
 class NomiTool extends Component {
 
   rootRef = React.createRef();
+  watermarkRef = React.createRef();
+  headWatermarkRef = React.createRef();
+
+  componentDidMount(){
+    if (this.watermarkRef.current) {
+      this.watermarkRef.current.addEventListener('animationend', this.handleAnimationEnd, false);
+    }
+    if (this.headWatermarkRef.current) {
+      this.headWatermarkRef.current.addEventListener('animationend', this.handleAnimationEnd, false);
+    }
+  }
 
   componentDidUpdate(prevProps) {
     const {scrollHere} = this.props
     if (scrollHere && prevProps.scrollHere !== scrollHere) {
       this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.watermarkRef.current) {
+      this.watermarkRef.current.removeEventListener('animationend', this.handleAnimationEnd, false);
+    }
+    if (this.headWatermarkRef.current) {
+      this.headWatermarkRef.current.removeEventListener('animationend', this.handleAnimationEnd, false);
+    }
+  }
+
+  handleAnimationEnd = (event) => {
+    const {scrollable} = this.props
+    if (scrollable) {
+      event.target.className += ` invisible`
     }
   }
 
@@ -37,7 +65,7 @@ class NomiTool extends Component {
   }
 
   render() {
-    const { classes, network, addresses, selected, view, scrollable, topY } = this.props;
+    const { classes, network, addresses, selected, topY, scrollable } = this.props;
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
@@ -73,20 +101,28 @@ class NomiTool extends Component {
           </Box>
           <Box align="right" className={classes.logoBox}>
             <img src={nomiLogo} 
-            className={classNames(classes.logo,
-              view === "leaderboard" ? classes.logoAnimateOutRight : null,
-              !scrollable ? classes.logoFixedBoard : null,
-              !scrollable ? classes.logoAnimateInLeft : null,
-              )} alt={"nomi logo"}/>
+              className={classNames(classes.logo)} 
+              alt={"nomi logo"}/>
           </Box>
         </Box>
         <Box className={classes.animationBox}>
           <Typography
+              ref={this.watermarkRef}
               variant="h4"
-              className={classes.watermark}
-              align="left"
+              className={
+                classNames(classes.watermark, 
+                  !scrollable ? classes.visible : null,
+                  !scrollable ? classes.logoAnimateInLeft : classes.logoAnimateFadeOutLeft
+                )} align="left"
             >NOMI
           </Typography>
+          <img 
+            ref={this.headWatermarkRef}
+            src={nomiHead} 
+            className={classNames(classes.headWatermark, 
+              !scrollable ? classes.visible : null,
+              !scrollable ? classes.logoAnimateInLeft : classes.logoAnimateFadeOutLeft 
+              )} alt={"Icon"}/>
           <BoardAnimation 
             network={network}
             addresses={addresses}

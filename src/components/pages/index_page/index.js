@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-// import IconButton from '@material-ui/core/IconButton';
-// import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDownRounded';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import IconButton from '@material-ui/core/IconButton';
@@ -76,9 +74,7 @@ class IndexPage extends Component {
               Awesome <Link href="https://substrate.io/" 
               target="_blank" rel="noreferrer" color="inherit" 
               className={classes.link}>Substrate</Link> means bold tools. 
-              {/* <b>TurboFlakes</b> provides end-user tooling <br/>to ease the experience of interacting with Substrate blockchain networks. */}
-              <b>TurboFlakes</b> provides end-user <br/>tooling to help you to interact with Substrate blockchain networks. 
-              {/* Turboflakes provides end-user tooling built on top of the awesome Substrate framework to easier the experience of interacting with Substrate blockchain networks. */}
+              <b>TurboFlakes</b> provides end-user <br/>tooling to help you to interact with Substrate blockchain networks.
             </Typography>
           </Box>
         </Box>          
@@ -130,13 +126,7 @@ class IndexPage extends Component {
               </IconButton>
               </Typography>
             </Grid>
-          </Grid>          
-          {/* <IconButton 
-            onClick={() => this.handleNext("nomi")}
-            color="inherit"
-            aria-label="Menu">
-            <KeyboardArrowDownIcon color="inherit" fontSize="large" />
-          </IconButton> */}
+          </Grid>
         </Box>
 
         <Box className={classes.meetBox} >

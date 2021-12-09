@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import { connect } from 'react-redux'
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import _debounce from 'lodash/debounce';
 import {scrollIntoView, clearView, disableScroll} from '../../actions/layout'
 

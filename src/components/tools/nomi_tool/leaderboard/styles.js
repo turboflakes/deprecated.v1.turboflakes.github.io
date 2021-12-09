@@ -63,11 +63,19 @@ const styles = (theme) => ({
 		top: theme.spacing(3),
 		color: theme.palette.text.secondary
 	},
-	iconScroll: {
+	iconLock: {
 		position: "absolute",
 		right: theme.spacing(1),
 		top: theme.spacing(1),
 		color: theme.palette.text.secondary,
+	},
+	iconLocked: {
+		color: theme.palette.text.secondary,
+		backgroundColor: theme.palette.primary.main,
+		'&:hover': {
+			backgroundColor: "rgb(165, 19, 25)",
+		},
+		boxShadow: "0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)"
 	},
 	settingsWrapperBox: {
 		margin: `${theme.spacing()}px 0`,
@@ -76,12 +84,6 @@ const styles = (theme) => ({
 		display: "flex",
 	},
 	configBox: {
-		borderTopRightRadius: theme.spacing(3),
-	},
-	configHeaderBox: {
-		display: "flex",
-		justifyContent: "flex-end",
-		backgroundColor: "rgba(77,77,77,0.9)",
 		borderTopRightRadius: theme.spacing(3),
 	},
 	leaderboardBox:{
@@ -93,7 +95,7 @@ const styles = (theme) => ({
 	},
 	expandBox: {
 		zIndex: 1,
-		backgroundColor: "rgba(77,77,77,0.9)",
+		backgroundColor: "rgba(77,77,77,0.95)",
 		borderTopLeftRadius: theme.spacing(3),
 		// marginBottom: 2,
 		display: "flex",
@@ -108,11 +110,11 @@ const styles = (theme) => ({
 		color: theme.palette.text.secondary,
 	},
 	searchBox: {
-		backgroundColor: "rgba(77,77,77,0.9)",
+		backgroundColor: "rgba(77,77,77,0.95)",
 		padding: `0 ${theme.spacing(1)}px ${theme.spacing(1)/2}px ${theme.spacing(1)}px`,
 	},
 	listBox: {
-		backgroundColor: "rgba(77,77,77,0.9)",
+		backgroundColor: "rgba(77,77,77,0.95)",
 		overflow: "auto",
 		height: 719,
 		borderBottomLeftRadius: theme.spacing(3)

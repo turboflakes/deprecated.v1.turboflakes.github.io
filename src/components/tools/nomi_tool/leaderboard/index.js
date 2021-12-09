@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { query, get } from '../../../../actions/validator'
@@ -30,7 +31,8 @@ import UpIcon from '@material-ui/icons/KeyboardArrowUpRounded';
 import LeftIcon from '@material-ui/icons/KeyboardArrowLeftRounded';
 import RightIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDownRounded';
-import { ReactComponent as PushPinIcon } from '../../../../assets/push_pin_white_24dp.svg';
+import LockIcon from '@material-ui/icons/LockRounded';
+import LockOpenIcon from '@material-ui/icons/LockOpenRounded';
 import PopoverInfo from '../popover_info';
 import ControlPanel from '../control_panel'
 import AccountItem from '../account_item'
@@ -163,7 +165,7 @@ class Leaderboard extends Component {
 				</Tabs> */}
 				<Box className={classes.networkBox}>
 					<Box className={classes.networkLogoBox}>
-						<IconButton color="primary" size="small" onClick={this.handleNetworkSite}>
+						<IconButton size="small" onClick={this.handleNetworkSite}>
 							<img src={getNetworkIcon(network)} className={classes.networkLogo} alt={"Icon"}/>
 						</IconButton>
 						<Fade in={isFetching} 
@@ -198,12 +200,10 @@ class Leaderboard extends Component {
 						))}
 					</Menu>
 					<IconButton aria-label="Enable / Disable scroll"
-						style={scrollable ? {
-								transform: "rotate(45deg)",
-								boxShadow: "2px 2px #000"
-							} : null}
-						className={classes.iconScroll} onClick={this.handleTogglePin}>
-						<PushPinIcon />
+						title={scrollable ? "Click to lock and disable scroll" : "Click to unlock and enable scroll back again" }
+						className={classNames(classes.iconLock, !scrollable ? classes.iconLocked : null)} 
+							onClick={this.handleTogglePin}>
+						{scrollable ? <LockOpenIcon /> : <LockIcon />}
 					</IconButton>
 				</Box>
 				<Box className={classes.titleBox} align="left">

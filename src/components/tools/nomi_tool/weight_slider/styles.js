@@ -4,7 +4,7 @@ const styles = (theme) => ({
 		alignItems: "center",
 		justifyContent: "space-between",
 		padding: theme.spacing(1),
-		backgroundColor: "rgba(77,77,77,0.9)",
+		backgroundColor: "rgba(77,77,77,0.95)",
 	},
 	traitBox: {
 		display: "flex",

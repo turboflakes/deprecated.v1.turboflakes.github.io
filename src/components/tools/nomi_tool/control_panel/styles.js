@@ -7,7 +7,7 @@ const styles = (theme) => ({
 	},
 	quantityBoxWrapper:{ 
 		borderTopRightRadius: theme.spacing(3),
-		backgroundColor: "rgba(77,77,77,0.9)",
+		backgroundColor: "rgba(77,77,77,0.95)",
 		padding: `${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(1)}px ${theme.spacing(2)}px`,
 		display: "flex",
 		marginBottom: 1
@@ -27,10 +27,10 @@ const styles = (theme) => ({
 		padding: `${theme.spacing(2)}px 0 0 ${theme.spacing(2)}px`,
 	},
 	weightsTitleBox: {
-		backgroundColor: "rgba(77,77,77,0.9)"
+		backgroundColor: "rgba(77,77,77,0.95)"
 	},
 	slidersTitleBox: {
-		backgroundColor: "rgba(77,77,77,0.8)"
+		backgroundColor: "rgba(77,77,77,0.9)"
 	},
 	slidersBox: {
 		display: "flex",
@@ -47,7 +47,7 @@ const styles = (theme) => ({
 	},
 	noSlider: {
 		minHeight: 76,
-		backgroundColor: "rgba(77,77,77,0.8)",
+		backgroundColor: "rgba(77,77,77,0.9)",
 	},
 	popoverList: {
 		marginLeft: theme.spacing(1)
