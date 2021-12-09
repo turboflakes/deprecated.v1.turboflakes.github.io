@@ -101,7 +101,7 @@ class IndexPage extends Component {
               align="left"
               paragraph
               >
-              Polkadot is a multichain network built by the same Substrate team, where most are the blockchain industry’s foremost builders.
+              Polkadot is a multichain network built by the Substrate team. A team at the cutting edge of the blockchain industry.
               </Typography>
               <Typography
               variant="body1"
@@ -233,7 +233,7 @@ class IndexPage extends Component {
         {/* Tool sections here */}
         <NomiTool scrollHere={view === "nomi"} topY={nomiTopY} />
         <CrunchTool scrollHere={view === "crunch"}/>
-        <EmaTool scrollHere={view === "ema"}/>
+        {/* <EmaTool scrollHere={view === "ema"}/> */}
         {/* <CocoTool scrollIntoView={this.state.view === "coco"}/> */}
         <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY} />
       </Box>
