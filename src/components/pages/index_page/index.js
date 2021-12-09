@@ -154,7 +154,7 @@ class IndexPage extends Component {
               align="left"
               paragraph
               >
-              On the shoulders of these giant coders from Polkadot, <b>TurboFlakes</b> uses this awesome, open technology to create amazing tools designed to improve the experience of interacting with Substrate blockchain networks.
+              On the shoulders of these giant builders, <b>TurboFlakes</b> uses this awesome and open technology to create amazing tools designed to improve the experience of interacting with Substrate blockchain networks.
               </Typography>
               <Typography
               variant="body1"
@@ -162,7 +162,7 @@ class IndexPage extends Component {
               align="left"
               paragraph
               >  
-              From someone random thought, to collaborative brainstorms, or just from listening other community members, we generate ideas and work tiressly to develop and craft these experiments.
+              From someone random thought, to collaborative brainstorms or just from listening other community members, we generate ideas and work tiressly to develop and craft these experiments.
               </Typography>
               <Typography
               variant="body1"
