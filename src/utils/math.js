@@ -150,7 +150,7 @@ export const parseWeightsIntoArray = (w) => {
         for (let i = 0; i < WEIGHTS.length; i++) {
             if (!!a[i]) {
                 const x = parseInt(a[i])
-                a[i] = x > 10 ? 10 : x
+                a[i] = x >= 10 ? 9 : x
             } else {
                 a.push(0)
             }

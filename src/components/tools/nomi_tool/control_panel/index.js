@@ -223,7 +223,7 @@ class ControlPanel extends Component {
 								Weights are your personal preferences and define the level of importance towards a specific trait.
 								</Typography>
 								<Typography variant="body2" color="inherit" >
-									The weight scale is defined in a 10-point ordinal scale. e.g:
+									The weight scale is defined in a 9-point ordinal scale. e.g:
 								</Typography>
 								<Typography variant="body2" color="inherit" className={classes.popoverList}>
 								0 = Not Applicable
@@ -235,7 +235,7 @@ class ControlPanel extends Component {
 								5 = Moderately Important
 								</Typography>
 								<Typography variant="body2" color="inherit" className={classes.popoverList} gutterBottom>
-								10 = Very Important
+								9 = Very Important
 								</Typography>
 								<Typography variant="body2" color="inherit" gutterBottom>
 									Note: If you do not want a specific trait to interfer in the final score, you have the option to select <b className={classes.bold}>0 - Not Applicable</b>. 

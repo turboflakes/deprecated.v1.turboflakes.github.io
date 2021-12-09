@@ -76,10 +76,11 @@ class ToolsPage extends Component {
             <li><Typography color="inherit">Number of sub-accounts or sibling accounts</Typography></li>
           </ul>
           <Typography paragraph>
-          Each nominator can define the level of importance of each trait in a scale of 1 to 10 - with 1 as the least important and 10 the most important. For each validator the value of each trait is weighted by the level of importance assigned by the nominator.  The overall score for a validator is obtained by summing all the (weighted) values associated with their traits.
+          Each nominator can define the level of importance of each trait in a scale of 1 to 9 - with 1 as the least important and 9 the most important. For each validator the value of each trait is weighted by the level of importance assigned by the nominator. The overall score for a validator is obtained by summing all the (weighted) values associated with their traits. 
+          If a trait is not desired to be considered in the overall score, the value 0 must be assigned to the respective trait.
           </Typography>
           <Typography color="inherit" align="justify" paragraph>
-          After all validators are scored The Leaderboard is created by displaying the highest ranked validators at the top.
+          After all validators are scored the Leaderboard is created by displaying the highest ranked validators at the top.
           </Typography>
           <Typography color="inherit" align="justify" paragraph>
           In summary, NOMI helps you discover validators based on their traits and historical performance data, in a way that allows each nominator to assign their personal level of importance related to a specific trait.
