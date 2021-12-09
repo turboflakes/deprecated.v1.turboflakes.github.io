@@ -1,7 +1,8 @@
 {
   "name": "turboflakes-frontend",
   "version": "0.1.25",
-  "private": true,
+  "homepage": "https://beta.turboflakes.io",
+  "private": false,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -16,6 +17,7 @@
     "@testing-library/user-event": "^12.1.10",
     "animate.css": "^4.1.1",
     "classnames": "^2.3.1",
+    "gh-pages": "^3.2.3",
     "highlight.js": "^11.3.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -30,10 +32,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build:production",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:production": "sh -ac '. .env.production.${REACT_APP_NETWORK}; react-scripts build'",
-    "build:kusama": "REACT_APP_NETWORK=kusama npm run build:production",
+    "build:production": "sh -ac '. .env.production.local; react-scripts build'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
