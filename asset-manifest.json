@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.099262ab.chunk.css",
-    "main.js": "/static/js/main.eb9c1acc.chunk.js",
+    "main.js": "/static/js/main.b5b61d03.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.f719126e.js",
     "static/css/2.29852eb5.chunk.css": "/static/css/2.29852eb5.chunk.css",
     "static/js/2.99c77a70.chunk.js": "/static/js/2.99c77a70.chunk.js",
@@ -18,7 +18,7 @@
     "static/media/logo_1_inverted_subtract_turboflakes_.a857a493.svg": "/static/media/logo_1_inverted_subtract_turboflakes_.a857a493.svg",
     "static/media/logo_2_color_subtract_turboflakes_.f56f64ba.svg": "/static/media/logo_2_color_subtract_turboflakes_.f56f64ba.svg",
     "static/media/nomi.37caf6a1.svg": "/static/media/nomi.37caf6a1.svg",
-    "static/media/nomi_head_white.d8861648.svg": "/static/media/nomi_head_white.d8861648.svg",
+    "static/media/nomi_head_white.93e2c5f1.svg": "/static/media/nomi_head_white.93e2c5f1.svg",
     "static/media/polkadot_icon.effcae99.svg": "/static/media/polkadot_icon.effcae99.svg",
     "static/media/polkadot_js_logo.7d2701e2.svg": "/static/media/polkadot_js_logo.7d2701e2.svg",
     "static/media/polkadot_logotype_white.22c4f751.svg": "/static/media/polkadot_logotype_white.22c4f751.svg",
@@ -31,6 +31,6 @@
     "static/css/2.29852eb5.chunk.css",
     "static/js/2.99c77a70.chunk.js",
     "static/css/main.099262ab.chunk.css",
-    "static/js/main.eb9c1acc.chunk.js"
+    "static/js/main.b5b61d03.chunk.js"
   ]
 }
