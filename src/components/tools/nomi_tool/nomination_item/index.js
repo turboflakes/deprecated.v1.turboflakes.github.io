@@ -71,13 +71,14 @@ class NominationItem extends Component {
         <ListItemText primary={isFetching ? `` : name }
           onClick={() => this.handleSelectOnClick(address)} 
           align="left" classes={{primary: classes.itemText}} />
-        {!isFeatured ? 
+        {/* {!isFeatured ?  */}
           <ListItemSecondaryAction>
             <IconButton edge="end" aria-label="delete"
               onClick={() => this.handleRemoveOnClick(address)} >
               <DeleteIcon />
             </IconButton>
-          </ListItemSecondaryAction> : null}
+          </ListItemSecondaryAction> 
+        {/* : null} */}
       </ListItem>
     )
 	}
