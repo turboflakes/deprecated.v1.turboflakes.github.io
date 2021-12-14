@@ -3,6 +3,9 @@ const styles = (theme) => ({
     // Note: marginTop = -80 to remove the header appBar height
     marginTop: -80,
   },
+  container: {
+    ...theme.container,
+  },
   heroBox: {
     height: "90vh",
   },
@@ -45,41 +48,6 @@ const styles = (theme) => ({
       textDecorationThickness: 4,
       textDecorationColor: theme.palette.primary.main,
     }
-  },
-  toolsBox: {
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-    padding: `${theme.spacing(6)}px 0`
-  },
-  botLink: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: `0 ${theme.spacing(6)}px`,
-    '&:hover > img': {
-      animation: "headShake",
-  	  animationDuration: "1.5s",
-    }
-  },
-  botLogo: {
-    maxWidth: 80,
-    margin: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
-  },
-  meet: {
-    fontFamily: "'Roboto', sans-serif",
-  },
-  container: {
-    ...theme.container,
-  },
-  meetBox: {
-    height: 1024,
-    background: "linear-gradient(180deg, #FFF, #F1F1F0)",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "#FFF",
   },
 
 })
