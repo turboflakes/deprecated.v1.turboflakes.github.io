@@ -41,7 +41,7 @@ class NominationItem extends Component {
   }
   
  	render() {
-		const { classes, address, account, selected, networkDetails, isFetching, isFeatured } = this.props;
+		const { classes, address, account, selected, networkDetails, isFetching } = this.props;
     const stash = encodeAddress(address, networkDetails.ss58_format)
 		const isSelected = account.id === selected
     const name = !!account.name ? `${nameDisplay(account.name, 30)}` : `${stashDisplay(stash)}`
@@ -71,14 +71,12 @@ class NominationItem extends Component {
         <ListItemText primary={isFetching ? `` : name }
           onClick={() => this.handleSelectOnClick(address)} 
           align="left" classes={{primary: classes.itemText}} />
-        {/* {!isFeatured ?  */}
           <ListItemSecondaryAction>
             <IconButton edge="end" aria-label="delete"
               onClick={() => this.handleRemoveOnClick(address)} >
               <DeleteIcon />
             </IconButton>
           </ListItemSecondaryAction> 
-        {/* : null} */}
       </ListItem>
     )
 	}
