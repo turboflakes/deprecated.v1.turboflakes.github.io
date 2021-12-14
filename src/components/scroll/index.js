@@ -30,7 +30,7 @@ class Scroll extends Component {
   }
 
   handleScrollFinished = () => {
-    const {view, nomiTopY, crunchTopY} = this.props
+    const {view, nomiTopY, crunchTopY, emaTopY} = this.props
     const {scrollY, nomiSectionHalf, nomiLeaderboardTop, 
       nomiBoardHalf} = this.state
 
@@ -57,6 +57,12 @@ class Scroll extends Component {
       scrollY < (crunchTopY + SECTION_THRESHOLD)) {
         this.props.clearView()
         this.props.scrollIntoView("crunch")
+    }
+
+    if (scrollY >= (emaTopY - SECTION_THRESHOLD) &&
+      scrollY < (emaTopY + SECTION_THRESHOLD)) {
+        this.props.clearView()
+        this.props.scrollIntoView("ema")
     }
   }
 

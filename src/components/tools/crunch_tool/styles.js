@@ -2,6 +2,7 @@ const styles = (theme) => ({
   root: {
     background: "linear-gradient(180deg, #FFF, #F1F1F0)",
     borderBottom: `solid 2px #FFF`,
+    height: 1728
   },
   container: {
     ...theme.container,
