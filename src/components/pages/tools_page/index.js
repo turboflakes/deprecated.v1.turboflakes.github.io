@@ -37,7 +37,7 @@ class ToolsPage extends Component {
           NOMI
           </Typography> 
           <Typography paragraph>
-          Nomi is a nominator decision support tool for NPoS networks.
+          Nomi is a decision support tool for Nominators in NPoS networks.
           </Typography> 
           <Typography variant="h5" paragraph>
           NPoS networks

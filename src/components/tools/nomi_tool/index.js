@@ -129,7 +129,7 @@ class NomiTool extends Component {
                 align="left"
                 paragraph
               >
-                <b>Nomi</b> is a nominator decision support tool for NPoS networks.
+                <b>Nomi</b> is a decision support tool for Nominators in NPoS networks.
             </Typography>
           </Box>
           <Box align="right" className={classes.logoBox}>

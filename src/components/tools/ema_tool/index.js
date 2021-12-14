@@ -51,7 +51,8 @@ class EmaTool extends Component {
                     color="textPrimary"
                     align="left"
                   >
-                    Coming Soon 😉
+                    Hey, what about a brief text message exchange?<br/>
+                    I am coming soon 😉
                 </Typography>
                 {/* <Typography
                     variant="subtitle1"
