@@ -72,15 +72,6 @@ const styles = (theme) => ({
   container: {
     ...theme.container,
   },
-  substrateBox: {
-    height: 704,
-    backgroundColor: "#0B1317",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "#FFF",
-  },
   meetBox: {
     height: 1024,
     background: "linear-gradient(180deg, #FFF, #F1F1F0)",

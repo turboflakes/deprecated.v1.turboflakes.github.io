@@ -12,6 +12,7 @@ import NomiTool from '../../tools/nomi_tool'
 import CrunchTool from '../../tools/crunch_tool'
 import EmaTool from '../../tools/ema_tool'
 import Scroll from '../../scroll'
+import SubstrateSection from './substrate_section'
 // import CocoTool from '../../tools/coco_tool'
 // import logo from '../../../assets/logo/logo_1_color_subtract_turboflakes_.svg';
 import logo from '../../../assets/logo/logo_2_color_subtract_turboflakes_.svg';
@@ -24,7 +25,7 @@ import styles from './styles'
 class IndexPage extends Component {
 
   rootRef = React.createRef();
-
+  
   componentDidUpdate(prevProps) {
     // Layout
     const {view} = this.props
@@ -32,10 +33,6 @@ class IndexPage extends Component {
       this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
     }
   }
-
-  handleExt = () => {
-		window.open('https://substrate.io/vision/substrate-and-polkadot/', '_blank')
-	}
 
   render() {
     const { classes, view } = this.props;
@@ -45,6 +42,7 @@ class IndexPage extends Component {
     // TurboFlakes tools box height = 1024
     const nomiTopY = (window.innerHeight * 0.9) + 704 + 1024
     const crunchTopY = nomiTopY + 384 + (window.innerHeight * 0.95)
+    const emaTopY = crunchTopY + 1728
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
@@ -77,57 +75,9 @@ class IndexPage extends Component {
               <b>TurboFlakes</b> provides end-user <br/>tooling to help you to interact with Substrate blockchain networks.
             </Typography>
           </Box>
-        </Box>          
-        <Box className={classes.substrateBox} >
-          <Grid container className={classes.container}>
-            <Grid xs={8}>
-              <Typography
-              variant="h3"
-              color="textSecondary"
-              align="left"
-              paragraph
-              >Substrate & Polkadot</Typography>
-              <Typography
-              variant="body1"
-              color="textSecondary"
-              align="left"
-              paragraph
-              >
-              Substrate is the blockchain framework that powers all the Polkadot ecosystem to be at the forefront innovation for the Web3 revolution. 
-              </Typography>
-              <Typography
-              variant="body1"
-              color="textSecondary"
-              align="left"
-              paragraph
-              >
-              Polkadot is a multichain network built by the Substrate team. A team at the cutting edge of the blockchain industry.
-              </Typography>
-              <Typography
-              variant="body1"
-              color="textSecondary"
-              align="left"
-              paragraph
-              >
-              Polkadot aims to facilitate a fully functional and user-friendly decentralized web, where users are in control.
-              </Typography>
-              <Typography
-              variant="body1"
-              color="textSecondary"
-              align="left"
-              paragraph
-              >
-                To find out more about Substrate & Polkadot super powers, have a read here.  <IconButton 
-                onClick={this.handleExt}
-                color="inherit"
-                size="small"
-                aria-label="Menu">
-                <ArrowRightIcon color="inherit" />
-              </IconButton>
-              </Typography>
-            </Grid>
-          </Grid>
-        </Box>
+        </Box>    
+        {/*  */}
+        <SubstrateSection />
 
         <Box className={classes.meetBox} >
           <Grid container className={classes.container}>
@@ -232,10 +182,10 @@ class IndexPage extends Component {
         
         {/* Tool sections here */}
         <NomiTool scrollHere={view === "nomi"} topY={nomiTopY} />
-        <CrunchTool scrollHere={view === "crunch"}/>
+        <CrunchTool scrollHere={view === "crunch"} />
         <EmaTool scrollHere={view === "ema"}/>
         {/* <CocoTool scrollIntoView={this.state.view === "coco"}/> */}
-        <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY} />
+        <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY} emaTopY={emaTopY} />
       </Box>
     )
   }
