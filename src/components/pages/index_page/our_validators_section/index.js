@@ -66,7 +66,7 @@ class OurValidatorsSection extends Component {
             align="left"
             paragraph
             >
-            Our IT professional background experience gives us the confidence needed to turn our infrastructure as reliable as possible, so that we can rest assure you - Nominators - that your stake is safe by nominating us.
+            Our IT professional background experience gives us the confidence needed to turn our infrastructure as reliable as possible, so that we can rest assure you - Nominators - that your stake is safe by nominating our validators.
             </Typography>
           </Grid>
         </Grid>
