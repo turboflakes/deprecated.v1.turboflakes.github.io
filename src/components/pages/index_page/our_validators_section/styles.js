@@ -1,6 +1,6 @@
 const styles = (theme) => ({
   root: {
-    height: 704,
+    height: 896,
     backgroundColor: "#0B1317",
     display: "flex",
     flexDirection: "column",

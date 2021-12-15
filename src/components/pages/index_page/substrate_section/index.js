@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowRightIcon from '@material-ui/icons/ArrowRightAltRounded';
 import { withStyles } from '@material-ui/core/styles';
@@ -33,7 +34,7 @@ class SubstrateSection extends Component {
             align="left"
             paragraph
             >
-            Substrate is the blockchain framework that powers all the Polkadot ecosystem to be at the forefront innovation for the Web3 revolution. 
+            Substrate is the blockchain framework that powers the Polkadot ecosystem to be at the forefront of innovation for the Web3 revolution.
             </Typography>
             <Typography
             variant="body1"
@@ -57,11 +58,13 @@ class SubstrateSection extends Component {
             align="left"
             paragraph
             >
-              To find out more about Substrate & Polkadot super powers, have a read here.  <IconButton 
-              onClick={this.handleExt}
-              color="inherit"
-              size="small"
-              aria-label="Menu">
+            And on the sidelines there are many, many exciting <Link href="https://substrate.io/ecosystem/projects/" 
+            target="_blank" rel="noreferrer" color="inherit" 
+            className={classes.link}>projects</Link> being built by top teams and community members, to enrich the Polkadot ecosystem and foster innovation in decentralized tech. To find out more about Substrate & Polkadot super powers, have a read here.  <IconButton 
+            onClick={this.handleExt}
+            color="inherit"
+            size="small"
+            aria-label="Menu">
               <ArrowRightIcon color="inherit" />
             </IconButton>
             </Typography>

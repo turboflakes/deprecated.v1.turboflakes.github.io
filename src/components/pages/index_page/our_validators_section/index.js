@@ -42,9 +42,9 @@ class OurValidatorsSection extends Component {
             align="left"
             paragraph
             >
-            <b>TurboFlakes's</b> Polkadot and Kusama validators are independent nodes running on different regions of the world. They run on dedicated high performance servers with high availability. As a standard practice, we have backup nodes for each validator on the network running under the same configuration as the other active validator nodes. Our validators setup follows all Polkadot validation <Link href="https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-polkadot" 
+            <b>TurboFlakes's</b> Polkadot and Kusama validators are independent nodes running on different regions of the world. They run on dedicated and high performance servers with high availability. As a standard practice, we have backup nodes for each validator on the network. Each backup node runs under the same configuration as the other active validator nodes. And to be secure and reliable, our validators setup follows all Polkadot validation <Link href="https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-polkadot" 
             target="_blank" rel="noreferrer" color="inherit" 
-            className={classes.link}>best practices</Link> to be secure and reliable.
+            className={classes.link}>best practices</Link>.
             </Typography>
             <Typography
             variant="body1"

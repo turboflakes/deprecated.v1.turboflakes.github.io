@@ -35,17 +35,7 @@ class OurToolsSection extends Component {
             align="left"
             paragraph
             >
-            On the sidelines there are many, many exciting <Link href="https://substrate.io/ecosystem/projects/" 
-            target="_blank" rel="noreferrer" color="inherit" 
-            className={classes.link}>projects</Link> being built by top teams and community members, to enrich the Polkadot ecosystem and foster innovation in decentralized tech.
-            </Typography>
-            <Typography
-            variant="body1"
-            color="textPrimary"
-            align="left"
-            paragraph
-            >
-            On the shoulders of these giant builders, <b>TurboFlakes</b> uses this awesome and open technology to create amazing tools designed to improve the experience of interacting with Substrate blockchain networks.
+            By standing on the shoulders of these giants, <b>TurboFlakes</b> uses this awesome technology to create amazing tools designed to improve the experience of interacting with Substrate blockchain networks.
             </Typography>
             <Typography
             variant="body1"
@@ -53,7 +43,7 @@ class OurToolsSection extends Component {
             align="left"
             paragraph
             >  
-            From someone random thought, to collaborative brainstorms or just from listening other community members, we generate ideas and work tiressly to develop and craft these experiments.
+            Usually it all starts from a necessity or a random thought. Next, with collaborative thinking, listening and participation on community forums, we evolve these thoughts into ideas. We then take action. And work tirelessly to develop and craft these ideas into life.
             </Typography>
             <Typography
             variant="body1"
@@ -61,7 +51,7 @@ class OurToolsSection extends Component {
             align="left"
             paragraph
             >
-            Our tools are built in the wild, open-source and ready to be explored.
+            From our garage to the world, we build, open-source, and launch our tools.
             </Typography>
             <Typography
             variant="body1"
