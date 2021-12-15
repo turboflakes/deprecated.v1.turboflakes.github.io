@@ -35,7 +35,7 @@ class OurToolsSection extends Component {
             align="left"
             paragraph
             >
-            By standing on the shoulders of these giants, <b>TurboFlakes</b> uses this awesome technology to create amazing tools designed to improve the experience of interacting with Substrate blockchain networks.
+            By standing on the shoulders of these giants, <b>TurboFlakes</b> uses this awesome technology to create amazing tools designed to improve the experience when interacting with Substrate blockchain networks.
             </Typography>
             <Typography
             variant="body1"
@@ -51,7 +51,7 @@ class OurToolsSection extends Component {
             align="left"
             paragraph
             >
-            From our garage to the world, we build, open-source, and launch our tools.
+            From our garage, we build and launch our open-source tools.
             </Typography>
             <Typography
             variant="body1"

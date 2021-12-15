@@ -60,7 +60,7 @@ class SubstrateSection extends Component {
             >
             And on the sidelines there are many, many exciting <Link href="https://substrate.io/ecosystem/projects/" 
             target="_blank" rel="noreferrer" color="inherit" 
-            className={classes.link}>projects</Link> being built by top teams and community members, to enrich the Polkadot ecosystem and foster innovation in decentralized tech. To find out more about Substrate & Polkadot super powers, have a read here.  <IconButton 
+            className={classes.link}>projects</Link> being built by top teams and community members, to enrich the Polkadot ecosystem and foster innovation in decentralized tech. To find out more about Substrate & Polkadot super powers read here <IconButton 
             onClick={this.handleExt}
             color="inherit"
             size="small"

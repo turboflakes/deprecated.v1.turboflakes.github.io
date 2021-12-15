@@ -66,7 +66,19 @@ class OurValidatorsSection extends Component {
             align="left"
             paragraph
             >
-            Our IT professional background experience gives us the confidence needed to turn our infrastructure as reliable as possible, so that we can rest assure you - Nominators - that your stake is safe by nominating our validators.
+            Our IT professional background experience gives us the confidence needed to turn our infrastructure as reliable as possible, so that you - Nominators - can trust and feel confident that your stake is safe by nominating our validators.
+            </Typography>
+            <Typography
+            variant="body1"
+            color="textSecondary"
+            align="left"
+            paragraph
+            >
+            Meet Raiden, Momo + Coco. <IconButton 
+              color="inherit"
+              size="small"
+              aria-label="Menu">
+              <ArrowRightIcon color="inherit" /></IconButton>
             </Typography>
           </Grid>
         </Grid>
