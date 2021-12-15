@@ -51,7 +51,7 @@ class EmaTool extends Component {
                     color="textPrimary"
                     align="left"
                   >
-                    Hey, what about a brief text message exchange?<br/>
+                    Hey, what about a brief text messaging?<br/>
                     I am coming soon 😉
                 </Typography>
                 {/* <Typography
