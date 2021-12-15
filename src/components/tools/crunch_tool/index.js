@@ -30,6 +30,13 @@ class CrunchTool extends Component {
 
   rootRef = React.createRef();
 
+  componentDidMount() {
+    const {scrollHere} = this.props
+    if (scrollHere) {
+      this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    }
+  }
+  
   componentDidUpdate(prevProps) {
     const {scrollHere} = this.props
     if (scrollHere && prevProps.scrollHere !== scrollHere) {

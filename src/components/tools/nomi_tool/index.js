@@ -23,7 +23,11 @@ class NomiTool extends Component {
   watermarkRef = React.createRef();
   headWatermarkRef = React.createRef();
 
-  componentDidMount(){
+  componentDidMount() {
+    const {scrollHere} = this.props
+    if (scrollHere) {
+      this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    }
     if (this.watermarkRef.current) {
       this.watermarkRef.current.addEventListener('animationend', this.handleAnimationEnd, false);
     }

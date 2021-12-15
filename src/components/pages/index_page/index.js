@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -21,6 +22,14 @@ import styles from './styles'
 class IndexPage extends Component {
 
   rootRef = React.createRef();
+
+  componentDidMount() {
+    const {location} = this.props
+    if (["#nomi", "#crunch", "#ema"].includes(location.hash)) {
+      this.props.scrollIntoView(location.hash.substring(1))
+    }
+    this.removeHash()
+  }
   
   componentDidUpdate(prevProps) {
     // Layout
@@ -29,6 +38,16 @@ class IndexPage extends Component {
       this.rootRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
     }
   }
+
+  removeHash = () => {
+		const {location, history} = this.props
+    let query = new URLSearchParams(location.search)
+		const l = {
+      search: `?${query.toString()}`,
+      hash: ''
+		}
+		history.replace(l)
+	}
 
   render() {
     const { classes, view } = this.props;
@@ -100,4 +119,4 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 
-export default connect(mapStateToProps, {scrollIntoView})(withStyles(styles)(IndexPage));
+export default connect(mapStateToProps, {scrollIntoView})(withRouter(withStyles(styles)(IndexPage)));
