@@ -86,7 +86,7 @@ class CrunchTool extends Component {
                 </Typography>
               </Box>
               <Box align="right" className={classes.logoBox}>
-                <img src={crunchLogo} className={classes.logo} alt={"crunch logo"}/>
+                <img src={crunchLogo} className={classes.logo} alt={"crunch tool"}/>
               </Box>
             </Box>
           </Box>

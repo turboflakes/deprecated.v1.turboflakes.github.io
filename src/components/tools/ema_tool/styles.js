@@ -2,7 +2,7 @@ const styles = (theme) => ({
   root: {
     background: "linear-gradient(180deg, #FFF, #F1F1F0)",
     borderBottom: `solid 2px #FFF`,
-    minHeight: "100vh"
+    // minHeight: "100vh"
   },
   container: {
     ...theme.container,

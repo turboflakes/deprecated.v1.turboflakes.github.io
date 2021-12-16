@@ -73,7 +73,7 @@ class EmaTool extends Component {
                 </Typography> */}
               </Box>
               <Box align="right" className={classes.logoBox}>
-                <img src={emaLogo} className={classes.logo} alt={"ema logo"}/>
+                <img src={emaLogo} className={classes.logo} alt={"ema tool"}/>
               </Box>
             </Box>
           </Box>

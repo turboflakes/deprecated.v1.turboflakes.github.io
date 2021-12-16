@@ -9,6 +9,8 @@ import Link from '@material-ui/core/Link';
 import NomiTool from '../../tools/nomi_tool'
 import CrunchTool from '../../tools/crunch_tool'
 import EmaTool from '../../tools/ema_tool'
+import PolkadotValidatorSection from './polkadot_validator_section'
+import KusamaValidatorSection from './kusama_validator_section'
 import Scroll from '../../scroll'
 import SubstrateSection from './substrate_section'
 import OurToolsSection from './our_tools_section'
@@ -101,6 +103,9 @@ class IndexPage extends Component {
         <EmaTool scrollHere={view === "ema"} />
         {/*  */}
         <OurValidatorsSection />
+        {/* Validators here */}
+        <PolkadotValidatorSection scrollHere={view === "raiden"} />
+        <KusamaValidatorSection scrollHere={view === "momo" || view === "coco"} />
         {/*  */}
         {/* <CocoTool scrollIntoView={this.state.view === "coco"}/> */}
         <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY} emaTopY={emaTopY} />
