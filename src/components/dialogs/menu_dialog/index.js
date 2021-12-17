@@ -13,7 +13,6 @@ import EmailIcon from '@material-ui/icons/EmailRounded';
 import { ReactComponent as TwitterSVG } from '../../../assets/twitter.svg';
 import { ReactComponent as GithubSVG } from '../../../assets/github.svg';
 import logo from '../../../assets/logo/logo_1_inverted_subtract_turboflakes_.svg';
-import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -98,4 +97,4 @@ MenuDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default withWidth()(withStyles(styles)(MenuDialog));
+export default withStyles(styles)(MenuDialog);

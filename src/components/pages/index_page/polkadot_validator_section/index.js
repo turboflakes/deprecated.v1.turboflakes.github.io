@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import raidenLogo from '../../../../assets/raiden.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -29,8 +30,8 @@ class PolkadotValidatorSection extends Component {
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
-        <Box className={classes.container}>
-          <Box className={classes.section} align="center">
+        <Grid container className={classes.container}>
+          <Grid item xs={12} sm={8}>
             <Box className={classes.mascotBox}>
               <Box className={classes.nameBox}>
                 <Typography
@@ -57,8 +58,8 @@ class PolkadotValidatorSection extends Component {
                 </Typography>
               </Box>
             </Box> */}
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       </Box> 
     )
   }

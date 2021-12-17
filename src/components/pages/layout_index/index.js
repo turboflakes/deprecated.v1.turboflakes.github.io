@@ -6,6 +6,7 @@ import Header from '../../header'
 import Alert from '../../alert'
 import Footer from '../../footer'
 import { withStyles } from '@material-ui/core/styles';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import styles from './styles'
 
 class LayoutIndex extends Component {
@@ -25,12 +26,12 @@ class LayoutIndex extends Component {
   }
   
   render() {
-    const { classes } = this.props;
+    const { classes, width } = this.props;
     
     return (
       <div className={classes.root}>
         <Header />
-        <Alert />
+        {isWidthUp('lg', width, true) ? <Alert /> : null}
         {this.props.children}
         <Footer />
       </div>
@@ -49,4 +50,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {getApiDetails})(withStyles(styles)(LayoutIndex));
+export default connect(mapStateToProps, {getApiDetails})(withWidth()(withStyles(styles)(LayoutIndex)));

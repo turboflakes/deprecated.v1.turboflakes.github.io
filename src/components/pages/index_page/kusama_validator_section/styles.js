@@ -21,12 +21,6 @@ const styles = (theme) => ({
   container: {
     ...theme.container
   },
-  section: {
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    marginBottom: theme.spacing(8)
-  },
   mascotBox:{
     display: "flex",
     alignItems: "center",
@@ -36,7 +30,10 @@ const styles = (theme) => ({
     
   },
   logo: {
-    width: 640,
+    width: 512,
+    [theme.breakpoints.down('sm')]: {
+      width: 320,
+    }
   },
   namesBox: {
     display: "flex"
@@ -48,6 +45,11 @@ const styles = (theme) => ({
   nameBase: {
     height: theme.spacing(2),
     margin: `-${theme.spacing(1)}px ${theme.spacing(1)-4}px 0 ${theme.spacing(1)/2}px`,
+  },
+  nameTitle: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "2.75rem"
+    }
   },
   momoColor:{
     background: "linear-gradient(90deg, #57BA5F, #CFDC28)"

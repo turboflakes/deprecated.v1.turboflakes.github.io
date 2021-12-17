@@ -21,12 +21,6 @@ const styles = (theme) => ({
   container: {
     ...theme.container
   },
-  section: {
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    marginBottom: theme.spacing(8)
-  },
   mascotBox:{
     display: "flex",
     alignItems: "center",
@@ -36,7 +30,10 @@ const styles = (theme) => ({
     
   },
   logo: {
-    width: "100%",
+    width: 448,
+    [theme.breakpoints.down('sm')]: {
+      width: 256,
+    }
   },
   nameBox: {
     marginBottom: theme.spacing(4),

@@ -4,7 +4,8 @@ const styles = (theme) => ({
 		borderRadius: theme.spacing(1),
 		maxWidth: 800,
 		marginBottom: theme.spacing(2),
-		textAlign: "left"
+		textAlign: "left",
+		overflowX: "scroll"
 	},
 })
 

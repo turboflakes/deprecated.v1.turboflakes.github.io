@@ -1,46 +1,39 @@
 const styles = (theme) => ({
   root: {
     background: "linear-gradient(180deg, #FFF, #F1F1F0)",
-    borderBottom: `solid 2px #FFF`,
-    height: 1728
+    height: 1728,
+    padding: `${theme.spacing(16)}px ${theme.spacing(2)}px`,
+    [theme.breakpoints.down('sm')]: {
+			height: 2176,
+      padding: `${theme.spacing(8)}px ${theme.spacing(2)}px`,
+    },
   },
   container: {
     ...theme.container,
-    marginBottom: theme.spacing(16)
   },
   section: {
     marginBottom: theme.spacing(8)
   },
-  heroBox: {
-    display: "flex",
-    alignItems: "center",
-    padding: `${theme.spacing(8)}px 0`,
-  },
-  meet: {
-    fontFamily: "'Roboto', sans-serif",
-  },
-  titleBox: {
-    width: "60%",
-  },
+  titleBox: {},
   logoBox: {
-    width: "40%",
+    padding: `${theme.spacing(2)}px 0`
   },
   logo: {
-    width: 260,
+    width: 256,
+    [theme.breakpoints.down('sm')]: {
+      width: 192,
+    }
   },
   inline: {
     // whiteSpace: "nowrap"
-  },
-  rooms: {
-    display: "flex",
-    alignItems: "flex-end",
-    justifyContent: "space-between"
   },
   room: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: `0 ${theme.spacing(6)}px`,
+    [theme.breakpoints.down('sm')]: {
+      padding: `${theme.spacing(3)}px 0`,
+    },
     '&:hover > img': {
       animation: "headShake",
   	  animationDuration: "1.5s",

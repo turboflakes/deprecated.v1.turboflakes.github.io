@@ -1,32 +1,26 @@
 const styles = (theme) => ({
   root: {
     background: "linear-gradient(180deg, #FFF, #F1F1F0)",
-    borderBottom: `solid 2px #FFF`,
-    // minHeight: "100vh"
+    padding: `${theme.spacing(16)}px ${theme.spacing(2)}px`,
+    [theme.breakpoints.down('sm')]: {
+			padding: `${theme.spacing(8)}px ${theme.spacing(2)}px`,
+    },
   },
   container: {
     ...theme.container,
-    marginBottom: theme.spacing(16)
   },
   section: {
     marginBottom: theme.spacing(8)
   },
-  heroBox: {
-    display: "flex",
-    alignItems: "center",
-    padding: `${theme.spacing(8)}px 0`,
-  },
-  meet: {
-    fontFamily: "'Roboto', sans-serif",
-  },
-  titleBox: {
-    width: "60%",
-  },
+  titleBox: {},
   logoBox: {
-    width: "40%",
+    padding: `${theme.spacing(2)}px 0`
   },
   logo: {
-    width: 260,
+    width: 256,
+    [theme.breakpoints.down('sm')]: {
+      width: 192,
+    }
   },
   link: {
     textDecoration: "underline",
@@ -44,6 +38,14 @@ const styles = (theme) => ({
     background: "linear-gradient(90deg, #F187FB, #439CFB)",
     height: theme.spacing(2),
     margin: `-${theme.spacing(1)}px -${theme.spacing(1)/2}px 0 ${theme.spacing(1)/2}px`,
+  },
+  highlightMsg: {
+    backgroundColor: theme.palette.text.primary,
+    padding: theme.spacing(2),
+    maxWidth: 256
+  },
+  sender: {
+    color: "#439CFB"
   }
 })
 export default styles

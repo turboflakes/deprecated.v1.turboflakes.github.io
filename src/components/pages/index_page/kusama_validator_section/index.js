@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import mcLogo from '../../../../assets/momo_and_coco.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
@@ -30,8 +31,9 @@ class KusamaValidatorSection extends Component {
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
-        <Box className={classes.container}>
-          <Box className={classes.section} align="center">
+        <Grid container className={classes.container}>
+          <Grid item xs sm={4} />
+          <Grid item xs={12} sm={8}>
             <Box className={classes.mascotBox}>
               <Box className={classes.namesBox}>
                 <Box className={classes.nameBox}>
@@ -39,6 +41,7 @@ class KusamaValidatorSection extends Component {
                       variant="h1"
                       color="textPrimary"
                       align="left"
+                      className={classes.nameTitle}
                     >MOMO
                   </Typography>
                   <Box className={classNames(classes.nameBase, classes.momoColor)} />
@@ -76,8 +79,8 @@ class KusamaValidatorSection extends Component {
                 </Typography>
               </Box>
             </Box> */}
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       </Box> 
     )
   }

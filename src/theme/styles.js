@@ -97,25 +97,43 @@ export default createMuiTheme({
     useNextVariants: true,
     h1: {
       fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
+      fontSize: "6rem",
+      '@media screen and (max-width: 900px)': {
+        fontSize: "3.125rem",
+      },
     },
     h2: {
       fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
+      fontSize: "3.75rem",
+      '@media screen and (max-width: 900px)': {
+
+      }
     },
     h3: {
       fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
+      fontSize: "3rem",
+      '@media screen and (max-width: 900px)': {
+        fontSize: "2.5rem",
+      }
     },
     h4: {
       fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
+      fontSize: "2.125rem",
     },
     h5: {
       fontFamily: "'Gilroy-Heavy', 'Helvetica Neue', 'Arial', sans-serif",
+      fontSize: "1.5rem",
     },
     h6: {
       fontFamily: "'Roboto', sans-serif",
+      fontSize: "1.25rem",
     },
     body1: {
       fontFamily: "'Roboto', sans-serif",
       fontSize: "1.2rem",
+      '@media screen and (max-width: 900px)': {
+        fontSize: "1rem",
+      }
     },
     caption: {
       fontFamily: "'Roboto', sans-serif",
@@ -123,6 +141,9 @@ export default createMuiTheme({
     subtitle1: {
       fontFamily: "'Roboto', sans-serif",
       fontSize: "1.5rem",
+      '@media screen and (max-width: 900px)': {
+        fontSize: "1.2rem",
+      },
     },
     subtitle2: {
       fontFamily: "'Roboto', sans-serif",

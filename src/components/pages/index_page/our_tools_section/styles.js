@@ -7,6 +7,10 @@ const styles = (theme) => ({
     justifyContent: "center",
     alignItems: "center",
     color: "#FFF",
+    padding: `0 ${theme.spacing(2)}px`,
+    [theme.breakpoints.down('sm')]: {
+			height: 1216,
+    },
   },
   container: {
     ...theme.container,
@@ -19,17 +23,11 @@ const styles = (theme) => ({
       textDecorationColor: theme.palette.primary.main,
     }
   },
-  toolsBox: {
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-    padding: `${theme.spacing(6)}px 0`
-  },
   botLink: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: `0 ${theme.spacing(6)}px`,
+    padding: `${theme.spacing(2)}px 0`,
     '&:hover > img': {
       animation: "headShake",
   	  animationDuration: "1.5s",

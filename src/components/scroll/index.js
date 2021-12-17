@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import _debounce from 'lodash/debounce';
 import {scrollIntoView, clearView, disableScroll} from '../../actions/layout'
 
-const NOMI_HEADER_HEIGHT = 384
+const NOMI_HEADER_HEIGHT = 496
 const SECTION_THRESHOLD = 192
 const THRESHOLD = 4
 
@@ -13,7 +13,7 @@ class Scroll extends Component {
   constructor(props) {
 		super(props);
     // Notes:
-    // Nomi hero box height = 384
+    // Nomi hero box height = 496
     // NomiBoard height = window.innerHeight * 0.95
 		this.state = { 
 			scrollY: 0,

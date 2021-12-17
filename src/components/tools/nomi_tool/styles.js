@@ -1,25 +1,27 @@
 const styles = (theme) => ({
   root: {
   },
-  heroBox: {
+  container: {
     ...theme.container,
-    position: "relative",
-    display: "flex",
-    alignItems: "center",
-    padding: `${theme.spacing(8)}px 0`,
-    height: theme.spacing(48) // 384px
   },
-  meet: {
-    fontFamily: "'Roboto', sans-serif",
+  section: {
+    padding: `${theme.spacing(16)}px ${theme.spacing(2)}px ${theme.spacing(12)}px ${theme.spacing(2)}px`,
+    height: 496,
+    [theme.breakpoints.down('sm')]: {
+      background: "linear-gradient(180deg, #FFF, #F1F1F0)",
+			height: 688,
+      padding: `${theme.spacing(8)}px ${theme.spacing(2)}px`,
+    },
   },
-  titleBox: {
-    width: "60%",
-  },
+  titleBox: {},
   logoBox: {
-    width: "40%",
+    padding: `${theme.spacing(2)}px 0`
   },
   logo: {
-    width: 260,
+    width: 256,
+    [theme.breakpoints.down('sm')]: {
+      width: 192,
+    }
   },
   logoAnimateOutRight:{
     animation: "bounceOutRight",
@@ -31,7 +33,7 @@ const styles = (theme) => ({
   },
   logoFixedBoard: {
     position: "absolute",
-    top: "calc(384px - 5vh)",
+    top: "calc(496px - 5vh)",
     left: 0, 
     width: 160,
   },
@@ -79,5 +81,10 @@ const styles = (theme) => ({
     animation: "bounceOutLeft",
   	animationDuration: "1s",
   },
+  highlightMsg: {
+    backgroundColor: theme.palette.text.primary,
+    padding: theme.spacing(2),
+    maxWidth: 512
+  }
 })
 export default styles

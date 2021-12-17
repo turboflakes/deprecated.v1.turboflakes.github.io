@@ -15,7 +15,6 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import Container from '@material-ui/core/Container';
-import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -124,4 +123,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {selectAddress})(withWidth()(withRouter(withStyles(styles)(AccountSearchDialog))));
+export default connect(mapStateToProps, {selectAddress})(withRouter(withStyles(styles)(AccountSearchDialog)));

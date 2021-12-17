@@ -4,8 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import MenuDialog from '../dialogs/menu_dialog'
-import withWidth from '@material-ui/core/withWidth';
+import MenuDialog from '../dialogs/menu_dialog';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -44,4 +43,4 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withWidth()(withStyles(styles)(Header));
+export default withStyles(styles)(Header);

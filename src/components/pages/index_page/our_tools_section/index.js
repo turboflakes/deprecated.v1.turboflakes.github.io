@@ -22,7 +22,7 @@ class OurToolsSection extends Component {
     return (
       <Box className={classes.root} >
         <Grid container className={classes.container}>
-          <Grid xs={8}>
+          <Grid item xs={12} sm={8}>
             <Typography
             variant="h3"
             color="textPrimary"
@@ -66,47 +66,51 @@ class OurToolsSection extends Component {
               <ArrowRightIcon color="inherit" /></IconButton>
             </Typography>
           </Grid>
-          <Grid xs={4}></Grid>
-          <Grid xs={4}></Grid>
-          <Grid xs={8}>
-            <Box className={classes.toolsBox}>
-              <Link component="button" className={classes.botLink} 
+          <Grid item xs sm></Grid>
+        </Grid>
+        <Grid container className={classes.container}>
+          <Grid item xs sm={3}></Grid>
+          <Grid item xs={12} sm={3} align="center">
+            <Link component="button" className={classes.botLink} 
+              color="textPrimary"
+              onClick={() => this.props.scrollIntoView("nomi")}>
+              <img src={nomiLogo} className={classes.botLogo} alt={"nomi-logo"}/>
+              <Typography
+                component="span"
+                variant="h4"
                 color="textPrimary"
-                onClick={() => this.props.scrollIntoView("nomi")}>
-                <img src={nomiLogo} className={classes.botLogo} alt={"nomi-logo"}/>
-                <Typography
-                  component="span"
-                  variant="h4"
-                  color="textPrimary"
-                  align="center"
-                >NOMI
-                </Typography>
-              </Link>
-              <Link component="button" className={classes.botLink} 
+                align="center"
+              >NOMI
+              </Typography>
+            </Link>
+          </Grid>
+          <Grid item xs={12} sm={3} align="center">
+            <Link component="button" className={classes.botLink} 
+              color="textPrimary"
+              onClick={() => this.props.scrollIntoView("crunch")}>
+              <img src={crunchLogo} className={classes.botLogo} alt={"crunch-logo"}/>
+              <Typography
+                component="span"
+                variant="h4"
                 color="textPrimary"
-                onClick={() => this.props.scrollIntoView("crunch")}>
-                <img src={crunchLogo} className={classes.botLogo} alt={"crunch-logo"}/>
-                <Typography
-                  component="span"
-                  variant="h4"
-                  color="textPrimary"
-                  align="center"
-                >CRUNCH
-                </Typography>
-              </Link>
-              <Link component="button" className={classes.botLink}  
+                align="center"
+              >CRUNCH
+              </Typography>
+            </Link>
+          </Grid>
+          <Grid item xs={12} sm={3} align="center">
+            <Link component="button" className={classes.botLink}  
+              color="textPrimary"
+              onClick={() => this.props.scrollIntoView("ema")}>
+              <img src={emaLogo} className={classes.botLogo} alt={"ema-logo"}/>
+              <Typography
+                component="span"
+                variant="h4"
                 color="textPrimary"
-                onClick={() => this.props.scrollIntoView("ema")}>
-                <img src={emaLogo} className={classes.botLogo} alt={"ema-logo"}/>
-                <Typography
-                  component="span"
-                  variant="h4"
-                  color="textPrimary"
-                  align="center"
-                >EMA
-                </Typography>
-              </Link> 
-            </Box>
+                align="center"
+              >EMA
+              </Typography>
+            </Link> 
           </Grid>
         </Grid>
       </Box>

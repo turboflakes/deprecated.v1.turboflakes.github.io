@@ -5,7 +5,6 @@ import InfoIcon from '@material-ui/icons/Info';
 import Popover from '@material-ui/core/Popover';
 import Link from '@material-ui/core/Link';
 import ClearIcon from '@material-ui/icons/Clear';
-import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -85,4 +84,4 @@ PopoverInfo.propTypes = {
   popoverClasses: PropTypes.object
 };
 
-export default withWidth()(withStyles(styles)(PopoverInfo));
+export default withStyles(styles)(PopoverInfo);

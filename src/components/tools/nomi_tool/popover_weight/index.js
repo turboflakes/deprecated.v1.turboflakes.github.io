@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Popover from '@material-ui/core/Popover';
-import withWidth from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -81,4 +80,4 @@ PopoverWeight.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withWidth()(withStyles(styles)(PopoverWeight));
+export default withStyles(styles)(PopoverWeight);

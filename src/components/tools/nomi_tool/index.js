@@ -8,13 +8,14 @@ import { selectAddress, clearAddress } from '../../../actions/leaderboard'
 import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import BoardAnimation from './board_animation'
 import Leaderboard from './leaderboard'
 import AccountInfoTable from './account_info_table'
 import nomiLogo from '../../../assets/nomi.svg';
 import nomiHead from '../../../assets/nomi_head_white.svg';
 import { withStyles } from '@material-ui/core/styles';
-import withWidth from '@material-ui/core/withWidth';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import styles from './styles'
 
 class NomiTool extends Component {
@@ -102,76 +103,84 @@ class NomiTool extends Component {
   }
 
   render() {
-    const { classes, network, addresses, selected, topY, scrollable } = this.props;
+    const { classes, width, network, addresses, selected, topY, scrollable } = this.props;
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
-        <Box className={classes.heroBox}>
-          <Box className={classes.titleBox}>
-            {/* <Typography
-                variant="h2"
-                className={classes.meet}
-                color="textPrimary"
-                align="left"
-              >Meet
-            </Typography> */}
-            <Box align="left">
-              <Box className={classes.nameBox}>
-                <Typography
-                    variant="h1"
-                    color="textPrimary"
-                    align="left"
-                  >NOMI
-                </Typography>
-                <Box className={classes.nameBase}> </Box>
+        <Grid container className={classNames(classes.container, classes.section)}>
+          <Grid item xs={12} sm={8}>
+            <Box className={classes.titleBox}>
+              <Box align="left">
+                <Box className={classes.nameBox}>
+                  <Typography
+                      variant="h1"
+                      color="textPrimary"
+                      align="left"
+                    >NOMI
+                  </Typography>
+                  <Box className={classes.nameBase}> </Box>
+                </Box>
               </Box>
+              <Typography
+                  variant="subtitle1"
+                  className={classes.inline}
+                  color="textPrimary"
+                  align="left"
+                  paragraph
+                >
+                  <b>Nomi</b> is a decision support tool for Nominators in NPoS networks.
+              </Typography>
+              {!isWidthUp('lg', width, true) ?
+                  <Typography
+                  variant="body1"
+                  className={classes.highlightMsg}
+                  color="textSecondary"
+                  align="left"
+                  >
+                  Reach a bigger screen to get <b>Nomi's</b> full experience!
+                  </Typography>
+               : null}
             </Box>
+          </Grid>
+          <Grid item xs={12} sm={4} align="right">
+            <Box align="right" className={classes.logoBox}>
+              <img src={nomiLogo} 
+                className={classNames(classes.logo)} 
+                alt={"nomi logo"}/>
+            </Box>
+          </Grid>
+        </Grid>
+        {isWidthUp('lg', width, true) ? 
+          <Box className={classes.animationBox}>
             <Typography
-                variant="subtitle1"
-                className={classes.inline}
-                color="textPrimary"
-                align="left"
-                paragraph
-              >
-                <b>Nomi</b> is a decision support tool for Nominators in NPoS networks.
+                ref={this.watermarkRef}
+                variant="h4"
+                className={
+                  classNames(classes.watermark, 
+                    !scrollable ? classes.visible : null,
+                    !scrollable ? classes.logoAnimateInLeft : classes.logoAnimateFadeOutLeft
+                  )} align="left"
+              >NOMI
             </Typography>
-          </Box>
-          <Box align="right" className={classes.logoBox}>
-            <img src={nomiLogo} 
-              className={classNames(classes.logo)} 
-              alt={"nomi logo"}/>
-          </Box>
-        </Box>
-        <Box className={classes.animationBox}>
-          <Typography
-              ref={this.watermarkRef}
-              variant="h4"
-              className={
-                classNames(classes.watermark, 
-                  !scrollable ? classes.visible : null,
-                  !scrollable ? classes.logoAnimateInLeft : classes.logoAnimateFadeOutLeft
-                )} align="left"
-            >NOMI
-          </Typography>
-          <img 
-            ref={this.headWatermarkRef}
-            src={nomiHead} 
-            className={classNames(classes.headWatermark, 
-              !scrollable ? classes.visible : null,
-              !scrollable ? classes.logoAnimateInLeft : classes.logoAnimateFadeOutLeft 
-              )} alt={"Icon"}/>
-          <BoardAnimation 
-            network={network}
-            addresses={addresses}
-            selected={selected}
-            width={window.innerWidth} 
-            height={window.innerHeight * 0.95}
-            topY={topY + 384} // heroBox height = 384
-            onBallClick={this.handleOnBallClick}
-            onBallClear={this.handleOnBallClear} />
-          <AccountInfoTable onClose={this.handleOnAccountInfoClose} />
-          <Leaderboard />
-        </Box>
+            <img 
+              ref={this.headWatermarkRef}
+              src={nomiHead} 
+              className={classNames(classes.headWatermark, 
+                !scrollable ? classes.visible : null,
+                !scrollable ? classes.logoAnimateInLeft : classes.logoAnimateFadeOutLeft 
+                )} alt={"Icon"}/>
+            <BoardAnimation 
+              network={network}
+              addresses={addresses}
+              selected={selected}
+              width={window.innerWidth} 
+              height={window.innerHeight * 0.95}
+              topY={topY + 496} // heroBox height = 496
+              onBallClick={this.handleOnBallClick}
+              onBallClear={this.handleOnBallClear} />
+            <AccountInfoTable onClose={this.handleOnAccountInfoClose} />
+            <Leaderboard />
+          </Box> : null}
       </Box>
     )
   }

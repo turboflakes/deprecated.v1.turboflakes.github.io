@@ -21,7 +21,7 @@ class OurValidatorsSection extends Component {
     return (  
       <Box className={classes.root} >
         <Grid container className={classes.container}>
-          <Grid xs={8}>
+          <Grid item xs={12} sm={8}>
             <Typography
             variant="h3"
             color="textSecondary"
