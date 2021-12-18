@@ -1,4 +1,4 @@
-import iconPolkadotSVG from '../assets/polkadot_icon.svg';
+import iconPolkadotSVG from '../assets/Polkadot_Token_PolkadotToken_Pink.svg';
 import logoPolkadotSVG from '../assets/polkadot_logotype_white.svg';
 import iconKusamaSVG from '../assets/kusama_icon.svg';
 import logoKusamaSVG from '../assets/kusama_logo.svg';
