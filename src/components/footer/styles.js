@@ -1,6 +1,7 @@
 const styles = (theme) => ({
 	root: {
 		background: theme.palette.text.primary,
+		padding: `0 ${theme.spacing(2)}px`,
 	},
 	container: {
 		...theme.container,
@@ -13,10 +14,6 @@ const styles = (theme) => ({
 	},
 	list: {
 		maxWidth: 600
-	},
-	trademark: {
-		display: "flex",
-		alignItems: "center"
 	},
 	logo:{
 		height: 64,
@@ -58,25 +55,20 @@ const styles = (theme) => ({
 	},
 	bottom: {
 		padding: `${theme.spacing(3)}px 0`,
-		[theme.breakpoints.down('sm')]: {
-      padding: `${theme.spacing(1)}px 0`,
-    },
 		display: "flex",
 		alignItems: "center",
-		justifyContent: "space-between",
-	},
-	iconEmail: {
-		margin: `0 ${theme.spacing(1)}px`,
-		color: theme.palette.text.primary,
-		backgroundColor: theme.palette.text.secondary,
-		'&:hover': {
-			backgroundColor: theme.palette.text.secondary,
-		},
-		width: 32,
-		height: 32
+		flexWrap: "wrap"
 	},
 	icon: {
 		margin: `0 ${theme.spacing(1)}px`,
+		border: "1px solid #FFF",
+		color: theme.palette.text.secondary,
+		width: 40,
+		height: 40,
+	},
+	soicon: {
+		width: 24,
+		height: 24,
 	},
 	infoBox: {
 		marginBottom: theme.spacing(2),
@@ -89,7 +81,7 @@ const styles = (theme) => ({
 		display: "flex",
 	},
 	page: {
-		marginLeft: theme.spacing(2),
+		marginRight: theme.spacing(2),
 	}
 })
 export default styles

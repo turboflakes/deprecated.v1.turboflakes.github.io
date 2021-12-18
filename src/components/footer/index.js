@@ -10,8 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import EmailIcon from '@material-ui/icons/EmailRounded';
 import logo from '../../assets/logo/logo_1_inverted_subtract_turboflakes_.svg';
-import { ReactComponent as TwitterSVG } from '../../assets/twitter.svg';
-import { ReactComponent as GithubSVG } from '../../assets/github.svg';
+import twitterSVG from '../../assets/twitter_white.svg';
+import githubSVG from '../../assets/github_white.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -35,12 +35,12 @@ class Footer extends Component {
 		return (
 			<div className={classes.root}>
 					<Grid container className={classNames(classes.container, classes.padding)}>
-						<Grid container item xs={6}>
+						<Grid container item xs={12} sm={6}>
 							<Link href="/" color="inherit" align="right" >
 								<img src={logo} className={classes.logo} alt={"logo"}/>
 							</Link>
 						</Grid>
-          	<Grid item xs={3}>
+          	<Grid item xs={6} sm={3}>
 							<Typography variant="h5" color="textSecondary" paragraph>
 								General
 							</Typography>
@@ -54,7 +54,7 @@ class Footer extends Component {
 								<Link href="/#/validators"  color="inherit">Validators</Link>
 							</Typography>
 						</Grid>
-						<Grid item xs={3}>
+						<Grid item xs={6} sm={3}>
 							<Typography variant="h5" color="textSecondary" paragraph>
 								Networks
 							</Typography>
@@ -66,40 +66,33 @@ class Footer extends Component {
 							</Typography>
 						</Grid>
 					</Grid>
-					
-					<Divider className={classes.container} light classes={{ light: classes.light }}/>				
-				
+					<Box className={classNames(classes.container)}>
+						<IconButton size="small" className={classes.icon} onClick={this.handleEmail}>
+							<EmailIcon />
+						</IconButton>
+						<IconButton color="secondary" size="small" className={classes.icon} onClick={this.handleTwitter}>
+							<img src={twitterSVG} className={classes.soicon} alt={"github"}/>
+						</IconButton>
+						<IconButton color="secondary" size="small" className={classes.icon} onClick={this.handleGithub}>
+							<img src={githubSVG} className={classes.soicon} alt={"github"}/>
+						</IconButton>
+					</Box>
 					<Box className={classNames(classes.container, classes.bottom)}>
-						<Box>
-							<Box className={classes.trademark}>
-								<Typography variant="body2" color="textSecondary">
-								© 2021 TurboFlakes
-								</Typography>
-								<Typography variant="body2" color="textSecondary" className={classes.page}>
-									<Link href="/#/disclaimer"  color="inherit" >Disclaimer</Link>
-								</Typography>
-								<Typography variant="body2" color="textSecondary" className={classes.page}>
-									<Link href="/#/privacy"  color="inherit" >Privacy Policy</Link>
-								</Typography>
-								<Typography variant="body2" color="textSecondary" className={classes.page}>
-									<Link href="/#/terms"  color="inherit" >Terms of Use</Link>
-								</Typography>
-								<Typography variant="body2" color="textSecondary" className={classes.page}>
-									<Link href="/#/cookies"  color="inherit" >Cookie Settings</Link>
-								</Typography>
-							</Box>
-						</Box>
-						<Box>
-							<IconButton size="small" className={classes.iconEmail} onClick={this.handleEmail}>
-								<EmailIcon />
-							</IconButton>
-							<IconButton color="primary" size="small" className={classes.icon} onClick={this.handleTwitter}>
-								<TwitterSVG />
-							</IconButton>
-							<IconButton color="primary" size="small" className={classes.icon} onClick={this.handleGithub}>
-								<GithubSVG />
-							</IconButton>
-						</Box>
+						<Typography variant="body2" color="textSecondary" className={classes.page}>
+						© 2021 TurboFlakes
+						</Typography>
+						<Typography variant="body2" color="textSecondary" className={classes.page}>
+							<Link href="/#/disclaimer"  color="inherit" >Disclaimer</Link>
+						</Typography>
+						<Typography variant="body2" color="textSecondary" className={classes.page}>
+							<Link href="/#/privacy"  color="inherit" >Privacy Policy</Link>
+						</Typography>
+						<Typography variant="body2" color="textSecondary" className={classes.page}>
+							<Link href="/#/terms"  color="inherit" >Terms of Use</Link>
+						</Typography>
+						<Typography variant="body2" color="textSecondary" className={classes.page}>
+							<Link href="/#/cookies"  color="inherit" >Cookie Settings</Link>
+						</Typography>
 					</Box>
 			</div>
 		)
