@@ -1,17 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.099262ab.chunk.css",
-    "main.js": "/static/js/main.2b011dc6.chunk.js",
-    "runtime-main.js": "/static/js/runtime-main.f719126e.js",
+    "main.js": "/static/js/main.a4e1dff1.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.5b023e1c.js",
     "static/css/2.29852eb5.chunk.css": "/static/css/2.29852eb5.chunk.css",
-    "static/js/2.39c8a868.chunk.js": "/static/js/2.39c8a868.chunk.js",
-    "static/js/3.cee02a89.chunk.js": "/static/js/3.cee02a89.chunk.js",
+    "static/js/2.29952e26.chunk.js": "/static/js/2.29952e26.chunk.js",
+    "static/js/3.823d101c.chunk.js": "/static/js/3.823d101c.chunk.js",
     "index.html": "/index.html",
-    "static/js/2.39c8a868.chunk.js.LICENSE.txt": "/static/js/2.39c8a868.chunk.js.LICENSE.txt",
+    "static/js/2.29952e26.chunk.js.LICENSE.txt": "/static/js/2.29952e26.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Gilroy-Heavy.e6ba4147.woff2",
     "static/media/crunchbot.733f32d0.svg": "/static/media/crunchbot.733f32d0.svg",
     "static/media/ema.524a7d71.svg": "/static/media/ema.524a7d71.svg",
     "static/media/github.39b6d23f.svg": "/static/media/github.39b6d23f.svg",
+    "static/media/github_white.e1c31965.svg": "/static/media/github_white.e1c31965.svg",
     "static/media/kusama_icon.8d767b9a.svg": "/static/media/kusama_icon.8d767b9a.svg",
     "static/media/kusama_logo.732eafd7.svg": "/static/media/kusama_logo.732eafd7.svg",
     "static/media/logo_1_black_subtract_turboflakes_.416b847a.svg": "/static/media/logo_1_black_subtract_turboflakes_.416b847a.svg",
@@ -26,13 +27,14 @@
     "static/media/raiden.d273e24b.svg": "/static/media/raiden.d273e24b.svg",
     "static/media/subscan_logo.c754f0ef.svg": "/static/media/subscan_logo.c754f0ef.svg",
     "static/media/twitter.63084a6f.svg": "/static/media/twitter.63084a6f.svg",
+    "static/media/twitter_white.0c56778e.svg": "/static/media/twitter_white.0c56778e.svg",
     "static/media/westend_icon.6c9cdb56.svg": "/static/media/westend_icon.6c9cdb56.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f719126e.js",
+    "static/js/runtime-main.5b023e1c.js",
     "static/css/2.29852eb5.chunk.css",
-    "static/js/2.39c8a868.chunk.js",
+    "static/js/2.29952e26.chunk.js",
     "static/css/main.099262ab.chunk.css",
-    "static/js/main.2b011dc6.chunk.js"
+    "static/js/main.a4e1dff1.chunk.js"
   ]
 }
