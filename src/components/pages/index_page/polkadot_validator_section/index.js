@@ -66,7 +66,7 @@ class PolkadotValidatorSection extends Component {
                   color="textSecondary"
                   align="left"
                   paragraph
-                ><b>Raiden</b> is our supra-sumo Validator running on the Polkadot Network.
+                ><b>Raiden</b> is our supra-sumo Validator running in the Polkadot Network.
               </Typography>
               <Typography
                   variant="body1"
@@ -88,7 +88,7 @@ class PolkadotValidatorSection extends Component {
                 </Typography>
               </Box>                
               <Box className={classes.polkadotLogoBox}>
-                <img src={polkadotLogo} className={classes.polkadotLogo} alt={"Icon"}/>
+                <img src={polkadotLogo} className={classes.polkadotLogo} alt={"Polkadot Network"}/>
               </Box>
             </Box>
           </Grid>

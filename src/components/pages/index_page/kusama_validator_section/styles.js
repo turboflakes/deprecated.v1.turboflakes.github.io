@@ -60,11 +60,34 @@ const styles = (theme) => ({
   plus: {
     margin: `0 ${theme.spacing(3)}px`
   },
+  descriptionGrid: {
+    display: "flex",
+    justifyContent: "center"
+  },
   descriptionBox: {
-    backgroundImage: "linear-gradient(90deg, #57BA5F, #CFDC28)",
+    position: "relative",
+    backgroundColor: theme.palette.text.primary,
     borderRadius: theme.spacing(1)/2,
-    margin: `${theme.spacing(4)}px 0`,
-    padding: theme.spacing(3)
+    padding: `${theme.spacing(3)}px ${theme.spacing(3)}px ${theme.spacing(8)}px ${theme.spacing(3)}px`,
+    [theme.breakpoints.down('sm')]: {
+      margin: `${theme.spacing(4)}px ${theme.spacing(2)}px`,
+    }
+  },
+  polkadotLogoBox: {
+    position: "absolute",
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
+  },
+  polkadotLogo:{
+    width: 128,
+  },
+  ident: {
+    display: "flex",
+    alignItems: "center",
+    paddingTop: theme.spacing(3),
+  },
+  inline: {
+    marginLeft: theme.spacing(2)
   }
 })
 export default styles
