@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Identicon from '@polkadot/react-identicon';
 import raidenLogo from '../../../../assets/raiden.svg';
-import polkadotLogo from '../../../../assets/Polkadot_Logo_Horizontal_Pink-White.svg';
+import polkadotLogo from '../../../../assets/Polkadot_Logo_Horizontal_White.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
