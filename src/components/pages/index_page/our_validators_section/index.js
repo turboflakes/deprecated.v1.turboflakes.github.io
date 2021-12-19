@@ -52,7 +52,7 @@ class OurValidatorsSection extends Component {
             align="left"
             paragraph
             >
-            We have been validating on the Kusama network since January 2021 without any issues. And more recently we joined the Polkadot network with our first node. We are also eligible for the Kusama's Thousand Validators Programme <IconButton 
+            We have been validating on the Kusama network since January 2021 without any issues. And more recently we joined the Polkadot network with our first node. We are also eligible for the Kusama's Thousand Validators Programme, aka 1KV. Check our score here <IconButton 
               onClick={this.handle1KVExt}
               color="inherit"
               size="small"

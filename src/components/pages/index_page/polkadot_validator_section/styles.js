@@ -44,11 +44,36 @@ const styles = (theme) => ({
     height: theme.spacing(2),
     margin: `-${theme.spacing(1)}px ${theme.spacing(1)-4}px 0 ${theme.spacing(1)/2}px`,
   },
+  descriptionGrid: {
+    display: "flex",
+    justifyContent: "center"
+  },
   descriptionBox: {
-    backgroundImage: "linear-gradient(90deg, #F15A29, #E6E86A)",
+    position: "relative",
+    // backgroundImage: "linear-gradient(90deg, #F15A29, #E6E86A)",
+    backgroundColor: theme.palette.text.primary,
     borderRadius: theme.spacing(1)/2,
-    margin: `${theme.spacing(4)}px 0`,
-    padding: theme.spacing(3)
+    margin: `${theme.spacing(10)}px 0`,
+    padding: `${theme.spacing(3)}px ${theme.spacing(3)}px ${theme.spacing(8)}px ${theme.spacing(3)}px`,
+    [theme.breakpoints.down('sm')]: {
+      margin: `${theme.spacing(4)}px ${theme.spacing(2)}px`,
+    }
+  },
+  polkadotLogoBox: {
+    position: "absolute",
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
+  },
+  polkadotLogo:{
+    width: 128,
+  },
+  ident: {
+    display: "flex",
+    alignItems: "center",
+    padding: `${theme.spacing(3)}px 0`
+  },
+  inline: {
+    marginLeft: theme.spacing(2)
   }
 })
 export default styles
