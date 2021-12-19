@@ -93,7 +93,7 @@ class KusamaValidatorSection extends Component {
                   variant="body1"
                   color="textSecondary"
                   align="left"
-                ><b>Momo's</b> commission is <b>0.7%</b> and <b>Coco's</b> commission is <b>7%</b>. On both you get instant rewards every era.
+                ><b>Momo's</b> commission is <b>0%</b> and <b>Coco's</b> commission is <b>7%</b>. On both you get instant rewards every era.
               </Typography>
               <Box className={classes.ident}>
                 <Identicon
