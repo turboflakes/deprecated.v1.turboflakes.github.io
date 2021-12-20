@@ -65,14 +65,21 @@ class PolkadotValidatorSection extends Component {
                   variant="body1"
                   color="textSecondary"
                   align="left"
-                  paragraph
+                  gutterBottom
                 ><b>Raiden</b> is our supra-sumo Validator running in the Polkadot Network.
               </Typography>
               <Typography
                   variant="body1"
                   color="textSecondary"
                   align="left"
+                  gutterBottom
                 ><b>Raiden's</b> commission is <b>0%</b> and you get instant rewards every era.
+              </Typography>
+              <Typography
+                  variant="body1"
+                  color="textSecondary"
+                  align="left"
+                >Nominate <b>Raiden</b>. Raiden's superpowers won't let you down.
               </Typography>
               <Box className={classes.ident}>
                 <Identicon

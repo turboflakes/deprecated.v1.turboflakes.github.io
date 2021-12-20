@@ -11,7 +11,7 @@ import kusamaLogo from '../../../../assets/kusama_logo.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
-const MOMO_STASH = "FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX"
+const MOMO_STASH = "GA7j1FHWXpEU4kavowEte6LWR3NgZ8bkv4spWa9joiQF5R2"
 const COCO_STASH = "FZsMKYHoQG1dAVhXBMyC7aYFYpASoBrrMYsAn1gJJUAueZX"
 
 class KusamaValidatorSection extends Component {
@@ -38,7 +38,7 @@ class KusamaValidatorSection extends Component {
     return (
       <Box className={classes.root} ref={this.rootRef}>
         <Grid container className={classes.container}>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12} sm={8} className={classes.itemGrid}>
             <Box className={classes.mascotBox}>
               <Box className={classes.namesBox}>
                 <Box className={classes.nameBox}>
@@ -73,7 +73,7 @@ class KusamaValidatorSection extends Component {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4} className={classes.descriptionGrid}> 
+          <Grid item xs={12} sm={4} className={classes.itemGrid}> 
             <Box className={classes.descriptionBox}>
               <Typography
                   variant="h4"
@@ -86,14 +86,21 @@ class KusamaValidatorSection extends Component {
                   variant="body1"
                   color="textSecondary"
                   align="left"
-                  paragraph
+                  gutterBottom
                 ><b>Momo + Coco</b> are our non-identical Validator twins running in the Kusama Network.
               </Typography>
               <Typography
                   variant="body1"
                   color="textSecondary"
                   align="left"
-                ><b>Momo's</b> commission is <b>0%</b> and <b>Coco's</b> commission is <b>7%</b>. On both you get instant rewards every era.
+                  gutterBottom
+                >Differences aside, <b>Momo + Coco</b> share the same <b>0%</b> commission. And on both you get instant rewards every era.
+              </Typography>
+              <Typography
+                  variant="body1"
+                  color="textSecondary"
+                  align="left"
+                >Nominate <b>Momo + Coco</b>. You won't regret it.
               </Typography>
               <Box className={classes.ident}>
                 <Identicon

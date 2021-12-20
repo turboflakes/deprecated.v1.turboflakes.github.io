@@ -60,9 +60,10 @@ const styles = (theme) => ({
   plus: {
     margin: `0 ${theme.spacing(3)}px`
   },
-  descriptionGrid: {
+  itemGrid: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
   },
   descriptionBox: {
     position: "relative",
