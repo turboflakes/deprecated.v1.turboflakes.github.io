@@ -2,6 +2,7 @@ import {Component} from 'react';
 import { connect } from 'react-redux'
 import _debounce from 'lodash/debounce';
 import {scrollIntoView, clearView, disableScroll} from '../../actions/layout'
+// import Box from '@material-ui/core/Box';
 
 const NOMI_HEADER_HEIGHT = 496
 const SECTION_THRESHOLD = 192
@@ -19,7 +20,7 @@ class Scroll extends Component {
 			scrollY: 0,
       nomiSectionTopOneQuarter: props.nomiTopY + ((NOMI_HEADER_HEIGHT) / 4),
       nomiSectionHalf: props.nomiTopY + ((NOMI_HEADER_HEIGHT) / 2),
-      nomiLeaderboardTop: props.nomiTopY + (NOMI_HEADER_HEIGHT) - (0.05 * window.innerHeight),
+      nomiLeaderboardTop: props.nomiTopY + NOMI_HEADER_HEIGHT - (0.05 * window.innerHeight),
       nomiBoardTop: props.nomiTopY + NOMI_HEADER_HEIGHT,
       nomiBoardHalf: props.nomiTopY + NOMI_HEADER_HEIGHT + ((window.innerHeight * 0.95) / 2),
 		}

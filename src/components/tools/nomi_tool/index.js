@@ -9,6 +9,7 @@ import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Chip from '@material-ui/core/Chip';
 import BoardAnimation from './board_animation'
 import Leaderboard from './leaderboard'
 import AccountInfoTable from './account_info_table'
@@ -130,6 +131,7 @@ class NomiTool extends Component {
                 >
                   <b>Nomi</b> is a decision support tool for Nominators in NPoS networks.
               </Typography>
+              <Chip label="beta version" color='primary'/>
               {!isWidthUp('lg', width, true) ?
                   <Typography
                   variant="body1"

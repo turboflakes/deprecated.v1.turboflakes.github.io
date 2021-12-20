@@ -54,7 +54,7 @@ class IndexPage extends Component {
     // Landing page height = window.innerHeight * 0.9
     // Substrate box height = 704
     // TurboFlakes tools box height = 1024
-    const nomiTopY = (window.innerHeight * 0.9) + 704 + 1024
+    const nomiTopY = (window.innerHeight * 0.95) + 704 + 1024
     const crunchTopY = nomiTopY + 496 + (window.innerHeight * 0.95)
     const emaTopY = crunchTopY + 1728
     
