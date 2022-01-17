@@ -6,8 +6,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowRightIcon from '@material-ui/icons/ArrowRightAltRounded';
 import crunchLogo from '../../../../assets/crunchbot.svg';
 import nomiLogo from '../../../../assets/nomi.svg';
 import emaLogo from '../../../../assets/ema.svg';

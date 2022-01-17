@@ -9,8 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowRightIcon from '@material-ui/icons/ArrowRightAltRounded';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import CodeBlock from '../../code_block';
 import scoutyLogo from '../../../assets/scouty.svg';
 import { withStyles } from '@material-ui/core/styles';
