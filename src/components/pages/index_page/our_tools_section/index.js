@@ -11,6 +11,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRightAltRounded';
 import crunchLogo from '../../../../assets/crunchbot.svg';
 import nomiLogo from '../../../../assets/nomi.svg';
 import emaLogo from '../../../../assets/ema.svg';
+import scoutyLogo from '../../../../assets/scouty.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -59,17 +60,17 @@ class OurToolsSection extends Component {
             align="left"
             paragraph
             >
-            Meet Nomi, Crunch, and Ema. <IconButton 
+            Meet Nomi, Crunch, Scouty and Ema. 
+            {/* <IconButton 
               color="inherit"
               size="small"
               aria-label="Menu">
-              <ArrowRightIcon color="inherit" /></IconButton>
+              <ArrowRightIcon color="inherit" /></IconButton> */}
             </Typography>
           </Grid>
           <Grid item xs sm></Grid>
         </Grid>
         <Grid container className={classes.container}>
-          <Grid item xs sm={3}></Grid>
           <Grid item xs={12} sm={3} align="center">
             <Link component="button" className={classes.botLink} 
               color="textPrimary"
@@ -95,6 +96,20 @@ class OurToolsSection extends Component {
                 color="textPrimary"
                 align="center"
               >CRUNCH
+              </Typography>
+            </Link>
+          </Grid>
+          <Grid item xs={12} sm={3} align="center">
+            <Link component="button" className={classes.botLink} 
+              color="textPrimary"
+              onClick={() => this.props.scrollIntoView("scouty")}>
+              <img src={scoutyLogo} className={classes.botLogo} alt={"scouty-logo"}/>
+              <Typography
+                component="span"
+                variant="h4"
+                color="textPrimary"
+                align="center"
+              >SCOUTY
               </Typography>
             </Link>
           </Grid>

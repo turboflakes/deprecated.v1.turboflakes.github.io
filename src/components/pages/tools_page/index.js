@@ -89,7 +89,7 @@ class ToolsPage extends Component {
           CRUNCH
           </Typography> 
           <Typography paragraph>
-          Crunch is a command-line interface to easily automate payouts of staking rewards on Substrate-based chains.
+          Crunch is a command-line interface to easily automate payouts of staking rewards on substrate-based chains.
           </Typography> 
           <Typography color="inherit" align="justify" paragraph>
           -
