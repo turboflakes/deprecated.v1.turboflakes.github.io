@@ -1,6 +1,6 @@
 # turboflakes-frontend 
 
-Turboflakes exists to help you pick the best Validators available in Substrate-based blockchain networks
+Turboflakes and the Substrate Tools Garage
 
 ## Dependencies
 
