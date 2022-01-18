@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.099262ab.chunk.css",
-    "main.js": "/static/js/main.d6df64a2.chunk.js",
+    "main.js": "/static/js/main.e5e10203.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.9ca5b269.js",
     "static/css/2.29852eb5.chunk.css": "/static/css/2.29852eb5.chunk.css",
-    "static/js/2.4422afc7.chunk.js": "/static/js/2.4422afc7.chunk.js",
+    "static/js/2.a46cecf4.chunk.js": "/static/js/2.a46cecf4.chunk.js",
     "static/js/3.be898dc3.chunk.js": "/static/js/3.be898dc3.chunk.js",
     "index.html": "/index.html",
-    "static/js/2.4422afc7.chunk.js.LICENSE.txt": "/static/js/2.4422afc7.chunk.js.LICENSE.txt",
+    "static/js/2.a46cecf4.chunk.js.LICENSE.txt": "/static/js/2.a46cecf4.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Gilroy-Heavy.e6ba4147.woff2",
     "static/media/Polkadot_Logo_Horizontal_White.ef97fd46.svg": "/static/media/Polkadot_Logo_Horizontal_White.ef97fd46.svg",
     "static/media/crunchbot.733f32d0.svg": "/static/media/crunchbot.733f32d0.svg",
@@ -35,8 +35,8 @@
   "entrypoints": [
     "static/js/runtime-main.9ca5b269.js",
     "static/css/2.29852eb5.chunk.css",
-    "static/js/2.4422afc7.chunk.js",
+    "static/js/2.a46cecf4.chunk.js",
     "static/css/main.099262ab.chunk.css",
-    "static/js/main.d6df64a2.chunk.js"
+    "static/js/main.e5e10203.chunk.js"
   ]
 }
