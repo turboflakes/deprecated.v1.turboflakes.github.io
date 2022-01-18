@@ -182,7 +182,7 @@ class ScoutyTool extends Component {
                 variant="body1"
                 color="textPrimary"
                 align="left"
-                >Scouty loves to matrix. Try it out and see for yourself.
+                >Scouty loves matrix. Give it a and see for yourself.
               </Typography>
             </Box>
             <ImageList className={classes.imageList} cols={2.5}>
