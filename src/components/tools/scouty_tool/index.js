@@ -106,7 +106,7 @@ class ScoutyTool extends Component {
                 align="left"
                 paragraph
               >
-                Scouty mainly purpose is to monitor, intercept and extend functionality as soon as on-chain events are triggered. 
+                Scouty mainly purpose is to monitor, intercept and extend functionality as soon as on-chain events are emitted. 
               </Typography>
               <Typography
                 variant="body1"
