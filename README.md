@@ -1,6 +1,6 @@
 # turboflakes-frontend 
 
-Turboflakes and the Substrate Tools Garage
+Turboflakes and the Substrate Tools Garage provides end-user tooling to help to interact with Substrate blockchain networks.
 
 ## Dependencies
 
