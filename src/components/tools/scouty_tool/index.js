@@ -122,7 +122,7 @@ class ScoutyTool extends Component {
                 align="left"
                 paragraph
               >
-              To be notified about Referenda and vote from your favorite site <i>- Polkadot.js, Polkassembly, Commonwealth -</i> through a direct link.
+              To be notified about Referenda and vote from your favourite site <i>- Polkadot.js, Polkassembly, Commonwealth -</i> through a direct link.
               </Typography>
               <Typography
                 variant="body1"
