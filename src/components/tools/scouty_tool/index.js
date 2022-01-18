@@ -176,13 +176,13 @@ class ScoutyTool extends Component {
                 paragraph
               ><b>Scouty</b> + <Link href="https://matrix.org/" 
                 target="_blank" rel="noreferrer" color="inherit" 
-                className={classes.link}>Matrix</Link> = ❤️
+                className={classes.link}>Matrix</Link>
               </Typography>
               <Typography
                 variant="body1"
                 color="textPrimary"
                 align="left"
-                >Try it out and see for yourself.
+                >Scouty loves to matrix. Try it out and see for yourself.
               </Typography>
             </Box>
             <ImageList className={classes.imageList} cols={2.5}>
