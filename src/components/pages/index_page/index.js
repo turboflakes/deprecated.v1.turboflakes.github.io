@@ -25,7 +25,7 @@ class IndexPage extends Component {
 
   componentDidMount() {
     const {location} = this.props
-    if (["#nomi", "#crunch", "#ema"].includes(location.hash)) {
+    if (["#nomi", "#crunch", "#scouty", "#ema", "#raiden", "#momo", "#coco"].includes(location.hash)) {
       this.props.scrollIntoView(location.hash.substring(1))
     }
     this.removeHash()
