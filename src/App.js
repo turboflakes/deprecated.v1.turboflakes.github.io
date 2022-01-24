@@ -12,6 +12,7 @@ import IndexPage from './components/pages/index_page'
 import AboutPage from './components/pages/about_page'
 import DisclaimerPage from './components/pages/disclaimer_page'
 import ToolsPage from './components/pages/tools_page'
+import ValidatorsPage from './components/pages/validators_page'
 import NotReadyPage from './components/pages/not_ready_page'
 import withTheme from './theme/withTheme'
 
@@ -49,7 +50,7 @@ function App() {
         <Switch>
           <LayoutRoute exact strict path="/about" layout={LayoutDefault} page={AboutPage} />
           <LayoutRoute exact strict path="/tools" layout={LayoutDefault} page={ToolsPage} />
-          <LayoutRoute exact strict path="/validators" layout={LayoutDefault} page={NotReadyPage} />
+          <LayoutRoute exact strict path="/validators" layout={LayoutDefault} page={ValidatorsPage} />
           {/*  */}
           <LayoutRoute exact strict path="/disclaimer" layout={LayoutDefault} page={DisclaimerPage} />
           <LayoutRoute exact strict path="/privacy" layout={LayoutDefault} page={NotReadyPage} />

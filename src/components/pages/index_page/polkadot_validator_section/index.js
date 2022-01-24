@@ -31,10 +31,10 @@ class PolkadotValidatorSection extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, classNameRoot } = this.props;
     
     return (
-      <Box className={classes.root} ref={this.rootRef}>
+      <Box className={!classNameRoot ? classes.root : classNameRoot} ref={this.rootRef}>
         <Grid container className={classes.container}>
           <Grid item xs={12} sm={8}>
             <Box className={classes.mascotBox}>

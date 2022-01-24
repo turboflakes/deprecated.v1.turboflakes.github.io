@@ -2,7 +2,7 @@ const styles = (theme) => ({
   root: {},
   container: {
     minHeight: "64vh",
-    maxWidth: 768,
+    maxWidth: 1024,
     color: theme.palette.text.primary,
     padding: `0 ${theme.spacing(8)}px ${theme.spacing(8)}px ${theme.spacing(8)}px`,
   },

@@ -74,7 +74,7 @@ class OurValidatorsSection extends Component {
             align="left"
             paragraph
             >
-            Meet Raiden, Momo + Coco. 
+            Meet Raiden and Momo + Coco. 
             {/* <IconButton 
               color="inherit"
               size="small"
