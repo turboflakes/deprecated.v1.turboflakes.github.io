@@ -72,9 +72,12 @@ class ControlPanel extends Component {
 
 			this.setState({isExtensionEnabled: true})
       
-			this.getMaxNominations().then(a => {
-				this.props.setMaxNominations(a.toNumber())
-			})
+			// ISSUE: Issue on runtime/9170 where maxNominations is no longer part of the metadata, it should be fixed on runtime/9180
+			// HOTFIX: set a default value of 16
+			this.props.setMaxNominations(16)
+			// this.getMaxNominations().then(a => {
+			// 	this.props.setMaxNominations(a.toNumber())
+			// })
 			
     });
 	}
@@ -84,9 +87,13 @@ class ControlPanel extends Component {
 		if (prevProps.network !== network) {
 			// Change network update maxNominations constant
 			if (this.state.isExtensionEnabled) {
-				this.getMaxNominations().then(a => {
-					this.props.setMaxNominations(a.toNumber())
-				})
+
+				// ISSUE: Issue on runtime/9170 where maxNominations is no longer part of the metadata, it should be fixed on runtime/9180
+				// HOTFIX: set a default value of 16
+				this.props.setMaxNominations(16)
+				// this.getMaxNominations().then(a => {
+				// 	this.props.setMaxNominations(a.toNumber())
+				// })
 			}
 		}
 
@@ -100,10 +107,12 @@ class ControlPanel extends Component {
 	}
 
 	getMaxNominations = async () => {
-    const {network} = this.props
-    const provider = new WsProvider(getNetworkWSS(network));
-    const api = await ApiPromise.create({ provider });
-    return api.consts.staking.maxNominations;  
+		// const {network} = this.props
+    // const provider = new WsProvider(getNetworkWSS(network));
+    // const api = await ApiPromise.create({ provider });
+		// return api.consts.staking.maxNominations;  
+
+		
   }
 
 	handleOnClickNominate = () => {
