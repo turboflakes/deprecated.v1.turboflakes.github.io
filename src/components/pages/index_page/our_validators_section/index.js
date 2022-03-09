@@ -34,7 +34,7 @@ class OurValidatorsSection extends Component {
             align="left"
             paragraph
             >
-            Validators are one big piece of the puzzle in the Polkadot and Kusama network. Their role is to ensure that the Relay Chain stays secure by staking DOTs or KSMs. These participants are critical in producing new blocks in the consensus mechanism with other validators and verifying that the information contained in the Parachain blocks is valid.
+            Validators are one big piece of the puzzle in the Polkadot and Kusama network. Their role is to ensure that the Relay Chain stays secure by staking <i>DOT</i> or <i>KSM</i>. These participants are critical in producing new blocks in the consensus mechanism with other validators and verifying that the information contained in the Parachain blocks is valid.
             </Typography>
             <Typography
             variant="body1"
@@ -52,13 +52,9 @@ class OurValidatorsSection extends Component {
             align="left"
             paragraph
             >
-            We have been validating on the Kusama network since January 2021 without any issues. And more recently we joined the Polkadot network with our first node. We are also eligible for the Kusama's Thousand Validators Programme, aka 1KV. Check our score here <IconButton 
-              onClick={this.handle1KVExt}
-              color="inherit"
-              size="small"
-              aria-label="Menu">
-              <ArrowRightIcon color="inherit" />
-            </IconButton>
+            We have been validating on the Kusama network since January 2021 and on Polkadot since June 2021. We are also eligible for the Kusama Thousand Validators Programme and recently we also joined <Link href="https://polkadot.network/blog/supporting-decentralization-join-the-polkadot-thousand-validators-programme" 
+            target="_blank" rel="noreferrer" color="inherit" 
+            className={classes.link}>Polkadot Thousand Validators Programme</Link> through a Good Intention evaluation case.
             </Typography>
             <Typography
             variant="body1"

@@ -79,7 +79,7 @@ class PolkadotValidatorSection extends Component {
                   variant="body1"
                   color="textSecondary"
                   align="left"
-                >Nominate <b>Raiden</b>. Raiden's superpowers won't let you down.
+                >Nominate <b>Raiden</b>.
               </Typography>
               <Box className={classes.ident}>
                 <Identicon

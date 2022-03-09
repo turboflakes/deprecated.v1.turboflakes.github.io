@@ -94,13 +94,13 @@ class KusamaValidatorSection extends Component {
                   color="textSecondary"
                   align="left"
                   gutterBottom
-                >Differences aside, <b>Momo + Coco</b> share the same <b>0%</b> commission. And on both you get instant rewards every era.
+                >Differences aside, <b>Momo + Coco</b> share the same <b>3%</b> commission. And on both you get instant rewards every era.
               </Typography>
               <Typography
                   variant="body1"
                   color="textSecondary"
                   align="left"
-                >Nominate <b>Momo + Coco</b>. You won't regret it.
+                >Nominate <b>Momo + Coco</b>.
               </Typography>
               <Box className={classes.ident}>
                 <Identicon
