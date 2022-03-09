@@ -1,7 +1,7 @@
 {
-  "name": "turboflakes-frontend",
+  "name": "turboflakes.github.io",
   "version": "0.2.4",
-  "homepage": "https://beta.turboflakes.io",
+  "homepage": "https://www.turboflakes.io",
   "private": false,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
