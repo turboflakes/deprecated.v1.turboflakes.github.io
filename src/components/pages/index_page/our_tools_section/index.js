@@ -8,8 +8,9 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import crunchLogo from '../../../../assets/crunchbot.svg';
 import nomiLogo from '../../../../assets/nomi.svg';
-import emaLogo from '../../../../assets/ema.svg';
+// import emaLogo from '../../../../assets/ema.svg';
 import scoutyLogo from '../../../../assets/scouty.svg';
+import onetLogo from '../../../../assets/onet.svg';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
 
@@ -58,7 +59,7 @@ class OurToolsSection extends Component {
             align="left"
             paragraph
             >
-            Meet Nomi, Crunch, Scouty and Ema. 
+            Meet Nomi, Crunch, Scouty and ONE-T. 
             {/* <IconButton 
               color="inherit"
               size="small"
@@ -111,7 +112,21 @@ class OurToolsSection extends Component {
               </Typography>
             </Link>
           </Grid>
-          <Grid item xs={12} sm={3} align="center">
+           <Grid item xs={12} sm={3} align="center">
+            <Link component="button" className={classes.botLink}  
+              color="textPrimary"
+              onClick={() => this.props.scrollIntoView("one-t")}>
+              <img src={onetLogo} className={classes.botLogo} alt={"one-t-logo"}/>
+              <Typography
+                component="span"
+                variant="h4"
+                color="textPrimary"
+                align="center"
+              >ONE-T
+              </Typography>
+            </Link> 
+          </Grid>
+          {/* <Grid item xs={12} sm={3} align="center">
             <Link component="button" className={classes.botLink}  
               color="textPrimary"
               onClick={() => this.props.scrollIntoView("ema")}>
@@ -124,7 +139,7 @@ class OurToolsSection extends Component {
               >EMA
               </Typography>
             </Link> 
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
     )

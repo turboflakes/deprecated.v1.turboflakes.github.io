@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import NomiTool from '../../tools/nomi_tool'
 import CrunchTool from '../../tools/crunch_tool'
 import ScoutyTool from '../../tools/scouty_tool'
+import OnetTool from '../../tools/onet_tool'
 import EmaTool from '../../tools/ema_tool'
 import PolkadotValidatorSection from './polkadot_validator_section'
 import KusamaValidatorSection from './kusama_validator_section'
@@ -61,7 +62,8 @@ class IndexPage extends Component {
     const nomiTopY = (window.innerHeight * 0.95) + 704 + 1024
     const crunchTopY = nomiTopY + 496 + (window.innerHeight * 0.95)
     const scoutyTopY = crunchTopY + 1728
-    const emaTopY = scoutyTopY + 1984
+    // const emaTopY = scoutyTopY + 1984
+    const onetTopY = scoutyTopY + 1984
     
     return (
       <Box className={classes.root} ref={this.rootRef}>
@@ -74,7 +76,8 @@ class IndexPage extends Component {
         <NomiTool scrollHere={view === "nomi"} topY={nomiTopY} />
         <CrunchTool scrollHere={view === "crunch"} />
         <ScoutyTool scrollHere={view === "scouty"} />
-        <EmaTool scrollHere={view === "ema"} />
+        <OnetTool scrollHere={view === "one-t"} />
+        {/* <EmaTool scrollHere={view === "ema"} /> */}
         {/*  */}
         <OurValidatorsSection />
         {/* Validators here */}
@@ -82,7 +85,7 @@ class IndexPage extends Component {
         <KusamaValidatorSection scrollHere={view === "momo" || view === "coco"} />
         {/*  */}
         {/* <CocoTool scrollIntoView={this.state.view === "coco"}/> */}
-        <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY} scoutyTopY={scoutyTopY} emaTopY={emaTopY} />
+        <Scroll nomiTopY={nomiTopY} crunchTopY={crunchTopY} scoutyTopY={scoutyTopY} onetTopY={onetTopY} />
       </Box>
     )
   }

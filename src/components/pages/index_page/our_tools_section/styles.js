@@ -34,7 +34,7 @@ const styles = (theme) => ({
     }
   },
   botLogo: {
-    maxWidth: 80,
+    maxHeight: 140,
     margin: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
   },
 })
