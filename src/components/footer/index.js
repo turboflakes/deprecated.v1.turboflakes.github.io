@@ -46,11 +46,14 @@ class Footer extends Component {
 							<Typography color="textSecondary" gutterBottom>
 								<Link href="/#/about"  color="inherit">About us</Link>
 							</Typography>
-							<Typography color="textSecondary" gutterBottom>
+							{/* <Typography color="textSecondary" gutterBottom>
 								<Link href="/#/tools"  color="inherit">Tools</Link>
-							</Typography>
+							</Typography> */}
 							<Typography color="textSecondary" gutterBottom>
 								<Link href="/#/validators"  color="inherit">Validators</Link>
+							</Typography>
+							<Typography color="textSecondary" gutterBottom>
+								<Link href="https://one-t.turboflakes.io/" target="_blank" rel="noreferrer" color="inherit">Nomination Pools</Link>
 							</Typography>
 						</Grid>
 						<Grid item xs={6} sm={3}>
