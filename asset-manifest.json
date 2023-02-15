@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.099262ab.chunk.css",
-    "main.js": "/static/js/main.28c80e00.chunk.js",
-    "runtime-main.js": "/static/js/runtime-main.9ca5b269.js",
+    "main.js": "/static/js/main.0fb49dcb.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.a3dd9dae.js",
     "static/css/2.29852eb5.chunk.css": "/static/css/2.29852eb5.chunk.css",
-    "static/js/2.26a63f0a.chunk.js": "/static/js/2.26a63f0a.chunk.js",
-    "static/js/3.be898dc3.chunk.js": "/static/js/3.be898dc3.chunk.js",
+    "static/js/2.8f073d54.chunk.js": "/static/js/2.8f073d54.chunk.js",
+    "static/js/3.ef9cc3aa.chunk.js": "/static/js/3.ef9cc3aa.chunk.js",
     "index.html": "/index.html",
-    "static/js/2.26a63f0a.chunk.js.LICENSE.txt": "/static/js/2.26a63f0a.chunk.js.LICENSE.txt",
+    "static/js/2.8f073d54.chunk.js.LICENSE.txt": "/static/js/2.8f073d54.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Gilroy-Heavy.e6ba4147.woff2",
     "static/media/Polkadot_Logo_Horizontal_White.ef97fd46.svg": "/static/media/Polkadot_Logo_Horizontal_White.ef97fd46.svg",
     "static/media/crunchbot.733f32d0.svg": "/static/media/crunchbot.733f32d0.svg",
-    "static/media/ema.524a7d71.svg": "/static/media/ema.524a7d71.svg",
+    "static/media/dodo.a27ad937.svg": "/static/media/dodo.a27ad937.svg",
     "static/media/github.39b6d23f.svg": "/static/media/github.39b6d23f.svg",
     "static/media/github_white.e1c31965.svg": "/static/media/github_white.e1c31965.svg",
     "static/media/kusama_icon.8d767b9a.svg": "/static/media/kusama_icon.8d767b9a.svg",
@@ -20,23 +20,21 @@
     "static/media/logo_1_inverted_subtract_turboflakes_.a857a493.svg": "/static/media/logo_1_inverted_subtract_turboflakes_.a857a493.svg",
     "static/media/logo_2_color_subtract_turboflakes_.f56f64ba.svg": "/static/media/logo_2_color_subtract_turboflakes_.f56f64ba.svg",
     "static/media/momo_and_coco.7133a929.svg": "/static/media/momo_and_coco.7133a929.svg",
-    "static/media/nomi.37caf6a1.svg": "/static/media/nomi.37caf6a1.svg",
-    "static/media/nomi_head_white.93e2c5f1.svg": "/static/media/nomi_head_white.93e2c5f1.svg",
+    "static/media/onet.93920402.svg": "/static/media/onet.93920402.svg",
     "static/media/polkadot_icon.307bb3ee.svg": "/static/media/polkadot_icon.307bb3ee.svg",
-    "static/media/polkadot_js_logo.7d2701e2.svg": "/static/media/polkadot_js_logo.7d2701e2.svg",
     "static/media/polkadot_logotype_white.22c4f751.svg": "/static/media/polkadot_logotype_white.22c4f751.svg",
     "static/media/raiden.d273e24b.svg": "/static/media/raiden.d273e24b.svg",
     "static/media/scouty.4705851f.svg": "/static/media/scouty.4705851f.svg",
-    "static/media/subscan_logo.c754f0ef.svg": "/static/media/subscan_logo.c754f0ef.svg",
+    "static/media/toto.0506ce70.svg": "/static/media/toto.0506ce70.svg",
     "static/media/twitter.63084a6f.svg": "/static/media/twitter.63084a6f.svg",
     "static/media/twitter_white.0c56778e.svg": "/static/media/twitter_white.0c56778e.svg",
     "static/media/westend_icon.6c9cdb56.svg": "/static/media/westend_icon.6c9cdb56.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.9ca5b269.js",
+    "static/js/runtime-main.a3dd9dae.js",
     "static/css/2.29852eb5.chunk.css",
-    "static/js/2.26a63f0a.chunk.js",
+    "static/js/2.8f073d54.chunk.js",
     "static/css/main.099262ab.chunk.css",
-    "static/js/main.28c80e00.chunk.js"
+    "static/js/main.0fb49dcb.chunk.js"
   ]
 }
