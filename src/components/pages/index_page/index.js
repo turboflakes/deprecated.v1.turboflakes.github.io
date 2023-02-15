@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import {scrollIntoView} from '../../../actions/layout'
 import Box from '@material-ui/core/Box';
-import NomiTool from '../../tools/nomi_tool'
+// import NomiTool from '../../tools/nomi_tool'
 import CrunchTool from '../../tools/crunch_tool'
 import ScoutyTool from '../../tools/scouty_tool'
 import OnetTool from '../../tools/onet_tool'

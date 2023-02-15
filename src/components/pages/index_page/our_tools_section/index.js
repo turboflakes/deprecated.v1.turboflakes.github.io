@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import crunchLogo from '../../../../assets/crunchbot.svg';
-import nomiLogo from '../../../../assets/nomi.svg';
+// import nomiLogo from '../../../../assets/nomi.svg';
 // import emaLogo from '../../../../assets/ema.svg';
 import scoutyLogo from '../../../../assets/scouty.svg';
 import onetLogo from '../../../../assets/onet.svg';
