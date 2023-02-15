@@ -27,8 +27,6 @@ class IndexPage extends Component {
   componentDidMount() {
     const {location} = this.props
 
-    console.log("__",location);
-
     if (["#nomi", "#crunch", "#scouty", "#ema", "#raiden", "#momo", "#coco"].includes(location.hash)) {
       this.props.scrollIntoView(location.hash.substring(1))
     }
@@ -73,7 +71,7 @@ class IndexPage extends Component {
         {/*  */}
         <OurToolsSection />
         {/* Tool sections here */}
-        <NomiTool scrollHere={view === "nomi"} topY={nomiTopY} />
+        {/* <NomiTool scrollHere={view === "nomi"} topY={nomiTopY} /> */}
         <CrunchTool scrollHere={view === "crunch"} />
         <ScoutyTool scrollHere={view === "scouty"} />
         <OnetTool scrollHere={view === "one-t"} />

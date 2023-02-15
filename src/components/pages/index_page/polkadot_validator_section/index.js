@@ -72,8 +72,8 @@ class PolkadotValidatorSection extends Component {
                   variant="body1"
                   color="textSecondary"
                   align="left"
-                  gutterBottom
-                ><b>Raiden's</b> commission is <b>1%</b> and you get instant rewards every era.
+                  paragraph
+                ><b>Raiden's</b> commission is <b>1%</b> and you get instant rewards every era - payouts are ensured by <b>CRUNCH</b>.
               </Typography>
               <Typography
                   variant="body1"

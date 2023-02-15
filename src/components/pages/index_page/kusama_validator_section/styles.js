@@ -24,15 +24,16 @@ const styles = (theme) => ({
   mascotBox:{
     display: "flex",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    padding: 16
   },
   logoBox: {
     
   },
   logo: {
-    width: 512,
+    height: 256,
     [theme.breakpoints.down('sm')]: {
-      width: 320,
+      width: 256,
     }
   },
   namesBox: {

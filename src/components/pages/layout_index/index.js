@@ -11,19 +11,19 @@ import styles from './styles'
 
 class LayoutIndex extends Component {
 
-  componentDidMount() {
-    const {network} = this.props
-    if (!!network) {
-      this.props.getApiDetails(network)
-    }
-  }
+  // componentDidMount() {
+  //   const {network} = this.props
+  //   if (!!network) {
+  //     this.props.getApiDetails(network)
+  //   }
+  // }
 
-  componentDidUpdate(prevProps) {
-    const {network} = this.props
-    if (!!network && prevProps.network !== this.props.network) {
-      this.props.getApiDetails(network)
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const {network} = this.props
+  //   if (!!network && prevProps.network !== this.props.network) {
+  //     this.props.getApiDetails(network)
+  //   }
+  // }
   
   render() {
     const { classes, width } = this.props;

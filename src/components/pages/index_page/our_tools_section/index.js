@@ -59,7 +59,7 @@ class OurToolsSection extends Component {
             align="left"
             paragraph
             >
-            Meet Nomi, Crunch, Scouty and ONE-T. 
+            Meet Crunch, Scouty and ONE-T. 
             {/* <IconButton 
               color="inherit"
               size="small"
@@ -70,7 +70,7 @@ class OurToolsSection extends Component {
           <Grid item xs sm></Grid>
         </Grid>
         <Grid container className={classes.container}>
-          <Grid item xs={12} sm={3} align="center">
+          {/* <Grid item xs={12} sm={3} align="center">
             <Link component="button" className={classes.botLink} 
               color="textPrimary"
               onClick={() => this.props.scrollIntoView("nomi")}>
@@ -83,8 +83,8 @@ class OurToolsSection extends Component {
               >NOMI
               </Typography>
             </Link>
-          </Grid>
-          <Grid item xs={12} sm={3} align="center">
+          </Grid> */}
+          <Grid item xs={12} sm={4} align="center">
             <Link component="button" className={classes.botLink} 
               color="textPrimary"
               onClick={() => this.props.scrollIntoView("crunch")}>
@@ -98,7 +98,7 @@ class OurToolsSection extends Component {
               </Typography>
             </Link>
           </Grid>
-          <Grid item xs={12} sm={3} align="center">
+          <Grid item xs={12} sm={4} align="center">
             <Link component="button" className={classes.botLink} 
               color="textPrimary"
               onClick={() => this.props.scrollIntoView("scouty")}>
@@ -112,7 +112,7 @@ class OurToolsSection extends Component {
               </Typography>
             </Link>
           </Grid>
-           <Grid item xs={12} sm={3} align="center">
+           <Grid item xs={12} sm={4} align="center">
             <Link component="button" className={classes.botLink}  
               color="textPrimary"
               onClick={() => this.props.scrollIntoView("one-t")}>

@@ -81,7 +81,7 @@ class Footer extends Component {
 					</Box>
 					<Box className={classNames(classes.container, classes.bottom)}>
 						<Typography variant="body2" color="textSecondary" className={classes.page}>
-						© 2021 TurboFlakes
+						© 2023 TurboFlakes
 						</Typography>
 						<Typography variant="body2" color="textSecondary" className={classes.page}>
 							<Link href="/#/disclaimer"  color="inherit" >Disclaimer</Link>
