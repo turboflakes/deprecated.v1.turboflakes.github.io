@@ -102,7 +102,7 @@ class CrunchTool extends Component {
               >
                 To claim staking rewards for one or a bunch of Validators at the end of each Era. 
                 Maybe to get notifications about the amount and rate of the staking rewards and be informed about era stats for each Validator.
-                For Nominators in private or public rooms be able to check specific Validators performance. As a Pool Operator to ensure that all pool nominees payout on time.
+                For Nominators in private or public rooms be able to check specific Validators performance. For Pool Operators to ensure that all selected validators payout on time so that pool members could claim their rewards.
               </Typography>
             </Box>
           </Grid>
